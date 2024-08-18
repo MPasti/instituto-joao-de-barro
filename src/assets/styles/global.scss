@@ -1,0 +1,27 @@
+@font-face {
+  font-family: "Switzerland";
+  src: url("@fonts/Switzerland/switzerland-1.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  font-family: "Switzerland";
+  margin: 0;
+  padding: 0;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+.justify-content-end {
+  justify-content: end;
+}
+
+.justify-content-center {
+  justify-content: center;
+}
+
+@import url("components.scss");
