@@ -1,13 +1,19 @@
 .navbar {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
   padding: 10px 20px;
   background-color: #333;
 }
 
 .logo-icon {
-  width: 80px;
+  width: 70px;
+  margin-right: 10px;
+}
+
+.icons {
+  width: 35px;
+  height: 35px;
 }
 
 .navLinks {
@@ -31,4 +37,18 @@
 .logo-box {
   display: flex;
   flex-direction: row;
+}
+
+.main {
+  height: 473px;
+}
+
+.footer {
+  height: 200px;
+  color: #fff;
+  display: flex;
+  background-color: #333;
+  border: 1px solid #333;
+  justify-content: center;
+  align-items: center;
 }

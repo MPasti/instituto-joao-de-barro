@@ -1,6 +1,6 @@
 import logoUrl from "@images/logo-instituto.svg";
 
-export default function Navbar() {
+export function Navbar() {
   return (
     <nav className="navbar">
       <div className="logo">
