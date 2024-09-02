@@ -1,4 +1,4 @@
-# Instituto João de Barro (IJB)
+# <img src="./public/logo-instituto.svg" alt="Book Store Logo" width="46"/> Instituto João de Barro (IJB)
 
 O Instituto João de Barro é uma ONG que atua na cidade de Franca - SP, com o objetivo de ajudar famílias em situação de vulnerabilidade, necessidade, entre outros; oferecendo doações de recursos financeiros, criando moradias, promovendo eventos para o bem estar social da cidade de Franca. 
 
