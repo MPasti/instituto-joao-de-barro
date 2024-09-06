@@ -11,7 +11,7 @@
   margin-right: 10px;
 }
 
-.footer-logo{
+.footer-logo {
   width: 180px;
 }
 
@@ -44,31 +44,24 @@
 }
 
 .footer {
-  height: 400px;
-  color: #000;
-  display: flex;
-  background-color: #FCC90AFF;
-  justify-content: center;
-  align-items: center;
+  background-color: $primary;
+  padding: 0 300px;
 }
 
-.ijb-title{
+.ijb-title {
   display: flex;
   flex-direction: column;
-  p{
+  p {
     margin: 0;
     font-size: 18px;
   }
-  h4{
+  h4 {
     font-size: 24px;
     margin: 0;
     font-weight: bolder;
   }
-  span{
+  span {
     font-size: 10px;
     font-weight: 600;
   }
-}
-
-.footer-icons{
 }

@@ -1,0 +1,14 @@
+.form-control:focus {
+  box-shadow: 0 0 5px 1px $dark;
+  border-color: $dark;
+}
+
+.btn-primary {
+  background-color: $secondary;
+  border: 1px solid $secondary;
+
+  &:hover {
+    background-color: $secondary-hover;
+    border: 1px solid $secondary-hover;
+  }
+}

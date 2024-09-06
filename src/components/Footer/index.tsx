@@ -1,34 +1,81 @@
 import { FaFacebook, FaInstagram } from "react-icons/fa6";
 import logoUrl from "@images/black-white-logo.svg";
 
-
-
 export const Footer = () => {
   return (
-      <div className="footer d-flex flex-column">
-          <div className="d-flex justify-content-evenly w-100">
-              <div>
-                  <img className="footer-logo" src={logoUrl} alt="Logo"/>
-                  <div className="ijb-title">
-                      <p>INSTITUTO</p>
-                      <h4>JOÃO DE BARRO</h4>
-                      <span>GRUPO SOLIDÁRIO DE APOIO À MORADIA</span>
-                  </div>
-              </div>
-              <div>
-                  Instituto:
-              </div>
-              <div>
-                  Contato:
-              </div>
-              <div className='footer-icons text-center'>
-                  <FaFacebook className="icons"/>
-                  <FaInstagram className="icons"/>
-              </div>
+    <div className="footer">
+      <div className="container-fluid">
+        <footer className="py-5">
+          <div className="row">
+            <div className="col-lg-4 col-md-6 mb-4 mb-md-0">
+              <img className="footer-logo mb-3" src={logoUrl} alt="Logo" />
+              <h5 className="text-uppercase fw-bolder">
+                Instituto João de Barro
+              </h5>
+              <p>Grupo Solidário de Apoio à Moradia</p>
+            </div>
+
+            <div className="col-lg-4 col-md-6 mb-4 mb-md-0">
+              <h5 className="fw-bold">Instituto João de Barro</h5>
+              <p>Rua Tiburcio Barbosa Sandoval, 204, Vila Nicacio</p>
+              <p>Franca - SP, 14405-108</p>
+              <p>CNPJ: 26.345.732/0001-07</p>
+            </div>
+
+            <div className="col-lg-2 col-md-4 mb-4 mb-md-0">
+              <h5 className="fw-bold">Atalhos</h5>
+              <ul className="nav flex-column">
+                <li className="nav-item mb-2">
+                  <a href="#!" className="nav-link p-0 text-body-secondary">
+                    Home
+                  </a>
+                </li>
+                <li className="nav-item mb-2">
+                  <a href="#!" className="nav-link p-0 text-body-secondary">
+                    Projetos
+                  </a>
+                </li>
+                <li className="nav-item mb-2">
+                  <a href="#!" className="nav-link p-0 text-body-secondary">
+                    Transparência
+                  </a>
+                </li>
+                <li className="nav-item mb-2">
+                  <a href="#!" className="nav-link p-0 text-body-secondary">
+                    Contato
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <div className="col-lg-2 col-md-4 mb-4 mb-md-0">
+              <h5 className="fw-bold">Siga-nos</h5>
+              <ul className="list-unstyled d-flex">
+                <li>
+                  <a
+                    className="link-body-emphasis"
+                    href="https://www.facebook.com/"
+                  >
+                    <FaFacebook size={28} />
+                  </a>
+                </li>
+                <li className="ms-3">
+                  <a
+                    className="link-body-emphasis"
+                    href="https://www.instagram.com/"
+                  >
+                    <FaInstagram size={28} />
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
-          <div className="d-flex flex-column mt-4">
-          <p>INSTITUTO JOÃO DE BARRO - TODOS OS DIREITOS RESERVADOS - CNPJ: 26.345.732/0001-07</p>
+
+          <div className="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top border-dark fw-bold">
+            <p>© 2024 Instituto João de Barro. Todos os direitos reservados.</p>
           </div>
+        </footer>
       </div>
+    </div>
   );
 };

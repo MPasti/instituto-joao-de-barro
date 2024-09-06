@@ -1,3 +1,7 @@
+@import "variables";
+@import "components.scss";
+@import "elements.scss";
+
 @font-face {
   font-family: "Switzerland";
   src: url("@fonts/Switzerland/switzerland-1.ttf") format("truetype");
@@ -16,7 +20,7 @@
   flex-direction: column;
 }
 
-.landing-page{
+.landing-page {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -25,5 +29,3 @@
 .main {
   flex-grow: 1;
 }
-
-@import url("components.scss");
