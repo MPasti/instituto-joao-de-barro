@@ -11,6 +11,10 @@
   margin-right: 10px;
 }
 
+.footer-logo{
+  width: 180px;
+}
+
 .icons {
   width: 35px;
   height: 35px;
@@ -39,16 +43,32 @@
   flex-direction: row;
 }
 
-.main {
-  height: 473px;
-}
-
 .footer {
-  height: 200px;
-  color: #fff;
+  height: 400px;
+  color: #000;
   display: flex;
-  background-color: #333;
-  border: 1px solid #333;
+  background-color: #FCC90AFF;
   justify-content: center;
   align-items: center;
+}
+
+.ijb-title{
+  display: flex;
+  flex-direction: column;
+  p{
+    margin: 0;
+    font-size: 18px;
+  }
+  h4{
+    font-size: 24px;
+    margin: 0;
+    font-weight: bolder;
+  }
+  span{
+    font-size: 10px;
+    font-weight: 600;
+  }
+}
+
+.footer-icons{
 }

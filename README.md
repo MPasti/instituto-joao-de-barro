@@ -10,3 +10,8 @@ O principal requisito é que o voluntário tenha comprometimento nos trabalhos d
 
 ### A TRIAGEM
 As famílias assistidas pelo Instituto João de Barro são indicadas por conhecidos que preenchem um formulário de cadastro. Em seguida, uma comissão da equipe de Triagem faz uma visita e levanta todos os dados necessários para análise. Após o cadastro e visita a todas as famílias indicadas, é feita a escolha da família baseada em vários critérios, por exemplo, situação de vulnerabilidade, condições atuais insalubres, necessidade, entre outros. E para que o trabalho seja possível, o Instituto João de Barro realiza várias promoções, além de contar com doações de recursos financeiros e de materiais de construção. 
+
+### PROJETO
+- Projeto usa a versão do node **20.2.0**
+1. Instale as dependências do projeto usando o comando `npm install`
+2. Para rodar o projeto use o comando `npm run dev`
