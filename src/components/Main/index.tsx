@@ -1,4 +1,5 @@
 import { Carousel } from "../Carousel";
+import { PartnersCarousel } from "../PartnersCarousel";
 
 export function Main() {
   const images = [
@@ -10,6 +11,7 @@ export function Main() {
   return (
     <div className="pages">
       <Carousel images={images} />
+      <PartnersCarousel />
     </div>
   );
 }
