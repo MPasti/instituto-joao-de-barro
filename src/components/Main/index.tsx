@@ -8,7 +8,7 @@ export function Main() {
   ];
 
   return (
-    <div className="main">
+    <div className="pages">
       <Carousel images={images} />
     </div>
   );

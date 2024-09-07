@@ -1,5 +1,6 @@
 import { FaFacebook, FaInstagram } from "react-icons/fa6";
 import logoUrl from "@images/black-white-logo.svg";
+import { Link } from "react-router-dom";
 
 export const Footer = () => {
   return (
@@ -26,29 +27,29 @@ export const Footer = () => {
               <h5 className="fw-bold">Atalhos</h5>
               <ul className="nav flex-column">
                 <li className="nav-item mb-2">
-                  <a href="#!" className="nav-link p-0 text-light">
+                  <Link to="/" className="link">
                     Home
-                  </a>
+                  </Link>
                 </li>
                 <li className="nav-item mb-2">
-                  <a href="#!" className="nav-link p-0 text-light">
-                    Beneficiários
-                  </a>
-                </li>
-                <li className="nav-item mb-2">
-                  <a href="#!" className="nav-link p-0 text-light">
+                  <Link to="/beneficiarios" className="link">
                     Voluntários
-                  </a>
+                  </Link>
                 </li>
                 <li className="nav-item mb-2">
-                  <a href="#!" className="nav-link p-0 text-light">
+                  <Link to="/voluntarios" className="link">
+                    Voluntários
+                  </Link>
+                </li>
+                <li className="nav-item mb-2">
+                  <Link to="/sobre" className="link">
                     Sobre o Instituto
-                  </a>
+                  </Link>
                 </li>
                 <li className="nav-item mb-2">
-                  <a href="#!" className="nav-link p-0 text-light">
-                    Contatos
-                  </a>
+                  <Link to="/contatos" className="link">
+                    Contato
+                  </Link>
                 </li>
               </ul>
             </div>

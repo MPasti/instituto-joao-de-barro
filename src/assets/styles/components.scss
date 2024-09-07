@@ -94,6 +94,28 @@
   font-size: 14px;
 }
 
+.about-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 600px;
+  text-align: center;
+}
+
+.video-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 560px;
+}
+
+iframe {
+  width: 100%;
+  height: 315px;
+}
+
 .back-button {
   &:hover {
     cursor: pointer;
