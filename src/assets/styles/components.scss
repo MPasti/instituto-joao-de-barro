@@ -122,3 +122,87 @@ iframe {
     transform: scale(1.05);
   }
 }
+
+.slider-wrapper {
+  display: flex;
+  padding: 100px;
+  justify-content: center;
+  align-items: center;
+}
+
+.custom-swiper {
+  width: 100%;
+  max-width: 800px;
+  height: 400px;
+}
+
+.slide-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.slide-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.slide-content {
+  position: absolute;
+  left: 80px;
+  color: white;
+  text-align: left;
+
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+
+  p {
+    font-size: 1rem;
+    margin-bottom: 15px;
+  }
+
+  .slide-button {
+    padding: 8px 15px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 12px;
+    border: none;
+    color: $dark;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: #fff;
+    }
+  }
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: $secondary;
+  width: 40px;
+  height: 40px;
+  &:hover {
+    color: $tertiary;
+  }
+}
+
+.swiper-pagination-bullet {
+  background-color: #fff;
+  opacity: 0.7;
+  transition: opacity 0.3s;
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.swiper-pagination-bullet-active {
+  background-color: $secondary;
+}
