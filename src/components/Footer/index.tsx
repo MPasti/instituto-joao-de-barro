@@ -26,23 +26,28 @@ export const Footer = () => {
               <h5 className="fw-bold">Atalhos</h5>
               <ul className="nav flex-column">
                 <li className="nav-item mb-2">
-                  <a href="#!" className="nav-link p-0 text-body-secondary">
+                  <a href="#!" className="nav-link p-0 text-light">
                     Home
                   </a>
                 </li>
                 <li className="nav-item mb-2">
-                  <a href="#!" className="nav-link p-0 text-body-secondary">
-                    Projetos
+                  <a href="#!" className="nav-link p-0 text-light">
+                    Beneficiários
                   </a>
                 </li>
                 <li className="nav-item mb-2">
-                  <a href="#!" className="nav-link p-0 text-body-secondary">
-                    Transparência
+                  <a href="#!" className="nav-link p-0 text-light">
+                    Voluntários
                   </a>
                 </li>
                 <li className="nav-item mb-2">
-                  <a href="#!" className="nav-link p-0 text-body-secondary">
-                    Contato
+                  <a href="#!" className="nav-link p-0 text-light">
+                    Sobre o Instituto
+                  </a>
+                </li>
+                <li className="nav-item mb-2">
+                  <a href="#!" className="nav-link p-0 text-light">
+                    Contatos
                   </a>
                 </li>
               </ul>
@@ -53,16 +58,16 @@ export const Footer = () => {
               <ul className="list-unstyled d-flex">
                 <li>
                   <a
-                    className="link-body-emphasis"
-                    href="https://www.facebook.com/"
+                    className="link-emphasis text-light"
+                    href="https://www.facebook.com/joao.de.barro.franca/"
                   >
                     <FaFacebook size={28} />
                   </a>
                 </li>
                 <li className="ms-3">
                   <a
-                    className="link-body-emphasis"
-                    href="https://www.instagram.com/"
+                    className="link-emphasis text-light"
+                    href="https://www.instagram.com/instituto_joaodebarro_franca/"
                   >
                     <FaInstagram size={28} />
                   </a>
@@ -71,7 +76,7 @@ export const Footer = () => {
             </div>
           </div>
 
-          <div className="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top border-dark fw-bold">
+          <div className="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top">
             <p>© 2024 Instituto João de Barro. Todos os direitos reservados.</p>
           </div>
         </footer>

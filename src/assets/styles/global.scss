@@ -1,4 +1,4 @@
-@import "variables";
+@import "_variables";
 @import "components.scss";
 @import "elements.scss";
 
@@ -28,4 +28,8 @@
 
 .main {
   flex-grow: 1;
+}
+
+.cursor-pointer {
+  cursor: pointer;
 }

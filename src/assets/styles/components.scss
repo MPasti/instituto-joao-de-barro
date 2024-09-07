@@ -1,9 +1,9 @@
 .navbar {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
   align-items: center;
   padding: 10px 20px;
-  background-color: #333;
+  background-color: $quartiary;
 }
 
 .logo-icon {
@@ -44,7 +44,8 @@
 }
 
 .footer {
-  background-color: $primary;
+  background-color: $dark;
+  color: #fff;
   padding: 0 300px;
 }
 
@@ -63,5 +64,39 @@
   span {
     font-size: 10px;
     font-weight: 600;
+  }
+}
+
+.dashboard-icon {
+  width: 200px;
+  height: 200px;
+  border-radius: 12px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: #f8f9fa;
+}
+
+.dashboard-icon:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.dashboard-icon .icon {
+  font-size: 30px;
+}
+
+.dashboard-icon span {
+  display: block;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.back-button {
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.05);
   }
 }
