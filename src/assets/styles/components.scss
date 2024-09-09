@@ -123,6 +123,10 @@ iframe {
   }
 }
 
+.partners {
+  margin: 100px 400px;
+}
+
 .slider-wrapper {
   display: flex;
   padding: 100px;
@@ -132,8 +136,8 @@ iframe {
 
 .custom-swiper {
   width: 100%;
-  max-width: 800px;
-  height: 400px;
+  max-width: 1000px;
+  height: 500px;
 }
 
 .slide-container {
@@ -205,4 +209,35 @@ iframe {
 
 .swiper-pagination-bullet-active {
   background-color: $secondary;
+}
+
+.scroll-section {
+  .left-image {
+    position: sticky;
+    top: 0;
+    align-self: flex-start;
+
+    img {
+      margin-top: 30px;
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .left-content {
+    padding: 0;
+  }
+
+  .right-content {
+    padding: 0;
+  }
+
+  .content-block {
+    height: 400px;
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+    transform: translateY(50px);
+  }
 }
