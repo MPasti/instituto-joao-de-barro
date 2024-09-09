@@ -6,7 +6,7 @@ Inspirado em uma instituição similar que existe há 50 anos em Barretos (SP), 
 
 Os beneficiários passam pela Triagem e Apoio, que também recebe apoio psicológico; a Comissão Técnica, que realiza os projetos e acompanha as obras;
 
-O principal requisito é que o voluntário tenha comprometimento nos trabalhos do instituto, não importando a sua profissão. Com isso o João de Barro tem profissionais de diversas áreas participando dos trabalhos. “O Instituto João de Barro é uma organização onde pessoas podem exercitar a cidadania, servir a comunidade e praticar o princípio cristão da caridade” - Carlos Tavares
+O principal requisito é que o voluntário tenha comprometimento nos trabalhos do instituto, não importando a sua profissão. Com isso o João de Barro tem profissionais de diversas áreas participando dos trabalhos. “O Instituto João de Barro é uma organização onde pessoas podem exercitar a cidadania, servir a comunidade e praticar o princípio cristão da caridade” - Carlos Tavares, idealizador do IJB
 
 ### A TRIAGEM
 As famílias assistidas pelo Instituto João de Barro são indicadas por conhecidos que preenchem um formulário de cadastro. Em seguida, uma comissão da equipe de Triagem faz uma visita e levanta todos os dados necessários para análise. Após o cadastro e visita a todas as famílias indicadas, é feita a escolha da família baseada em vários critérios, por exemplo, situação de vulnerabilidade, condições atuais insalubres, necessidade, entre outros. E para que o trabalho seja possível, o Instituto João de Barro realiza várias promoções, além de contar com doações de recursos financeiros e de materiais de construção. 
