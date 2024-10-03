@@ -3,7 +3,11 @@
   justify-content: space-around;
   align-items: center;
   padding: 10px 20px;
-  background-color: $quartiary;
+  background: linear-gradient(90deg, 
+    #F07F3C 0%, 
+    #F1B846 19%, 
+    #FFBD64 44%, 
+    #FFD04F 100%);
 }
 
 .logo-icon {
@@ -76,7 +80,7 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  background-color: #f8f9fa;
+  color: #fff;
 }
 
 .dashboard-icon:hover {
@@ -129,9 +133,9 @@ iframe {
 
 .slider-wrapper {
   display: flex;
-  padding: 100px;
   justify-content: center;
   align-items: center;
+  padding-bottom: 100px;
 }
 
 .custom-swiper {
@@ -233,11 +237,37 @@ iframe {
   }
 
   .content-block {
-    height: 400px;
+    height: 100vh;
     background-color: #f0f0f0;
     padding: 20px;
-    border-radius: 8px;
     transition: transform 0.3s ease;
     transform: translateY(50px);
+  }
+
+  .content{
+    color: $white;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    text-align: justify;
+
+    h1{
+      font-size: 32px;
+      padding: 0 40px;
+    }
+    p{
+      padding: 0 40px;
+      font-size: 20px;
+    }
+
+    &.bg-color-first{
+      background-color: $secondary;
+    }
+    &.bg-color-second{
+      background-color: $primary;
+    }
+    &.bg-color-third{
+      background-color: #D88065;
+    }
   }
 }

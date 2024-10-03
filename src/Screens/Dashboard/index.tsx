@@ -1,14 +1,8 @@
 import React from "react";
-import { BiArrowBack } from "react-icons/bi";
-import {
-  FaUsers,
-  FaBox,
-  FaMoneyBill,
-  FaCalendarAlt,
-  FaBuilding,
-  FaNewspaper,
-} from "react-icons/fa";
-import { GiThreeFriends } from "react-icons/gi";
+import { BiArrowBack, BiSolidCalendarStar } from "react-icons/bi";
+import { FaTools, FaHandsHelping } from "react-icons/fa";
+import { FaBoxOpen, FaHandHoldingHeart, FaPiggyBank } from "react-icons/fa6";
+import { IoNewspaper } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 
 interface DashboardIconProps {
@@ -33,18 +27,18 @@ const DashboardPage = () => {
         </div>
         <div className="col-12 d-flex justify-content-center">
           <div className="row w-100">
-            <DashboardIcon icon={<GiThreeFriends />} label="Voluntários" />
-            <DashboardIcon icon={<FaUsers />} label="Beneficiários" />
-            <DashboardIcon icon={<FaBox />} label="Estoque" />
-            <DashboardIcon icon={<FaMoneyBill />} label="Financeiro" />
+            <DashboardIcon icon={<FaHandsHelping />} label="VOLUNTÁRIOS" />
+            <DashboardIcon icon={<FaHandHoldingHeart />} label="BENEFICIÁRIOS" />
+            <DashboardIcon icon={<FaBoxOpen />} label="ESTOQUE" />
+            <DashboardIcon icon={<FaPiggyBank />} label="FINANCEIRO" />
           </div>
         </div>
 
         <div className="col-12 d-flex justify-content-center">
           <div className="row justify-content-center w-100">
-            <DashboardIcon icon={<FaCalendarAlt />} label="Eventos" />
-            <DashboardIcon icon={<FaBuilding />} label="Obras" />
-            <DashboardIcon icon={<FaNewspaper />} label="Notícias" />
+            <DashboardIcon icon={<BiSolidCalendarStar />} label="EVENTOS" />
+            <DashboardIcon icon={<FaTools />} label="OBRAS" />
+            <DashboardIcon icon={<IoNewspaper />} label="NOTÍCIAS" />
           </div>
         </div>
       </div>
@@ -55,7 +49,7 @@ const DashboardPage = () => {
 const DashboardIcon = ({ icon, label }: DashboardIconProps) => {
   return (
     <div className="col-12 col-sm-6 col-md-3 mb-3 cursor-pointer">
-      <div className="card dashboard-icon p-4 d-flex align-items-center justify-content-center">
+      <div className="card dashboard-icon p-4 d-flex align-items-center justify-content-center bg-dark">
         <div className="icon mb-2" style={{ fontSize: "30px" }}>
           {icon}
         </div>
