@@ -15,23 +15,19 @@
   margin-right: 10px;
 }
 
-.footer-logo {
-  width: 180px;
-}
-
 .icons {
   width: 35px;
   height: 35px;
 }
 
-.navLinks {
+.nav-links {
   list-style-type: none;
   display: flex;
   margin: 0;
   padding: 0;
 }
 
-.navItem {
+.nav-item {
   margin: 0 15px;
 }
 
@@ -45,12 +41,6 @@
 .logo-box {
   display: flex;
   flex-direction: row;
-}
-
-.footer {
-  background-color: $dark;
-  color: #fff;
-  padding: 0 300px;
 }
 
 .ijb-title {
@@ -120,12 +110,6 @@ iframe {
   height: 315px;
 }
 
-.back-button {
-  &:hover {
-    cursor: pointer;
-    transform: scale(1.05);
-  }
-}
 
 .partners {
   margin: 100px 400px;
@@ -271,3 +255,30 @@ iframe {
     }
   }
 }
+
+.login-container{
+  display: flex;
+  background-color: #fce4db;
+}
+
+.login-content{
+  display: flex;
+  height: 400px;
+}
+
+.login-title{
+  color: $primary;
+  font-weight: 550;
+  text-decoration: underline;
+}
+
+.forgot-password{
+  display:flex;
+  cursor: pointer;
+  justify-content: end;
+  font-size: 14px;
+}
+
+@import "src/components/Footer";
+@import 'src/components/LoginForm';
+@import 'src/components/BackButton';

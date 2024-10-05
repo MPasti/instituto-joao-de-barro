@@ -1,14 +1,62 @@
+@import "_variables";
+
 .form-control:focus {
-  box-shadow: 0 0 5px 1px $dark;
-  border-color: $dark;
+  box-shadow: 0 0 5px 1px #ffc49f;
+  border-color: #ffc49f;
 }
 
 .btn-primary {
-  background-color: $secondary;
-  border: 1px solid $secondary;
+  background-color: $primary;
+  border: 1px solid $primary;
+  color: $white;
+  transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease;
 
   &:hover {
-    background-color: $secondary-hover;
-    border: 1px solid $secondary-hover;
+    color: #fff;
+    background-color: $primary-hover;
+    border-color: $primary-hover;
   }
+
+  &:active, &:focus, &:not(:disabled):active {
+    color: $white;
+    background-color: $primary;
+    border-color: $primary;
+    box-shadow: none;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.btn-secondary {
+  background-color: $secondary;
+  border: 1px solid $secondary;
+  color: $white;
+  transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease;
+
+  &:hover {
+    color: #fff;
+    background-color: $secondary-hover;
+    border-color: $secondary-hover;
+  }
+
+  &:active, &:focus, &:not(:disabled):active {
+    color: $white;
+    background-color: $secondary;
+    border-color: $secondary;
+    box-shadow: none;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.text-primary{
+  color: $primary !important;
+}
+
+.text-secondary{
+  color: $secondary !important;
 }

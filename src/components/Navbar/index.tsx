@@ -13,28 +13,28 @@ export function Navbar() {
           </div>
         </Link>
       </div>
-      <ul className="navLinks">
-        <li className="navItem">
+      <ul className="nav-links">
+        <li className="nav-item">
           <Link to="/voluntarios" className="link">
             Voluntários
           </Link>
         </li>
-        <li className="navItem">
+        <li className="nav-item">
           <Link to="/beneficiarios" className="link">
             Beneficiários
           </Link>
         </li>
-        <li className="navItem">
+        <li className="nav-item">
           <Link to="/contatos" className="link">
             Contatos
           </Link>
         </li>
-        <li className="navItem">
+        <li className="nav-item">
           <Link to="/sobre" className="link">
             Sobre o Instituto
           </Link>
         </li>
-        <li className="navItem">
+        <li className="nav-item">
           <Link to="/login" className="link">
             Login
           </Link>

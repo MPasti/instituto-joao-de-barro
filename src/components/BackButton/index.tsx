@@ -1,12 +1,17 @@
-import { BiArrowBack } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
+import {MdOutlineKeyboardArrowLeft} from "react-icons/md";
 
-export const BackButton = (route: string) => {
-  const navigate = useNavigate();
+interface BackButtonProps {
+    route: string;
+}
 
-  return (
-    <div className="d-flex justify-content-start mb-3 m-3 back-button">
-      <BiArrowBack onClick={() => navigate(route)} size={32} />
-    </div>
-  );
+export const BackButton = ({ route }: BackButtonProps) => {
+    const navigate = useNavigate();
+
+    return (
+        <div className="d-flex justify-content-start mb-3 m-3 back-button">
+            <MdOutlineKeyboardArrowLeft  onClick={() => navigate(route)} size={32} />
+            <p>Voltar</p>
+        </div>
+    );
 };

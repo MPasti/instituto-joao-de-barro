@@ -1,0 +1,15 @@
+.back-button {
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+
+  p{
+    font-size: 16px;
+    padding: 0;
+  }
+
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+  }
+}

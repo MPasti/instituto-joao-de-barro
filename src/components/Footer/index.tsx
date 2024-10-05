@@ -26,27 +26,27 @@ export const Footer = () => {
             <div className="col-lg-2 col-md-4 mb-4 mb-md-0">
               <h5 className="fw-bold">Atalhos</h5>
               <ul className="nav flex-column">
-                <li className="nav-item mb-2">
+                <li className="mb-2">
                   <Link to="/" className="link">
                     Home
                   </Link>
                 </li>
-                <li className="nav-item mb-2">
+                <li className="mb-2">
                   <Link to="/beneficiarios" className="link">
                     Voluntários
                   </Link>
                 </li>
-                <li className="nav-item mb-2">
+                <li className="mb-2">
                   <Link to="/voluntarios" className="link">
                     Voluntários
                   </Link>
                 </li>
-                <li className="nav-item mb-2">
+                <li className="mb-2">
                   <Link to="/sobre" className="link">
                     Sobre o Instituto
                   </Link>
                 </li>
-                <li className="nav-item mb-2">
+                <li className="mb-2">
                   <Link to="/contatos" className="link">
                     Contato
                   </Link>

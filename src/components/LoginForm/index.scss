@@ -1,0 +1,36 @@
+.left-section {
+  flex: 1;
+  background-image: url('src/assets/images/hands-together.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 3rem;
+    color: #fff;
+    text-align: center;
+    height: 100%;
+    width: 100%;
+
+    .logo {
+      max-width: 100px;
+      margin-bottom: 1rem;
+    }
+  }
+}
+
+.right-section {
+  flex: 1;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+form{
+  width: 65%;
+}
