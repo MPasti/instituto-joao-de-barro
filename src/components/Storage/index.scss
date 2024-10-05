@@ -20,17 +20,13 @@
       gap: 1rem;
   
       a {
-        color: #29292E;
-  
-        &.active {
-          color: #fcc90a;
-        }
+        color: $dark;
       }
     }
   
     h1 {
       font-size: 1.5rem;
-      color: #29292E;
+      color: $dark;
       font-weight: bold;
     }
 }
@@ -63,10 +59,10 @@
         min-width: 600px;
 
         th {
-        background-color: #FF9971;
+        background-color: $light-orange;
         padding: 1rem;
         text-align: left;
-        color: white;
+        color: $white;
         font-size: 0.875rem;
         line-height: 1.6;
         font-weight: 500;
@@ -83,8 +79,8 @@
         }
     
         td {
-        background-color: #f4f4f4;
-        border-top: 4px solid #fff;
+        background-color: $table-row-bg;
+        border-top: 4px solid $white;
         padding: 1rem;
         font-size: 0.875rem;
         line-height: 1.6;
@@ -100,7 +96,7 @@
         }
     
         tr:hover td {
-        background-color: #f7f7f8;
+        background-color: $table-row-hover;
         cursor: pointer;
         }
     }
