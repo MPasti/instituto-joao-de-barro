@@ -17,6 +17,7 @@ import { Login } from "./Screens/Login";
 //Telas privadas
 import { Home } from "./Screens/PrivateScreens/Home";
 import { Noticias } from "./Screens/PrivateScreens/Noticias";
+import { Storage } from "./Screens/PrivateScreens/Estoque/Storage";
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
         <Route path="/dashboard" element={<DashboardPage />}>
           <Route index element={<Home />} />
           <Route path="noticias" element={<Noticias />} />
+          <Route path="estoque" element={<Storage />}/>
         </Route>
       </Routes>
     </Router>
