@@ -1,17 +1,28 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import LandingPage from "./Screens/LandingPage";
-import { Login } from "./Screens/Login";
-import Dashboard from "./Screens/Dashboard";
-import { Contact } from "./Screens/Contact";
-import { About } from "./Screens/About";
-import { Voluntarios } from "./Screens/Voluntarios";
-import { Beneficiarios } from "./Screens/Beneficiarios";
+
+//Principais rotas
+import LandingPage from "./Screens/PublicScreens/LandingPage";
+import DashboardPage from "./Screens/PrivateScreens/Dashboard";
+
+//Telas publicas
 import { Main } from "./components/Main";
+import { Contact } from "./Screens/PublicScreens/Contact";
+import { About } from "./Screens/PublicScreens/About";
+import { Voluntarios } from "./Screens/PublicScreens/Voluntarios";
+import { Beneficiarios } from "./Screens/PublicScreens/Beneficiarios";
+
+//Login
+import { Login } from "./Screens/Login";
+
+//Telas privadas
+import { Home } from "./Screens/PrivateScreens/Home";
+import { Noticias } from "./Screens/PrivateScreens/Noticias";
 
 function App() {
   return (
     <Router>
       <Routes>
+        {/* Rotas Públicas */}
         <Route path="/" element={<LandingPage />}>
           <Route index element={<Main />} />
           <Route path="contatos" element={<Contact />} />
@@ -19,8 +30,15 @@ function App() {
           <Route path="voluntarios" element={<Voluntarios />} />
           <Route path="beneficiarios" element={<Beneficiarios />} />
         </Route>
+
+        {/* Rota de Login */}
         <Route path="/login" element={<Login />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+
+        {/* Rotas Privadas - Dashboard */}
+        <Route path="/dashboard" element={<DashboardPage />}>
+          <Route index element={<Home />} />
+          <Route path="noticias" element={<Noticias />} />
+        </Route>
       </Routes>
     </Router>
   );
