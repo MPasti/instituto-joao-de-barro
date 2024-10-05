@@ -1,6 +1,5 @@
 .navbar {
   display: flex;
-  justify-content: space-around;
   align-items: center;
   padding: 10px 20px;
   background: linear-gradient(90deg, 
@@ -282,3 +281,4 @@ iframe {
 @import "src/components/Footer";
 @import 'src/components/LoginForm';
 @import 'src/components/BackButton';
+@import 'src/components/Dropzone';

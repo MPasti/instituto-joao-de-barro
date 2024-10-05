@@ -18,7 +18,7 @@
     border-color: $primary-hover;
   }
 
-  &:active, &:focus, &:not(:disabled):active {
+  &:active, &:not(:disabled):active {
     color: $white;
     background-color: $primary;
     border-color: $primary;
@@ -43,7 +43,30 @@
     border-color: $secondary-hover;
   }
 
-  &:active, &:focus, &:not(:disabled):active {
+  &:active, &:not(:disabled):active {
+    color: $white;
+    background-color: $secondary;
+    border-color: $secondary;
+    box-shadow: none;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.btn-outline-secondary{
+  background-color: #FFFFFF;
+  border-color: $secondary;
+  color: $secondary;
+
+  &:hover {
+    color: #fff;
+    background-color: $secondary-hover;
+    border-color: $secondary-hover;
+  }
+
+  &:active, &:not(:disabled):active {
     color: $white;
     background-color: $secondary;
     border-color: $secondary;

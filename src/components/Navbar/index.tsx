@@ -3,7 +3,7 @@ import logoUrl from "@images/logo-instituto.svg";
 
 export function Navbar() {
   return (
-    <nav className="navbar">
+    <nav className="navbar justify-content-between">
       <div className="logo">
         <Link to="/" className="link logo-box">
           <img className="logo-icon" src={logoUrl} alt="Logo" />

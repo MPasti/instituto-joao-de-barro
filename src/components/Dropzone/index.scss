@@ -1,0 +1,56 @@
+.image-dropzone {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+  position: relative;
+  border: 2px dashed $primary !important;
+  border-radius: 8px;
+
+  &:hover {
+    border-color: $primary-hover !important;
+  }
+
+  .dropzone-content {
+    color: $secondary;
+
+    .preview-container {
+      position: relative;
+      display: inline-block;
+
+      img {
+        max-height: 150px;
+        object-fit: cover;
+      }
+
+      .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5); /* Overlay escuro */
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      &:hover .overlay {
+        opacity: 1;
+      }
+
+      .remove-btn {
+        top: 5px;
+        right: 5px;
+        background-color: rgba(255, 255, 255, 0.7);
+        border-radius: 50%;
+        cursor: pointer;
+
+        &:hover {
+          background-color: rgba(255, 255, 255, 1);
+        }
+      }
+    }
+  }
+}
