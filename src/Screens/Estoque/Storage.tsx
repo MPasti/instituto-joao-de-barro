@@ -1,15 +1,18 @@
 import { Input, StorageContainer, StorageMaterialsList, StorageSearch } from "./styles"
 import { PlusCircle } from "phosphor-react"
 import { Header } from "./components/StorageHeader"
+import { publish } from "./utils/events"
+import { StorageRegisterModal } from "./components/modals/StorageRegisterModal"
 
 export const Storage = () => {
     return (
         <StorageContainer>
             <Header title="Estoque"/>
             <StorageSearch>
-                <Input type="text" name="" id="" placeholder="Pesquisar material" />
-                <PlusCircle size={26} />
+                <Input type="text" name="" id="" placeholder="Pesquisar material" className="search-input"/>
+                <PlusCircle size={26} onClick={() => publish("storage:open-register-modal")}/>
             </StorageSearch>
+            <StorageRegisterModal />
             <StorageMaterialsList>
                 <table>
                     <thead>

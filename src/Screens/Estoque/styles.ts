@@ -119,7 +119,46 @@ export const Input = styled.input`
   outline: none;
   border: 1px solid #29292E;
   border-radius: 0.5rem;
-  background: url("/src/assets/icons/search-icon.svg") no-repeat;
-  background-position: calc(100% - 10px) center;
+ 
+  &.search-input {
+    background: url("/src/assets/icons/search-icon.svg") no-repeat;
+    background-position: calc(100% - 10px) center;
+  }
 `
   
+
+export const InputContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+`
+
+export const Form = styled.form`
+
+`
+
+
+export const ModalContainer = styled.div`
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+
+  h1 {
+    font-size: 1.2rem;
+    font-weight: bold;
+
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    line-height: 1.3;
+
+    span {
+      font-size: 1rem;
+      font-weight: normal;
+    }
+  }
+
+`
