@@ -32,6 +32,7 @@ import { Login } from "./Screens/Login";
 import { Home } from "./Screens/PrivateScreens/Home";
 import { Noticias } from "./Screens/PrivateScreens/Noticias";
 import { Perfil } from "./Screens/PrivateScreens/Perfil";
+import { Financeiro } from "./Screens/PrivateScreens/Financeiro";
 
 function App() {
   return (
@@ -56,6 +57,7 @@ function App() {
             <Route index element={<Home />} />
             <Route path="noticias" element={<Noticias />} />
             <Route path="perfil" element={<Perfil />} />
+            <Route path="financeiro" element={<Financeiro />} />
           </Route>
         </Route>
       </Routes>
