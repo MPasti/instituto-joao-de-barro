@@ -7,8 +7,9 @@ import { useEffect, useState } from "react"
 import { OutletEditModal } from "./components/modals/OutletEditModal"
 
 export const Outlet = () => {
-    const [OutletProducts, setOutletProducts] = useState<OutletProduct[]>([]);
+    const [outletProducts, setOutletProducts] = useState<OutletProduct[]>([]);
     const [selectedProduct, setSelectedProduct] = useState<OutletProduct | null>(null);
+    const [searchTerm, setSearchTerm] = useState<string>("");
 
     async function loadOutletProducts() {
         const response = await getProducts();
@@ -17,18 +18,28 @@ export const Outlet = () => {
 
     useEffect(() => {
         loadOutletProducts();
-    }, [OutletProducts]);
+    }, [outletProducts]);
 
     const handleEditOutletProduct = (product: OutletProduct) => {
         setSelectedProduct(product);
         publish("outlet:open-edit-modal");
     };
 
+    const filteredMaterials = outletProducts.filter(product =>
+        product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        product.description?.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
     return (
         <main className="storage-container">
         <Header title="Outlet" />
         <section className="storage-search">
-            <input type="text" placeholder="Pesquisar produto" className="form-control search-input" />
+            <input 
+                type="text" 
+                placeholder="Pesquisar produto" 
+                className="form-control search-input"
+                onChange={(e) => setSearchTerm(e.target.value)}
+            />
             <PlusCircle size={26} onClick={() => publish("outlet:open-register-modal")} />
         </section>
         <section className="storage-material-list">
@@ -40,7 +51,7 @@ export const Outlet = () => {
                         <th>Preço</th>
                         <th>Descrição</th>
                     </tr>
-                    {OutletProducts.map((product) => (
+                    {filteredMaterials.map((product) => (
                             <tr key={product.id} onClick={() => handleEditOutletProduct(product)}>
                                 <td>{product.name}</td>
                                 <td>{product.id}</td>
