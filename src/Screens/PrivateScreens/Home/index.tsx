@@ -52,7 +52,7 @@ const Home = () => {
               label="BENEFICIÁRIOS"
             />
             <DashboardIcon icon={<FaBoxOpen />} label="ESTOQUE" />
-            <DashboardIcon icon={<FaPiggyBank />} label="FINANCEIRO" />
+            <DashboardIcon icon={<FaPiggyBank />} label="FINANCEIRO"  route="financeiro"/>
           </div>
         </div>
 
