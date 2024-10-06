@@ -8,6 +8,18 @@ import "swiper/css/autoplay";
 import NewsCard from "../NewsCard";
 
 export const NewsSwiper = ({ newsData }) => {
+  const breakpoints = {
+    0: {
+      slidesPerView: 1,
+    },
+    640: {
+      slidesPerView: 2,
+    },
+    1024: {
+      slidesPerView: 3,
+    },
+  };
+
   return (
     <div className="news-container">
       <h2>Últimas notícias</h2>
@@ -21,6 +33,7 @@ export const NewsSwiper = ({ newsData }) => {
           pagination={{ clickable: true }}
           grabCursor={false}
           className="news-swiper"
+          breakpoints={breakpoints}
         >
           {newsData.map((news, index) => (
             <SwiperSlide key={index}>

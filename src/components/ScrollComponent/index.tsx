@@ -1,26 +1,6 @@
-import { useEffect } from "react";
 import ijbImage from "@images/institute/joaodebarro.jpg";
 
 const ScrollEffect = () => {
-  useEffect(() => {
-    const handleScroll = () => {
-      const blocks = document.querySelectorAll(".content-block");
-      blocks.forEach((block) => {
-        const rect = block.getBoundingClientRect();
-        if (rect.top < window.innerHeight && rect.bottom >= 0) {
-          (block as HTMLElement).style.transform = "translateY(0)";
-        } else {
-          (block as HTMLElement).style.transform = "translateY(50px)";
-        }
-      });
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
   return (
     <div className="scroll-section">
       <div className="row">

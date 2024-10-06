@@ -1,9 +1,16 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import logoUrl from "@images/logo-instituto.svg";
 import Button from "../Button";
-import { FaUserCircle } from "react-icons/fa";
+import { FaUserCircle, FaBars, FaTimes } from "react-icons/fa";
 
 export function Navbar() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
     <div>
       <div className="header-options">
@@ -14,6 +21,7 @@ export function Navbar() {
           <FaUserCircle size={20} />
         </div>
       </div>
+
       <nav className="navbar justify-content-between">
         <div className="logo">
           <Link to="/" className="link logo-box">
@@ -24,7 +32,22 @@ export function Navbar() {
             </div>
           </Link>
         </div>
-        <ul className="nav-links">
+
+        <button className="menu-button" onClick={toggleMenu}>
+          {isOpen ? <FaTimes size={25} /> : <FaBars size={25} />}
+        </button>
+
+        <ul className={`nav-links ${isOpen ? "open" : ""}`}>
+          <li className="nav-item">
+            <Link to="/projetos" className="link">
+              Projetos
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link to="/noticias" className="link">
+              Notícias
+            </Link>
+          </li>
           <li className="nav-item">
             <Link to="/voluntarios" className="link">
               Voluntários
@@ -36,16 +59,16 @@ export function Navbar() {
             </Link>
           </li>
           <li className="nav-item">
-            <Link to="/contatos" className="link">
-              Contatos
+            <Link to="/sobre" className="link">
+              Sobre nós
             </Link>
           </li>
           <li className="nav-item">
-            <Link to="/sobre" className="link">
-              Sobre o Instituto
+            <Link to="/contatos" className="link">
+              Fale conosco
             </Link>
           </li>
-          <li>
+          <li className="nav-item">
             <Button type="button" variant="secondary">
               DOE AGORA
             </Button>
