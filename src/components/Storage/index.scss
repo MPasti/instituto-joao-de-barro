@@ -149,6 +149,15 @@
     width: 100%;
 }
 
+.input-error {
+    font-size: 0.8rem;
+    color: $secondary;
+}
+
+.optional {
+    color: $light-gray;
+}
+
 .buttons-container {
     width: 100%;
     display: flex;

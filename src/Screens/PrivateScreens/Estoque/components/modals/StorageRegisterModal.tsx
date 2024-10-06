@@ -15,12 +15,13 @@ export const StorageRegisterModal = () => {
   }
   
   useCustomEvent("storage:open-register-modal", handleModalOpen);
+  useCustomEvent("storage:close-register-modal", handleModalClose)
 
   return (
     <Modal isOpen={isModalOpen} onClose={handleModalClose}>
       <div className="modal-container">
         <h1>Novo Registro <span>Material</span></h1>
-        <StorageRegisterForm />
+        <StorageRegisterForm handleCancel={handleModalClose}/>
       </div>
     </Modal>
   )

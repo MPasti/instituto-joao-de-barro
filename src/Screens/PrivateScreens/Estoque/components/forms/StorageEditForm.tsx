@@ -1,51 +1,59 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import {object, string, number, InferType } from "yup"
-import { addMaterial } from "../../services/api";
-import { nanoid } from 'nanoid';
+import { object, string, number, InferType } from "yup";
+import { updateMaterial, deleteMaterial, StorageMaterial } from "../../services/api";
 import { publish } from "../../../../../utils/events";
 
-interface IRegisterFormProps {
-    handleCancel?: () => void
+interface IEditFormProps {
+    selectedMaterial: StorageMaterial;
 }
 
 const validationSchema = object({
     name: string().required("Nome do material é obrigatório"),
     quantity: number().required("Quantidade é obrigatória").positive("Informe uam quantidade válida").typeError("Quantidade deve ser um número"),
-    description: string()
-})
+    description: string().optional()
+});
 
-type RegisterFormData = InferType<typeof validationSchema>
+type EditFormData = InferType<typeof validationSchema>;
 
-export const StorageRegisterForm = ({handleCancel}: IRegisterFormProps) => {
-    const { register, handleSubmit, formState: { errors } } = useForm<RegisterFormData>({
+export const StorageEditForm = ({ selectedMaterial }: IEditFormProps) => {
+    const { register, handleSubmit, formState: { errors } } = useForm<EditFormData>({
         resolver: yupResolver(validationSchema),
         defaultValues: {
-            name: "",
-            quantity: 0,
-            description: ""
+            name: selectedMaterial.name,
+            quantity: selectedMaterial.quantity,
+            description: selectedMaterial.description || "",
         },
         mode: "onSubmit"
-    })
+    });
 
-   async function handleCreateNewMaterial(data: RegisterFormData) {
+    async function handleEditMaterial(data: EditFormData) {
         try {
-            const newMaterial = {
-                id: nanoid(6),
+            const updatedMaterial = {
+                ...selectedMaterial,
                 name: data.name,
-                quantity: Number(data.quantity),
+                quantity: data.quantity,
                 description: data.description,
-            }
-            await addMaterial(newMaterial);
-            publish("storage:close-register-modal")
+            };
+            await updateMaterial(selectedMaterial.id, updatedMaterial);
+            publish("storage:close-edit-modal");
         } catch (error) {
             return error;
         }
-   }
+    }
+  
+    async function handleDeleteMaterial() {
+        try {
+            await deleteMaterial(selectedMaterial.id);
+            publish("storage:close-edit-modal");
+        } catch (error) {
+            return error;
+        }
+    }
 
     return (
-        <form className="form" onSubmit={handleSubmit(handleCreateNewMaterial)}>
-           <div className="fields-container">
+        <form className="form" onSubmit={handleSubmit(handleEditMaterial)}>
+            <div className="fields-container">
                 <div className="input-container">
                     <label htmlFor="name">Nome do material</label>
                     <input 
@@ -58,7 +66,7 @@ export const StorageRegisterForm = ({handleCancel}: IRegisterFormProps) => {
                 <div className="input-container">
                     <label htmlFor="quantity">Quantidade</label>
                     <input 
-                        type="text" 
+                        type="number" 
                         className="form-control"
                         {...register("quantity")}
                     />
@@ -72,22 +80,23 @@ export const StorageRegisterForm = ({handleCancel}: IRegisterFormProps) => {
                         {...register("description")}
                     />
                 </div>
-           </div>
+            </div>
 
             <div className="buttons-container">
                 <button 
                     className="btn-secondary" 
-                    onClick={handleCancel}
+                    type="button" 
+                    onClick={handleDeleteMaterial}
                 >
-                    Cancelar
+                    Deletar
                 </button>
                 <button 
                     className="btn-primary" 
                     type="submit"
                 >
-                    Criar Registro
+                    Atualizar
                 </button>
             </div>
         </form>
-    )
-}
+    );
+};
