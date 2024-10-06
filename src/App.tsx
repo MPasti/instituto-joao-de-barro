@@ -18,6 +18,7 @@ import { Login } from "./Screens/Login";
 import { Home } from "./Screens/PrivateScreens/Home";
 import { Noticias } from "./Screens/PrivateScreens/Noticias";
 import { Storage } from "./Screens/PrivateScreens/Estoque/Storage";
+import { Outlet } from "./Screens/PrivateScreens/Estoque/Outlet";
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
           <Route index element={<Home />} />
           <Route path="noticias" element={<Noticias />} />
           <Route path="estoque" element={<Storage />}/>
+          <Route path="outlet" element={<Outlet />}/>
         </Route>
       </Routes>
     </Router>

@@ -3,7 +3,7 @@ import { PlusCircle } from "phosphor-react";
 import { Header } from "./components/StorageHeader";
 import { publish } from "../../../utils/events";
 import { StorageRegisterModal } from "./components/modals/StorageRegisterModal";
-import { getMaterials, StorageMaterial } from "./services/api";
+import { getMaterials, StorageMaterial } from "./services/storageApi";
 import { StorageEditModal } from "./components/modals/StorageEditModal";
 
 export const Storage = () => {

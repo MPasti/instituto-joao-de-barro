@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Modal } from "../../../../../components/Modal/Modal";
 import { StorageEditForm } from "../forms/StorageEditForm";
 import { useCustomEvent } from "../../../../../utils/useCustomEvent";
-import { StorageMaterial } from "../../services/api";
+import { StorageMaterial } from "../../services/storageApi";
 
 interface StorageEditModalProps {
     selectedMaterial: StorageMaterial | null;
@@ -25,7 +25,7 @@ export const StorageEditModal = ({ selectedMaterial }: StorageEditModalProps) =>
     return (
         <Modal isOpen={isModalOpen} onClose={handleModalClose}>
             <div className="modal-container">
-                <h1>Editar Material</h1>
+                <h1>Especificações <span>Material</span></h1>
                 {selectedMaterial && (
                     <StorageEditForm selectedMaterial={selectedMaterial} />
                 )}

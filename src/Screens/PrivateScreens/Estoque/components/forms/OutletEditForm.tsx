@@ -1,51 +1,51 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import { object, string, number, InferType } from "yup";
-import { updateMaterial, deleteMaterial, StorageMaterial } from "../../services/storageApi";
+import { object, string, InferType } from "yup";
 import { publish } from "../../../../../utils/events";
+import { deleteProduct, OutletProduct, updateProduct } from "../../services/outletApi";
 
 interface IEditFormProps {
-    selectedMaterial: StorageMaterial;
+    selectedProduct: OutletProduct;
 }
 
 const validationSchema = object({
-    name: string().required("Nome do material é obrigatório"),
-    quantity: number().required("Quantidade é obrigatória").positive("Informe uam quantidade válida").typeError("Quantidade deve ser um número"),
-    description: string().optional()
-});
+    name: string().required("Nome do produto é obrigatório"),
+    price: string(),
+    description: string()
+})
 
-type EditFormData = InferType<typeof validationSchema>;
+type EditFormData = InferType<typeof validationSchema>
 
-export const StorageEditForm = ({ selectedMaterial }: IEditFormProps) => {
+export const OutletEditForm = ({ selectedProduct }: IEditFormProps) => {
     const { register, handleSubmit, formState: { errors } } = useForm<EditFormData>({
         resolver: yupResolver(validationSchema),
         defaultValues: {
-            name: selectedMaterial.name,
-            quantity: selectedMaterial.quantity,
-            description: selectedMaterial.description || "",
+            name: selectedProduct.name,
+            price: selectedProduct.price?.toString() || "",
+            description: selectedProduct.description || "",
         },
         mode: "onSubmit"
     });
 
     async function handleEditMaterial(data: EditFormData) {
         try {
-            const updatedMaterial = {
-                ...selectedMaterial,
+            const updatedProduct = {
+                ...selectedProduct,
                 name: data.name,
-                quantity: data.quantity,
+                price: data.price,
                 description: data.description,
             };
-            await updateMaterial(selectedMaterial.id, updatedMaterial);
-            publish("storage:close-edit-modal");
+            await updateProduct(selectedProduct.id, updatedProduct);
+            publish("outlet:close-edit-modal");
         } catch (error) {
             return error;
         }
     }
   
-    async function handleDeleteMaterial() {
+    async function handleDeleteProduct() {
         try {
-            await deleteMaterial(selectedMaterial.id);
-            publish("storage:close-edit-modal");
+            await deleteProduct(selectedProduct.id);
+            publish("outlet:close-edit-modal");
         } catch (error) {
             return error;
         }
@@ -55,7 +55,7 @@ export const StorageEditForm = ({ selectedMaterial }: IEditFormProps) => {
         <form className="form" onSubmit={handleSubmit(handleEditMaterial)}>
             <div className="fields-container">
                 <div className="input-container">
-                    <label htmlFor="name">Nome do material</label>
+                    <label htmlFor="name">Nome do produto</label>
                     <input 
                         type="text" 
                         className="form-control"
@@ -64,13 +64,13 @@ export const StorageEditForm = ({ selectedMaterial }: IEditFormProps) => {
                     {errors.name && <p className="input-error">{errors.name.message}</p>}
                 </div>
                 <div className="input-container">
-                    <label htmlFor="quantity">Quantidade</label>
+                    <label htmlFor="quantity">Preço <span className="optional">(opcional)</span></label>
                     <input 
-                        type="number" 
+                        type="text" 
                         className="form-control"
-                        {...register("quantity")}
+                        {...register("price")}
                     />
-                    {errors.quantity && <p className="input-error">{errors.quantity.message}</p>}
+                    {errors.price && <p className="input-error">{errors.price.message}</p>}
                 </div>
                 <div className="input-container">
                     <label htmlFor="description">Descrição <span className="optional">(opcional)</span></label>
@@ -86,7 +86,7 @@ export const StorageEditForm = ({ selectedMaterial }: IEditFormProps) => {
                 <button 
                     className="btn-secondary" 
                     type="button" 
-                    onClick={handleDeleteMaterial}
+                    onClick={handleDeleteProduct}
                 >
                     Deletar
                 </button>
