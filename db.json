@@ -1,0 +1,64 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "cpf": "12345678910",
+      "email": "teste@testes.com",
+      "username": "admin",
+      "password": "123456",
+      "token": "1234567890abcdef"
+    }
+  ],
+  "noticias": [
+    {
+      "id": 1,
+      "titulo": "Instituto João de Barro entrega a primeira casa para família de Franca",
+      "descricao": "Localizada no Jardim Santa Bárbara, residência da própria família foi reformada e ampliada pelo grupo\n\n",
+      "data": "2016-08-12",
+      "ativa": true,
+      "link": "https://www.jornaldafranca.com.br/instituto-joao-de-barro-entrega-a-primeira-casa-para-familia-de-franca/",
+      "etiqueta": "PROJETO",
+      "image": "https://jornaldafranca.com.br/storage/app/media/Blog%20Milena%20Peixoto/joaodebarro.jpg"
+    },
+    {
+      "id": 2,
+      "titulo": "Segunda casa entregue pelo Instituto João de Barro",
+      "descricao": "No dia 23 de junho de 2018 foi entregue a segunda casa do IJB à família da D. Raimunda que residirá junto com seus 7 filhos.",
+      "data": "2018-06-23",
+      "ativa": true,
+      "link": "https://www.jornaldafranca.com.br/instituto-joao-de-barro-entrega-a-primeira-casa-para-familia-de-franca/",
+      "etiqueta": "PROJETO",
+      "image": "https://scontent.ffrc6-1.fna.fbcdn.net/v/t1.6435-9/36176094_649428132060858_4626970411169480704_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=f798df&_nc_eui2=AeFjrs_apwmCqWQ13fGCQrKdhw9vl9HHNkmHD2-X0cc2SQx483O_reNJtIWV1Ubw0BUpEcWQWnu_2GvTiCKQiEH3&_nc_ohc=i0R7rHtXxx4Q7kNvgHE6BP5&_nc_ht=scontent.ffrc6-1.fna&_nc_gid=Ap35Sieo4eTBmcNVMpLnW1l&oh=00_AYB4tceh8NiEdWuKmH918Tj4lhPlWM_mqvOKttyT2dIRPA&oe=672A2DAB"
+    },
+    {
+      "id": 3,
+      "titulo": "Casa é reformada e entregue à família que vivia em condições desumanas no Santa Cruz",
+      "descricao": "Depois de anos vivendo em total insalubridade, uma família que mora no bairro Santa Cruz voltou a ter dignidade.",
+      "data": "2022-05-12",
+      "ativa": true,
+      "link": "https://sampi.net.br/franca/noticias/1710699/local/2022/05/casa-e-reformada-e-entregue-a-familia-que-vivia-em-condicoes-desumanas-no-santa-cruz",
+      "etiqueta": "PROJETO",
+      "image": "https://sampi.net.br/dir-arquivo-imagem/2022/05/1073c705e23f988663c1cdf18376314c.jpg"
+    },
+    {
+      "id": 4,
+      "titulo": "Nova casa entregue pelo IJB",
+      "descricao": "Essa obra foi iniciada com o apoio de várias pessoas que se sensibilizaram com a situação dessa família que estava morando em barraco de lona.",
+      "data": "2020-08-15",
+      "ativa": true,
+      "link": "https://www.jornaldafranca.com.br/instituto-joao-de-barro-entrega-a-primeira-casa-para-familia-de-franca/",
+      "etiqueta": "PROJETO",
+      "image": "https://scontent.ffrc6-1.fna.fbcdn.net/v/t1.6435-9/117724429_1226558951014437_7607005431847879478_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=06a7ca&_nc_eui2=AeGUPFqjIkO6gGN4J-0lsl-Yklnjs48GcTGSWeOzjwZxMcjw9kAfdpvzauOHhKjdu2dC7DJNjeWxH5dbRAnpiy13&_nc_ohc=KC42Ay2J-psQ7kNvgGKtBC-&_nc_ht=scontent.ffrc6-1.fna&_nc_gid=AmbTsh_k70gXJ-_GYxWmqbJ&oh=00_AYDQr5T5_5HmC72cF7y8sI9fAsJnm9trUxEbKa95JXz1_Q&oe=672A4AA6"
+    },
+    {
+      "id": 5,
+      "titulo": "Casa reformada no Jardim Aeroporto IV",
+      "descricao": "A obra foi iniciada por duas senhoras que voluntariamente quiseram melhorar as condições da casa onde reside um senhor e seu filho. Elas providenciaram a colocação do piso cerâmico, a instalação de uma janela e a pintura.",
+      "data": "2018-04-15",
+      "ativa": true,
+      "link": "",
+      "etiqueta": "PROJETO",
+      "image": "https://scontent.ffrc6-1.fna.fbcdn.net/v/t31.18172-8/30051728_612611265742545_6625424197276656814_o.jpg?_nc_cat=108&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeFPoSvuW6ac43pVz4tWhsW24RI_40ie7DPhEj_jSJ7sM3_UYcy2N5PLObydYD5ddKeOXaAGC9U7fFBci36gwyKY&_nc_ohc=D6Co3Z3ZrtIQ7kNvgHsL81O&_nc_ht=scontent.ffrc6-1.fna&_nc_gid=AlDzXk_IXjwEV-8Q_UWpjbO&oh=00_AYB383MR0p3KfQH2rAvuhefjsJhV1Wng4CjzOka9v2yn_g&oe=672A54CD"
+    }
+  ]
+}

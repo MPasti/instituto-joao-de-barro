@@ -22,12 +22,30 @@
 .nav-links {
   list-style-type: none;
   display: flex;
+  align-items: center;
   margin: 0;
   padding: 0;
 }
 
 .nav-item {
   margin: 0 15px;
+}
+
+.header-options{
+  display: flex;
+  background: linear-gradient(90deg,
+          #A65C45 0%,
+          #D6795C 100%);
+  justify-content: end;
+  color: #FFFFFF;
+}
+
+.login-options{
+  gap: 10px;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  margin-right: 20px;
 }
 
 .link {
@@ -282,3 +300,7 @@ iframe {
 @import 'src/components/LoginForm';
 @import 'src/components/BackButton';
 @import 'src/components/Dropzone';
+@import 'src/components/Sidebar';
+@import 'src/components/NewsCard';
+@import 'src/components/NewsSwiper';
+@import 'src/components/InfoSection';

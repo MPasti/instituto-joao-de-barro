@@ -9,6 +9,7 @@ export default defineConfig({
       "@components": "/src/components",
       "@images": "/src/assets/images",
       "@fonts": "/src/assets/fonts",
+      "@types": "/src/types",
     },
   },
 });

@@ -31,8 +31,8 @@ export const PartnersCarousel = () => {
           disableOnInteraction: false,
         }}
         speed={3000}
-        onSwiper={(swiper) => console.log(swiper)}
-        onSlideChange={() => console.log("mudou")}
+        onSwiper={() => {}}
+        onSlideChange={() => {}}
       >
         {logos.map((logo, index) => (
           <SwiperSlide key={index}>
