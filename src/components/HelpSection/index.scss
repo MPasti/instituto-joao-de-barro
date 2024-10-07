@@ -1,0 +1,46 @@
+.help-section {
+  margin-bottom: 4rem;
+  p{
+    text-align: justify;
+  }
+
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .help-block {
+    display: flex;
+    align-items: center;
+    padding: 2rem;
+
+    .content {
+      flex: 1;
+      padding: 1rem;
+      text-align: left;
+    }
+
+    .image {
+      flex: 1;
+      padding: 1rem;
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+    }
+
+    &.block-1 {
+      background-color: #fff0e8;
+      flex-direction: row;
+    }
+
+    &.block-2 {
+      background-color: #ffdac6;
+    }
+
+    &.block-3 {
+      background-color: #ff9963;
+      flex-direction: row;
+    }
+  }
+}

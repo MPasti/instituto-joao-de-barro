@@ -1,12 +1,67 @@
 .navbar {
   display: flex;
   align-items: center;
-  padding: 10px 20px;
-  background: linear-gradient(90deg, 
-    #F07F3C 0%, 
-    #F1B846 19%, 
-    #FFBD64 44%, 
-    #FFD04F 100%);
+  color: #fff;
+  background: linear-gradient(90deg,
+          #F07F3C 0%,
+          #F1B846 19%,
+          #FFBD64 44%,
+          #FFD04F 100%);
+
+  .menu-button {
+    display: none;
+    background: none;
+    border: none;
+    color: #FFFFFF;
+    cursor: pointer;
+    outline: none;
+
+    @media (max-width: 768px) {
+      display: block;
+    }
+  }
+
+  .nav-links {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    .nav-item {
+      margin: 0 15px;
+
+      .link {
+        text-decoration: none;
+      }
+    }
+
+    @media (max-width: 768px) {
+      position: absolute;
+      top: 70px;
+      left: 0;
+      width: 100%;
+      flex-direction: column;
+      background: linear-gradient(90deg,
+              #F07F3C 0%,
+              #F1B846 19%,
+              #FFBD64 44%,
+              #FFD04F 100%);
+      opacity: 0;
+      visibility: hidden;
+      transition: visibility 0.3s, opacity 0.3s;
+      z-index: 9999;
+
+      &.open {
+        visibility: visible;
+        opacity: 1;
+      }
+
+      .nav-item {
+        padding: 15px 0;
+        text-align: center;
+      }
+    }
+  }
 }
 
 .logo-icon {
@@ -19,15 +74,22 @@
   height: 35px;
 }
 
-.nav-links {
-  list-style-type: none;
+
+.header-options{
   display: flex;
-  margin: 0;
-  padding: 0;
+  background: linear-gradient(90deg,
+          #A65C45 0%,
+          #D6795C 100%);
+  justify-content: end;
+  color: #FFFFFF;
 }
 
-.nav-item {
-  margin: 0 15px;
+.login-options{
+  gap: 10px;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  margin-right: 20px;
 }
 
 .link {
@@ -111,7 +173,12 @@ iframe {
 
 
 .partners {
-  margin: 100px 400px;
+  margin: 100px auto;
+  width: 50vw;
+
+  @media (max-width: 576px) {
+    width: 100%;
+  }
 }
 
 .slider-wrapper {
@@ -199,6 +266,7 @@ iframe {
 }
 
 .scroll-section {
+  margin-bottom: 12rem;
   .left-image {
     position: sticky;
     top: 0;
@@ -209,6 +277,10 @@ iframe {
       width: 100%;
       object-fit: cover;
     }
+    
+    @media (max-width: 576px) {
+      display: none;
+    }
   }
 
   .left-content {
@@ -217,6 +289,10 @@ iframe {
 
   .right-content {
     padding: 0;
+
+    @media (max-width: 576px) {
+      width: 100%;
+    }
   }
 
   .content-block {
@@ -282,6 +358,11 @@ iframe {
 @import 'src/components/LoginForm';
 @import 'src/components/BackButton';
 @import 'src/components/Dropzone';
-
 @import 'src/components/Modal';
 @import 'src/components/Storage';
+@import 'src/components/Sidebar';
+@import 'src/components/NewsCard';
+@import 'src/components/NewsSwiper';
+@import 'src/components/InfoSection';
+@import 'src/components/ResultsSection';
+@import 'src/components/HelpSection';

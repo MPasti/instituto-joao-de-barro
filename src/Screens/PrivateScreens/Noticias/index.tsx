@@ -1,18 +1,20 @@
 import { useState } from "react";
 import ImageDropzone from "../../../components/Dropzone";
 import Button from "../../../components/Button";
-import placeholderImage from "@images/placeholder-image.png";
-import { IoIosArrowDropright } from "react-icons/io";
+import { createNews, updateNews } from "../../../services/newService.ts";
+import { toast } from "react-hot-toast";
+import NewsCard from "../../../components/NewsCard";
 
 const Noticias = () => {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<News>({
+    id: null,
     titulo: "",
     descricao: "",
     data: "",
     ativa: false,
     link: "",
     etiqueta: "",
-    imagem: "",
+    image: "",
   });
 
   const [errors, setErrors] = useState({
@@ -34,10 +36,10 @@ const Noticias = () => {
   };
 
   const handleImageUpload = (previewUrl: string | null) => {
-    setFormData({ ...formData, imagem: previewUrl || "" });
+    setFormData({ ...formData, image: previewUrl || "" });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     const newErrors = {
@@ -53,7 +55,13 @@ const Noticias = () => {
     const hasErrors = Object.values(newErrors).some((error) => error);
 
     if (!hasErrors) {
-      console.log("Formulário válido", formData);
+      if (formData.id) {
+        await updateNews(formData);
+        toast.success("Notícia Atualizada com sucesso!");
+      } else {
+        await createNews(formData);
+        toast.success("Notícia criada com sucesso!");
+      }
     }
   };
 
@@ -65,7 +73,7 @@ const Noticias = () => {
         <div className="col-md-6 me-5">
           <ImageDropzone
             onImageUpload={handleImageUpload}
-            value={formData.imagem}
+            value={formData.image}
           />
           <form onSubmit={handleSubmit} className="w-100">
             <div className="form-group row mb-3 flex-column">
@@ -188,17 +196,25 @@ const Noticias = () => {
                 type="reset"
                 variant="secondary"
                 outline
-                onClick={() =>
+                onClick={() => {
                   setFormData({
+                    id: null,
                     titulo: "",
                     descricao: "",
                     data: "",
                     ativa: false,
                     link: "",
                     etiqueta: "",
-                    imagem: "",
-                  })
-                }
+                    image: "",
+                  });
+                  setErrors({
+                    titulo: false,
+                    descricao: false,
+                    data: false,
+                    link: false,
+                    etiqueta: false,
+                  });
+                }}
                 className="me-2"
               >
                 Limpar
@@ -211,101 +227,14 @@ const Noticias = () => {
         </div>
 
         <div className="col-md-5">
-          <div className="p-3">
-            <div className="card-body p-0">
-              <div className="image-container position-relative">
-                <div
-                  className="position-relative"
-                  style={{ width: "100%", height: "400px" }}
-                >
-                  <img
-                    src={formData.imagem || placeholderImage}
-                    alt="Notícia"
-                    className="img-fluid"
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "cover",
-                      borderTopLeftRadius: "12px",
-                      borderTopRightRadius: "12px",
-                    }}
-                  />
-
-                  <div
-                    className="badge text-uppercase position-absolute"
-                    style={{
-                      backgroundColor: "#f86c6b",
-                      top: "0",
-                      left: "0",
-                      fontWeight: "bold",
-                      borderBottomRightRadius: "12px",
-                      borderBottomLeftRadius: "0",
-                      borderTopLeftRadius: "12px",
-                      borderTopRightRadius: "0",
-                      padding: "5px 10px",
-                      zIndex: 2,
-                    }}
-                  >
-                    {formData.etiqueta || "Etiqueta"}
-                  </div>
-
-                  <div
-                    className="overlay position-absolute bottom-0 start-0 w-100"
-                    style={{
-                      height: "50%",
-                      background:
-                        "linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.0))",
-                    }}
-                  ></div>
-
-                  <div
-                    className="position-absolute bottom-0 start-0 text-white p-3"
-                    style={{
-                      fontWeight: "bold",
-                      fontSize: "1.2rem",
-                      zIndex: 2,
-                    }}
-                  >
-                    {formData.titulo || "Título da Notícia"}
-                  </div>
-                </div>
-              </div>
-
-              <div className="p-3">
-                <p
-                  className="card-text"
-                  style={{ color: "#6c757d", fontSize: "0.9rem" }}
-                >
-                  {formData.descricao || "Descrição"}
-                </p>
-
-                <div className="d-flex justify-content-between align-items-center">
-                  <small className="text-muted" style={{ fontSize: "0.85rem" }}>
-                    {formData.data || "Data"}
-                  </small>
-
-                  {formData.link ? (
-                    <a
-                      href={formData.link}
-                      target="_blank"
-                      className="text-danger text-decoration-none"
-                      style={{ fontSize: "0.9rem", fontWeight: "bold" }}
-                    >
-                      <IoIosArrowDropright size={22} /> Ver mais
-                    </a>
-                  ) : null}
-                </div>
-                <div
-                  className="mt-2"
-                  style={{
-                    height: "6px",
-                    width: "20%",
-                    backgroundColor: "#f86c6b",
-                  }}
-                ></div>
-              </div>
-            </div>
-          </div>
+          <NewsCard
+            data={formData.data}
+            descricao={formData.descricao}
+            etiqueta={formData.etiqueta}
+            link={formData.link}
+            titulo={formData.titulo}
+            image={formData.image}
+          />
         </div>
       </div>
     </div>
