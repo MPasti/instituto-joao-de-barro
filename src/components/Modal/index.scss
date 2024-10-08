@@ -1,0 +1,37 @@
+.dialog {
+  position: relative;
+  z-index: 1;
+
+  .container {
+    background-color: #29292ebe;
+    position: fixed;
+    inset: 0;
+    min-width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .dialog-panel {
+    max-width: 46.75rem;
+    width: 100%;
+    background-color: $white;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    position: relative;
+    border-radius: 0.5rem;
+
+    svg {
+      justify-self: flex-end;
+      position: absolute;
+      right: 1rem;
+      top: 1rem;
+      cursor: pointer;
+
+      &:hover {
+        color: #454547;
+      }
+    }
+  }
+}
