@@ -69,161 +69,123 @@ const Noticias = () => {
     <div className="container mt-4 mb-5">
       <h2 className="text-secondary">Notícias</h2>
 
-      <div className="row">
+      <form onSubmit={handleSubmit} className="row w-100">
         <div className="col-md-6 me-5">
           <ImageDropzone
             onImageUpload={handleImageUpload}
             value={formData.image}
           />
-          <form onSubmit={handleSubmit} className="w-100">
-            <div className="form-group row mb-3 flex-column">
-              <label htmlFor="titulo" className="col-sm-2 col-form-label">
-                Título
-              </label>
-              <div className="col-sm-10">
-                <input
-                  id="titulo"
-                  name="titulo"
-                  value={formData.titulo}
-                  onChange={handleInputChange}
-                  className={`form-control ${
-                    errors.titulo ? "is-invalid" : ""
-                  }`}
-                  placeholder="Título da notícia"
-                />
-                {errors.titulo && (
-                  <div className="invalid-feedback">Campo obrigatório.</div>
-                )}
-              </div>
-            </div>
 
-            <div className="form-group row mb-3 flex-column">
-              <label htmlFor="descricao" className="col-sm-2 col-form-label">
-                Descrição
-              </label>
-              <div className="col-sm-10">
-                <textarea
-                  id="descricao"
-                  name="descricao"
-                  value={formData.descricao}
-                  onChange={handleInputChange}
-                  className={`form-control ${
-                    errors.descricao ? "is-invalid" : ""
-                  }`}
-                  placeholder="Descrição da notícia"
-                />
-                {errors.descricao && (
-                  <div className="invalid-feedback">Campo obrigatório.</div>
-                )}
-              </div>
+          <div className="form-group row mb-3 flex-column">
+            <label htmlFor="titulo" className="col-sm-2 col-form-label">
+              Título
+            </label>
+            <div className="col-sm-10">
+              <input
+                id="titulo"
+                name="titulo"
+                value={formData.titulo}
+                onChange={handleInputChange}
+                className={`form-control ${errors.titulo ? "is-invalid" : ""}`}
+                placeholder="Título da notícia"
+              />
+              {errors.titulo && (
+                <div className="invalid-feedback">Campo obrigatório.</div>
+              )}
             </div>
+          </div>
 
-            <div className="form-group row mb-3 flex-column">
-              <label htmlFor="data" className="col-sm-2 col-form-label">
-                Data
-              </label>
-              <div className="col-sm-4">
-                <input
-                  id="data"
-                  type="date"
-                  name="data"
-                  value={formData.data}
-                  onChange={handleInputChange}
-                  className={`form-control ${errors.data ? "is-invalid" : ""}`}
-                />
-                {errors.data && (
-                  <div className="invalid-feedback">Campo obrigatório.</div>
-                )}
-              </div>
-              <div className="col-sm-4 mt-3">
-                <label htmlFor="ativa" className="col-sm-2 col-form-label me-2">
-                  Ativa
-                </label>
-                <input
-                  type="checkbox"
-                  name="ativa"
-                  id="ativa"
-                  checked={formData.ativa}
-                  onChange={handleInputChange}
-                  className="form-check-input"
-                  style={{ marginTop: "0.7rem" }}
-                />
-              </div>
+          <div className="form-group row mb-3 flex-column">
+            <label htmlFor="descricao" className="col-sm-2 col-form-label">
+              Descrição
+            </label>
+            <div className="col-sm-10">
+              <textarea
+                id="descricao"
+                name="descricao"
+                value={formData.descricao}
+                onChange={handleInputChange}
+                className={`form-control ${
+                  errors.descricao ? "is-invalid" : ""
+                }`}
+                placeholder="Descrição da notícia"
+              />
+              {errors.descricao && (
+                <div className="invalid-feedback">Campo obrigatório.</div>
+              )}
             </div>
+          </div>
 
-            <div className="form-group row mb-3 flex-column">
-              <label htmlFor="link" className="col-sm-2 col-form-label">
-                Link
+          <div className="form-group row mb-3 flex-column">
+            <label htmlFor="data" className="col-sm-2 col-form-label">
+              Data
+            </label>
+            <div className="col-sm-4">
+              <input
+                id="data"
+                type="date"
+                name="data"
+                value={formData.data}
+                onChange={handleInputChange}
+                className={`form-control ${errors.data ? "is-invalid" : ""}`}
+              />
+              {errors.data && (
+                <div className="invalid-feedback">Campo obrigatório.</div>
+              )}
+            </div>
+            <div className="col-sm-4 mt-3">
+              <label htmlFor="ativa" className="col-sm-2 col-form-label me-2">
+                Ativa
               </label>
-              <div className="col-sm-10">
-                <input
-                  id="link"
-                  name="link"
-                  value={formData.link}
-                  onChange={handleInputChange}
-                  className={`form-control ${errors.link ? "is-invalid" : ""}`}
-                  placeholder="Link para redirecionar"
-                />
-                {errors.link && (
-                  <div className="invalid-feedback">Campo obrigatório.</div>
-                )}
-              </div>
+              <input
+                type="checkbox"
+                name="ativa"
+                id="ativa"
+                checked={formData.ativa}
+                onChange={handleInputChange}
+                className="form-check-input"
+                style={{ marginTop: "0.7rem" }}
+              />
             </div>
+          </div>
 
-            <div className="form-group row mb-3 flex-column">
-              <label htmlFor="etiqueta" className="col-sm-2 col-form-label">
-                Etiqueta
-              </label>
-              <div className="col-sm-10">
-                <input
-                  id="etiqueta"
-                  name="etiqueta"
-                  value={formData.etiqueta}
-                  onChange={handleInputChange}
-                  className={`form-control ${
-                    errors.etiqueta ? "is-invalid" : ""
-                  }`}
-                  placeholder="Etiqueta da notícia"
-                />
-                {errors.etiqueta && (
-                  <div className="invalid-feedback">Campo obrigatório.</div>
-                )}
-              </div>
+          <div className="form-group row mb-3 flex-column">
+            <label htmlFor="link" className="col-sm-2 col-form-label">
+              Link
+            </label>
+            <div className="col-sm-10">
+              <input
+                id="link"
+                name="link"
+                value={formData.link}
+                onChange={handleInputChange}
+                className={`form-control ${errors.link ? "is-invalid" : ""}`}
+                placeholder="Link para redirecionar"
+              />
+              {errors.link && (
+                <div className="invalid-feedback">Campo obrigatório.</div>
+              )}
             </div>
+          </div>
 
-            <div className="d-flex justify-content-end mt-3 gap-3">
-              <Button
-                type="reset"
-                variant="secondary"
-                outline
-                onClick={() => {
-                  setFormData({
-                    id: null,
-                    titulo: "",
-                    descricao: "",
-                    data: "",
-                    ativa: false,
-                    link: "",
-                    etiqueta: "",
-                    image: "",
-                  });
-                  setErrors({
-                    titulo: false,
-                    descricao: false,
-                    data: false,
-                    link: false,
-                    etiqueta: false,
-                  });
-                }}
-                className="me-2"
-              >
-                Limpar
-              </Button>
-              <Button type="submit" variant="primary">
-                Salvar
-              </Button>
+          <div className="form-group row mb-3 flex-column">
+            <label htmlFor="etiqueta" className="col-sm-2 col-form-label">
+              Etiqueta
+            </label>
+            <div className="col-sm-10">
+              <input
+                id="etiqueta"
+                name="etiqueta"
+                value={formData.etiqueta}
+                onChange={handleInputChange}
+                className={`form-control ${errors.etiqueta ? "is-invalid" : ""}`}
+                placeholder="Etiqueta da notícia"
+              />
+              {errors.etiqueta && (
+                <div className="invalid-feedback">Campo obrigatório.</div>
+              )}
             </div>
-          </form>
+          </div>
         </div>
 
         <div className="col-md-5">
@@ -236,7 +198,40 @@ const Noticias = () => {
             image={formData.image}
           />
         </div>
-      </div>
+
+        <div className="d-flex justify-content-end mt-3 gap-3">
+          <Button
+            type="reset"
+            variant="secondary"
+            outline
+            onClick={() => {
+              setFormData({
+                id: null,
+                titulo: "",
+                descricao: "",
+                data: "",
+                ativa: false,
+                link: "",
+                etiqueta: "",
+                image: "",
+              });
+              setErrors({
+                titulo: false,
+                descricao: false,
+                data: false,
+                link: false,
+                etiqueta: false,
+              });
+            }}
+            className="me-2"
+          >
+            Limpar
+          </Button>
+          <Button type="submit" variant="primary">
+            Salvar
+          </Button>
+        </div>
+      </form>
     </div>
   );
 };
