@@ -28,11 +28,25 @@
   }
 }
 
+.home-container {
+  display: flex;
+  justify-content: center;
+
+  @media (min-width: 1200px) {
+    width: 80% !important;
+  }
+  @media (min-width: 1400px) {
+    width: 75% !important;
+  }
+}
+
 .dashboard-icon {
   width: 200px;
   height: 200px;
   border-radius: 12px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -171,40 +185,40 @@ iframe {
 }
 //===== Swipper =====================================================//
 
-.login-container{
+.login-container {
   display: flex;
   background-color: #fce4db;
 }
 
-.login-content{
+.login-content {
   display: flex;
   height: 400px;
 }
 
-.login-title{
+.login-title {
   color: $primary;
   font-weight: 550;
   text-decoration: underline;
 }
 
-.forgot-password{
-  display:flex;
+.forgot-password {
+  display: flex;
   cursor: pointer;
   justify-content: end;
   font-size: 14px;
 }
 
-@import 'src/components/Navbar';
-@import 'src/components/Footer';
-@import 'src/components/LoginForm';
-@import 'src/components/BackButton';
-@import 'src/components/Dropzone';
-@import 'src/components/Modal';
-@import 'src/components/Storage';
-@import 'src/components/Sidebar';
-@import 'src/components/NewsCard';
-@import 'src/components/NewsSwiper';
-@import 'src/components/InfoSection';
-@import 'src/components/ResultsSection';
-@import 'src/components/HelpSection';
-@import 'src/components/ScrollComponent';
+@import "src/components/Navbar";
+@import "src/components/Footer";
+@import "src/components/LoginForm";
+@import "src/components/BackButton";
+@import "src/components/Dropzone";
+@import "src/components/Modal";
+@import "src/components/Storage";
+@import "src/components/Sidebar";
+@import "src/components/NewsCard";
+@import "src/components/NewsSwiper";
+@import "src/components/InfoSection";
+@import "src/components/ResultsSection";
+@import "src/components/HelpSection";
+@import "src/components/ScrollComponent";
