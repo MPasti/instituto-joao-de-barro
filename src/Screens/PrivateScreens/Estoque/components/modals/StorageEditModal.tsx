@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Modal } from "../../../../../components/Modal/Modal";
 import { StorageEditForm } from "../forms/StorageEditForm";
 import { useCustomEvent } from "../../../../../utils/useCustomEvent";
-import { StorageMaterial } from "../../services/storageApi";
+import { StorageMaterial } from "../../../../../services/storage/storageApi";
 
 interface StorageEditModalProps {
     selectedMaterial: StorageMaterial | null;

@@ -1,7 +1,7 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import {object, string, number, InferType } from "yup"
-import { addMaterial } from "../../services/storageApi";
+import { addMaterial } from "../../../../../services/storage/storageApi";
 import { nanoid } from 'nanoid';
 import { publish } from "../../../../../utils/events";
 

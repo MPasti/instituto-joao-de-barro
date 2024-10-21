@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
 import { PlusCircle } from "phosphor-react";
-import { Header } from "./components/StorageHeader";
-import { publish } from "../../../utils/events";
-import { StorageRegisterModal } from "./components/modals/StorageRegisterModal";
-import { getMaterials, StorageMaterial } from "./services/storageApi";
-import { StorageEditModal } from "./components/modals/StorageEditModal";
+import { publish } from "../../../../utils/events";
+import { StorageRegisterModal } from "./modals/StorageRegisterModal";
+import { getMaterials, StorageMaterial } from "../../../../services/storage/storageApi";
+import { StorageEditModal } from "./modals/StorageEditModal";
 
 export const Storage = () => {
     const [storageMaterials, setStorageMaterials] = useState<StorageMaterial[]>([]);
@@ -31,8 +30,8 @@ export const Storage = () => {
     );
 
     return (
-        <main className="storage-container">
-            <Header title="Estoque" />
+        <>
+            <h1 className="page-title">Estoque</h1>
             <section className="storage-search">
                 <input 
                     type="text" 
@@ -66,6 +65,6 @@ export const Storage = () => {
             </section>
             <StorageRegisterModal />
             <StorageEditModal selectedMaterial={selectedMaterial} />
-        </main>
+        </>
     );
 };
