@@ -2,7 +2,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { object, string, InferType } from "yup";
 import { publish } from "../../../../../utils/events";
-import { deleteProduct, OutletProduct, updateProduct } from "../../services/outletApi";
+import { deleteProduct, OutletProduct, updateProduct } from "../../../../../services/storage/outletApi";
 
 interface IEditFormProps {
     selectedProduct: OutletProduct;

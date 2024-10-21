@@ -1,7 +1,7 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { object, string, number, InferType } from "yup";
-import { updateMaterial, deleteMaterial, StorageMaterial } from "../../services/storageApi";
+import { updateMaterial, deleteMaterial, StorageMaterial } from "../../../../../services/storage/storageApi";
 import { publish } from "../../../../../utils/events";
 
 interface IEditFormProps {

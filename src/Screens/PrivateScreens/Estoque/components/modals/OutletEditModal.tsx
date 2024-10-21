@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Modal } from "../../../../../components/Modal/Modal";
 import { useCustomEvent } from "../../../../../utils/useCustomEvent";
-import { OutletProduct } from "../../services/outletApi";
+import { OutletProduct } from "../../../../../services/storage/outletApi";
 import { OutletEditForm } from "../forms/OutletEditForm";
 
 interface OutletEditModalProps {
