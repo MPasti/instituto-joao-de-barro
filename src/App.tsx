@@ -24,6 +24,8 @@ import { Contact } from "./Screens/PublicScreens/Contact";
 import { About } from "./Screens/PublicScreens/About";
 import { Voluntarios } from "./Screens/PublicScreens/Voluntarios";
 import { Beneficiarios } from "./Screens/PublicScreens/Beneficiarios";
+import { Projetos } from "./Screens/PublicScreens/Projetos";
+import { Blog } from "./Screens/PublicScreens/Blog";
 
 //Login
 import { Login } from "./Screens/Login";
@@ -43,6 +45,8 @@ function App() {
         <Route path="/" element={<LandingPage />}>
           <Route index element={<Main />} />
           <Route path="contatos" element={<Contact />} />
+          <Route path="projetos" element={<Projetos />} />
+          <Route path="noticias" element={<Blog />} />
           <Route path="sobre" element={<About />} />
           <Route path="voluntarios" element={<Voluntarios />} />
           <Route path="beneficiarios" element={<Beneficiarios />} />
