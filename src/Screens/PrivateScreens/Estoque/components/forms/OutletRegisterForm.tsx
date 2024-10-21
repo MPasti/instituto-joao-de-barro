@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import {object, string, InferType } from "yup"
 import { nanoid } from 'nanoid';
 import { publish } from "../../../../../utils/events";
-import { addProduct } from "../../services/outletApi";
+import { addProduct } from "../../../../../services/storage/outletApi";
 
 interface IRegisterFormProps {
     handleCancel?: () => void

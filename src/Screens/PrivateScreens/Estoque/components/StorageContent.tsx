@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { PlusCircle } from "phosphor-react";
 import { publish } from "../../../../utils/events";
 import { StorageRegisterModal } from "./modals/StorageRegisterModal";
-import { getMaterials, StorageMaterial } from "../services/storageApi";
+import { getMaterials, StorageMaterial } from "../../../../services/storage/storageApi";
 import { StorageEditModal } from "./modals/StorageEditModal";
 
 export const Storage = () => {

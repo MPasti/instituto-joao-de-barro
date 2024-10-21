@@ -1,7 +1,7 @@
 import { PlusCircle } from "phosphor-react"
 import { publish } from "../../../../utils/events"
 import { OutletRegisterModal } from "./modals/OutletRegisterModal"
-import { getProducts, OutletProduct } from "../services/outletApi"
+import { getProducts, OutletProduct } from "../../../../services/storage/outletApi"
 import { useEffect, useState } from "react"
 import { OutletEditModal } from "./modals/OutletEditModal"
 
