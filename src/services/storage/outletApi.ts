@@ -8,7 +8,7 @@ export interface OutletProduct {
 }
 
 const api = axios.create({
-  baseURL: "http://localhost:3001",
+  baseURL: import.meta.env.VITE_STORAGE_API_URL,
 });
 
 export const getProducts = async (): Promise<OutletProduct[]> => {
