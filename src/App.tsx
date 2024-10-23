@@ -23,6 +23,11 @@ import { Main } from "./components/Main";
 import { Contact } from "./Screens/PublicScreens/Contact";
 import { About } from "./Screens/PublicScreens/About";
 import { Voluntarios } from "./Screens/PublicScreens/Voluntarios";
+import { VoluntariosForm } from "./Screens/PublicScreens/Voluntarios/Form/voluntariosForm";
+import { Colaborador } from "./Screens/PublicScreens/Colaborador";
+import { ColaboradorForm } from "./Screens/PublicScreens/Colaborador/Form/colaboradorForm";
+import { Apoiador } from "./Screens/PublicScreens/Apoiador";
+import { ApoiadorForm } from "./Screens/PublicScreens/Apoiador/Form/apoiadorForm";
 import { Beneficiarios } from "./Screens/PublicScreens/Beneficiarios";
 import { Projetos } from "./Screens/PublicScreens/Projetos";
 import { Blog } from "./Screens/PublicScreens/Blog";
@@ -48,8 +53,13 @@ function App() {
           <Route path="projetos" element={<Projetos />} />
           <Route path="noticias" element={<Blog />} />
           <Route path="sobre" element={<About />} />
-          <Route path="voluntarios" element={<Voluntarios />} />
           <Route path="beneficiarios" element={<Beneficiarios />} />
+          <Route path="voluntarios" element={<Voluntarios /> }/>
+          <Route path="voluntarios/form" element={<VoluntariosForm />}/>
+          <Route path="colaborador" element={<Colaborador />}/>
+          <Route path="colaborador/form" element={<ColaboradorForm />}/>
+          <Route path="apoiador" element={<Apoiador />}/>
+          <Route path="apoiador/form" element={<ApoiadorForm />}/>
         </Route>
 
         {/* Rota de Login */}
