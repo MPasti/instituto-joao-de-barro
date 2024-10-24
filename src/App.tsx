@@ -27,6 +27,7 @@ import { Beneficiarios } from "./Screens/PublicScreens/Beneficiarios";
 import { Projetos } from "./Screens/PublicScreens/Projetos";
 import { Blog } from "./Screens/PublicScreens/Blog";
 import { Donation } from "./Screens/PublicScreens/Donation";
+import PublicNoticias from "./Screens/PublicScreens/PublicNoticias";
 
 //Login
 import { Login } from "./Screens/Login";
@@ -72,3 +73,4 @@ function App() {
 }
 
 export default App;
+
