@@ -69,9 +69,9 @@ export function Navbar() {
             </Link>
           </li>
           <li className="nav-item">
-            <Button type="button" variant="secondary">
+            <Link to='/doacoes' className="btn btn-secondary">
               DOE AGORA
-            </Button>
+            </Link>
           </li>
         </ul>
       </nav>
