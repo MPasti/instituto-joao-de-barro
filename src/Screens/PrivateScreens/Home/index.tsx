@@ -19,7 +19,7 @@ const Home = () => {
         className="col-12 col-sm-6 col-md-6 col-lg-3 mb-3 cursor-pointer d-flex justify-content-center"
         onClick={() => route && navigate(route)}
       >
-        <div className="card dashboard-icon p-4 d-flex align-items-center justify-content-center bg-dark">
+        <div className="card dashboard-icon p-4 d-flex align-items-center justify-content-center">
           <div className="icon mb-2" style={{ fontSize: "30px" }}>
             {icon}
           </div>
@@ -47,6 +47,7 @@ const Home = () => {
             <DashboardIcon icon={<FaHandsHelping />} label="VOLUNTÁRIOS" />
             <DashboardIcon
               icon={<FaHandHoldingHeart />}
+              route="beneficiarios"
               label="BENEFICIÁRIOS"
             />
             <DashboardIcon
