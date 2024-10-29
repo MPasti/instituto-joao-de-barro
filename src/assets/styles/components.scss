@@ -208,16 +208,98 @@ iframe {
   font-size: 14px;
 }
 
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table thead th{
+  background-color: $quartiary; 
+  color: white; 
+  font-weight: bold;  
+}
+
+.table thead th:first-of-type{
+  border-top-left-radius: 10px; 
+}
+
+.table thead th:last-of-type{
+  border-top-right-radius: 10px; 
+}
+
+.table td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.table tr:nth-child(even) {
+  background-color: #f9f9f9; 
+}
+
+.table tr:hover {
+  background-color: #f1f1f1; 
+}
+
+.edit-icon {
+  cursor: pointer;
+  color: #666;
+}
+
+.tabs {
+  display: flex;
+  cursor: pointer;
+  margin: 20px;
+  gap: 0.5%;
+}
+
+.tab-button {
+  padding: 10px 20px;
+  background-color: #f1f1f1;
+  border: none;
+  border-radius: 5px;
+  margin-right: 10px;
+  transition: background-color 0.3s;
+}
+
+.tab-button.active {
+  background-color: $quartiary; 
+  color: white; 
+}
+.tab-content {
+  padding: 20px;
+  border: 1px solid #ddd; 
+  border-radius: 5px;
+}
+
+.balance-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+}
+
+.card{
+  width: 400px;
+  height: 250px;
+  background-color: $white;
+  box-shadow: $box-shadow;
+  text-align: center;
+  padding: 100px;
+  font-size: xx-large;
+}
+
 @import "src/components/Navbar";
 @import "src/components/Footer";
-@import "src/components/LoginForm";
-@import "src/components/BackButton";
-@import "src/components/Dropzone";
+@import 'src/components/LoginForm';
+@import 'src/components/BackButton';
+@import 'src/components/Dropzone';
+@import 'src/components/Sidebar';
+@import 'src/components/NewsCard';
+@import 'src/components/NewsSwiper';
 @import "src/components/Modal";
 @import "src/components/Storage";
-@import "src/components/Sidebar";
-@import "src/components/NewsCard";
-@import "src/components/NewsSwiper";
 @import "src/components/InfoSection";
 @import "src/components/ResultsSection";
 @import "src/components/HelpSection";

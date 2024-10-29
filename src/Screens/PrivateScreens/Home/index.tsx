@@ -49,12 +49,13 @@ const Home = () => {
               icon={<FaHandHoldingHeart />}
               label="BENEFICIÁRIOS"
             />
+            <DashboardIcon icon={<FaBoxOpen />} label="ESTOQUE" />
+            <DashboardIcon icon={<FaPiggyBank />} label="FINANCEIRO"  route="financeiro"/>
             <DashboardIcon
               icon={<FaBoxOpen />}
               route="estoque"
               label="ESTOQUE"
             />
-            <DashboardIcon icon={<FaPiggyBank />} label="FINANCEIRO" />
           </div>
         </div>
 

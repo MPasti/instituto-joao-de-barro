@@ -35,6 +35,7 @@ import { Login } from "./Screens/Login";
 import { Home } from "./Screens/PrivateScreens/Home";
 import { Noticias } from "./Screens/PrivateScreens/Noticias";
 import { Perfil } from "./Screens/PrivateScreens/Perfil";
+import { Financeiro } from "./Screens/PrivateScreens/Financeiro";
 import { StorageHome } from "./Screens/PrivateScreens/Estoque/StorageHome";
 
 function App() {
@@ -63,6 +64,7 @@ function App() {
             <Route index element={<Home />} />
             <Route path="noticias" element={<Noticias />} />
             <Route path="perfil" element={<Perfil />} />
+            <Route path="financeiro" element={<Financeiro />} />
             <Route path="estoque" element={<StorageHome />}/>
           </Route>
         </Route>
