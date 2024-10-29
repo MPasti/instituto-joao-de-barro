@@ -30,6 +30,22 @@
   }
 }
 
+.bg-primary{
+  background-color: $primary;
+}
+
+.bg-secondary{
+  background-color: $secondary;
+}
+
+.bg-secondary-light{
+  background-color: $light-orange;
+}
+
+.color-white{
+  color: #FFFFFF;
+}
+
 .btn-secondary {
   background-color: $secondary;
   border: 1px solid $secondary;
@@ -85,4 +101,10 @@
 .text-secondary{
   color: $secondary !important;
 }
+
+.text-light{
+  color: $primary-light !important;
+}
+
+@import 'src/Screens/PublicScreens/About';
 

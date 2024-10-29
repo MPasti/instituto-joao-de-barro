@@ -15,4 +15,4 @@ As famílias assistidas pelo Instituto João de Barro são indicadas por conheci
 - Esse projeto utiliza a versão do **Node v22.2.0**
 1. Para instalar as dependências do projeto use `npm install`
 2. Para rodar o projeto use `npm run dev`  
-3. Para rodar o JSON-SERVER use `npx json-server --watch db.json --port 3003`
+3. Para rodar o JSON-SERVER use `npm run server`

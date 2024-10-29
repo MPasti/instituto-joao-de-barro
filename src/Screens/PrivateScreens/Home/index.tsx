@@ -16,7 +16,7 @@ const Home = () => {
   const DashboardIcon = ({ icon, label, route }: DashboardIconProps) => {
     return (
       <div
-        className="col-12 col-sm-6 col-md-3 mb-3 cursor-pointer"
+        className="col-12 col-sm-6 col-md-6 col-lg-3 mb-3 cursor-pointer d-flex justify-content-center"
         onClick={() => route && navigate(route)}
       >
         <div className="card dashboard-icon p-4 d-flex align-items-center justify-content-center bg-dark">
@@ -30,11 +30,8 @@ const Home = () => {
   };
 
   return (
-    <div
-      className="container text-center my-5"
-      style={{ padding: "50px 200px" }}
-    >
-      <div className="row justify-content-center">
+    <div className="container text-center my-5 d-flex justify-content-center">
+      <div className="row home-container">
         <div className="d-flex justify-content-start mb-3 m-3">
           <BiArrowBack
             onClick={() => navigate("/")}
@@ -44,6 +41,7 @@ const Home = () => {
             }}
           />
         </div>
+
         <div className="col-12 d-flex justify-content-center">
           <div className="row w-100">
             <DashboardIcon icon={<FaHandsHelping />} label="VOLUNTÁRIOS" />
@@ -53,18 +51,27 @@ const Home = () => {
             />
             <DashboardIcon icon={<FaBoxOpen />} label="ESTOQUE" />
             <DashboardIcon icon={<FaPiggyBank />} label="FINANCEIRO"  route="financeiro"/>
+            <DashboardIcon
+              icon={<FaBoxOpen />}
+              route="estoque"
+              label="ESTOQUE"
+            />
           </div>
         </div>
 
         <div className="col-12 d-flex justify-content-center">
-          <div className="row justify-content-center w-100">
-            <DashboardIcon icon={<BiSolidCalendarStar />} label="EVENTOS" />
-            <DashboardIcon icon={<FaTools />} label="OBRAS" />
-            <DashboardIcon
-              icon={<IoNewspaper />}
-              route="noticias"
-              label="NOTÍCIAS"
-            />
+          <div className="row w-100">
+            <div className="col-12 d-flex justify-content-center">
+              <div className="row w-100 justify-content-center">
+                <DashboardIcon icon={<BiSolidCalendarStar />} label="EVENTOS" />
+                <DashboardIcon icon={<FaTools />} label="OBRAS" />
+                <DashboardIcon
+                  icon={<IoNewspaper />}
+                  route="noticias"
+                  label="NOTÍCIAS"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>

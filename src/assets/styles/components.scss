@@ -1,53 +1,3 @@
-.navbar {
-  display: flex;
-  align-items: center;
-  padding: 10px 20px;
-  background: linear-gradient(90deg, 
-    #F07F3C 0%, 
-    #F1B846 19%, 
-    #FFBD64 44%, 
-    #FFD04F 100%);
-}
-
-.logo-icon {
-  width: 70px;
-  margin-right: 10px;
-}
-
-.icons {
-  width: 35px;
-  height: 35px;
-}
-
-.nav-links {
-  list-style-type: none;
-  display: flex;
-  align-items: center;
-  margin: 0;
-  padding: 0;
-}
-
-.nav-item {
-  margin: 0 15px;
-}
-
-.header-options{
-  display: flex;
-  background: linear-gradient(90deg,
-          #A65C45 0%,
-          #D6795C 100%);
-  justify-content: end;
-  color: #FFFFFF;
-}
-
-.login-options{
-  gap: 10px;
-  display: flex;
-  text-align: center;
-  align-items: center;
-  margin-right: 20px;
-}
-
 .link {
   color: #fff;
   text-decoration: none;
@@ -78,11 +28,25 @@
   }
 }
 
+.home-container {
+  display: flex;
+  justify-content: center;
+
+  @media (min-width: 1200px) {
+    width: 80% !important;
+  }
+  @media (min-width: 1400px) {
+    width: 75% !important;
+  }
+}
+
 .dashboard-icon {
   width: 200px;
   height: 200px;
   border-radius: 12px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -110,7 +74,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 600px;
   text-align: center;
 }
 
@@ -127,11 +90,16 @@ iframe {
   height: 315px;
 }
 
-
 .partners {
-  margin: 100px 400px;
+  margin: 100px auto;
+  width: 50vw;
+
+  @media (max-width: 576px) {
+    width: 100%;
+  }
 }
 
+//===== Swipper =====================================================//
 .slider-wrapper {
   display: flex;
   justify-content: center;
@@ -215,95 +183,30 @@ iframe {
 .swiper-pagination-bullet-active {
   background-color: $secondary;
 }
+//===== Swipper =====================================================//
 
-.scroll-section {
-  .left-image {
-    position: sticky;
-    top: 0;
-    align-self: flex-start;
-
-    img {
-      margin-top: 30px;
-      width: 100%;
-      object-fit: cover;
-    }
-  }
-
-  .left-content {
-    padding: 0;
-  }
-
-  .right-content {
-    padding: 0;
-  }
-
-  .content-block {
-    height: 100vh;
-    background-color: #f0f0f0;
-    padding: 20px;
-    transition: transform 0.3s ease;
-    transform: translateY(50px);
-  }
-
-  .content{
-    color: $white;
-    justify-content: center;
-    display: flex;
-    flex-direction: column;
-    text-align: justify;
-
-    h1{
-      font-size: 32px;
-      padding: 0 40px;
-    }
-    p{
-      padding: 0 40px;
-      font-size: 20px;
-    }
-
-    &.bg-color-first{
-      background-color: $secondary;
-    }
-    &.bg-color-second{
-      background-color: $primary;
-    }
-    &.bg-color-third{
-      background-color: #D88065;
-    }
-  }
-}
-
-.login-container{
+.login-container {
   display: flex;
   background-color: #fce4db;
 }
 
-.login-content{
+.login-content {
   display: flex;
   height: 400px;
 }
 
-.login-title{
+.login-title {
   color: $primary;
   font-weight: 550;
   text-decoration: underline;
 }
 
-.forgot-password{
-  display:flex;
+.forgot-password {
+  display: flex;
   cursor: pointer;
   justify-content: end;
   font-size: 14px;
 }
-
-@import "src/components/Footer";
-@import 'src/components/LoginForm';
-@import 'src/components/BackButton';
-@import 'src/components/Dropzone';
-@import 'src/components/Sidebar';
-@import 'src/components/NewsCard';
-@import 'src/components/NewsSwiper';
-@import 'src/components/InfoSection';
 
 .table {
   width: 100%;
@@ -386,3 +289,18 @@ iframe {
   padding: 100px;
   font-size: xx-large;
 }
+
+@import "src/components/Navbar";
+@import "src/components/Footer";
+@import 'src/components/LoginForm';
+@import 'src/components/BackButton';
+@import 'src/components/Dropzone';
+@import 'src/components/Sidebar';
+@import 'src/components/NewsCard';
+@import 'src/components/NewsSwiper';
+@import "src/components/Modal";
+@import "src/components/Storage";
+@import "src/components/InfoSection";
+@import "src/components/ResultsSection";
+@import "src/components/HelpSection";
+@import "src/components/ScrollComponent";
