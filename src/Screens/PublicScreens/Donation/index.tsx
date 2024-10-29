@@ -1,6 +1,14 @@
-import { FaScrewdriverWrench } from "react-icons/fa6";
+import {
+  FaFacebook,
+  FaHandHoldingHeart,
+  FaInstagram,
+  FaScrewdriverWrench,
+  FaWhatsapp,
+} from "react-icons/fa6";
 import Button from "../../../components/Button";
 import IjbDonation from "@images/institute/ijb-comemoracao.png";
+import { FaHandPaper } from "react-icons/fa";
+import { IoMegaphone } from "react-icons/io5";
 
 export function Donation() {
   return (
@@ -43,7 +51,7 @@ export function Donation() {
             </Button>
           </div>
         </div>
-        <div className="d-flex m-auto">
+        <div className="d-flex flex-column m-auto">
           <div className="col-12">
             <div className="d-flex text-secondary justify-content-center">
               <h5>DOE MATERIAIS</h5>
@@ -57,15 +65,69 @@ export function Donation() {
               mais precisa.
             </p>
           </div>
-          <div className="col-6">
-            1.Materiais como{" "}
-            <span className="text-secondary">
-              cimento, areia, tijolos, telhas, portas, janelas, tinta, entre
-              outros
-            </span>
-            , são essenciais para nossas reformas e construções.
+          <div className="row m-0">
+            <div className="col-12 col-md-6 p-0">
+              1.Materiais como{" "}
+              <span className="text-secondary">
+                cimento, areia, tijolos, telhas, portas, janelas, tinta, entre
+                outros
+              </span>
+              , são essenciais para nossas reformas e construções.
+            </div>
+            <div className="col-12 col-md-6 p-0">
+              Entre em contato conosco para saber o local mais próximo onde você
+              pode deixar sua doação ou agendar uma coleta diretamente.
+            </div>
           </div>
-          <div className="col-6"></div>
+        </div>
+        <div>
+          <h2>Como Ajudar de Outras Formas</h2>
+          <div className="flex row">
+            <div className="col-12 col-md-4">
+              <div className="flex flex-column">
+                <FaHandPaper className="text-secondary" />
+                <h2>
+                  Torne-se um <span className="text-secondary">voluntário</span>
+                </h2>
+                <p>
+                  Ao participar de nossa equipe de voluntários, você tem a
+                  oportunidade de contribuir diretamente com a comunidade,
+                  ajudando a vida de inúmeras famílias e fazendo a diferença.
+                </p>
+                <Button outline type="button" variant="secondary">
+                  ME VOLUNTARIAR
+                </Button>
+              </div>
+            </div>
+            <div className="col-12 col-md-4">
+              <div className="flex flex-column">
+                <FaHandHoldingHeart className="text-secondary" />
+                <h2>Indique famílias </h2>
+                <p>
+                  Você também pode nos ajudar indicando famílias que precisam de
+                  auxílio, preenchendo nosso formulário de indicação.
+                </p>
+                <Button outline type="button" variant="secondary">
+                  IR AO FORMULÁRIO
+                </Button>
+              </div>
+            </div>
+            <div className="col-12 col-md-4">
+              <div className="flex flex-column">
+                <IoMegaphone className="text-secondary" />
+                <h2>Divulgue nossa causa </h2>
+                <p>
+                  Compartilhe nossas ações e campanhas em suas redes sociais e
+                  com amigos para que mais pessoas possam contribuir.
+                </p>
+                <div className="text-secondary">
+                  <FaInstagram size={42} />
+                  <FaFacebook size={40} />
+                  <FaWhatsapp size={42} />
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

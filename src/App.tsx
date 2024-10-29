@@ -40,37 +40,43 @@ import { StorageHome } from "./Screens/PrivateScreens/Estoque/StorageHome";
 
 function App() {
   return (
-    <Router>
-      <Toaster position="top-right" toastOptions={ToastOptions} />
-      <Routes>
-        {/* Rotas Públicas */}
-        <Route path="/" element={<LandingPage />}>
-          <Route index element={<Main />} />
-          <Route path="contatos" element={<Contact />} />
-          <Route path="projetos" element={<Projetos />} />
-          <Route path="noticias" element={<Blog />} />
-          <Route path="sobre" element={<About />} />
-          <Route path="voluntarios" element={<Voluntarios />} />
-          <Route path="beneficiarios" element={<Beneficiarios />} />
-          <Route path='doacoes' element={<Donation />}/>
-        </Route>
+    <div className="app-container">
+      <Router>
+        <Toaster position="top-right" toastOptions={ToastOptions} />
+        
+        <div className="content">
+          <Routes>
+            {/* Rotas Públicas */}
+            <Route path="/" element={<LandingPage />}>
+              <Route index element={<Main />} />
+              <Route path="contatos" element={<Contact />} />
+              <Route path="projetos" element={<Projetos />} />
+              <Route path="noticias" element={<Blog />} />
+              <Route path="sobre" element={<About />} />
+              <Route path="voluntarios" element={<Voluntarios />} />
+              <Route path="beneficiarios" element={<Beneficiarios />} />
+              <Route path='doacoes' element={<Donation />}/>
+            </Route>
 
-        {/* Rota de Login */}
-        <Route path="/login" element={<Login />} />
+            {/* Rota de Login */}
+            <Route path="/login" element={<Login />} />
 
-        {/* Rotas Privadas - Dashboard */}
-        <Route element={<PrivateRouter />}>
-          <Route path="/dashboard" element={<DashboardPage />}>
-            <Route index element={<Home />} />
-            <Route path="noticias" element={<Noticias />} />
-            <Route path="perfil" element={<Perfil />} />
-            <Route path="financeiro" element={<Financeiro />} />
-            <Route path="estoque" element={<StorageHome />}/>
-          </Route>
-        </Route>
-      </Routes>
-    </Router>
+            {/* Rotas Privadas - Dashboard */}
+            <Route element={<PrivateRouter />}>
+              <Route path="/dashboard" element={<DashboardPage />}>
+                <Route index element={<Home />} />
+                <Route path="noticias" element={<Noticias />} />
+                <Route path="perfil" element={<Perfil />} />
+                <Route path="financeiro" element={<Financeiro />} />
+                <Route path="estoque" element={<StorageHome />}/>
+              </Route>
+            </Route>
+          </Routes>
+        </div>
+      </Router>
+    </div>
   );
 }
+
 
 export default App;
