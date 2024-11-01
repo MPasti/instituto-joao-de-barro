@@ -22,28 +22,11 @@ export function Beneficiarios() {
                   <label>Nome da Família:</label>
                   <input type="text" placeholder="Nome da Família" disabled />
 
-                  <label>Campo 2:</label>
-                  <input type="text" placeholder="Campo 2" disabled />
+                  <label>CPF:</label>
+                  <input type="text" placeholder="CPF" disabled />
 
-                  <label>Campo 3:</label>
-                  <input type="text" placeholder="Campo 3" disabled />
-              </div>
-
-              <div className="dropdown-button-group">
-                  <div className="dropdown-group">
-                      <label>Dropdown 1</label>
-                      <select disabled>
-                          <option>Option 1</option>
-                          <option>Option 2</option>
-                          <option>Option 3</option>
-                      </select>
-                      <label>Dropdown 2</label>
-                      <select disabled>
-                          <option>Option 1</option>
-                          <option>Option 2</option>
-                          <option>Option 3</option>
-                      </select>
-                  </div>
+                  <label>CEP:</label>
+                  <input type="text" placeholder="CEP" disabled />
               </div>
           </div>
       </div>
