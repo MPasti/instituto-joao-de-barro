@@ -31,6 +31,7 @@ import { ApoiadorForm } from "./Screens/PublicScreens/Apoiador/Form/apoiadorForm
 import { Beneficiarios } from "./Screens/PublicScreens/Beneficiarios";
 import { Projetos } from "./Screens/PublicScreens/Projetos";
 import { Blog } from "./Screens/PublicScreens/Blog";
+import { Donation } from "./Screens/PublicScreens/Donation";
 
 //Login
 import { Login } from "./Screens/Login";
@@ -39,6 +40,7 @@ import { Login } from "./Screens/Login";
 import { Home } from "./Screens/PrivateScreens/Home";
 import { Noticias } from "./Screens/PrivateScreens/Noticias";
 import { Perfil } from "./Screens/PrivateScreens/Perfil";
+import { Financeiro } from "./Screens/PrivateScreens/Financeiro";
 import { StorageHome } from "./Screens/PrivateScreens/Estoque/StorageHome";
 
 function App() {
@@ -60,23 +62,29 @@ function App() {
           <Route path="colaborador/form" element={<ColaboradorForm />}/>
           <Route path="apoiador" element={<Apoiador />}/>
           <Route path="apoiador/form" element={<ApoiadorForm />}/>
+           <Route path='doacoes' element={<Donation />}/>
         </Route>
 
-        {/* Rota de Login */}
-        <Route path="/login" element={<Login />} />
 
-        {/* Rotas Privadas - Dashboard */}
-        <Route element={<PrivateRouter />}>
-          <Route path="/dashboard" element={<DashboardPage />}>
-            <Route index element={<Home />} />
-            <Route path="noticias" element={<Noticias />} />
-            <Route path="perfil" element={<Perfil />} />
-            <Route path="estoque" element={<StorageHome />}/>
-          </Route>
-        </Route>
-      </Routes>
-    </Router>
+            {/* Rota de Login */}
+            <Route path="/login" element={<Login />} />
+
+            {/* Rotas Privadas - Dashboard */}
+            <Route element={<PrivateRouter />}>
+              <Route path="/dashboard" element={<DashboardPage />}>
+                <Route index element={<Home />} />
+                <Route path="noticias" element={<Noticias />} />
+                <Route path="perfil" element={<Perfil />} />
+                <Route path="financeiro" element={<Financeiro />} />
+                <Route path="estoque" element={<StorageHome />}/>
+              </Route>
+            </Route>
+          </Routes>
+        </div>
+      </Router>
+    </div>
   );
 }
+
 
 export default App;

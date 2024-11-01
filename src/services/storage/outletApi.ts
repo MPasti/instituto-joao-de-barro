@@ -1,14 +1,14 @@
 import axios from "axios";
 
 export interface OutletProduct {
-  id: string; 
+  id: string;
   name: string;
   price?: string;
   description?: string;
 }
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_STORAGE_API_URL,
+  baseURL: import.meta.env.VITE_API_URL,
 });
 
 export const getProducts = async (): Promise<OutletProduct[]> => {
@@ -16,12 +16,17 @@ export const getProducts = async (): Promise<OutletProduct[]> => {
   return response.data;
 };
 
-export const addProduct = async (product: OutletProduct): Promise<OutletProduct> => {
+export const addProduct = async (
+  product: OutletProduct
+): Promise<OutletProduct> => {
   const response = await api.post<OutletProduct>("/products", product);
   return response.data;
 };
 
-export const updateProduct = async (id: string, product: OutletProduct): Promise<OutletProduct> => {
+export const updateProduct = async (
+  id: string,
+  product: OutletProduct
+): Promise<OutletProduct> => {
   const response = await api.put<OutletProduct>(`/products/${id}`, product);
   return response.data;
 };

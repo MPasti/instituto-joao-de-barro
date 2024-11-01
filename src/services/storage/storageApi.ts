@@ -1,14 +1,14 @@
 import axios from "axios";
 
 export interface StorageMaterial {
-  id: string; 
+  id: string;
   name: string;
   quantity: number;
   description?: string;
 }
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_STORAGE_API_URL,
+  baseURL: import.meta.env.VITE_API_URL,
 });
 
 export const getMaterials = async (): Promise<StorageMaterial[]> => {
@@ -16,12 +16,17 @@ export const getMaterials = async (): Promise<StorageMaterial[]> => {
   return response.data;
 };
 
-export const addMaterial = async (material: StorageMaterial): Promise<StorageMaterial> => {
+export const addMaterial = async (
+  material: StorageMaterial
+): Promise<StorageMaterial> => {
   const response = await api.post<StorageMaterial>("/materials", material);
   return response.data;
 };
 
-export const updateMaterial = async (id: string, material: StorageMaterial): Promise<StorageMaterial> => {
+export const updateMaterial = async (
+  id: string,
+  material: StorageMaterial
+): Promise<StorageMaterial> => {
   const response = await api.put<StorageMaterial>(`/materials/${id}`, material);
   return response.data;
 };

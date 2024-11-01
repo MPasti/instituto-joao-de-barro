@@ -7,6 +7,14 @@
       "username": "admin",
       "password": "123456",
       "token": "1234567890abcdef"
+    },
+    {
+      "id": 2,
+      "cpf": "10987654321",
+      "email": "teste_financeiro@testes.com",
+      "username": "financeiro",
+      "password": "123456",
+      "token": "1234567890abcde2"
     }
   ],
   "noticias": [

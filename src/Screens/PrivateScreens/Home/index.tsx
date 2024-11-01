@@ -16,7 +16,7 @@ const Home = () => {
   const DashboardIcon = ({ icon, label, route }: DashboardIconProps) => {
     return (
       <div
-        className="col-12 col-sm-6 col-md-4 col-lg-3 mb-3 cursor-pointer d-flex justify-content-center"
+        className="col-12 col-sm-6 col-md-6 col-lg-3 mb-3 cursor-pointer d-flex justify-content-center"
         onClick={() => route && navigate(route)}
       >
         <div className="card dashboard-icon p-4 d-flex align-items-center justify-content-center bg-dark">
@@ -30,8 +30,8 @@ const Home = () => {
   };
 
   return (
-    <div className="container text-center my-5">
-      <div className="row justify-content-center">
+    <div className="container text-center my-5 d-flex justify-content-center">
+      <div className="row home-container">
         <div className="d-flex justify-content-start mb-3 m-3">
           <BiArrowBack
             onClick={() => navigate("/")}
@@ -44,13 +44,21 @@ const Home = () => {
 
         <div className="col-12 d-flex justify-content-center">
           <div className="row w-100">
-            <DashboardIcon icon={<FaHandsHelping />} label="VOLUNTÁRIOS"/>
+            <DashboardIcon icon={<FaHandsHelping />} label="VOLUNTÁRIOS" />
             <DashboardIcon
               icon={<FaHandHoldingHeart />}
               label="BENEFICIÁRIOS"
             />
-            <DashboardIcon icon={<FaBoxOpen />} route="estoque" label="ESTOQUE" />
-            <DashboardIcon icon={<FaPiggyBank />} label="FINANCEIRO" />
+            <DashboardIcon
+              icon={<FaBoxOpen />}
+              label="ESTOQUE"
+              route="estoque"
+            />
+            <DashboardIcon
+              icon={<FaPiggyBank />}
+              label="FINANCEIRO"
+              route="financeiro"
+            />
           </div>
         </div>
 
