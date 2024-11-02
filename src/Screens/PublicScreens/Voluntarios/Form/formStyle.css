@@ -1,0 +1,126 @@
+.parent-container {
+	display: flex;
+	font-family: "Switzerland";
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	column-gap: 5rem;
+}
+
+.main-image-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-repeat: no-repeat;
+	background-size: cover; /* A imagem cobrirá o contêiner de maneira proporcional */
+	background-position: center;
+	width: 100%; /* Certifique-se de que o contêiner de imagem ocupe 100% da largura */
+	height: 400px;
+}
+
+.colaborador-yellow-box {
+	background-color: #ffc72c;
+	display: flex;
+	width: auto;
+	align-items: center;
+	flex-direction: column;
+	padding: 30px;
+    min-height: 700px;
+}
+
+.colaborador-yellow-box > * {
+	width: 100%;
+}
+
+.title-c {
+	font-style: normal;
+	font-weight: 900;
+	font-size: 12xpx;
+	line-height: 49px;
+	display: flex;
+	align-items: center;
+	text-align: center;
+	text-transform: uppercase;
+
+	color: #231f20;
+}
+
+.form-input-c {
+	display: flex;
+	width: 100%;
+	flex-direction: column;
+	text-align: left;
+}
+input, textarea, select {
+    height: 30px;
+    background-color: #f6f6f6;
+    color: #A0A0A0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+textarea {
+    height: auto; /* Permite que o textarea ajuste sua altura conforme o conteúdo */
+    resize: vertical; /* Permite que o usuário redimensione verticalmente */
+}
+
+input:focus, textarea:focus, select:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.double-input-container-c {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+	gap: 1rem;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #333;
+	margin-top: 20px;
+}
+
+.checkbox-container {
+    margin-bottom: 20px; /* Espaçamento entre o título e os checkboxes */
+}
+
+.checkbox-container div {
+    display: flex; /* Faz com que o checkbox e o texto fiquem na mesma linha */
+    align-items: center; /* Alinha verticalmente o checkbox e o texto */
+    margin-bottom: 10px; /* Espaçamento entre os checkboxes */
+}
+
+.checkbox-container input[type="checkbox"] {
+    margin-right: 10px; /* Espaço entre o checkbox e o texto */
+}
+
+.checkbox-container label {
+    font-weight: bold;
+    margin-bottom: 10px; /* Espaço entre o título e os checkboxes */
+    display: block; /* Certifique-se que o label ocupa toda a largura */
+}
+
+.btn-orange {
+	margin-top: 20px;
+	padding: 12px 24px;
+	background-color: #ffc72c; /* Laranja mais escuro para maior contraste */
+	color: black;
+	font-weight: bold;
+	border: none;
+	border-radius: 8px;
+	text-align: center;
+	cursor: pointer; /* Estiliza o cursor como ponteiro ao passar sobre o botão */
+	transition: background-color 0.3s ease; /* Animação suave na cor de fundo */
+	margin: 3rem 0;
+}
+
+.btn-orange:hover {
+	background-color: #e2aa0e; /* Muda a cor ao passar o mouse */
+}
