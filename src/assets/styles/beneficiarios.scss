@@ -1,0 +1,175 @@
+.beneficiarios-page {
+    .dashboard-header {
+        margin: 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+
+        .left-section {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start; 
+            background-image: none;
+
+            .subtitle {
+                color: #df7046;
+                font-size: 2.5rem;
+                font-weight: bolder;
+                border-bottom: 3px solid #df7046;
+                margin-bottom: 0.5rem;
+                text-align: left;
+            }
+
+            .description {
+                color: #000;
+                margin-top: 0.5rem;
+                text-align: left;
+            }
+        }
+
+        .search-section {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            margin-bottom: 1.5rem;
+
+            .search-bar {
+                padding: 0.5rem;
+                width: 405px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                margin-bottom: 1rem;
+            }
+
+            .buttons {
+                display: flex;
+                gap: 1rem;
+
+                .btn {
+                    padding: 0.75rem 1.5rem;
+                    border-radius: 5px;
+                    font-size: 1rem;
+                    cursor: pointer;
+                    color: #fff;
+                }
+
+                .enviar-btn {
+                    background-color: #ffc72c;
+                    border: none;
+                }
+
+                .registrar-btn {
+                    background-color: #df7046;
+                    border: none;
+                }
+            }
+        }
+    }
+
+    .tabs {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 1.5rem;
+
+        .tab-btn {
+            flex: 1;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            cursor: pointer;
+            border: none;
+            background-color: white;
+            text-align: center;
+
+            &.active {
+                color: #df7046;
+                border-bottom: 2px solid #df7046;
+                width: fit-content;
+            }
+        }
+    }
+
+    .table-container {
+        overflow-x: auto;
+    }
+
+    .familias-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 3rem;
+
+        th,
+        td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        td {
+            white-space: nowrap;
+            text-align: left;
+
+            &:first-child {
+                width: 100%;
+            }
+
+            &:last-child {
+                text-align: right;
+                width: 1%;
+            }
+
+            .table-actions {
+                display: inline-flex;
+                gap: 0.5rem;
+                align-items: center;
+                justify-content: flex-end;
+            }
+
+            input[type="checkbox"] {
+                margin-right: 0.5rem;
+            }
+
+            .prioridade-label {
+                margin-right: 1rem;
+            }
+
+            .table-btn {
+                padding: 0.5rem 1rem;
+                border: none;
+                cursor: pointer;
+                border-radius: 3px;
+                font-size: 0.875rem;
+            }
+
+            .dados-btn {
+                align-items: center;
+                background-color: #ffc72c;
+                padding: 0.75rem 1.5rem;
+                border-radius: 10px;
+                gap: 10px;
+                justify-content: center;
+                padding: 8px;
+                position: relative;
+                cursor: pointer;
+                color: #fff;
+                margin-right: 15px;
+                font-weight: bold;
+                width: 80px;
+            }
+
+            .excluir-btn {
+                align-items: center;
+                background-color: #DF7046;
+                padding: 0.75rem 1.5rem;
+                border-radius: 10px;
+                gap: 10px;
+                justify-content: center;
+                padding: 8px;
+                position: relative;
+                cursor: pointer;
+                color: #fff;
+                font-weight: bold;
+                width: 80px;
+            }
+        }
+    }
+}

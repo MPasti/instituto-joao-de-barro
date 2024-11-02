@@ -177,5 +177,7 @@
       "account": 3000,
       "cdb": 2000
     }
-  }
+  },
+  "beneficiario": [],
+  "visitas": []
 }

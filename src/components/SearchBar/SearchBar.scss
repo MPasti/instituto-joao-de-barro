@@ -1,0 +1,51 @@
+.search-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-bottom: 1.5rem;
+
+    .search-bar {
+        padding: 0.5rem;
+        width: 405px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-bottom: 1rem;
+        font-size: 1rem;
+
+        &:focus {
+            outline: none;
+            border-color: #df7046; // Change border color on focus
+        }
+    }
+
+    .buttons {
+        display: flex;
+        gap: 1rem;
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            color: #fff;
+        }
+
+        .registrar-btn {
+            background-color: #df7046;
+            border: none;
+
+            &:hover {
+                background-color: darken(#df7046, 10%); // Darken on hover
+            }
+        }
+
+        .enviar-btn {
+            background-color: #ffc72c;
+            border: none;
+
+            &:hover {
+                background-color: darken(#ffc72c, 10%); // Darken on hover
+            }
+        }
+    }
+}
