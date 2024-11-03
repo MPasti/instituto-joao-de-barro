@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "@styles/global.scss";
-import "@styles/beneficiarios.scss";
+import "./beneficiarios.scss";
 import { useNavigate } from "react-router-dom";
 import { Beneficiario, getBeneficiarios, deleteBeneficiario } from "../../../services/beneficiaries/beneficiariesApi";
-import { getVisitas, deleteVisita } from "../../../services/beneficiaries/visitApi"; // Ensure deleteVisita is imported
+import { getVisitas, deleteVisita } from "../../../services/beneficiaries/visitApi";
 import TabNavigation from "../../../components/TabNavigation/TabNavigation";
 import SearchBar from "../../../components/SearchBar/SearchBar";
 import FamiliasTable from "../../../components/FamiliasTable/FamiliasTable";

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import '@styles/global.scss';
-import '@styles/registroVisita.scss';
+import './registroVisita.scss';
 import { useNavigate } from 'react-router-dom';
 import { registerVisita } from '../../../services/beneficiaries/visitApi';
 
@@ -10,10 +10,9 @@ const RegistroVisita = () => {
     const [nomeBeneficiario, setNomeBeneficiario] = useState(''); 
     const [nomeVoluntario, setNomeVoluntario] = useState(''); 
     const [relatorio, setRelatorio] = useState('');
-    const [dropdown1, setDropdown1] = useState('');
 
     const createVisita = async () => {
-        if (!nomeBeneficiario || !relatorio || !dropdown1) {
+        if (!nomeBeneficiario || !relatorio || !nomeVoluntario) {
             alert('Por favor, preencha todos os campos.');
             return;
         }
@@ -23,7 +22,6 @@ const RegistroVisita = () => {
             data: new Date().toISOString(), // Adjust as necessary for your backend
             nomeFamilia: nomeBeneficiario,
             relatorio,
-            dropdown1,
             nomeVoluntario,
         };
 
@@ -47,7 +45,6 @@ const RegistroVisita = () => {
         setNomeBeneficiario('');
         setNomeVoluntario('');
         setRelatorio('');
-        setDropdown1('');
         navigateToBeneficiarios();
     };
 
@@ -85,24 +82,12 @@ const RegistroVisita = () => {
                     />
                 </div>
 
-                <div className="dropdown-button-group">
-                    <div className="dropdown-group">
-                        <label>Data da Visita</label>
-                        <select value={dropdown1} onChange={(e) => setDropdown1(e.target.value)}>
-                            <option value="">Selecione uma opção</option>
-                            <option value="Option 1">Option 1</option>
-                            <option value="Option 2">Option 2</option>
-                            <option value="Option 3">Option 3</option>
-                        </select>
-                    </div>
-
                     <div className="button-group">
                         <button onClick={createVisita} className="button confirm-btn">CONFIRMAR</button>
                         <button onClick={resetForm} className="button discard-btn">DESCARTAR</button>
                     </div>
                 </div>
             </div>
-        </div>
     );
 };
 

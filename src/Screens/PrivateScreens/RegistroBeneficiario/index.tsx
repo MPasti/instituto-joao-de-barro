@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import '@styles/global.scss';
-import '@styles/registro.scss';
+import './registro.scss';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { registerBeneficario } from '../../../services/beneficiaries/beneficiariesApi';
+import { registerBeneficario, FamiliarMember } from '../../../services/beneficiaries/beneficiariesApi';
 
 const Registro = () => {
     const navigate = useNavigate();
@@ -21,6 +21,7 @@ const Registro = () => {
     const [familiarExtras, setFamiliarExtras] = useState('');
     const [dadosImovel, setDadosImovel] = useState('');
     const [necessidadeFamilia, setNecessidadeFamilia] = useState('');
+    const [familyMembers, setFamilyMembers] = useState<FamiliarMember[]>([]);
 
     const validateForm = () => {
         if (
@@ -70,13 +71,14 @@ const Registro = () => {
             familiarExtras,
             dadosImovel,
             necessidadeFamilia,
+            FamiliarMembers: familyMembers,
             status: 'ATIVO',
         };
 
         console.log("Data being sent:", data);
 
         try {
-            await registerBeneficario(data)
+            await registerBeneficario(data);
             if (location.pathname.includes("dashboard")) {
                 navigate('/dashboard/beneficiarios');
             } else {
@@ -87,8 +89,6 @@ const Registro = () => {
         }
     };
 
-
-    // Resetar form
     const resetForm = () => {
         setNomeFamilia('');
         setStatusFamilia('');
@@ -103,12 +103,36 @@ const Registro = () => {
         setFamiliarExtras('');
         setDadosImovel('');
         setNecessidadeFamilia('');
+        setFamilyMembers([]);
 
         if (location.pathname.includes("dashboard")) {
             navigate('/dashboard/beneficiarios');
         } else {
             navigate('/beneficiarios');
         }
+    };
+
+    const addFamilyMember = () => {
+        setFamilyMembers([
+            ...familyMembers,
+            {
+                beneficiario_id: 0,
+                cpf: '',
+                name: '',
+                last_name: '',
+                age: 0,
+                email: '',
+                phone: '',
+                status: '',
+            },
+        ]);
+    };
+
+    const updateFamilyMember = (index: number, field: keyof FamiliarMember, value: any) => {
+        const updatedMembers = familyMembers.map((member, i) =>
+            i === index ? { ...member, [field]: value } : member
+        );
+        setFamilyMembers(updatedMembers);
     };
 
     return (
@@ -190,6 +214,62 @@ const Registro = () => {
                         value={comoChegou}
                         onChange={(e) => setComoChegou(e.target.value)}
                     />
+
+                    <button onClick={addFamilyMember} className='addFamily-btn'>Adicionar Membro</button>
+
+                    {familyMembers.map((member, index) => (
+                        <div key={index} className='family-member-input-group'>
+                            <label>Nome:</label>
+                            <input
+                                type="text"
+                                placeholder="Nome"
+                                value={member.name}
+                                onChange={(e) => updateFamilyMember(index, 'name', e.target.value)}
+                            />
+                            <label>Sobrenome:</label>
+                            <input
+                                type="text"
+                                placeholder="Sobrenome"
+                                value={member.last_name}
+                                onChange={(e) => updateFamilyMember(index, 'last_name', e.target.value)}
+                            />
+                            <label>CPF:</label>
+                            <input
+                                type="text"
+                                placeholder="CPF"
+                                value={member.cpf}
+                                onChange={(e) => updateFamilyMember(index, 'cpf', e.target.value)}
+                            />
+                            <label>Idade:</label>
+                            <input
+                                type="number"
+                                placeholder="Idade"
+                                value={member.age}
+                                onChange={(e) => updateFamilyMember(index, 'age', Number(e.target.value))}
+                            />
+                            <label>Email:</label>
+                            <input
+                                type="text"
+                                placeholder="Status"
+                                value={member.status}
+                                onChange={(e) => updateFamilyMember(index, 'email', e.target.value)}
+                            />
+                            <label>Telefone:</label>
+                            <input
+                                type="text"
+                                placeholder="Telefone"
+                                value={member.phone}
+                                onChange={(e) => updateFamilyMember(index, 'phone', e.target.value)}
+                            />
+                            <label>Possui Problemas Físicos ou Mentais? Quais?</label>
+                            <input
+                                type="text"
+                                placeholder="Problemas Fisicos ou Mentais"
+                                value={member.disability || ''}
+                                onChange={(e) => updateFamilyMember(index, 'disability', e.target.value)}
+                            />
+                        </div>
+                    ))}
                 </div>
 
                 <div className="dropdown-button-group">

@@ -1,4 +1,4 @@
-import '@styles/visualizarInfo.scss';
+import './visualizarInfo.scss';
 
 export function Beneficiarios() {
   const statusOptions = ['Aprovado', 'Negado', 'Em espera'];

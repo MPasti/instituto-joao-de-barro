@@ -1,5 +1,5 @@
 import '@styles/global.scss';
-import '@styles/atualizarInformacoes.scss';
+import './atualizarInformacoes.scss';
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { AxiosError } from 'axios';
@@ -26,7 +26,7 @@ const AtualizarInformacoes = () => {
     const [familiarExtras, setFamiliarExtras] = useState('');
     const [dadosImovel, setDadosImovel] = useState('');
     const [necessidadeFamilia, setNecessidadeFamilia] = useState('');
-    const [members, setMembers] = useState([]); // Example placeholder for family members
+    const [members, setMembers] = useState([]);
 
     useEffect(() => {
         const fetchFamilia = async () => {
@@ -96,7 +96,7 @@ const AtualizarInformacoes = () => {
             comoChegou,
             familiarExtras,
             dadosImovel,
-            necessidadeFamilia,
+            necessidadeFamilia
         };
 
         try {

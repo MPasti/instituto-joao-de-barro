@@ -28,6 +28,7 @@ export interface Beneficiario {
     dadosImovel: string;
     necessidadeFamilia: string;
     status?: string;
+    FamiliarMembers: FamiliarMember[];
 }
 
 const api = axios.create({
@@ -40,19 +41,19 @@ export const registerBeneficario = async (data: Beneficiario, members?: Familiar
         
         const membersResponse: FamiliarMember[] = [];
 
-        if(members && members?.length !== 0) {
-            members.forEach(async (member) => {
+        if (members && members.length !== 0) {
+            for (const member of members) {
                 const response = await api.post<FamiliarMember>(`/registro/familiar/${benefResponse.data.id!}`, member);
                 membersResponse.push(response.data);
-            });
+            }
         }
 
         return { benefResponse: benefResponse.data, membersResponse };
         
     } catch (err) {
-        console.log('Erro durante o registro: ' + err);
+        console.error('Erro durante o registro: ', err);
     }
-}
+};
 
 export interface Filters {
     family_size?: number;
@@ -78,36 +79,36 @@ export const getBeneficiarios = async (page: number = 1, filters?: Filters) => {
         const response = await api.get<Beneficiario[]>(`/beneficiario?${queryParams}`);
         return response.data.slice((page - 1) * 10, page * 10);
     } catch (err) {
-        console.log('Erro durante a busca: ' + err);
+        console.error('Erro durante a busca: ', err);
     }
-}
+};
 
 export const getBeneficiario = async (id: string) => {
     try {
         const response = await api.get<Beneficiario>(`/beneficiario/${id}`);
         return response.data;
     } catch (err) {
-        console.log('Erro durante a busca: ' + err);
+        console.error('Erro durante a busca: ', err);
     }
-}
+};
 
 export const getFamiliarMembers = async (benefId: number) => {
     try {
         const response = await api.get<FamiliarMember[]>(`/familiares/${benefId}`);
         return response.data;
     } catch (err) {
-        console.log('Erro durante a busca: ' + err);
+        console.error('Erro durante a busca: ', err);
     }
-}
+};
 
 export const updateFamiliarMember = async (id: number, data: FamiliarMember) => {
     try {
         const response = await api.put<FamiliarMember>(`/familiar/${id}`, data);
         return response.data;
     } catch (err) {
-        console.log('Erro durante a atualização: ' + err);
+        console.error('Erro durante a atualização: ', err);
     }
-}
+};
 
 export const updateBeneficiario = async (id: string, data: Beneficiario, members?: FamiliarMember[]) => {
     try {
@@ -115,7 +116,7 @@ export const updateBeneficiario = async (id: string, data: Beneficiario, members
         
         const membersResponse: FamiliarMember[] = [];
 
-        if(members && members.length !== 0) {
+        if (members && members.length !== 0) {
             for (const member of members) {
                 const response = await api.put<FamiliarMember>(`/familiar/${member.beneficiario_id}`, member);
                 membersResponse.push(response.data);
@@ -125,9 +126,9 @@ export const updateBeneficiario = async (id: string, data: Beneficiario, members
         return { benefResponse: benefResponse.data, membersResponse };
         
     } catch (err) {
-        console.log('Erro durante a atualização: ' + err);
+        console.error('Erro durante a atualização: ', err);
     }
-}
+};
 
 export const deleteBeneficiario = async (id: string) => {
     try {
@@ -150,8 +151,6 @@ export const deleteBeneficiario = async (id: string) => {
         
         console.log("Beneficiário e membros familiares inativados com sucesso.");
     } catch (err) {
-        console.log('Erro durante a exclusão: ' + err);
+        console.error('Erro durante a exclusão: ', err);
     }
 };
-
-

@@ -1,4 +1,4 @@
-.registro-visita {
+.registro {
 
     .subtitle {
         color: #df7046;
@@ -7,11 +7,12 @@
         font-weight: bolder;
         border-bottom: 3px solid #df7046;
         width: fit-content;
-        margin-bottom: 0.5rem;
+        margin: 0.5rem;
         margin-top: 2rem;
     }
 
     .description {
+        margin: 0.5rem;
         color: #000;
         margin: 0;
         margin-top: 0.5rem;
@@ -25,6 +26,7 @@
         flex-direction: row;
         margin-bottom: 3rem;
 
+
         .input-group {
             flex: 1;
             margin-right: 2rem;
@@ -36,22 +38,18 @@
                 font-weight: bold;
             }
 
-            input,
-            textarea {
+            input {
                 width: 100%;
                 padding: 0.5rem;
                 border: 1px solid #ccc;
                 border-radius: 4px;
-            }
-
-            textarea {
-                resize: none;
             }
         }
 
         .dropdown-group {
             flex: 1;
 
+            
             label {
                 display: block;
                 margin-bottom: 0.5rem;
@@ -65,44 +63,6 @@
                 border: 1px solid #ccc;
                 border-radius: 4px;
                 margin-bottom: 1rem;
-            }
-        }
-
-        .upload-group {
-            flex: 1;
-
-            .upload-label {
-                display: block;
-                margin-bottom: 0.5rem;
-                font-weight: bold;
-            }
-
-            .upload-area {
-                background-color: #FFF;
-                border: 2px dotted #DF7046;
-                padding: 1rem;
-                border-radius: 4px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-
-                .file-input {
-                    display: none;
-                }
-
-                .file-button {
-                    background-color: #df7046;
-                    color: #fff;
-                    border: none;
-                    border-radius: 4px;
-                    padding: 0.5rem 1rem;
-                    cursor: pointer;
-                    transition: background-color 0.3s;
-
-                    &:hover {
-                        background-color: #c95a3e;
-                    }
-                }
             }
         }
 
@@ -140,6 +100,38 @@
                     width: 155px;
                 }
             }
+        }
+        .family-member-input-group {
+            flex: 1;
+            margin-right: 2rem;
+
+            label {
+                display: block;
+                margin-bottom: 0.5rem;
+                margin-top: 0.5rem;
+                font-weight: bold;
+            }
+
+            input {
+                width: 100%;
+                padding: 0.5rem;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+            }
+        }
+
+        .addFamily-btn {
+            border: none;
+            align-items: center;
+            margin: 12px;
+            height: 50px;
+            background-color: #ffc72c;
+            color: #fff;
+            border-radius: 10px;
+            justify-content: center;
+            padding: 8px;
+            position: relative;
+            width: 155px;
         }
     }
 }

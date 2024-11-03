@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import '@styles/global.scss';
-import '../../../assets/styles/atualizarInformacoesVisitas.scss';
+import './atualizarInformacoesVisitas.scss';
 import { getVisita, updateVisita } from '../../../services/beneficiaries/visitApi';
 
 const AtualizarInformacoesVisitas = () => {
@@ -10,7 +10,6 @@ const AtualizarInformacoesVisitas = () => {
     const [nomeFamilia, setNomeFamilia] = useState('');
     const [nomeVoluntario, setNomeVoluntario] = useState('');
     const [relatorio, setRelatorio] = useState('');
-    const [dropdown1, setDropdown1] = useState('');
 
     useEffect(() => {
         const fetchVisita = async () => {
@@ -24,7 +23,6 @@ const AtualizarInformacoesVisitas = () => {
                 setNomeFamilia(visita.nomeFamilia);
                 setNomeVoluntario(visita.nomeVoluntario);
                 setRelatorio(visita.relatorio);
-                // setDropdown1(visita.dropdown1);
             } catch (err) {
                 console.log('Erro ao buscar visita: ' + err);
             }
@@ -38,12 +36,11 @@ const AtualizarInformacoesVisitas = () => {
             nomeFamilia,
             nomeVoluntario,
             relatorio,
-            dropdown1,
-            name: '',  // Adjust as needed
-            data: '',  // Adjust as needed
+            name: '',
+            data: '',
         };
     
-        console.log('Atualizando visita com os dados:', data);  // Log the data being sent
+        console.log('Atualizando visita com os dados:', data);
     
         try {
             await updateVisita(String(id), data);
@@ -91,25 +88,12 @@ const AtualizarInformacoesVisitas = () => {
                         onChange={(e) => setRelatorio(e.target.value)}
                     />
                 </div>
-
-                <div className='dropdown-button-group'>
-                    <div className="dropdown-group">
-                        <label>Dropdown 1</label>
-                        <select value={dropdown1} onChange={(e) => setDropdown1(e.target.value)}>
-                            <option value="">Selecione uma opção</option>
-                            <option value="Option 1">Option 1</option>
-                            <option value="Option 2">Option 2</option>
-                            <option value="Option 3">Option 3</option>
-                        </select>
-                    </div>
-
                     <div className="button-group">
                         <button onClick={handleUpdate} className="button confirm-btn">CONFIRMAR</button>
                         <button onClick={handleDiscard} className="button discard-btn">DESCARTAR</button>
                     </div>
                 </div>
             </div>
-        </div>
     );
 };
 

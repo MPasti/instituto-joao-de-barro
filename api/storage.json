@@ -121,7 +121,6 @@
         "outgoing": "R$240"
       }
     ],
-
     "tableDataRevenue": [
       {
         "name": "Doação",
@@ -172,7 +171,6 @@
         "outgoing": "R$240"
       }
     ],
-
     "bankStatement": {
       "account": 3000,
       "cdb": 2000

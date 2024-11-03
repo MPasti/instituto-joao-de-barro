@@ -48,7 +48,6 @@ function App() {
     <div className="app-container">
       <Router>
         <Toaster position="top-right" toastOptions={ToastOptions} />
-        
         <div className="content">
           <Routes>
             {/* Rotas Públicas */}
@@ -60,31 +59,32 @@ function App() {
               <Route path="sobre" element={<About />} />
               <Route path="voluntarios" element={<Voluntarios />} />
               <Route path="beneficiarios" element={<Beneficiarios />} />
-              <Route path='doacoes' element={<Donation />}/>
+              <Route path="doacoes" element={<Donation />} />
             </Route>
 
             {/* Rota de Login */}
             <Route path="/login" element={<Login />} />
 
-        {/* Rotas Privadas - Dashboard */}
-        <Route element={<PrivateRouter />}>
-          <Route path="/dashboard" element={<DashboardPage />}>
-            <Route index element={<Home />} />
-            <Route path="noticias" element={<Noticias />} />
-            <Route path="perfil" element={<Perfil />} />
-            <Route path="financeiro" element={<Financeiro />} />
-            <Route path="estoque" element={<StorageHome />} />
-            <Route path="beneficiarios" element={<BeneficiariosMain />} />
-            <Route path="atualizar/:familiaId" element={<AtualizarInformacoes />} />
-            <Route path="registro" element={<Registro />} />
-            <Route path="visitas/:id" element={<AtualizarInformacoesVisitas />} /> 
-            <Route path="registroVisita" element={<RegistroVisita />} />
-          </Route>
-        </Route>
-      </Routes>
-    </Router>
-  )
-};
-
+            {/* Rotas Privadas - Dashboard */}
+            <Route element={<PrivateRouter />}>
+              <Route path="/dashboard" element={<DashboardPage />}>
+                <Route index element={<Home />} />
+                <Route path="noticias" element={<Noticias />} />
+                <Route path="perfil" element={<Perfil />} />
+                <Route path="financeiro" element={<Financeiro />} />
+                <Route path="estoque" element={<StorageHome />} />
+                <Route path="beneficiarios" element={<BeneficiariosMain />} />
+                <Route path="atualizar/:familiaId" element={<AtualizarInformacoes />} />
+                <Route path="registro" element={<Registro />} />
+                <Route path="visitas/:id" element={<AtualizarInformacoesVisitas />} /> 
+                <Route path="registroVisita" element={<RegistroVisita />} />
+              </Route>
+            </Route>
+          </Routes>
+        </div>
+      </Router>
+    </div>
+  );
+}
 
 export default App;
