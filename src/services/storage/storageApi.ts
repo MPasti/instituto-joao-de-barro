@@ -1,11 +1,13 @@
 import axios from "axios";
 
 export interface StorageMaterial {
-  id: string;
-  name: string;
-  quantity: number;
-  description?: string;
+  id: string; // ID único do material
+  name: string; // Nome do evento
+  quantity: number; // Data como timestamp (ou você pode querer usar string se preferir uma representação legível)
+  status: string; // Status do evento (ex: "em andamento" ou "concluído")
+  description?: string; // Descrição do evento (opcional)
 }
+
 
 const api = axios.create({
   baseURL: import.meta.env.VITE_API_URL,
