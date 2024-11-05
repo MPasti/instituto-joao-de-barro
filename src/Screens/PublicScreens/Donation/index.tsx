@@ -67,16 +67,20 @@ export function Donation() {
           </div>
           <div className="row m-0">
             <div className="col-12 col-md-6 p-0">
-              1.Materiais como{" "}
-              <span className="text-secondary">
-                cimento, areia, tijolos, telhas, portas, janelas, tinta, entre
-                outros
-              </span>
-              , são essenciais para nossas reformas e construções.
+              <p className="w-75">
+                1.Materiais como{" "}
+                <span className="text-secondary">
+                  cimento, areia, tijolos, telhas, portas, janelas, tinta, entre
+                  outros
+                </span>
+                , são essenciais para nossas reformas e construções.
+              </p>
             </div>
             <div className="col-12 col-md-6 p-0">
-              Entre em contato conosco para saber o local mais próximo onde você
-              pode deixar sua doação ou agendar uma coleta diretamente.
+              <p className="flex w-75">
+                2. Entre em contato conosco para saber o local mais próximo onde
+                você pode deixar sua doação ou agendar uma coleta diretamente.
+              </p>
             </div>
           </div>
         </div>

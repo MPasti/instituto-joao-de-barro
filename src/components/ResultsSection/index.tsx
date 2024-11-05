@@ -21,7 +21,7 @@ const ResultsSection = () => {
               VER PROJETOS
             </Button>
           </div>
-          <img src={ResultImage} alt="Resultado-IJB" />
+          <img src={ResultImage} alt="Resultado-IJB" className="img-fluid" />
         </div>
       </div>
     </div>
