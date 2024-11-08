@@ -9,6 +9,25 @@
       "token": "1234567890abcdef"
     }
   ],
+  "beneficiarios": [
+    {
+      "id": 1,
+      "nomeFamilia": "Example Family",
+      "statusFamilia": "ATIVO",
+      "nomePrincipal": "John Doe",
+      "cpf": "12345678910",
+      "endereco": "123 Main St",
+      "cep": "12345-678",
+      "rendaMensal": 3000,
+      "telefone1": "123456789",
+      "telefone2": "987654321",
+      "comoChegou": "Referral",
+      "familiarExtras": "None",
+      "dadosImovel": "Owned",
+      "necessidadeFamilia": "Food",
+      "status": "NECESSITA_ATENCAO"
+    }
+  ],
   "noticias": [
     {
       "id": "1",

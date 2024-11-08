@@ -2,77 +2,94 @@ import React, { useState, useEffect } from "react";
 import "@styles/global.scss";
 import "./beneficiarios.scss";
 import { useNavigate } from "react-router-dom";
-import { Beneficiario, getBeneficiarios, deleteBeneficiario } from "../../../services/beneficiaries/beneficiariesApi";
 import { getVisitas, deleteVisita } from "../../../services/beneficiaries/visitApi";
 import TabNavigation from "../../../components/TabNavigation/TabNavigation";
 import SearchBar from "../../../components/SearchBar/SearchBar";
 import FamiliasTable from "../../../components/FamiliasTable/FamiliasTable";
 import VisitasTable from "../../../components/VisitasTable/VisitasTable";
+import toast from "react-hot-toast";
+import { Beneficiary, BeneficiaryVisit, Status } from "../../../services/beneficiaries/beneficiaryTypes";
+import { deleteBeneficiario, getBeneficiario, getBeneficiarios } from "../../../services/beneficiaries/beneficiariesApi";
+
+export interface VisitsItemProps {
+    visit: BeneficiaryVisit
+    beneficiary: Beneficiary
+}
+
 
 export const BeneficiariosMain = () => {
     const [activeTab, setActiveTab] = useState<'familias' | 'visitas'>('familias');
     const [searchTerm, setSearchTerm] = useState('');
     const navigate = useNavigate();
 
-    const [familias, setFamilias] = useState<Beneficiario[]>([]);
-    const [filteredFamilies, setFilteredFamilies] = useState<Beneficiario[]>([]);
-    const [visitasData, setVisitasData] = useState<Visit[]>([]);
+    const [familias, setFamilias] = useState<Beneficiary[]>([]);
+    const [filteredFamilies, setFilteredFamilies] = useState<Beneficiary[]>([]);
+    const [visitsData, setVisityData] = useState<VisitsItemProps[]>([]);
 
     const handleTabClick = (tab: 'familias' | 'visitas') => {
         setActiveTab(tab);
         setSearchTerm('');
     };
 
-    const handleDeleteBeneficiario = async (id: string) => {
+    const handleDeleteBeneficiario = async (id: number) => {
         const confirmDelete = window.confirm('Você tem certeza que deseja excluir este item?');
         if (!confirmDelete) return;
 
         try {
             await deleteBeneficiario(id);
-            console.log('Item excluído com sucesso!');
+            toast.success('Item excluído com sucesso!');
             fetchData();
         } catch (err) {
-            console.log("Erro ao excluir item: " + err);
+            toast.error("Erro ao excluir item: " + err);
         }
     };
 
-    const handleDeleteVisitas = async (id: string) => {
+    const handleDeleteVisitas = async (id: number) => {
         const confirmDelete = window.confirm('Você tem certeza que deseja excluir esta visita?');
         if (!confirmDelete) return;
 
         try {
             await deleteVisita(id);
-            console.log('Visita excluída com sucesso!');
+            toast.success('Visita excluída com sucesso!');
             fetchData(); // Refresh the data to update the VisitasTable
         } catch (err) {
-            console.log("Erro ao excluir visita: " + err);
+            toast.error("Erro ao excluir visita: " + err);
         }
     };
 
     const fetchData = async () => {
-        if (activeTab === 'familias') {
-            try {
-                const response = await getBeneficiarios();
-                if (!response) {
-                    console.log('Erro ao buscar famílias');
-                    return;
-                }
-                const activeFamilies = response.filter((beneficiario: Beneficiario) => beneficiario.status === 'ATIVO');
-                setFamilias(activeFamilies);
-                setFilteredFamilies(activeFamilies);
-            } catch (err) {
-                console.log("Error during fetch: " + err);
+        try {
+            const beneficiariosResponse = await getBeneficiarios();
+            console.log(beneficiariosResponse)
+            if (!beneficiariosResponse) {
+                toast.error('Erro ao buscar famílias');
+                return;
             }
-        } else if (activeTab === 'visitas') {
+            const activeFamilies = beneficiariosResponse.filter((beneficiario: Beneficiary) => beneficiario.status !== Status.INATIVO);
+            setFamilias(activeFamilies);
+            console.log(familias)
+            setFilteredFamilies(activeFamilies);
+        } catch (err) {
+            toast.error("Error during fetch: " + err);
+
+        }
+        if (activeTab === 'visitas') {
             try {
+                let visits = []
                 const response = await getVisitas();
+
+                for (const visit of response) {
+                    const beneficiary = await getBeneficiario(visit.beneficiaryId);
+                    visits.push({ visit, beneficiary });
+                }
+
                 if (!response) {
-                    console.log('Erro ao buscar visitas');
+                    toast.error('Erro ao buscar visitas');
                     return;
                 }
-                setVisitasData(response);
+                setVisityData(visits);
             } catch (err) {
-                console.log("Error during fetch: " + err);
+                toast.error("Error during fetch: " + err);
             }
         }
     };
@@ -89,7 +106,7 @@ export const BeneficiariosMain = () => {
             setFilteredFamilies(familias);
         } else {
             const filtered = familias.filter(item =>
-                (typeof item.nomeFamilia === 'string' && item.nomeFamilia.toLowerCase().includes(value.toLowerCase()))
+                (typeof item.name === 'string' && item.name.toLowerCase().includes(value.toLowerCase()))
             );
             console.log("Famílias filtradas:", filtered);
             setFilteredFamilies(filtered);
@@ -123,7 +140,7 @@ export const BeneficiariosMain = () => {
           {activeTab === 'familias' ? (
               <FamiliasTable families={filteredFamilies} onDelete={handleDeleteBeneficiario} navigate={navigate} />
           ) : (
-              <VisitasTable visitas={visitasData} onDelete={handleDeleteVisitas} navigate={navigate} searchTerm={searchTerm} />
+              <VisitasTable visitas={visitsData} onDelete={handleDeleteVisitas} navigate={navigate} searchTerm={searchTerm} />
           )}
       </div>
   );

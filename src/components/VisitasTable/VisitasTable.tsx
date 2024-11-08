@@ -1,16 +1,16 @@
 import React from 'react';
-import { Visit } from '../../services/beneficiaries/visitApi';
+import { VisitsItemProps } from '../../Screens/PrivateScreens/BeneficiariosMain';
 
 interface VisitasTableProps {
-    visitas: Visit[];
-    onDelete: (id: string) => void;
+    visitas: VisitsItemProps[];
+    onDelete: (id: number) => void;
     navigate: (path: string) => void;
     searchTerm: string;
 }
 
 const VisitasTable: React.FC<VisitasTableProps> = ({ visitas, onDelete, navigate, searchTerm }) => {
     const filteredVisitas = visitas.filter(item =>
-        item?.nomeFamilia?.toLowerCase().includes(searchTerm.toLowerCase())
+        item.beneficiary.indicatorName.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
     return (
@@ -18,19 +18,19 @@ const VisitasTable: React.FC<VisitasTableProps> = ({ visitas, onDelete, navigate
             <table className="familias-table">
                 <tbody>
                     {filteredVisitas.map((item) => (
-                        <tr key={item.id}>
-                            <td>{item.nomeFamilia}</td>
+                        <tr key={item.visit.id}>
+                            <td>{item.beneficiary.indicatorName}</td>
                             <td>
-                                <span>Voluntário responsável: {item.nomeVoluntario}</span>
+                                <span>Voluntário responsável: {item.visit.responsableName}</span>
                             </td>
                             <td>
                                 <button
                                     className="table-btn dados-btn"
-                                    onClick={() => navigate(`/dashboard/visitas/${item.id}`)}
+                                    onClick={() => navigate(`/dashboard/visitas/${item.visit.id}`)}
                                 >
                                     DADOS
                                 </button>
-                                <button onClick={() => onDelete(item.id!.toString())} className="table-btn excluir-btn">
+                                <button onClick={() => onDelete(item.visit.id)} className="table-btn excluir-btn">
                                     EXCLUIR
                                 </button>
                             </td>
