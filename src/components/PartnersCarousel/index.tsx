@@ -25,14 +25,11 @@ export const PartnersCarousel = () => {
         slidesPerView={3}
         loop={true}
         freeMode={true}
-        grabCursor={true}
         autoplay={{
-          delay: 1,
+          delay: 0,
           disableOnInteraction: false,
         }}
         speed={3000}
-        onSwiper={() => {}}
-        onSlideChange={() => {}}
       >
         {logos.map((logo, index) => (
           <SwiperSlide key={index}>

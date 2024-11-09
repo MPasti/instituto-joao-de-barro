@@ -128,8 +128,8 @@
 
 .custom-swiper {
   width: 100%;
-  max-width: 1000px;
-  height: 500px;
+  max-width: 100vw;
+  height: 62vh;
 }
 
 .slide-container {
@@ -145,23 +145,25 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 10px;
 }
 
 .slide-content {
   position: absolute;
-  left: 80px;
+  left: 10vw;
   color: white;
   text-align: left;
 
   h2 {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
+    font-size: 2.4rem;
   }
 
   p {
-    font-size: 1rem;
-    margin-bottom: 15px;
+    font-size: 1.2rem;
+  }
+
+  h2, p {
+    margin-bottom: 10px;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
   }
 
   .slide-button {
@@ -171,8 +173,7 @@
     border: none;
     color: $dark;
     cursor: pointer;
-    font-size: 0.9rem;
-    transition: background-color 0.3s;
+    font-size: 1rem;
 
     &:hover {
       background-color: #fff;

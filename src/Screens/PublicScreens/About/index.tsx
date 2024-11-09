@@ -22,11 +22,11 @@ export function About() {
         </div>
         <div className="col-12 col-md-5 p-5 align-self-center">
           <p>
-            O Instituto João de Barro é uma ONG que atua na cidade de Franca -
-            SP, com o objetivo de ajudar famílias em situação de
-            vulnerabilidade, necessidade, entre outros; oferecendo doações de
-            recursos financeiros, criando moradias, promovendo eventos para o
-            bem estar social da cidade de Franca.
+            O Instituto João de Barro atua na cidade de Franca - SP, com o
+            objetivo de ajudar famílias em situação de vulnerabilidade,
+            necessidade, entre outros; oferecendo doações de recursos
+            financeiros, criando moradias, promovendo eventos para o bem estar
+            social da cidade de Franca.
           </p>
           <Button outline type="button" variant="secondary">
             VER PROJETOS
