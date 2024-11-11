@@ -1,100 +1,136 @@
 import axios from "axios";
-import { Beneficiary, FamilyMember, Filters, Status } from "./beneficiaryTypes.ts";
+
+export interface FamiliarMember {
+    beneficiario_id: number;
+    cpf: string;
+    name: string;
+    last_name: string;
+    age: number;
+    email: string;
+    phone: string;
+    disability?: string;
+    status: string;
+}
+
+export interface Beneficiario {
+    id?: number;
+    nomeFamilia: string;
+    statusFamilia: string;
+    nomePrincipal: string;
+    cpf: string;
+    endereco: string;
+    cep: string;
+    rendaMensal: number;
+    telefone1: string;
+    telefone2: string;
+    comoChegou: string;
+    familiarExtras: string;
+    dadosImovel: string;
+    necessidadeFamilia: string;
+    status?: string;
+    FamiliarMembers: FamiliarMember[];
+}
 
 const api = axios.create({
-    baseURL: `${import.meta.env.VITE_API_URL}`,
+    baseURL: import.meta.env.VITE_API_URL,
 });
 
-export const registerBeneficario = async (data: Beneficiary, members?: FamilyMember[]) => {
+export const registerBeneficario = async (data: Beneficiario, members?: FamiliarMember[]) => {
     try {
-        const benefResponse = await api.post<Beneficiary>('/beneficiario', data);
-
-        if (!benefResponse.data.id) {
-            throw new Error('Beneficiário não possui ID');
-        }
-
-        const membersResponse: FamilyMember[] = [];
+        const benefResponse = await api.post<Beneficiario>('/beneficiario', data);
+        
+        const membersResponse: FamiliarMember[] = [];
 
         if (members && members.length !== 0) {
             for (const member of members) {
-                const response = await api.post<FamilyMember>(`/registro/familiar/${benefResponse.data.id}`, member);
+                const response = await api.post<FamiliarMember>(`/registro/familiar/${benefResponse.data.id!}`, member);
                 membersResponse.push(response.data);
             }
         }
 
         return { benefResponse: benefResponse.data, membersResponse };
-
+        
     } catch (err) {
         console.error('Erro durante o registro: ', err);
-        throw new Error('Erro ao registrar o beneficiário e membros familiares');
     }
 };
 
-
+export interface Filters {
+    family_size?: number;
+    family_income?: number;
+    family_address?: string;
+    family_cep?: string;
+    family_status?: string;
+    family_priority?: boolean;
+    family_situation?: string;
+    family_members?: number;
+    family_member_disability?: string;
+    family_member_age?: number;
+    family_member_name?: string;
+    family_member_last_name?: string;
+    family_member_email?: string;
+    family_member_phone?: string;
+    family_member_cpf?: string;
+}
 
 export const getBeneficiarios = async (page: number = 1, filters?: Filters) => {
     try {
         const queryParams = new URLSearchParams(filters as any).toString();
-        const response = await api.get<Beneficiary[]>(`/beneficiarios?${queryParams}`);
+        const response = await api.get<Beneficiario[]>(`/beneficiario?${queryParams}`);
         return response.data.slice((page - 1) * 10, page * 10);
     } catch (err) {
         console.error('Erro durante a busca: ', err);
-        throw new Error('Erro ao buscar beneficiários');
     }
 };
 
-export const getBeneficiario = async (id: number) => {
+export const getBeneficiario = async (id: string) => {
     try {
-        const response = await api.get<Beneficiary>(`/beneficiario/${id}`);
+        const response = await api.get<Beneficiario>(`/beneficiario/${id}`);
         return response.data;
     } catch (err) {
         console.error('Erro durante a busca: ', err);
-        throw new Error('Erro ao buscar beneficiário');
     }
 };
 
 export const getFamiliarMembers = async (benefId: number) => {
     try {
-        const response = await api.get<FamilyMember[]>(`/familiares/${benefId}`);
+        const response = await api.get<FamiliarMember[]>(`/familiares/${benefId}`);
         return response.data;
     } catch (err) {
         console.error('Erro durante a busca: ', err);
-        throw new Error('Erro ao buscar membros familiares');
     }
 };
 
-export const updateFamiliarMember = async (id: number, data: FamilyMember) => {
+export const updateFamiliarMember = async (id: number, data: FamiliarMember) => {
     try {
-        const response = await api.put<FamilyMember>(`/familiar/${id}`, data);
+        const response = await api.put<FamiliarMember>(`/familiar/${id}`, data);
         return response.data;
     } catch (err) {
         console.error('Erro durante a atualização: ', err);
-        throw new Error('Erro ao atualizar membro familiar');
     }
 };
 
-export const updateBeneficiario = async (id: number, data: Beneficiary, members?: FamilyMember[]) => {
+export const updateBeneficiario = async (id: string, data: Beneficiario, members?: FamiliarMember[]) => {
     try {
-        const benefResponse = await api.put<Beneficiary>(`/beneficiario/${id}`, data);
-
-        const membersResponse: FamilyMember[] = [];
+        const benefResponse = await api.put<Beneficiario>(`/beneficiario/${id}`, data);
+        
+        const membersResponse: FamiliarMember[] = [];
 
         if (members && members.length !== 0) {
             for (const member of members) {
-                const response = await api.put<FamilyMember>(`/familiar/${member.beneficiaryId}`, member);
+                const response = await api.put<FamiliarMember>(`/familiar/${member.beneficiario_id}`, member);
                 membersResponse.push(response.data);
             }
         }
 
         return { benefResponse: benefResponse.data, membersResponse };
-
+        
     } catch (err) {
         console.error('Erro durante a atualização: ', err);
-        throw new Error('Erro ao atualizar beneficiário e membros familiares');
     }
 };
 
-export const deleteBeneficiario = async (id: number) => {
+export const deleteBeneficiario = async (id: string) => {
     try {
         const beneficiario = await getBeneficiario(id);
         if (!beneficiario) {
@@ -106,16 +142,15 @@ export const deleteBeneficiario = async (id: number) => {
             console.warn('Nenhum membro familiar encontrado, mas o beneficiário será inativado.');
         } else {
             const updateMembersPromises = members.map(member =>
-                api.patch(`/familiar/${member.beneficiaryId}`, { ...member, status: 'INATIVO' })
+                api.patch(`/familiar/${member.beneficiario_id}`, { ...member, status: 'INATIVO' })
             );
             await Promise.all(updateMembersPromises);
         }
 
-        await updateBeneficiario(id, { ...beneficiario, status: Status.INATIVO });
-
+        await updateBeneficiario(id, { ...beneficiario, status: 'INATIVO' });
+        
         console.log("Beneficiário e membros familiares inativados com sucesso.");
     } catch (err) {
         console.error('Erro durante a exclusão: ', err);
-        throw new Error('Erro ao inativar beneficiário e membros familiares');
     }
 };
