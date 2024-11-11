@@ -1,11 +1,75 @@
-.quotes{
-  display: flex;
-  background-color: #FFF0E8;
+.quotes {
   width: 100%;
-  padding: 5rem;
+  height: 440px;
+  background-color: #FFF0E8;
 
-  .content-text{
-    padding: 5rem;
-    width: 60%;
+  .quote-icon {
+    font-size: 60px;
+    margin-right: 20px;
+    @media (min-width: 768px) {
+      font-size: 100px;
+    }
+  }
+
+  .content-text {
+    max-width: 90%;
+    margin: auto;
+    @media (min-width: 768px) {
+      max-width: 100%;
+    }
+  }
+
+  h3 {
+    font-size: 1.2rem;
+    @media (min-width: 768px) {
+      font-size: 1.5rem;
+    }
+  }
+}
+
+.mission {
+  background-color: #F58346;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 2rem;
+}
+
+.values-section {
+  padding: 3rem;
+}
+
+.values-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  max-width: 75%;
+  margin: auto;
+}
+
+.value-item {
+  padding: 2rem;
+
+  p{
+    font-size: 22px;
+  }
+}
+
+.mission-value{
+  padding: 2rem;
+  width: 80%;
+  margin: auto;
+  h1{
+    font-size: 44px;
+    font-weight: bold;
+  }
+  p{
+    font-size: 21px;
+  }
+}
+
+@media (max-width: 800px) {
+  .values-container {
+    grid-template-columns: 1fr;
+    max-width: 90%;
   }
 }
