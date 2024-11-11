@@ -1,5 +1,13 @@
 import axios from "axios";
-import { BeneficiaryVisit } from "./beneficiaryTypes";
+
+export interface Visit {
+    id?: number;
+    nomeVoluntario: string;
+    nomeFamilia: string;
+    name: string;
+    data: string;
+    relatorio: string;
+  }
 
 const api = axios.create({
     baseURL: import.meta.env.VITE_API_URL,
@@ -7,24 +15,23 @@ const api = axios.create({
 
 export const getVisitas = async () => {
     try {
-        const response = await api.get<BeneficiaryVisit[]>('/visitas');
+        const response = await api.get<Visit[]>('/visitas');
         return response.data;
     } catch (err) {
         console.log('Erro ao buscar visitas: ' + err);
-        return []
     }
 }
 
-export const getVisita = async (id: number) => {
+export const getVisita = async (id: string) => {
     try {
-        const response = await api.get<BeneficiaryVisit>(`/visitas/${id}`);
+        const response = await api.get<Visit>(`/visitas/${id}`);
         return response.data;
     } catch (err) {
         console.log('Erro ao buscar visita: ' + err);
     }
 }
 
-export const registerVisita = async (data: BeneficiaryVisit) => {
+export const registerVisita = async (data: Visit) => {
     try {
         await api.post('/visitas', data);
     } catch (err) {
@@ -32,7 +39,7 @@ export const registerVisita = async (data: BeneficiaryVisit) => {
     }
 }
 
-export const updateVisita = async (id: number, data: Partial<BeneficiaryVisit>) => {
+export const updateVisita = async (id: string, data: Visit) => {
     try {
         await api.put(`/visitas/${id}`, data);
     } catch (err) {
@@ -40,7 +47,7 @@ export const updateVisita = async (id: number, data: Partial<BeneficiaryVisit>) 
     }
 }
 
-export const deleteVisita = async (id: number) => {
+export const deleteVisita = async (id: string) => {
     try {
         await api.delete(`/visitas/${id}`);
     } catch (err) {
