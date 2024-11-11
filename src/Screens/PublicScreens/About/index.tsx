@@ -166,13 +166,13 @@ export function About() {
         </div>
       </div>
 
-      <div>
+      <div className='w-100'>
         <h2>
           CONHEÇA EM DETALHES A{" "}
           <span className="text-secondary">NOSSA HISTÓRIA</span>
         </h2>
         <div className="leaves-top"></div>
-        <img alt="folhas" src={folhas} />
+        <img className='img-fluid' alt="folhas" src={folhas} />
       </div>
 
       <Tree data={events} />
