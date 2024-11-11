@@ -1,9 +1,11 @@
 import React from 'react';
-import { Beneficiario } from '../../services/beneficiaries/beneficiariesApi';
+
+import { RiErrorWarningLine } from "react-icons/ri";
+import { Beneficiary, Status } from '../../services/beneficiaries/beneficiaryTypes';
 
 interface FamiliasTableProps {
-    families: Beneficiario[];
-    onDelete: (id: string) => void;
+    families: Beneficiary[];
+    onDelete: (id: number) => void;
     navigate: (path: string) => void;
 }
 
@@ -13,11 +15,12 @@ const FamiliasTable: React.FC<FamiliasTableProps> = ({ families, onDelete, navig
             <tbody>
                 {families.map((item) => (
                     <tr key={item.id}>
-                        <td>{item.nomeFamilia}</td>
+                        <td>{item.indicatorName}</td>
                         <td>
-                            <span>Status: {item.statusFamilia}</span>
+                            <span>Status: {item.status}</span>
                         </td>
                         <td>
+                            {item.status.toLowerCase() === Status.NECESSITA_ATENCAO && <RiErrorWarningLine style={{color: '#f17342', width: '4rem', height: '2rem'}}/>}
                             <button
                                 className="table-btn dados-btn"
                                 onClick={() => navigate(`/dashboard/atualizar/${item.id}`)}
