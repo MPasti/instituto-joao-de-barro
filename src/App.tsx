@@ -27,7 +27,6 @@ import { Beneficiarios } from "./Screens/PublicScreens/Beneficiarios";
 import { Projetos } from "./Screens/PublicScreens/Projetos";
 import { Blog } from "./Screens/PublicScreens/Blog";
 import { Donation } from "./Screens/PublicScreens/Donation";
-import PublicNoticias from "./Screens/PublicScreens/PublicNoticias";
 
 //Login
 import { Login } from "./Screens/Login";
@@ -52,7 +51,7 @@ function App() {
               <Route index element={<Main />} />
               <Route path="contatos" element={<Contact />} />
               <Route path="projetos" element={<Projetos />} />
-              <Route path="noticias" element={<PublicNoticias />} />
+              <Route path="noticias" element={<Blog />} />
               <Route path="sobre" element={<About />} />
               <Route path="voluntarios" element={<Voluntarios />} />
               <Route path="beneficiarios" element={<Beneficiarios />} />
