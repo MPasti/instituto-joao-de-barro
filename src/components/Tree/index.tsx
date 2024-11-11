@@ -1,26 +1,39 @@
-import "./Tree.scss";
+export const Tree = ({ data }) => {
+  const eventsByYear = data.reduce((acc, event) => {
+    if (!acc[event.year]) {
+      acc[event.year] = [];
+    }
+    acc[event.year].push(event);
+    return acc;
+  }, {});
 
-const Tree = ({ data }) => {
+  let isLeft = true;
+
   return (
-    <div className="tree">
-      {Object.keys(data).map((year, index) => (
-        <div
-          key={year}
-          className={`tree-branch ${index % 2 === 0 ? "left" : "right"}`}
-        >
-          <div className="tree-year">{year}</div>
-          <div className="tree-elements">
-            {data[year].map((element, i) => (
-              <div key={i} className="tree-element">
-                <img src={element.image} alt={`Imagem ${year}-${i}`} />
-                <p>{element.description}</p>
+    <div className="timeline-tree">
+      {Object.keys(eventsByYear).map((year, index) => (
+        <div key={index} className="year-group">
+          <div className="year">{year}</div>
+          {eventsByYear[year].map((event, idx) => {
+            const positionClass = isLeft ? "left" : "right";
+            isLeft = !isLeft;
+
+            return (
+              <div key={idx} className={`timeline-item ${positionClass}`}>
+                <div className="content">
+                  <div className="text">
+                    <h3>{event.title}</h3>
+                    <p>{event.description}</p>
+                  </div>
+                  <div className="event-image">
+                    <img src={event.image} alt={event.title} />
+                  </div>
+                </div>
               </div>
-            ))}
-          </div>
+            );
+          })}
         </div>
       ))}
     </div>
   );
 };
-
-export default Tree;
