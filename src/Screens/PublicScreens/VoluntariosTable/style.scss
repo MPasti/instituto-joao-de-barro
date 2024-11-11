@@ -1,0 +1,72 @@
+.person-table-container {
+    margin: 2rem;
+  
+    h2 {
+      color: #df7046;
+      font-size: 2.5rem;
+      font-weight: bolder;
+      margin-bottom: 1rem;
+    }
+  
+    .person-table {
+      width: 100%;
+      border-collapse: collapse;
+      overflow-x: auto;
+      margin-bottom: 2rem;
+  
+      th,
+      td {
+        padding: 0.75rem;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+        font-size: 1rem;
+      }
+  
+      th {
+        font-weight: bold;
+        background-color: #f3f3f3;
+        color: #333;
+      }
+  
+      td {
+        color: #333;
+        white-space: nowrap;
+  
+        &:first-child {
+          width: 5rem; // Set a fixed width for the ID column
+          max-width: 5rem; // Optional: Enforce a maximum width to keep it consistent on large screens
+          text-align: center; // Center-align the ID for better readability
+        }
+  
+        &:last-child {
+          text-align: right;
+          width: 1%;
+        }
+      }
+    }
+  
+    .table-actions {
+      display: inline-flex;
+      gap: 0.5rem;
+      align-items: center;
+      justify-content: flex-end;
+  
+      .table-btn {
+        padding: 0.5rem 1rem;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        font-size: 0.875rem;
+        color: #fff;
+      }
+  
+      .edit-btn {
+        background-color: #ffc72c;
+      }
+  
+      .delete-btn {
+        background-color: #df7046;
+      }
+    }
+  }
+  

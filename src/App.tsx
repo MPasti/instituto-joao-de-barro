@@ -31,6 +31,7 @@ import { ApoiadorForm } from "./Screens/PublicScreens/Apoiador/Form/apoiadorForm
 import { Beneficiarios } from "./Screens/PublicScreens/Beneficiarios";
 import { Projetos } from "./Screens/PublicScreens/Projetos";
 import { Blog } from "./Screens/PublicScreens/Blog";
+import { VoluntariosTable } from "./Screens/PublicScreens/VoluntariosTable";
 
 //Login
 import { Login } from "./Screens/Login";
@@ -60,6 +61,7 @@ function App() {
           <Route path="colaborador/form" element={<ColaboradorForm />}/>
           <Route path="apoiador" element={<Apoiador />}/>
           <Route path="apoiador/form" element={<ApoiadorForm />}/>
+          <Route path="voluntariostable" element={<VoluntariosTable />} />
         </Route>
 
         {/* Rota de Login */}
