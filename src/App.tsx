@@ -52,7 +52,7 @@ function App() {
               <Route index element={<Main />} />
               <Route path="contatos" element={<Contact />} />
               <Route path="projetos" element={<Projetos />} />
-              <Route path="noticias" element={<Blog />} />
+              <Route path="noticias" element={<PublicNoticias />} />
               <Route path="sobre" element={<About />} />
               <Route path="voluntarios" element={<Voluntarios />} />
               <Route path="beneficiarios" element={<Beneficiarios />} />
