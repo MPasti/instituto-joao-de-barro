@@ -12,9 +12,9 @@
 	justify-content: center;
 	align-items: center;
 	background-repeat: no-repeat;
-	background-size: cover; /* A imagem cobrirá o contêiner de maneira proporcional */
+	background-size: cover; 
 	background-position: center;
-	width: 100%; /* Certifique-se de que o contêiner de imagem ocupe 100% da largura */
+	width: 100%; 
 	height: 400px;
 }
 
@@ -62,8 +62,8 @@ input, textarea, select {
 }
 
 textarea {
-    height: auto; /* Permite que o textarea ajuste sua altura conforme o conteúdo */
-    resize: vertical; /* Permite que o usuário redimensione verticalmente */
+    height: auto; 
+    resize: vertical; 
 }
 
 input:focus, textarea:focus, select:focus {
@@ -88,39 +88,39 @@ label {
 }
 
 .checkbox-container {
-    margin-bottom: 20px; /* Espaçamento entre o título e os checkboxes */
+    margin-bottom: 20px; 
 }
 
 .checkbox-container div {
-    display: flex; /* Faz com que o checkbox e o texto fiquem na mesma linha */
-    align-items: center; /* Alinha verticalmente o checkbox e o texto */
-    margin-bottom: 10px; /* Espaçamento entre os checkboxes */
+    display: flex; 
+    align-items: center; 
+    margin-bottom: 10px; 
 }
 
 .checkbox-container input[type="checkbox"] {
-    margin-right: 10px; /* Espaço entre o checkbox e o texto */
+    margin-right: 10px; 
 }
 
 .checkbox-container label {
     font-weight: bold;
-    margin-bottom: 10px; /* Espaço entre o título e os checkboxes */
-    display: block; /* Certifique-se que o label ocupa toda a largura */
+    margin-bottom: 10px; 
+    display: block; 
 }
 
 .btn-orange {
 	margin-top: 20px;
 	padding: 12px 24px;
-	background-color: #ffc72c; /* Laranja mais escuro para maior contraste */
+	background-color: #ffc72c; 
 	color: black;
 	font-weight: bold;
 	border: none;
 	border-radius: 8px;
 	text-align: center;
-	cursor: pointer; /* Estiliza o cursor como ponteiro ao passar sobre o botão */
-	transition: background-color 0.3s ease; /* Animação suave na cor de fundo */
+	cursor: pointer; 
+	transition: background-color 0.3s ease; 
 	margin: 3rem 0;
 }
 
 .btn-orange:hover {
-	background-color: #e2aa0e; /* Muda a cor ao passar o mouse */
+	background-color: #e2aa0e; 
 }

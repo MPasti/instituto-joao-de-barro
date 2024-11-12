@@ -35,10 +35,10 @@ export function ApoiadorForm() {
         }));
     };
 
-	const existingCpfs = ["12345678900", "98765432100"]; // Trocar pelo CPF do banco de dados
+	const existingCpfs = ["12345678900", "98765432100"]; 
 
 	const validateForm = () => {
-		if (existingCpfs.includes(cpf)) {  // verificar se o cpf está no array existingCpfs
+		if (existingCpfs.includes(cpf)) {  
 			alert("Você já enviou um form.");
 			return false;
 		}
@@ -59,18 +59,18 @@ export function ApoiadorForm() {
 		}
 	
 		try {
-			// Simulando uma chamada à API
+			
 			const response = await new Promise((resolve) => {
 				setTimeout(() => {
 					resolve({ success: true });
-				}, 2000); // Simulando um atraso de 2 segundos
+				}, 2000); 
 			});
 			
 			
 			//@ts-ignore
 			if (response.success) {
 				console.log("Formulário enviado com sucesso!");
-				// Atualizar o estado ou realizar outras ações necessárias
+				
 			} else {
 				console.error("Erro ao enviar o formulário.");
 			}

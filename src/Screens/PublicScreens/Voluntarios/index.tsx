@@ -15,8 +15,10 @@ export function Voluntarios() {
 				<div className="content-container">
 					<h1 className="title">O QUE FAZEMOS?</h1>
 					<div className="info-box">
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-						Pellentesque et.
+					No Instituto João de Barro, transformamos vidas construindo lares para famílias em situação de vulnerabilidade. 
+					Nossa missão é garantir que todos tenham um lugar seguro para viver, proporcionando esperança e dignidade. 
+					Com o apoio de voluntários e parceiros, oferecemos a base para que essas famílias construam um futuro melhor.
+                     Junte-se a nós e ajude a criar lares e mudar vidas.
 					</div>
 					<button className="voluntario-btn"> Seja um Voluntário!</button>
 					<h1 className="title">CONHEÇA A EQUIPE!</h1>
@@ -40,7 +42,9 @@ export function Voluntarios() {
 						</div>
 					</div>
                     <p className="last-paragraph">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+					Nossa equipe é formada por voluntários dedicados, apoiadores comprometidos e voluntários-apoiadores que unem forças para transformar vidas. 
+					Cada pessoa contribui com seu tempo, talento e recursos para construir lares e oferecer dignidade a famílias em situação de vulnerabilidade. 
+					Juntos, criamos um impacto que vai além das paredes de cada casa. 
                     </p>
 				</div>
 			</div>

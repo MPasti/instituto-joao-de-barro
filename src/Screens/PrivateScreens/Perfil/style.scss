@@ -13,9 +13,9 @@
 	justify-content: center;
 	align-items: center;
 	background-repeat: no-repeat;
-	background-size: cover; /* A imagem cobrirá o contêiner de maneira proporcional */
+	background-size: cover; 
 	background-position: center;
-	width: 100%; /* Certifique-se de que o contêiner de imagem ocupe 100% da largura */
+	width: 100%;
 	height: 400px;
 }
 
@@ -29,7 +29,7 @@
 	margin-top: 1rem;
 	padding: 20px;
 	width: 100%;
-	box-sizing: border-box; /* Garante que o padding seja incluído no cálculo da largura */
+	box-sizing: border-box; 
 }
 
 .profile_header {
@@ -41,10 +41,17 @@
 }
 
 .profile_pic {
-    width: 150px; /* Ajuste o tamanho conforme necessário */
-    height: 150px; /* Ajuste o tamanho conforme necessário */
-    border-radius: 50%; /* Torna a imagem redonda */
-    object-fit: cover; /* Garante que a imagem cubra o contêiner sem distorção */
+    width: 150px; 
+    height: 150px;
+    border-radius: 50%; 
+    object-fit: cover;
+
+	img {
+		width: 100%; 
+		height: 100%;
+		border-radius: 50%; 
+		object-fit: cover;
+	}
 }
 
 .profile_name {
@@ -85,9 +92,22 @@
     color: #231f20;
 }
 
+.sub_sub_title {
+    font-style: normal;
+    font-weight: 900;
+    font-size: 16px;
+    line-height: 49px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    text-transform: uppercase;
+
+    color: #231f20;
+}
+
 .info-box {
 	width: 80%;
-	max-width: 600px; /* Define um limite máximo para o tamanho da caixa de informação */
+	max-width: 600px; 
 	padding: 20px;
 	background-color: white;
 	box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
@@ -117,45 +137,45 @@
 	margin-top: 20px;
     padding-top: 12px;
 	padding-bottom: 12px;
-	background-color: #fdd835; /* Amarelo mais escuro para maior contraste */
+	background-color: #fdd835; 
 	color: black;
 	font-weight: bold;
 	border: none;
 	border-radius: 8px;
 	text-align: center;
-	cursor: pointer; /* Estiliza o cursor como ponteiro ao passar sobre o botão */
-	transition: background-color 0.3s ease; /* Animação suave na cor de fundo */
+	cursor: pointer; 
+	transition: background-color 0.3s ease; 
 }
 
 .volunteer-btn:hover {
-	background-color: #fbc02d; /* Muda a cor ao passar o mouse */
+	background-color: #fbc02d; 
 	padding: 20px;
 }
 
 .grid-container {
 	display: grid;
-	grid-template-columns: 1fr 1fr; /* Two columns */
-	gap: 20px; /* Space between grid items */
-	width: 80%; /* Width of the grid */
-	max-width: 1000px; /* Maximum width for the grid */
-	margin-top: 20px; /* Space above the grid */
+	grid-template-columns: 1fr 1fr;
+	gap: 20px; 
+	width: 80%; 
+	max-width: 1000px; 
+	margin-top: 20px; 
 }
 
 .left-image {
-	width: 100%; /* Ensure left image takes full width */
+	width: 100%; 
 	height: 100%;
-	border-radius: 8px; /* Optional: add rounded corners */
+	border-radius: 8px; 
 }
 
 .right-container {
 	display: flex;
-	flex-direction: column; /* Stack images vertically */
+	flex-direction: column;
 }
 
 .right-image-top,
 .right-image-bottom {
-	width: 100%; /* Ensure right images take full width */
-	border-radius: 8px; /* Optional: add rounded corners */
+	width: 100%; 
+	border-radius: 8px; 
 }
 
 .paragraph {
@@ -184,8 +204,8 @@
 	align-items: center;
 	width: fit-content;
     padding-top: 30px;
-	max-width: 550px;
-    min-height: 700px;
+	max-width: 1030px;
+    min-height: fit-content;
 }
 
 .yellow-title {
@@ -195,6 +215,7 @@
 	line-height: 49px;
 	text-align: center;
 	text-transform: uppercase;
+	width: 100%;
 
 	color: #231f20;
 }
@@ -202,18 +223,18 @@
 .voluntario-btn-orange {
 	margin-top: 20px;
 	padding: 12px 24px;
-	background-color: #DF7046; /* Laranja mais escuro para maior contraste */
+	background-color: #DF7046; 
 	color: black;
 	font-weight: bold;
 	border: none;
 	border-radius: 8px;
 	text-align: center;
-	cursor: pointer; /* Estiliza o cursor como ponteiro ao passar sobre o botão */
-	transition: background-color 0.3s ease; /* Animação suave na cor de fundo */
+	cursor: pointer; 
+	transition: background-color 0.3s ease; 
 }
 
 .volunteer-btn-orange:hover {
-	background-color: #db592a; /* Muda a cor ao passar o mouse */
+	background-color: #db592a; 
 	padding: 20px;
 }
 
@@ -235,8 +256,8 @@ input, textarea, select {
 }
 
 textarea {
-    height: auto; /* Permite que o textarea ajuste sua altura conforme o conteúdo */
-    resize: vertical; /* Permite que o usuário redimensione verticalmente */
+    height: auto;
+    resize: vertical; 
 }
 
 input:focus, textarea:focus, select:focus {
@@ -251,17 +272,58 @@ input:focus, textarea:focus, select:focus {
 	gap: 1rem;
 }
 
+.event-cards {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 1rem;
+	max-width: 1170px;
+	margin: 0 auto;
+  
+	.event-card {
+	  display: flex;
+	  align-items: center;
+	  background-color: #ffc107; // Cor de fundo amarela
+	  padding: 1rem;
+	  border-radius: 8px; // Borda arredondada
+	  width: 100%;
+	  max-width: 500px;
+	  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); // Sombra leve para dar destaque
+  
+	  .icon {
+		font-size: 2rem;
+		margin-right: 1rem;
+		color: #000; // Cor do ícone (ajuste conforme necessário)
+	  }
+  
+	  .details {
+		h3 {
+		  font-size: 1rem;
+		  font-weight: bold;
+		  margin: 0;
+		  color: #000; // Cor do título
+		}
+  
+		p {
+		  margin: 0.5rem 0 0;
+		  font-size: 0.9rem;
+		  color: #333; // Cor do texto
+		}
+	  }
+	}
+  }
+
 @media (max-width: 768px) {
 	.main-image-container {
-		height: 250px; /* Altura reduzida para telas menores */
+		height: 250px; 
 	}
 
 	.title {
-		font-size: 20px; /* Título menor em telas pequenas */
+		font-size: 20px; 
 	}
 
 	.info-box {
-		width: 95%; /* Aumenta a largura da caixa de informação em telas pequenas */
+		width: 95%; 
 	}
 
 	.volunteer-btn {

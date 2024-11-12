@@ -33,9 +33,9 @@
         white-space: nowrap;
   
         &:first-child {
-          width: 5rem; // Set a fixed width for the ID column
-          max-width: 5rem; // Optional: Enforce a maximum width to keep it consistent on large screens
-          text-align: center; // Center-align the ID for better readability
+          width: 5rem; 
+          max-width: 5rem; 
+          text-align: center; 
         }
   
         &:last-child {
