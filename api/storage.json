@@ -67,6 +67,48 @@
       "name": "Teste",
       "quantity": 123,
       "description": "teste"
+    },
+    {
+      "id": "tCwFjS",
+      "name": "2",
+      "quantity": 1,
+      "description": "1"
+    },
+    {
+      "id": "o9_ls3",
+      "name": "testes",
+      "quantity": 1,
+      "description": "1"
+    }
+  ],
+  "buildings": [
+    {
+      "id": "gUm_MJ",
+      "descricao": "teste 22",
+      "logradouro": "etstse",
+      "numero": 2,
+      "bairro": "testes",
+      "cidade": "teasta",
+      "uf": "sp",
+      "dt_inicio": "2024-11-20T03:00:00.000Z",
+      "dt_termino": "2024-11-27T03:00:00.000Z",
+      "situacao_construcao": "Em andamento",
+      "custo_estimado": 1,
+      "custo_total": 2
+    },
+    {
+      "id": "fq7vW1",
+      "descricao": "teste 34",
+      "logradouro": "tests",
+      "numero": -1,
+      "bairro": "teste",
+      "cidade": "teste",
+      "uf": "sp",
+      "dt_inicio": "2024-11-07T03:00:00.000Z",
+      "dt_termino": "2024-11-13T03:00:00.000Z",
+      "situacao_construcao": "Em andamento",
+      "custo_estimado": 1,
+      "custo_total": 12
     }
   ],
   "products": [],
@@ -121,7 +163,6 @@
         "outgoing": "R$240"
       }
     ],
-
     "tableDataRevenue": [
       {
         "name": "Doação",
@@ -172,7 +213,6 @@
         "outgoing": "R$240"
       }
     ],
-
     "bankStatement": {
       "account": 3000,
       "cdb": 2000

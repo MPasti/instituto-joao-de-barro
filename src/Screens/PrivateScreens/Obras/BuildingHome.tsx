@@ -4,11 +4,10 @@ import { Scroll, Storefront } from "phosphor-react"; // Ajuste o ícone conforme
 
 export const BuildingHome = () => {
     return (
-        <main className="building-container">
+        <main className="storage-container">
             <TabGroup>
-                <TabList className="building-header">
-                    <Tab className="building-header-link"><Scroll size={24} /> </Tab>
-                    <Tab className="building-header-link"><Storefront size={24} /></Tab>
+                <TabList className="storage-header">
+                    <Tab className="storage-header-link"><Scroll size={24} /> </Tab>
                 </TabList>
                 <TabPanels>
                     <TabPanel><BuildingContent /></TabPanel> {}

@@ -67,7 +67,10 @@ const Home = () => {
             <div className="col-12 d-flex justify-content-center">
               <div className="row w-100 justify-content-center">
                 <DashboardIcon icon={<BiSolidCalendarStar />} label="EVENTOS" />
-                <DashboardIcon icon={<FaTools />} label="OBRAS" />
+                <DashboardIcon
+                 icon={<FaTools />} 
+                 label="OBRAS" 
+                 route="obras"/>
                 <DashboardIcon
                   icon={<IoNewspaper />}
                   route="noticias"

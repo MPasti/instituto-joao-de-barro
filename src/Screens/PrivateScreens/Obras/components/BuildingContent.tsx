@@ -18,7 +18,7 @@ export const BuildingContent = () => {
 
     useEffect(() => {
         loadBuildings();  // Carregar construções na inicialização
-    }, [buildings]);  // Dependência de buildings para recarregar quando necessário
+    }, []);  // Usar um array vazio para carregar uma vez na montagem
 
     // Função para lidar com a edição de uma construção
     const handleEditBuilding = (building: Building) => {
@@ -29,26 +29,26 @@ export const BuildingContent = () => {
     // Filtro das construções com base no termo de busca
     const filteredBuildings = buildings.filter(building =>
         building.situacao_construcao.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        building.id_construcao.toLowerCase().includes(searchTerm.toLowerCase())  // Adicionando id_construcao ao filtro
+        building.id.toLowerCase().includes(searchTerm.toLowerCase())  // Alterado para 'id'
     );
 
     return (
         <>
-            <h1 className="page-title">Construções</h1>
-            <section className="building-search">
+            <h1 className="page-title">Obras</h1>
+            <section className="storage-search">
                 <input 
                     type="text" 
-                    placeholder="Pesquisar construção" 
+                    placeholder="Pesquisar obra" 
                     className="form-control search-input"
                     onChange={(e) => setSearchTerm(e.target.value)}  // Atualizando termo de busca
                 />
                 <PlusCircle size={26} onClick={() => publish("building:open-register-modal")} />
             </section>
-            <section className="building-list">
+            <section className="storage-material-list">
                 <table>
                     <thead>
                         <tr>
-                            <th>Construção</th>
+                            <th>Descrição</th>
                             <th>Código</th>
                             <th>Data Início</th>
                             <th>Situação</th>
@@ -56,19 +56,17 @@ export const BuildingContent = () => {
                     </thead>
                     <tbody>
                         {filteredBuildings.map((building) => (
-                            <tr key={building.id_construcao} onClick={() => handleEditBuilding(building)}>
-                                <td>{building.situacao_construcao}</td>
-                                <td>{building.id_construcao}</td>
-                                <td>{new Date(building.dt_inicio).toLocaleDateString()}</td>
-                                <td>{building.situacao_construcao}</td>
+                            <tr key={building.id} onClick={() => handleEditBuilding(building)}>
+                                <td>{building.descricao}</td>  {/* Exibindo descrição da construção */}
+                                <td>{building.id}</td>  {/* Exibindo código da construção */}
+                                <td>{new Date(building.dt_inicio).toLocaleDateString()}</td>  {/* Exibindo data de início */}
+                                <td>{building.situacao_construcao}</td>  {/* Exibindo situação da construção */}
                             </tr>
                         ))}
                     </tbody>
                 </table>
             </section>
-            {/* Modal para registrar uma nova construção */}
             <BuildingRegisterModal />
-            {/* Modal para editar uma construção selecionada */}
             <BuildingEditModal selectedBuilding={selectedBuilding} />
         </>
     );
