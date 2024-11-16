@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logoUrl from "@images/logo-instituto.svg";
 import Button from "../Button";
 import { FaUserCircle, FaBars, FaTimes } from "react-icons/fa";
@@ -10,6 +10,8 @@ export function Navbar() {
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
+
+  const navigate = useNavigate();
 
   return (
     <div>
@@ -69,9 +71,15 @@ export function Navbar() {
             </Link>
           </li>
           <li className="nav-item">
-            <Link to='/doacoes' className="btn btn-secondary">
+            <Button
+              type="button"
+              variant="secondary"
+              onClick={() => {
+                navigate("/doacoes");
+              }}
+            >
               DOE AGORA
-            </Link>
+            </Button>
           </li>
         </ul>
       </nav>

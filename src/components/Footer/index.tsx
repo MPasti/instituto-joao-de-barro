@@ -33,7 +33,7 @@ export const Footer = () => {
                 </li>
                 <li className="mb-2">
                   <Link to="/beneficiarios" className="link">
-                    Voluntários
+                    Beneficiários
                   </Link>
                 </li>
                 <li className="mb-2">

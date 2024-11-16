@@ -113,8 +113,8 @@
   margin: 100px auto;
   width: 50vw;
 
-  @media (max-width: 576px) {
-    width: 100%;
+  @media (max-width: 1050px) {
+    width: 90%;
   }
 }
 
@@ -254,6 +254,7 @@
 .table {
   width: 100%;
   border-collapse: collapse;
+  border-radius: 12px !important;
 }
 
 .table thead th{

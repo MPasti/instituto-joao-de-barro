@@ -6,6 +6,7 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import "swiper/css/autoplay";
 import NewsCard from "../NewsCard";
+import Button from "../Button";
 
 export const NewsSwiper = ({ newsData }) => {
   const breakpoints = {
@@ -30,7 +31,6 @@ export const NewsSwiper = ({ newsData }) => {
           slidesPerView={3}
           speed={1500}
           navigation
-          pagination={{ clickable: true }}
           grabCursor={false}
           className="news-swiper"
           breakpoints={breakpoints}
@@ -49,6 +49,11 @@ export const NewsSwiper = ({ newsData }) => {
             </SwiperSlide>
           ))}
         </Swiper>
+      </div>
+      <div className="d-flex justify-content-center">
+        <Button outline={true} variant="secondary">
+          VER MAIS NOTÍCIAS
+        </Button>
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-import { Dialog, DialogPanel} from "@headlessui/react";
+import { Dialog, DialogPanel } from "@headlessui/react";
 import { FaX } from "react-icons/fa6";
 
 interface IModal {
@@ -6,6 +6,7 @@ interface IModal {
   onClose?: () => void;
   children?: React.ReactNode;
   clickableBackdrop?: boolean;
+  className?: string;
 }
 
 export const Modal = ({
@@ -13,6 +14,7 @@ export const Modal = ({
   onClose,
   children,
   clickableBackdrop,
+  className = "",
 }: IModal): JSX.Element => {
   function handleClose() {
     onClose?.();
@@ -25,18 +27,10 @@ export const Modal = ({
   }
 
   return (
-    <Dialog
-      open={isOpen}
-      onClose={handleBackdropClose}
-      className="dialog"
-    >
+    <Dialog open={isOpen} onClose={handleBackdropClose} className="dialog">
       <div className="container">
-        <DialogPanel className="dialog-panel">
-          <FaX
-            size={22}
-            onClick={handleClose}
-          />
-          
+        <DialogPanel className={`dialog-panel ${className}`}>
+          <FaX size={24} onClick={handleClose} className="close-icon me-1" />
           {children}
         </DialogPanel>
       </div>
