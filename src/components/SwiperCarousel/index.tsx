@@ -21,26 +21,30 @@ export const SwiperCarousel = () => {
   const slides = [
     {
       image: ijbImage,
-      title: "Título 1",
-      description: "Descrição da imagem 1",
+      title: "Construindo Sonhos, Transformando Vidas",
+      description:
+        "O Instituto João de Barro acredita no poder da união para proporcionar moradias dignas às famílias necessitadas. Junte-se a nós e seja parte dessa transformação.",
       text: "Saiba mais",
     },
     {
       image: ijbComemoration,
-      title: "Título 2",
-      description: "Descrição da imagem 2",
+      title: "Descubra o Instituto João de Barro",
+      description:
+        "Saiba mais sobre nossa missão, projetos e como você pode fazer parte dessa iniciativa. Juntos, podemos transformar vidas e comunidades.",
       text: "Saiba mais",
     },
     {
       image: ijbImage,
-      title: "Título 3",
-      description: "Descrição da imagem 3",
+      title: "Moradia Digna é um Direito de Todos",
+      description:
+        "O Instituto João de Barro trabalha para construir um futuro mais justo, proporcionando lares dignos às famílias que necessitam. Cada casa entregue é um passo em direção a uma sociedade mais solidária e humana.",
       text: "Saiba mais",
     },
     {
       image: ijbComemoration,
-      title: "Título 4",
-      description: "Descrição da imagem 4",
+      title: "Histórias que Inspiram",
+      description:
+        "O Instituto João de Barro transforma vidas em Franca-SP ao construir lares para famílias necessitadas. Descubra nossas iniciativas e junte-se à causa.",
       text: "Saiba mais",
     },
   ];
@@ -76,7 +80,9 @@ export const SwiperCarousel = () => {
                 data-swiper-parallax-opacity="0.5"
               >
                 <h2 data-swiper-parallax="-300">{slide.title}</h2>
-                <p data-swiper-parallax="-300">{slide.description}</p>
+                <p className="w-75" data-swiper-parallax="-300">
+                  {slide.description}
+                </p>
                 <button className="slide-button" data-swiper-parallax="-300">
                   {slide.text}
                 </button>

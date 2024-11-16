@@ -1,7 +1,34 @@
 import ResultImage from "@images/institute/segunda-casa.jpg";
+import AnotherImage from "@images/institute/casa-3.png";
 import Button from "../Button";
+import { useEffect, useRef } from "react";
 
 const ResultsSection = () => {
+  const blockRef1 = useRef<HTMLDivElement>(null);
+  const blockRef2 = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const animateOnScroll = () => {
+      [blockRef1, blockRef2].forEach((ref) => {
+        if (ref.current) {
+          const rect = ref.current.getBoundingClientRect();
+          const inView = rect.top < window.innerHeight && rect.bottom > 0;
+
+          if (inView) {
+            ref.current.classList.add("fadeIn");
+            ref.current.classList.remove("fadeOut");
+          } else {
+            ref.current.classList.add("fadeOut");
+            ref.current.classList.remove("fadeIn");
+          }
+        }
+      });
+    };
+
+    window.addEventListener("scroll", animateOnScroll);
+    return () => window.removeEventListener("scroll", animateOnScroll);
+  }, []);
+
   return (
     <div className="results-container">
       <div className="results">
@@ -22,6 +49,15 @@ const ResultsSection = () => {
             </Button>
           </div>
           <img src={ResultImage} alt="Resultado-IJB" className="img-fluid" />
+        </div>
+
+        <div className="view">
+          <div className="block fadeOut" ref={blockRef1}>
+            <img src={ResultImage} alt="Imagem de Resultado 1" />
+          </div>
+          <div className="block fadeOut" ref={blockRef2}>
+            <img src={AnotherImage} alt="Imagem de Resultado 2" />
+          </div>
         </div>
       </div>
     </div>
