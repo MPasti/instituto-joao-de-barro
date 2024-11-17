@@ -1,6 +1,7 @@
 import main_imagem from "../../../assets/images/colaborador/main_imagem.svg";
 import image from "../../../assets/images/colaborador/image.svg";
 import "@styles/voluntariosInfo.scss";
+import "@styles/global.scss";
 import { Link } from "react-router-dom";
 
 export function Colaborador() {
@@ -35,9 +36,7 @@ export function Colaborador() {
 							</p>
 						</div>
 					</div>
-					<Link to="/colaborador/form" className="voluntario-btn">
-					Seja um Voluntario-Apoiador!
-					</Link>
+					<Link to="/colaborador/form" className="voluntario-btn"> Seja um Voluntario-Apoiador!</Link>
 					<div className="yellow-container">
 						<div className="yellow-box">
 							<div>
@@ -50,7 +49,7 @@ export function Colaborador() {
 								Junte-se a nós e faça a diferença de duas formas!
 								</p>
 							</div>
-							<Link to="/colaborador/form"  className="voluntario-btn-orange">
+							<Link to="/colaborador/form" className="voluntario-btn-orange">
 								{" "}
 								Seja um Voluntario-Apoiador!
 							</Link>

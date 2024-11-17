@@ -1,5 +1,6 @@
 import { useState } from "react";
 import main_imagem from "../../../../assets/images/apoiador/main_image.svg";
+import "@styles/global.scss";
 import "@styles/voluntariosForm.scss";
 
 export function ApoiadorForm() {

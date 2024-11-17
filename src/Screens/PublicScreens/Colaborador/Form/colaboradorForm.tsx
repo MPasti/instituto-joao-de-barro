@@ -1,6 +1,7 @@
 import { useState } from "react";
 import main_imagem from "../../../../assets/images/colaborador/main_imagem.svg";
 import "@styles/voluntariosForm.scss";
+import "@styles/global.scss";
 
 export function ColaboradorForm() {
 	const [nomeCompleto, setNomeCompleto] = useState("");

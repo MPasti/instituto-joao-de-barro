@@ -2,13 +2,14 @@ import people_stack from "../../../assets/images/voluntariado/people_stack.svg";
 import grid_image_a from "../../../assets/images/voluntariado/grid_image_a.svg";
 import grid_image_b from "../../../assets/images/voluntariado/grid_image_b.svg";
 import grid_image_c from "../../../assets/images/voluntariado/grid_image_c.svg";
-import '@styles/voluntariosInfo.scss';
+import "@styles/global.scss";
+import "@styles/voluntariosInfo.scss";
 import { Link } from "react-router-dom";
 
 export function Voluntarios() {
 	return (
 		<>
-			<div className="parent-container" >
+			<div className="parent-container">
 				<div
 					className="main-image-container"
 					style={{ backgroundImage: `url(${people_stack})` }}
@@ -21,9 +22,7 @@ export function Voluntarios() {
 					Com o apoio de voluntários e parceiros, oferecemos a base para que essas famílias construam um futuro melhor.
                      Junte-se a nós e ajude a criar lares e mudar vidas.
 					</div>
-					<Link to='/voluntarios/form' className="voluntario-btn">
-					Seja um Voluntário!
-            		</Link>
+					<Link to="/voluntarios/form" className="voluntario-btn"> Seja um Voluntário!</Link>
 					<h1 className="title">CONHEÇA A EQUIPE!</h1>
 					<div className="grid-container">
 						<img

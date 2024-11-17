@@ -1,6 +1,7 @@
-import { Link } from "react-router-dom";
 import main_imagem from "../../../assets/images/apoiador/main_image.svg";
 import "@styles/voluntariosInfo.scss";
+import "@styles/global.scss";
+import { Link } from "react-router-dom";
 
 export function Apoiador() {
   return (
