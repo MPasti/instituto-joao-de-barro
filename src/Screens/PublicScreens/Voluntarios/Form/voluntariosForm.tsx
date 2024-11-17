@@ -1,6 +1,6 @@
 import { useState } from "react";
 import main_imagem from "../../../../assets/images/voluntariado/people_stack.svg";
-import "./formStyle.css";
+import "@styles/voluntariosForm.scss";
 
 export function VoluntariosForm() {
 	const [nomeCompleto, setNomeCompleto] = useState("");
@@ -32,26 +32,55 @@ export function VoluntariosForm() {
         }));
     };
 
+	const existingCpfs = ["12345678900", "98765432100"]; // Trocar pelo CPF do banco de dados
+
+	const validateForm = () => {
+		if (existingCpfs.includes(cpf)) {  // verificar se o cpf está no array existingCpfs
+			alert("Você já enviou um form.");
+			return false;
+		}
+		// Basic validation for required fields
+		if (
+			!nomeCompleto ||
+			!telefone ||
+			!email ||
+			!cpf ||
+			!cargoDesejado ||
+			!sobreVoce
+		) {
+			alert("Por favor, preencha todos os campos obrigatórios.");
+			return false;
+		}
+
+		// Check if privacy policy is accepted
+		if (!checkboxes.politicas_privacidade) {
+			alert("Você deve aceitar as Políticas de Privacidade.");
+			return false;
+		}
+
+		return true;
+	};
+
 	const handleSubmit = async () => {
-	
-		try {
-			// Simulando uma chamada à API
-			const response = await new Promise((resolve) => {
-				setTimeout(() => {
-					resolve({ success: true });
-				}, 2000); // Simulando um atraso de 2 segundos
-			});
-			
-			
-			//@ts-ignore
-			if (response.success) {
-				console.log("Formulário enviado com sucesso!");
-				// Atualizar o estado ou realizar outras ações necessárias
-			} else {
-				console.error("Erro ao enviar o formulário.");
+		if (validateForm()) {
+			try {
+				// Simulando uma chamada à API
+				const response = await new Promise((resolve) => {
+					setTimeout(() => {
+						resolve({ success: true });
+					}, 2000); // Simulando um atraso de 2 segundos
+				});
+				
+				//@ts-ignore
+				if (response.success) {
+					console.log("Formulário enviado com sucesso!");
+					// Atualizar o estado ou realizar outras ações necessárias
+				} else {
+					console.error("Erro ao enviar o formulário.");
+				}
+			} catch (error) {
+				console.error("Erro na conexão com a API:", error);
 			}
-		} catch (error) {
-			console.error("Erro na conexão com a API:", error);
 		}
 	};
 

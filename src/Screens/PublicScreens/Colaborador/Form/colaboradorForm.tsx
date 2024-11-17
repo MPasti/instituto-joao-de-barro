@@ -1,6 +1,6 @@
 import { useState } from "react";
 import main_imagem from "../../../../assets/images/colaborador/main_imagem.svg";
-import "./formStyle.css";
+import "@styles/voluntariosForm.scss";
 
 export function ColaboradorForm() {
 	const [nomeCompleto, setNomeCompleto] = useState("");
@@ -16,47 +16,74 @@ export function ColaboradorForm() {
 	const [formaPagamento, setFormaPagamento] = useState("");
 	const [materiaisQuantidade, setMateriaisQuantidade] = useState("");
 	const [checkboxes, setCheckboxes] = useState({
-        "fui_ajudado": false,
-        "por_amigos": false,
-        "google": false,
-        "instagram": false,
-        "facebook": false,
-        "marketing": false,
-        "outro": false,
-        "receber_novidades": false,
-        "politicas_privacidade": false,
-    });
+		"fui_ajudado": false,
+		"por_amigos": false,
+		"google": false,
+		"instagram": false,
+		"facebook": false,
+		"marketing": false,
+		"outro": false,
+		"receber_novidades": false,
+		"politicas_privacidade": false,
+	});
 
-    const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, checked } = event.target;
-        setCheckboxes(prevState => ({
-            ...prevState,
-            [name]: checked,
-        }));
-    };
+	const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		const { name, checked } = event.target;
+		setCheckboxes(prevState => ({
+			...prevState,
+			[name]: checked,
+		}));
+	};
+
+	const existingCpfs = ["12345678900", "98765432100"]; // Trocar pelo CPF do banco de dados
+
+	const validateForm = () => {
+		if (existingCpfs.includes(cpf)) {  // verificar se o cpf está no array existingCpfs
+			alert("Você já enviou um form.");
+			return false;
+		}
+		if (!nomeCompleto.trim()) {
+			alert("Nome completo é obrigatório.");
+			return false;
+		}
+		if (!telefone.trim()) {
+			alert("Telefone é obrigatório.");
+			return false;
+		}
+		if (!email.trim() || !/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/.test(email)) {
+			alert("Email inválido.");
+			return false;
+		}
+		if (!checkboxes.politicas_privacidade) {
+			alert("Você deve aceitar as políticas de privacidade.");
+			return false;
+		}
+		return true;
+	};
 
 	const handleSubmit = async () => {
-	
-		try {
-			// Simulando uma chamada à API
-			const response = await new Promise((resolve) => {
-				setTimeout(() => {
-					resolve({ success: true });
-				}, 2000); // Simulando um atraso de 2 segundos
-			});
-			
-			
-			//@ts-ignore
-			if (response.success) {
-				console.log("Formulário enviado com sucesso!");
-				// Atualizar o estado ou realizar outras ações necessárias
-			} else {
-				console.error("Erro ao enviar o formulário.");
+		if (validateForm()) {
+			try {
+				// Simulando uma chamada à API
+				const response = await new Promise((resolve) => {
+					setTimeout(() => {
+						resolve({ success: true });
+					}, 2000); // Simulando um atraso de 2 segundos
+				});
+
+				//@ts-ignore
+				if (response.success) {
+					console.log("Formulário enviado com sucesso!");
+					// Atualizar o estado ou realizar outras ações necessárias
+				} else {
+					console.error("Erro ao enviar o formulário.");
+				}
+			} catch (error) {
+				console.error("Erro na conexão com a API:", error);
 			}
-		} catch (error) {
-			console.error("Erro na conexão com a API:", error);
 		}
 	};
+
 
 	return (
 		<div className="parent-container">
@@ -174,133 +201,133 @@ export function ColaboradorForm() {
 						/>
 					</div>
 					<div className="checkbox-container">
-                    <label>Como descobriu o João de Barro</label>
-                    <div>
-                        <input
-                            type="checkbox"
-                            name="fui_ajudado"
-                            checked={checkboxes.fui_ajudado}
-                            onChange={handleCheckboxChange}
-                        />
-                        <span>Ja fui ajudado(a) por ela</span>
-                    </div>
-                    <div>
-                        <input
-                            type="checkbox"
-                            name="por_amigos"
-                            checked={checkboxes.por_amigos}
-                            onChange={handleCheckboxChange}
-                        />
-                        <span>Por meio de amigos</span>
-                    </div>
-                    <div>
-                        <input
-                            type="checkbox"
-                            name="google"
-                            checked={checkboxes.google}
-                            onChange={handleCheckboxChange}
-                        />
-                        <span>google</span>
-                    </div>
-                    <div>
-                        <input
-                            type="checkbox"
-                            name="instagram"
-                            checked={checkboxes.instagram}
-                            onChange={handleCheckboxChange}
-                        />
-                        <span>instagram</span>
-                    </div>
-                    <div>
-                        <input
-                            type="checkbox"
-                            name="facebook"
-                            checked={checkboxes.facebook}
-                            onChange={handleCheckboxChange}
-                        />
-                        <span>facebook</span>
-                    </div>
-                    <div>
-                        <input
-                            type="checkbox"
-                            name="marketing"
-                            checked={checkboxes.marketing}
-                            onChange={handleCheckboxChange}
-                        />
-                        <span>E-mail marketing</span>
-                    </div>
-                    <div>
-                        <input
-                            type="checkbox"
-                            name="outro"
-                            checked={checkboxes.outro}
-                            onChange={handleCheckboxChange}
-                        />
-                        <span>outro</span>
-                    </div>
-                </div>
-                <h1>Como gostaria de contribuir?</h1>
-                <div className="double-input-container-c">
-                    <div className="form-group form-input-c">
-                        <label htmlFor="doacao-monetaria">Doação monetária</label>
-                        <input
-                            type="number"
-                            id="doacao-monetaria"
-                            name="doacao-monetaria"
-                            value={doacaoMonetaria}
-                            onChange={(e) => setDoacaoMonetaria(e.target.value)}
-                            placeholder="Digite o valor da doação"
-                        />
-                    </div>
-                    <div className="form-input-c">
-                        <label htmlFor="forma-pagamento">Forma de pagamento</label>
-                        <select
-                            id="forma-pagamento"
-                            name="forma-pagamento"
-                            value={formaPagamento}
-                            onChange={(e) => setFormaPagamento(e.target.value)}
-                        >
-                            <option value="Crédito">Crédito</option>
-                            <option value="Débito">Débito</option>
-                            <option value="PIX">PIX</option>
-                        </select>
-                    </div>
-                </div>
-                <div className="form-group form-input-c">
-                    <label htmlFor="">Materiais e quantidade para doação</label>
-                    <textarea
-                        value={materiaisQuantidade}
-                        onChange={(e) => setMateriaisQuantidade(e.target.value)}
-                        placeholder="Descreva os materiais e a quantidade para doação"
-                    ></textarea>
-                </div>
-                <div className="checkbox-container">
-                    <label>
-                        Deseja receber informações sobre os impactos das doações e
-                        novidades?
-                    </label>
-                    <div>
-                        <input
-                            type="checkbox"
-                            name="receber_novidades"
-                            checked={checkboxes.receber_novidades}
-                            onChange={handleCheckboxChange}
-                        />
-                        <span>Sim! Desejo receber novidades da João de Barro.</span>
-                    </div>
-                    <div>
-                        <input
-                            type="checkbox"
-                            name="politicas_privacidade"
-                            checked={checkboxes.politicas_privacidade}
-                            onChange={handleCheckboxChange}
-                        />
-                        <span>Li e aceito as Políticas de Privacidade.</span>
-                    </div>
-                </div>
-            </form>
-        </div>
-            <button className="btn-orange" onClick={handleSubmit}>Enviar</button>
-    </div>
-    );
-}
+						<label>Como descobriu o João de Barro</label>
+						<div>
+							<input
+								type="checkbox"
+								name="fui_ajudado"
+								checked={checkboxes.fui_ajudado}
+								onChange={handleCheckboxChange}
+							/>
+							<span>Ja fui ajudado(a) por ela</span>
+						</div>
+						<div>
+							<input
+								type="checkbox"
+								name="por_amigos"
+								checked={checkboxes.por_amigos}
+								onChange={handleCheckboxChange}
+							/>
+							<span>Por meio de amigos</span>
+						</div>
+						<div>
+							<input
+								type="checkbox"
+								name="google"
+								checked={checkboxes.google}
+								onChange={handleCheckboxChange}
+							/>
+							<span>google</span>
+						</div>
+						<div>
+							<input
+								type="checkbox"
+								name="instagram"
+								checked={checkboxes.instagram}
+								onChange={handleCheckboxChange}
+							/>
+							<span>instagram</span>
+						</div>
+						<div>
+							<input
+								type="checkbox"
+								name="facebook"
+								checked={checkboxes.facebook}
+								onChange={handleCheckboxChange}
+							/>
+							<span>facebook</span>
+						</div>
+						<div>
+							<input
+								type="checkbox"
+								name="marketing"
+								checked={checkboxes.marketing}
+								onChange={handleCheckboxChange}
+							/>
+							<span>E-mail marketing</span>
+						</div>
+						<div>
+							<input
+								type="checkbox"
+								name="outro"
+								checked={checkboxes.outro}
+								onChange={handleCheckboxChange}
+							/>
+							<span>outro</span>
+						</div>
+					</div>
+					<h1>Como gostaria de contribuir?</h1>
+					<div className="double-input-container-c">
+						<div className="form-group form-input-c">
+							<label htmlFor="doacao-monetaria">Doação monetária</label>
+							<input
+								type="number"
+								id="doacao-monetaria"
+								name="doacao-monetaria"
+								value={doacaoMonetaria}
+								onChange={(e) => setDoacaoMonetaria(e.target.value)}
+								placeholder="Digite o valor da doação"
+							/>
+						</div>
+						<div className="form-input-c">
+							<label htmlFor="forma-pagamento">Forma de pagamento</label>
+							<select
+								id="forma-pagamento"
+								name="forma-pagamento"
+								value={formaPagamento}
+								onChange={(e) => setFormaPagamento(e.target.value)}
+							>
+								<option value="Crédito">Crédito</option>
+								<option value="Débito">Débito</option>
+								<option value="PIX">PIX</option>
+							</select>
+						</div>
+					</div>
+					<div className="form-group form-input-c">
+						<label htmlFor="">Materiais e quantidade para doação</label>
+						<textarea
+							value={materiaisQuantidade}
+							onChange={(e) => setMateriaisQuantidade(e.target.value)}
+							placeholder="Descreva os materiais e a quantidade para doação"
+						></textarea>
+					</div>
+					<div className="checkbox-container">
+						<label>
+							Deseja receber informações sobre os impactos das doações e
+							novidades?
+						</label>
+						<div>
+							<input
+								type="checkbox"
+								name="receber_novidades"
+								checked={checkboxes.receber_novidades}
+								onChange={handleCheckboxChange}
+							/>
+							<span>Sim! Desejo receber novidades da João de Barro.</span>
+						</div>
+						<div>
+							<input
+								type="checkbox"
+								name="politicas_privacidade"
+								checked={checkboxes.politicas_privacidade}
+								onChange={handleCheckboxChange}
+							/>
+							<span>Li e aceito as Políticas de Privacidade.</span>
+						</div>
+					</div>
+				</form>
+			</div>
+			<button className="btn-orange" onClick={handleSubmit}>Enviar</button>
+		</div>
+	);
+}	

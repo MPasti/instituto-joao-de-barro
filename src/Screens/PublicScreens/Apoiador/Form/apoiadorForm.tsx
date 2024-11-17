@@ -1,6 +1,6 @@
 import { useState } from "react";
 import main_imagem from "../../../../assets/images/apoiador/main_image.svg";
-import "./formStyle.css";
+import "@styles/voluntariosForm.scss";
 
 export function ApoiadorForm() {
 	const [nomeCompleto, setNomeCompleto] = useState("");
@@ -35,21 +35,42 @@ export function ApoiadorForm() {
         }));
     };
 
+	const existingCpfs = ["12345678900", "98765432100"]; 
+
+	const validateForm = () => {
+		if (existingCpfs.includes(cpf)) {  
+			alert("Você já enviou um form.");
+			return false;
+		}
+		
+		if (!nomeCompleto || !telefone || !email || !cpf || !checkboxes.politicas_privacidade) {
+			alert("Preencha todos os dados.");
+			return false;
+		}
+		
+		return true;
+	};
+	
+
+
 	const handleSubmit = async () => {
+		if (!validateForm()) {
+			return;
+		}
 	
 		try {
-			// Simulando uma chamada à API
+			
 			const response = await new Promise((resolve) => {
 				setTimeout(() => {
 					resolve({ success: true });
-				}, 2000); // Simulando um atraso de 2 segundos
+				}, 2000); 
 			});
 			
 			
 			//@ts-ignore
 			if (response.success) {
 				console.log("Formulário enviado com sucesso!");
-				// Atualizar o estado ou realizar outras ações necessárias
+				
 			} else {
 				console.error("Erro ao enviar o formulário.");
 			}

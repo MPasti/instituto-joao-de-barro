@@ -47,6 +47,7 @@ import AtualizarInformacoes from "./Screens/PrivateScreens/AtualizarInformacoes"
 import Registro from "./Screens/PrivateScreens/RegistroBeneficiario";
 import AtualizarInformacoesVisitas from "./Screens/PrivateScreens/atualizarInformacoesVisitas";
 import RegistroVisita from "./Screens/PrivateScreens/RegistroVisita";
+import { VoluntariosTable } from "./Screens/PrivateScreens/VoluntariosTable";
 
 function App() {
   return (
@@ -87,6 +88,7 @@ function App() {
             <Route path="registro" element={<Registro />} />
             <Route path="visitas/:id" element={<AtualizarInformacoesVisitas />} /> 
             <Route path="registroVisita" element={<RegistroVisita />} />
+            <Route path="voluntariostable" element={<VoluntariosTable />} />
           </Route>
         </Route>
       </Routes>
