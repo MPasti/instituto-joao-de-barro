@@ -28,9 +28,10 @@ export const BuildingContent = () => {
 
     // Filtro das construções com base no termo de busca
     const filteredBuildings = buildings.filter(building =>
-        building.situacao_construcao.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        building.id.toLowerCase().includes(searchTerm.toLowerCase())  // Alterado para 'id'
-    );
+        building.situacao_construcao.toLowerCase().includes(searchTerm.toLowerCase()) || 
+    building.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    building.descricao.toLowerCase().includes(searchTerm.toLowerCase()) // Filtro por descrição
+);
 
     return (
         <>

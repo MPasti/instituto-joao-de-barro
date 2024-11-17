@@ -14,6 +14,7 @@ export const BuildingRegisterModal = () => {
   // Função para fechar o modal
   function handleModalClose() {
     setIsModalOpen(false);
+    window.location.reload(); // Atualiza a página após fechar o modal
   }
 
   // Usando os eventos customizados para abrir e fechar o modal

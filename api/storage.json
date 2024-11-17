@@ -83,24 +83,10 @@
   ],
   "buildings": [
     {
-      "id": "gUm_MJ",
-      "descricao": "teste 22",
-      "logradouro": "etstse",
-      "numero": 2,
-      "bairro": "testes",
-      "cidade": "teasta",
-      "uf": "sp",
-      "dt_inicio": "2024-11-20T03:00:00.000Z",
-      "dt_termino": "2024-11-27T03:00:00.000Z",
-      "situacao_construcao": "Em andamento",
-      "custo_estimado": 1,
-      "custo_total": 2
-    },
-    {
       "id": "fq7vW1",
-      "descricao": "teste 34",
+      "descricao": "teste ",
       "logradouro": "tests",
-      "numero": -1,
+      "numero": 2,
       "bairro": "teste",
       "cidade": "teste",
       "uf": "sp",
@@ -109,6 +95,34 @@
       "situacao_construcao": "Em andamento",
       "custo_estimado": 1,
       "custo_total": 12
+    },
+    {
+      "id": "6DElQX",
+      "descricao": "teste 23",
+      "logradouro": "rua rua rua",
+      "numero": 0,
+      "bairro": "bairro bairro bairro",
+      "cidade": "cidade ",
+      "uf": "am",
+      "dt_inicio": "2024-11-26T03:00:00.000Z",
+      "dt_termino": "2024-11-28T03:00:00.000Z",
+      "situacao_construcao": "Concluída",
+      "custo_estimado": 1,
+      "custo_total": 1
+    },
+    {
+      "id": "FLrGsg",
+      "descricao": "obra ",
+      "logradouro": "obra ",
+      "numero": 0,
+      "bairro": "obra ",
+      "cidade": "obra ",
+      "uf": "sp",
+      "dt_inicio": "2024-11-03T03:00:00.000Z",
+      "dt_termino": "2024-11-20T03:00:00.000Z",
+      "situacao_construcao": "Em andamento",
+      "custo_estimado": 1500,
+      "custo_total": 200
     }
   ],
   "products": [],

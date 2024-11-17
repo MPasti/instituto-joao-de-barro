@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { object, string, number, date, InferType } from "yup";
 import { updateBuilding, deleteBuilding, Building } from "../../../../../services/buildings/buildingApi";
 import { publish } from "../../../../../utils/events";
+import { RefreshPage } from "../modals/BuildingEditModal";
 
 interface IEditFormProps {
     selectedBuilding: Building;

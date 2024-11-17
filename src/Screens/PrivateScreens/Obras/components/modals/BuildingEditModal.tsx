@@ -8,6 +8,13 @@ interface BuildingEditModalProps {
   selectedBuilding: Building | null;  
 }
 
+export const RefreshPage = () => {
+ 
+    window.location.reload();
+ 
+
+};
+
 export const BuildingEditModal = ({ selectedBuilding }: BuildingEditModalProps) => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
@@ -17,6 +24,7 @@ export const BuildingEditModal = ({ selectedBuilding }: BuildingEditModalProps) 
 
   function handleModalClose() {
     setIsModalOpen(false);
+    window.location.reload(); // Atualiza a página após fechar o modal
   }
 
   // Usando os eventos customizados para controlar a abertura e fechamento do modal
