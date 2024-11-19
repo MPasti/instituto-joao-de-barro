@@ -174,16 +174,21 @@ export function VoluntariosForm() {
 							placeholder="Digite sua intenção"
 						/>
 					</div>
-					<div className="form-group form-input-c">
-						<label htmlFor="cargo-desejado">Cargo desejado</label>
-						<input
-							type="text"
-							id="cargo-desejado"
-							name="cargo-desejado"
-							value={cargoDesejado}
-							onChange={(e) => setCargoDesejado(e.target.value)}
-							placeholder="Digite o cargo desejado"
-						/>
+					<div className="form-input-c">
+							<label htmlFor="cargo-desejado">Cargo desejado</label>
+							<select
+								id="cargo-desejado"
+								name="cargo-desejado"
+								value={cargoDesejado}
+								onChange={(e) => setCargoDesejado(e.target.value)}
+							>
+								<option value="Voluntários">Voluntários</option>
+								<option value="Estoque">Estoque</option>
+								<option value="Financeiro">Financeiro</option>
+								<option value="Eventos">Eventos</option>
+								<option value="Obras">Obras</option>
+								<option value="Noticias">Noticias</option>
+							</select>
 					</div>
 					<div className="form-group form-input-c">
 						<label htmlFor="sobre-voce">Sobre você</label>

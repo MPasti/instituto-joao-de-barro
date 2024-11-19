@@ -13,9 +13,6 @@ export function ColaboradorForm() {
 	const [intencao, setIntencao] = useState("");
 	const [cargoDesejado, setCargoDesejado] = useState("");
 	const [sobreVoce, setSobreVoce] = useState("");
-	const [doacaoMonetaria, setDoacaoMonetaria] = useState("");
-	const [formaPagamento, setFormaPagamento] = useState("");
-	const [materiaisQuantidade, setMateriaisQuantidade] = useState("");
 	const [checkboxes, setCheckboxes] = useState({
 		"politicas_privacidade": false,
 	});
@@ -177,16 +174,21 @@ export function ColaboradorForm() {
 							placeholder="Digite sua intenção"
 						/>
 					</div>
-					<div className="form-group form-input-c">
-						<label htmlFor="cargo-desejado">Cargo desejado</label>
-						<input
-							type="text"
-							id="cargo-desejado"
-							name="cargo-desejado"
-							value={cargoDesejado}
-							onChange={(e) => setCargoDesejado(e.target.value)}
-							placeholder="Digite o cargo desejado"
-						/>
+					<div className="form-input-c">
+							<label htmlFor="cargo-desejado">Cargo desejado</label>
+							<select
+								id="cargo-desejado"
+								name="cargo-desejado"
+								value={cargoDesejado}
+								onChange={(e) => setCargoDesejado(e.target.value)}
+							>
+								<option value="Voluntários">Voluntários</option>
+								<option value="Estoque">Estoque</option>
+								<option value="Financeiro">Financeiro</option>
+								<option value="Eventos">Eventos</option>
+								<option value="Obras">Obras</option>
+								<option value="Noticias">Noticias</option>
+							</select>
 					</div>
 					<div className="form-group form-input-c">
 						<label htmlFor="sobre-voce">Sobre você</label>
@@ -200,43 +202,9 @@ export function ColaboradorForm() {
 						/>
 					</div>
 					<div className="checkbox-container">
-					</div>
-					<h1>Como gostaria de contribuir?</h1>
-					<div className="double-input-container-c">
-						<div className="form-group form-input-c">
-							<label htmlFor="doacao-monetaria">Doação monetária</label>
-							<input
-								type="number"
-								id="doacao-monetaria"
-								name="doacao-monetaria"
-								value={doacaoMonetaria}
-								onChange={(e) => setDoacaoMonetaria(e.target.value)}
-								placeholder="Digite o valor da doação"
-							/>
-						</div>
-						<div className="form-input-c">
-							<label htmlFor="forma-pagamento">Forma de pagamento</label>
-							<select
-								id="forma-pagamento"
-								name="forma-pagamento"
-								value={formaPagamento}
-								onChange={(e) => setFormaPagamento(e.target.value)}
-							>
-								<option value="Crédito">Crédito</option>
-								<option value="Débito">Débito</option>
-								<option value="PIX">PIX</option>
-							</select>
-						</div>
-					</div>
-					<div className="form-group form-input-c">
-						<label htmlFor="">Materiais e quantidade para doação</label>
-						<textarea
-							value={materiaisQuantidade}
-							onChange={(e) => setMateriaisQuantidade(e.target.value)}
-							placeholder="Descreva os materiais e a quantidade para doação"
-						></textarea>
-					</div>
-					<div className="checkbox-container">
+						<label>
+							Politica de Privacidade
+						</label>
 						<div>
 							<input
 								type="checkbox"
