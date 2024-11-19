@@ -1,4 +1,4 @@
-import people_stack from "../../../assets/images/voluntariado/people_stack.svg";
+import people_stack from "../../../assets/images/voluntariado/people_stack.png";
 import grid_image_a from "../../../assets/images/voluntariado/grid_image_a.svg";
 import grid_image_b from "../../../assets/images/voluntariado/grid_image_b.svg";
 import grid_image_c from "../../../assets/images/voluntariado/grid_image_c.svg";

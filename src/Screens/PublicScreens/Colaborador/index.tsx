@@ -1,4 +1,4 @@
-import main_imagem from "../../../assets/images/colaborador/main_imagem.svg";
+import main_imagem from "../../../assets/images/colaborador/main_imagem.png";
 import image from "../../../assets/images/colaborador/image.svg";
 import "@styles/voluntariosInfo.scss";
 import "@styles/global.scss";

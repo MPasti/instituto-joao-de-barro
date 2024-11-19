@@ -1,4 +1,4 @@
-import main_imagem from "../../../assets/images/perfil/main_image.svg";
+import main_imagem from "../../../assets/images/perfil/main_image.png";
 import "@styles/global.scss";
 import "@styles/Perfil.scss";
 

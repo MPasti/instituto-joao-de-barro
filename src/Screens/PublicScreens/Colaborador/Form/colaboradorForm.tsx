@@ -1,13 +1,13 @@
 import { useState } from "react";
-import main_imagem from "../../../../assets/images/colaborador/main_imagem.svg";
+import main_imagem from "../../../../assets/images/colaborador/main_imagem.png";
 import "@styles/voluntariosForm.scss";
 import "@styles/global.scss";
 
 export function ColaboradorForm() {
-	const [nomeCompleto, setNomeCompleto] = useState("");
+	const [nome, setNome] = useState("");
+	const [sobrenome, setSobrenome] = useState("");
 	const [telefone, setTelefone] = useState("");
 	const [email, setEmail] = useState("");
-	const [telefone2, setTelefone2] = useState("");
 	const [cpf, setCpf] = useState("");
 	const [hobby, setHobby] = useState("");
 	const [intencao, setIntencao] = useState("");
@@ -17,14 +17,6 @@ export function ColaboradorForm() {
 	const [formaPagamento, setFormaPagamento] = useState("");
 	const [materiaisQuantidade, setMateriaisQuantidade] = useState("");
 	const [checkboxes, setCheckboxes] = useState({
-		"fui_ajudado": false,
-		"por_amigos": false,
-		"google": false,
-		"instagram": false,
-		"facebook": false,
-		"marketing": false,
-		"outro": false,
-		"receber_novidades": false,
 		"politicas_privacidade": false,
 	});
 
@@ -43,8 +35,12 @@ export function ColaboradorForm() {
 			alert("Você já enviou um form.");
 			return false;
 		}
-		if (!nomeCompleto.trim()) {
-			alert("Nome completo é obrigatório.");
+		if (!nome.trim()) {
+			alert("Nome é obrigatório.");
+			return false;
+		}
+		if(!sobrenome.trim()){
+			alert("Sobrenome é obrigatório.")
 			return false;
 		}
 		if (!telefone.trim()) {
@@ -98,16 +94,29 @@ export function ColaboradorForm() {
 					action=""
 					style={{ display: "flex", flexDirection: "column" }}
 				>
-					<div className="form-group form-input-c">
-						<label htmlFor="nome-completo">Nome completo</label>
-						<input
-							type="text"
-							id="nome-completo"
-							name="nome-completo"
-							value={nomeCompleto}
-							onChange={(e) => setNomeCompleto(e.target.value)}
-							placeholder="Digite seu nome completo"
-						/>
+					<div className="form-group double-input-container-c">
+						<div className="form-input-c">
+							<label htmlFor="nome">Nome</label>
+							<input
+								type="text"
+								id="nome"
+								name="nome"
+								value={nome}
+								onChange={(e) => setNome(e.target.value)}
+								placeholder="Digite seu nome"
+							/>
+						</div>
+						<div className="form-input-c">
+							<label htmlFor="sobrenome">Sobrenome</label>
+							<input
+								type="text"
+								id="sobrenome"
+								name="sobrenome"
+								value={sobrenome}
+								onChange={(e) => setSobrenome(e.target.value)}
+								placeholder="Digite seu sobrenome"
+							/>
+						</div>
 					</div>
 					<div className="form-group double-input-container-c">
 						<div className="form-input-c">
@@ -135,17 +144,6 @@ export function ColaboradorForm() {
 					</div>
 					<div className="form-group double-input-container-c">
 						<div className="form-input-c">
-							<label htmlFor="telefone2">Telefone 2</label>
-							<input
-								type="tel"
-								id="telefone2"
-								name="telefone2"
-								value={telefone2}
-								onChange={(e) => setTelefone2(e.target.value)}
-								placeholder="Digite seu segundo telefone"
-							/>
-						</div>
-						<div className="form-input-c">
 							<label htmlFor="cpf">CPF</label>
 							<input
 								type="text"
@@ -156,17 +154,17 @@ export function ColaboradorForm() {
 								placeholder="Digite seu CPF"
 							/>
 						</div>
-					</div>
-					<div className="form-group form-input-c">
-						<label htmlFor="hobby">Hobby</label>
-						<input
-							type="text"
-							id="hobby"
-							name="hobby"
-							value={hobby}
-							onChange={(e) => setHobby(e.target.value)}
-							placeholder="Digite seu hobby"
-						/>
+						<div className="form-input-c">
+							<label htmlFor="hobby">Hobby</label>
+							<input
+								type="text"
+								id="hobby"
+								name="hobby"
+								value={hobby}
+								onChange={(e) => setHobby(e.target.value)}
+								placeholder="Digite seu hobby"
+							/>
+						</div>
 					</div>
 					<div className="form-group form-input-c">
 						<label htmlFor="intencao">Intenção</label>
@@ -202,70 +200,6 @@ export function ColaboradorForm() {
 						/>
 					</div>
 					<div className="checkbox-container">
-						<label>Como descobriu o João de Barro</label>
-						<div>
-							<input
-								type="checkbox"
-								name="fui_ajudado"
-								checked={checkboxes.fui_ajudado}
-								onChange={handleCheckboxChange}
-							/>
-							<span>Ja fui ajudado(a) por ela</span>
-						</div>
-						<div>
-							<input
-								type="checkbox"
-								name="por_amigos"
-								checked={checkboxes.por_amigos}
-								onChange={handleCheckboxChange}
-							/>
-							<span>Por meio de amigos</span>
-						</div>
-						<div>
-							<input
-								type="checkbox"
-								name="google"
-								checked={checkboxes.google}
-								onChange={handleCheckboxChange}
-							/>
-							<span>google</span>
-						</div>
-						<div>
-							<input
-								type="checkbox"
-								name="instagram"
-								checked={checkboxes.instagram}
-								onChange={handleCheckboxChange}
-							/>
-							<span>instagram</span>
-						</div>
-						<div>
-							<input
-								type="checkbox"
-								name="facebook"
-								checked={checkboxes.facebook}
-								onChange={handleCheckboxChange}
-							/>
-							<span>facebook</span>
-						</div>
-						<div>
-							<input
-								type="checkbox"
-								name="marketing"
-								checked={checkboxes.marketing}
-								onChange={handleCheckboxChange}
-							/>
-							<span>E-mail marketing</span>
-						</div>
-						<div>
-							<input
-								type="checkbox"
-								name="outro"
-								checked={checkboxes.outro}
-								onChange={handleCheckboxChange}
-							/>
-							<span>outro</span>
-						</div>
 					</div>
 					<h1>Como gostaria de contribuir?</h1>
 					<div className="double-input-container-c">
@@ -303,19 +237,6 @@ export function ColaboradorForm() {
 						></textarea>
 					</div>
 					<div className="checkbox-container">
-						<label>
-							Deseja receber informações sobre os impactos das doações e
-							novidades?
-						</label>
-						<div>
-							<input
-								type="checkbox"
-								name="receber_novidades"
-								checked={checkboxes.receber_novidades}
-								onChange={handleCheckboxChange}
-							/>
-							<span>Sim! Desejo receber novidades da João de Barro.</span>
-						</div>
 						<div>
 							<input
 								type="checkbox"
