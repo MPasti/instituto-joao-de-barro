@@ -2,113 +2,107 @@ import { useState } from 'react';
 import '@styles/global.scss';
 import './registro.scss';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { registerBeneficario, FamiliarMember } from '../../../services/beneficiaries/beneficiariesApi';
+import { BenefStatus, registerBeneficiaryAndUser } from '../../../services/beneficiaries/beneficiariesApi';
+import toast from 'react-hot-toast';
 
 const Registro = () => {
     const navigate = useNavigate();
     const location = useLocation();
 
-    const [nomeFamilia, setNomeFamilia] = useState('');
-    const [statusFamilia, setStatusFamilia] = useState('');
-    const [nomePrincipal, setNomePrincipal] = useState('');
+    // User states
+    const [email, setEmail] = useState('');
     const [cpf, setCpf] = useState('');
-    const [endereco, setEndereco] = useState('');
-    const [cep, setCep] = useState('');
-    const [rendaMensal, setRendaMensal] = useState(0);
-    const [telefone1, setTelefone1] = useState('');
-    const [telefone2, setTelefone2] = useState('');
-    const [comoChegou, setComoChegou] = useState('');
-    const [familiarExtras, setFamiliarExtras] = useState('');
-    const [dadosImovel, setDadosImovel] = useState('');
-    const [necessidadeFamilia, setNecessidadeFamilia] = useState('');
-    const [familyMembers, setFamilyMembers] = useState<FamiliarMember[]>([]);
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+
+    // UserInfo states
+    const [name, setName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [rg, setRg] = useState('');
+    const [birthdayDate, setBirthdayDate] = useState('');
+    const [phone1, setPhone1] = useState('');
+    const [phone2, setPhone2] = useState('');
+
+    // Beneficiary states
+    const [indicatorName, setIndicatorName] = useState('');
+    const [indicationDate, setIndicationDate] = useState(new Date());
+    const [houseStatus, setHouseStatus] = useState('');
+    const [meetDescription, setMeetDescription] = useState('');
+    const [monthlyIncome, setMonthlyIncome] = useState(0);
+    const [status, setStatus] = useState<BenefStatus>();
+
+    // Family members
+    const [familyMembers, setFamilyMembers] = useState<FamilyMember[]>([]);
 
     const validateForm = () => {
-        if (
-            !nomeFamilia ||
-            !statusFamilia ||
-            !nomePrincipal ||
-            !cpf ||
-            !endereco ||
-            !cep ||
-            !rendaMensal ||
-            !telefone1 ||
-            !familiarExtras ||
-            !dadosImovel ||
-            !necessidadeFamilia
-        ) {
-            alert('Por favor, preencha todos os campos.');
+        if (!email || !cpf || !password || !confirmPassword) {
+            toast.error('Preencha todos os campos obrigatórios do usuário.');
             return false;
         }
-
+        if (!name || !lastName || !rg || !birthdayDate || !phone1) {
+            toast.error('Preencha todos os campos obrigatórios do UserInfo.');
+            return false;
+        }
+        if (!indicatorName || !indicationDate || !houseStatus || !meetDescription || !monthlyIncome || !status) {
+            toast.error('Preencha todos os campos obrigatórios do beneficiário.');
+            return false;
+        }
         if (cpf.length !== 11) {
-            alert('O CPF deve ter 11 dígitos.');
+            toast.error('O CPF deve ter 11 dígitos.');
             return false;
         }
-
-        if (cep.length !== 8) {
-            alert('O CEP deve ter 8 dígitos.');
+        if (password !== confirmPassword) {
+            toast.error('As senhas não coincidem.');
             return false;
         }
-
         return true;
     };
 
     const createFamilia = async () => {
         if (!validateForm()) return;
 
-        const data = {
-            nomeFamilia,
-            statusFamilia,
-            nomePrincipal,
-            cpf,
-            endereco,
-            cep,
-            rendaMensal,
-            telefone1,
-            telefone2,
-            comoChegou,
-            familiarExtras,
-            dadosImovel,
-            necessidadeFamilia,
-            FamiliarMembers: familyMembers,
-            status: 'ATIVO',
+        const userInfo: UserInfo = {
+            name,
+            lastName,
+            rg,
+            birthdayDate: new Date(birthdayDate),
+            phone1,
+            phone2,
+            createdAt: new Date(),
+            active: true,
+            profilePic: new Uint8Array(),
         };
 
-        console.log("Data being sent:", data);
+        const benefUser: BenefUser = {
+            email,
+            cpf,
+            password,
+            createdAt: new Date(),
+            updatedAt: new Date(),
+            deletedAt: new Date(),
+            userInfo,
+        };
+
+        const beneficiary: Beneficiary = {
+            name,
+            indicatorName,
+            indicationDate,
+            houseStatus,
+            meetDescription,
+            monthlyIncome,
+            status: status ?? BenefStatus.NECESSITA_ATENCAO,
+        };
 
         try {
-            await registerBeneficario(data);
+            await registerBeneficiaryAndUser({ benefUser, beneficiary, familyMembers });
             if (location.pathname.includes("dashboard")) {
                 navigate('/dashboard/beneficiarios');
             } else {
                 navigate('/beneficiarios');
             }
         } catch (err) {
-            console.log('Erro durante o registro: ' + err);
-        }
-    };
-
-    const resetForm = () => {
-        setNomeFamilia('');
-        setStatusFamilia('');
-        setNomePrincipal('');
-        setCpf('');
-        setEndereco('');
-        setCep('');
-        setRendaMensal(0);
-        setTelefone1('');
-        setTelefone2('');
-        setComoChegou('');
-        setFamiliarExtras('');
-        setDadosImovel('');
-        setNecessidadeFamilia('');
-        setFamilyMembers([]);
-
-        if (location.pathname.includes("dashboard")) {
-            navigate('/dashboard/beneficiarios');
-        } else {
-            navigate('/beneficiarios');
+            console.error('Erro durante o registro:', err);
+            toast.error('Erro ao registrar a família.');
         }
     };
 
@@ -116,19 +110,17 @@ const Registro = () => {
         setFamilyMembers([
             ...familyMembers,
             {
-                beneficiario_id: 0,
-                cpf: '',
-                name: '',
-                last_name: '',
-                age: 0,
-                email: '',
-                phone: '',
-                status: '',
+                familyName: '',
+                kinship: '',
+                scholarity: '',
+                income: 0,
+                incomeDescription: '',
+                healthyProblems: '',
             },
         ]);
     };
 
-    const updateFamilyMember = (index: number, field: keyof FamiliarMember, value: any) => {
+    const updateFamilyMember = (index: number, field: keyof FamilyMember, value: any) => {
         const updatedMembers = familyMembers.map((member, i) =>
             i === index ? { ...member, [field]: value } : member
         );
@@ -139,184 +131,80 @@ const Registro = () => {
         <div className="registro">
             <h1 className="subtitle">Registro</h1>
             <p className="description">
-                Por favor, preencha os detalhes abaixo para registrar uma família no programa de assistência habitacional.
+                Preencha os detalhes abaixo para registrar uma família no programa de assistência.
             </p>
             <div className="form-control">
-                <div className="input-group">
-                    <label>Nome da Família:</label>
-                    <input
-                        type="text"
-                        placeholder="Nome da Família"
-                        value={nomeFamilia}
-                        onChange={(e) => setNomeFamilia(e.target.value)}
-                    />
+                {/* Campos do usuário */}
+                <label>Email:</label>
+                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
 
-                    <label>Nome Principal:</label>
-                    <input
-                        type="text"
-                        placeholder="Nome Principal"
-                        value={nomePrincipal}
-                        onChange={(e) => setNomePrincipal(e.target.value)}
-                    />
+                <label>CPF:</label>
+                <input type="text" value={cpf} onChange={(e) => setCpf(e.target.value)} />
 
-                    <label>CPF:</label>
-                    <input
-                        type="text"
-                        placeholder="CPF"
-                        value={cpf}
-                        onChange={(e) => setCpf(e.target.value)}
-                    />
+                <label>Senha:</label>
+                <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
 
-                    <label>Endereço:</label>
-                    <input
-                        type="text"
-                        placeholder="Endereço"
-                        value={endereco}
-                        onChange={(e) => setEndereco(e.target.value)}
-                    />
+                <label>Confirmar Senha:</label>
+                <input type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
 
-                    <label>CEP:</label>
-                    <input
-                        type="text"
-                        placeholder="CEP"
-                        value={cep}
-                        onChange={(e) => setCep(e.target.value)}
-                    />
+                {/* Campos do UserInfo */}
+                <label>Nome:</label>
+                <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
 
-                    <label>Renda Mensal:</label>
-                    <input
-                        type="number"
-                        placeholder="Renda Mensal"
-                        value={rendaMensal}
-                        onChange={(e) => setRendaMensal(Number(e.target.value))}
-                    />
+                <label>Sobrenome:</label>
+                <input type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} />
 
-                    <label>Telefone:</label>
-                    <input
-                        type="text"
-                        placeholder="Telefone"
-                        value={telefone1}
-                        onChange={(e) => setTelefone1(e.target.value)}
-                    />
+                <label>RG:</label>
+                <input type="text" value={rg} onChange={(e) => setRg(e.target.value)} />
 
-                    <label>Telefone 2:</label>
-                    <input
-                        type="text"
-                        placeholder="Telefone 2"
-                        value={telefone2}
-                        onChange={(e) => setTelefone2(e.target.value)}
-                    />
+                <label>Data de Nascimento:</label>
+                <input type="date" value={birthdayDate} onChange={(e) => setBirthdayDate(e.target.value)} />
 
-                    <label>Como chegou ao instituto:</label>
-                    <input
-                        type="text"
-                        placeholder="Como chegou ao instituto"
-                        value={comoChegou}
-                        onChange={(e) => setComoChegou(e.target.value)}
-                    />
+                <label>Telefone 1:</label>
+                <input type="text" value={phone1} onChange={(e) => setPhone1(e.target.value)} />
 
-                    <button onClick={addFamilyMember} className='addFamily-btn'>Adicionar Membro</button>
+                <label>Telefone 2:</label>
+                <input type="text" value={phone2} onChange={(e) => setPhone2(e.target.value)} />
 
-                    {familyMembers.map((member, index) => (
-                        <div key={index} className='family-member-input-group'>
-                            <label>Nome:</label>
-                            <input
-                                type="text"
-                                placeholder="Nome"
-                                value={member.name}
-                                onChange={(e) => updateFamilyMember(index, 'name', e.target.value)}
-                            />
-                            <label>Sobrenome:</label>
-                            <input
-                                type="text"
-                                placeholder="Sobrenome"
-                                value={member.last_name}
-                                onChange={(e) => updateFamilyMember(index, 'last_name', e.target.value)}
-                            />
-                            <label>CPF:</label>
-                            <input
-                                type="text"
-                                placeholder="CPF"
-                                value={member.cpf}
-                                onChange={(e) => updateFamilyMember(index, 'cpf', e.target.value)}
-                            />
-                            <label>Idade:</label>
-                            <input
-                                type="number"
-                                placeholder="Idade"
-                                value={member.age}
-                                onChange={(e) => updateFamilyMember(index, 'age', Number(e.target.value))}
-                            />
-                            <label>Email:</label>
-                            <input
-                                type="text"
-                                placeholder="Status"
-                                value={member.status}
-                                onChange={(e) => updateFamilyMember(index, 'email', e.target.value)}
-                            />
-                            <label>Telefone:</label>
-                            <input
-                                type="text"
-                                placeholder="Telefone"
-                                value={member.phone}
-                                onChange={(e) => updateFamilyMember(index, 'phone', e.target.value)}
-                            />
-                            <label>Possui Problemas Físicos ou Mentais? Quais?</label>
-                            <input
-                                type="text"
-                                placeholder="Problemas Fisicos ou Mentais"
-                                value={member.disability || ''}
-                                onChange={(e) => updateFamilyMember(index, 'disability', e.target.value)}
-                            />
-                        </div>
-                    ))}
-                </div>
+                {/* Campos do beneficiário */}
+                <label>Nome do Indicador:</label>
+                <input type="text" value={indicatorName} onChange={(e) => setIndicatorName(e.target.value)} />
 
-                <div className="dropdown-button-group">
-                    <div className="dropdown-group">
-                        <label>Status da Família:</label>
-                        <select value={statusFamilia} onChange={(e) => setStatusFamilia(e.target.value)}>
-                            <option value="">Selecione uma opção</option>
-                            <option value="Aprovado">Aprovado</option>
-                            <option value="Negado">Negado</option>
-                            <option value="Em análise">Em análise</option>
-                        </select>
+                <label>Data da Indicação:</label>
+                <input type="date" value={indicationDate.toISOString().split('T')[0]} onChange={(e) => setIndicationDate(new Date(e.target.value))} />
 
-                        <label>Familiar Extras</label>
-                        <select value={familiarExtras} onChange={(e) => setFamiliarExtras(e.target.value)}>
-                            <option value="">Selecione uma opção</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5+">5+</option>
-                        </select>
+                <label>Situação da Moradia:</label>
+                <input type="text" value={houseStatus} onChange={(e) => setHouseStatus(e.target.value)} />
 
-                        <label>Dados do imóvel</label>
-                        <select value={dadosImovel} onChange={(e) => setDadosImovel(e.target.value)}>
-                            <option value="">Selecione uma opção</option>
-                            <option value="Casa">Casa</option>
-                            <option value="Apartamento">Apartamento</option>
-                            <option value="Alugado">Alugado</option>
-                            <option value="Outro">Outro</option>
-                        </select>
+                <label>Como conheceu o programa:</label>
+                <input type="text" value={meetDescription} onChange={(e) => setMeetDescription(e.target.value)} />
 
-                        <label>Qual a necessidade da família?</label>
-                        <select value={necessidadeFamilia} onChange={(e) => setNecessidadeFamilia(e.target.value)}>
-                            <option value="">Selecione uma opção</option>
-                            <option value="Construção">Construção</option>
-                            <option value="Só reforma">Só reforma</option>
-                            <option value="Reforma e ampliação">Reforma e ampliação</option>
-                            <option value="Doação de materiais de construção">Doação de materiais de construção</option>
-                            <option value="Outro">Outro</option>
-                        </select>
+                <label>Renda Mensal:</label>
+                <input type="number" value={monthlyIncome} onChange={(e) => setMonthlyIncome(Number(e.target.value))} />
+
+                <label>Status:</label>
+                <select value={status} onChange={(e) => setStatus(e.target.value as BenefStatus)}>
+                    <option value="">Selecione</option>
+                    <option value={'NECESSITA_ATENCAO'}>Necessita Atenção</option>
+                    <option value={'EM_ANALISE'}>Em Análise</option>
+                    <option value={'APROVADO'}>Aprovado</option>
+                </select>
+
+                {/* Membros da família */}
+                <label>Membros da Família:</label>
+                {familyMembers.map((member, index) => (
+                    <div key={index} className="family-member">
+                        <input type="text" placeholder="Nome" value={member.familyName} onChange={(e) => updateFamilyMember(index, 'familyName', e.target.value)} />
+                        <input type="text" placeholder="Parentesco" value={member.kinship} onChange={(e) => updateFamilyMember(index, 'kinship', e.target.value)} />
+                        <input type="text" placeholder="Escolaridade" value={member.scholarity} onChange={(e) => updateFamilyMember(index, 'scholarity', e.target.value)} />
+                        <input type="number" placeholder="Renda" value={member.income} onChange={(e) => updateFamilyMember(index, 'income', Number(e.target.value))} />
+                        <input type="text" placeholder="Descrição da Renda" value={member.incomeDescription} onChange={(e) => updateFamilyMember(index, 'incomeDescription', e.target.value)} />
+                        <input type="text" placeholder="Problemas de Saúde" value={member.healthyProblems} onChange={(e) => updateFamilyMember(index, 'healthyProblems', e.target.value)} />
                     </div>
+                ))}
+                <button onClick={addFamilyMember}>+ Adicionar Membro</button>
 
-                    <div className="button-group">
-                        <button onClick={createFamilia} className="button confirm-btn">CONFIRMAR</button>
-                        <button onClick={resetForm} className="button discard-btn">DESCARTAR</button>
-                    </div>
-                </div>
+                <button onClick={createFamilia}>Confirmar</button>
             </div>
         </div>
     );

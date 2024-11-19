@@ -1,121 +1,145 @@
-import axios from "axios";
-import { Beneficiary, FamilyMember, Filters, Status } from "./beneficiaryTypes.ts";
+import { api } from "../api.ts";
+import { registerFamilyMember } from "./familyApi.ts";
 
-const api = axios.create({
-    baseURL: `${import.meta.env.VITE_API_URL}`,
-});
+export enum BenefStatus {
+    ATIVO = 'ativo',
+    INATIVO = 'inativo',
+    PENDENTE = 'pendente',
+    EM_ANALISE = 'em_analise',
+    APROVADO = 'aprovado',
+    NECESSITA_ATENCAO = 'necessita_atencao',
+  }
 
-export const registerBeneficario = async (data: Beneficiary, members?: FamilyMember[]) => {
+
+export interface RegisterBeneficiaryUserRequest {
+    benefUser: BenefUser;
+    beneficiary: Beneficiary;
+    familyMembers: FamilyMember[];
+}
+
+export const registerBeneficiaryAndUser = async ({benefUser, beneficiary, familyMembers}: RegisterBeneficiaryUserRequest) => {
     try {
-        const benefResponse = await api.post<Beneficiary>('/beneficiario', data);
+        const userResponse = await api.post("/user", benefUser);
 
-        if (!benefResponse.data.id) {
-            throw new Error('Beneficiário não possui ID');
-        }
+        beneficiary.userId = userResponse.data.id;
 
-        const membersResponse: FamilyMember[] = [];
+        const response = await registerBeneficiary(beneficiary);
 
-        if (members && members.length !== 0) {
-            for (const member of members) {
-                const response = await api.post<FamilyMember>(`/registro/familiar/${benefResponse.data.id}`, member);
-                membersResponse.push(response.data);
-            }
-        }
+        familyMembers.forEach(async (familyMember) => {
+            familyMember.beneficiaryId = response.id;
+            await registerFamilyMember(familyMember);
+        });
 
-        return { benefResponse: benefResponse.data, membersResponse };
-
-    } catch (err) {
-        console.error('Erro durante o registro: ', err);
-        throw new Error('Erro ao registrar o beneficiário e membros familiares');
-    }
-};
-
-
-
-export const getBeneficiarios = async (page: number = 1, filters?: Filters) => {
-    try {
-        const queryParams = new URLSearchParams(filters as any).toString();
-        const response = await api.get<Beneficiary[]>(`/beneficiarios?${queryParams}`);
-        return response.data.slice((page - 1) * 10, page * 10);
-    } catch (err) {
-        console.error('Erro durante a busca: ', err);
-        throw new Error('Erro ao buscar beneficiários');
-    }
-};
-
-export const getBeneficiario = async (id: number) => {
-    try {
-        const response = await api.get<Beneficiary>(`/beneficiario/${id}`);
         return response.data;
-    } catch (err) {
-        console.error('Erro durante a busca: ', err);
-        throw new Error('Erro ao buscar beneficiário');
+    } catch (error) {
+        throw error;
     }
-};
+}
 
-export const getFamiliarMembers = async (benefId: number) => {
+export const registerBeneficiary = async (beneficiary: Beneficiary) => {
     try {
-        const response = await api.get<FamilyMember[]>(`/familiares/${benefId}`);
+        const response = await api.post("/beneficiario", beneficiary);
         return response.data;
-    } catch (err) {
-        console.error('Erro durante a busca: ', err);
-        throw new Error('Erro ao buscar membros familiares');
+    } catch (error) {
+        throw error;
     }
-};
+}
 
-export const updateFamiliarMember = async (id: number, data: FamilyMember) => {
+export const getBeneficiaryById = async (id: number): Promise<Beneficiary> => {
     try {
-        const response = await api.put<FamilyMember>(`/familiar/${id}`, data);
+        const response = await api.get(`/beneficiario/${id}`);
         return response.data;
-    } catch (err) {
-        console.error('Erro durante a atualização: ', err);
-        throw new Error('Erro ao atualizar membro familiar');
+    } catch (error) {
+        throw error;
     }
-};
+}
 
-export const updateBeneficiario = async (id: number, data: Beneficiary, members?: FamilyMember[]) => {
+export const getBeneficiaries = async (filters?: Filters): Promise<Beneficiary[]> => {
     try {
-        const benefResponse = await api.put<Beneficiary>(`/beneficiario/${id}`, data);
+        const response = await api.get("/beneficiario");
 
-        const membersResponse: FamilyMember[] = [];
+        if(filters) {
 
-        if (members && members.length !== 0) {
-            for (const member of members) {
-                const response = await api.put<FamilyMember>(`/familiar/${member.beneficiaryId}`, member);
-                membersResponse.push(response.data);
-            }
-        }
-
-        return { benefResponse: benefResponse.data, membersResponse };
-
-    } catch (err) {
-        console.error('Erro durante a atualização: ', err);
-        throw new Error('Erro ao atualizar beneficiário e membros familiares');
-    }
-};
-
-export const deleteBeneficiario = async (id: number) => {
-    try {
-        const beneficiario = await getBeneficiario(id);
-        if (!beneficiario) {
-            throw new Error('Beneficiário não encontrado');
-        }
-
-        const members = await getFamiliarMembers(beneficiario.id!);
-        if (!members || members.length === 0) {
-            console.warn('Nenhum membro familiar encontrado, mas o beneficiário será inativado.');
+            return response.data.filter((beneficiary: any) => {
+                let isMatch = true;
+                
+                if (filters.name) {
+                    isMatch = isMatch && beneficiary.name?.toLowerCase().includes(filters.name.toLowerCase());
+                }
+                
+                if (filters.status) {
+                    isMatch = isMatch && beneficiary.status === filters.status;
+                }
+                
+                if (filters.meetDescription) {
+                    isMatch = isMatch && beneficiary.meetDescription?.toLowerCase().includes(filters.meetDescription.toLowerCase());
+                }
+                
+                if (filters.indicatorName) {
+                    isMatch = isMatch && beneficiary.indicatorName?.toLowerCase().includes(filters.indicatorName.toLowerCase());
+                }
+                
+                if (filters.monthlyIncome !== undefined) {
+                    isMatch = isMatch && beneficiary.monthlyIncome === filters.monthlyIncome;
+                }
+                
+                if (filters.indicationDate) {
+                    const beneficiaryDate = new Date(beneficiary.indicationDate).toISOString().split('T')[0];
+                    const filterDate = new Date(filters.indicationDate).toISOString().split('T')[0];
+                    isMatch = isMatch && beneficiaryDate === filterDate;
+                }
+                
+                if (filters.houseStatus) {
+                    isMatch = isMatch && beneficiary.houseStatus?.toLowerCase().includes(filters.houseStatus.toLowerCase());
+                }
+                
+                return isMatch;
+            });
         } else {
-            const updateMembersPromises = members.map(member =>
-                api.patch(`/familiar/${member.beneficiaryId}`, { ...member, status: 'INATIVO' })
-            );
-            await Promise.all(updateMembersPromises);
+            return response.data;
         }
-
-        await updateBeneficiario(id, { ...beneficiario, status: Status.INATIVO });
-
-        console.log("Beneficiário e membros familiares inativados com sucesso.");
-    } catch (err) {
-        console.error('Erro durante a exclusão: ', err);
-        throw new Error('Erro ao inativar beneficiário e membros familiares');
+    } catch (error) {
+        throw error;
     }
 };
+
+export interface BeneficiaryAndFamilyResponse {
+    beneficiary: Beneficiary;
+    family: FamilyMember[];
+}
+
+export const getBeneficiaryAndFamilyById = async (id: number): Promise<BeneficiaryAndFamilyResponse> => {
+    try {
+        const response = await api.get(`/beneficiarios/getAllData/${id}`);
+        return response.data;
+    } catch (error) {
+        throw error;
+    }
+}
+
+export const getUserByBeneficiaryId = async (beneficiaryId: number): Promise<BenefUser> => {
+    try {
+        const response = await api.get(`/user/beneficiario/${beneficiaryId}`);
+        return response.data;
+    } catch (error) {
+        throw error;
+    }
+}
+
+export const updateBeneficiary = async (beneficiary: Beneficiary) => {
+    try {
+        const response = await api.put(`/beneficiario`, beneficiary);
+        return response.data;
+    } catch (error) {
+        throw error;
+    }
+}
+
+export const deleteBeneficiary = async (id: number) => {
+    try {
+        const response = await api.delete(`/beneficiario/${id}`);
+        return response.data;
+    } catch (error) {
+        throw error;
+    }
+}

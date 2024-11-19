@@ -2,20 +2,18 @@ import React, { useState, useEffect } from "react";
 import "@styles/global.scss";
 import "./beneficiarios.scss";
 import { useNavigate } from "react-router-dom";
-import { getVisitas, deleteVisita } from "../../../services/beneficiaries/visitApi";
 import TabNavigation from "../../../components/TabNavigation/TabNavigation";
 import SearchBar from "../../../components/SearchBar/SearchBar";
 import FamiliasTable from "../../../components/FamiliasTable/FamiliasTable";
 import VisitasTable from "../../../components/VisitasTable/VisitasTable";
+import { deleteBeneficiary, getBeneficiaries, getBeneficiaryById } from "../../../services/beneficiaries/beneficiariesApi";
 import toast from "react-hot-toast";
-import { Beneficiary, BeneficiaryVisit, Status } from "../../../services/beneficiaries/beneficiaryTypes";
-import { deleteBeneficiario, getBeneficiario, getBeneficiarios } from "../../../services/beneficiaries/beneficiariesApi";
+import { deleteVisit, getVisits } from "../../../services/beneficiaries/visitApi";
 
 export interface VisitsItemProps {
-    visit: BeneficiaryVisit
-    beneficiary: Beneficiary
+    visit: Visit;
+    beneficiary: Beneficiary;
 }
-
 
 export const BeneficiariosMain = () => {
     const [activeTab, setActiveTab] = useState<'familias' | 'visitas'>('familias');
@@ -24,7 +22,7 @@ export const BeneficiariosMain = () => {
 
     const [familias, setFamilias] = useState<Beneficiary[]>([]);
     const [filteredFamilies, setFilteredFamilies] = useState<Beneficiary[]>([]);
-    const [visitsData, setVisityData] = useState<VisitsItemProps[]>([]);
+    const [visitsData, setVisitsData] = useState<VisitsItemProps[]>([]);
 
     const handleTabClick = (tab: 'familias' | 'visitas') => {
         setActiveTab(tab);
@@ -32,70 +30,71 @@ export const BeneficiariosMain = () => {
     };
 
     const handleDeleteBeneficiario = async (id: number) => {
-        const confirmDelete = window.confirm('Você tem certeza que deseja excluir este item?');
-        if (!confirmDelete) return;
-
-        try {
-            await deleteBeneficiario(id);
-            toast.success('Item excluído com sucesso!');
-            fetchData();
-        } catch (err) {
-            toast.error("Erro ao excluir item: " + err);
+        if (window.confirm('Você tem certeza que deseja excluir este item?')) {
+            try {
+                await deleteBeneficiary(id);
+                toast.success('Item excluído com sucesso!');
+                fetchBeneficiarios();
+            } catch (err) {
+                toast.error("Erro ao excluir item: " + err);
+            }
         }
     };
 
     const handleDeleteVisitas = async (id: number) => {
-        const confirmDelete = window.confirm('Você tem certeza que deseja excluir esta visita?');
-        if (!confirmDelete) return;
-
-        try {
-            await deleteVisita(id);
-            toast.success('Visita excluída com sucesso!');
-            fetchData(); // Refresh the data to update the VisitasTable
-        } catch (err) {
-            toast.error("Erro ao excluir visita: " + err);
+        if (window.confirm('Você tem certeza que deseja excluir esta visita?')) {
+            try {
+                await deleteVisit(id);
+                toast.success('Visita excluída com sucesso!');
+                fetchVisitas();
+            } catch (err) {
+                toast.error("Erro ao excluir visita: " + err);
+            }
         }
     };
 
-    const fetchData = async () => {
+    const fetchBeneficiarios = async () => {
         try {
-            const beneficiariosResponse = await getBeneficiarios();
-            console.log(beneficiariosResponse)
+            const beneficiariosResponse = await getBeneficiaries();
             if (!beneficiariosResponse) {
                 toast.error('Erro ao buscar famílias');
                 return;
             }
-            const activeFamilies = beneficiariosResponse.filter((beneficiario: Beneficiary) => beneficiario.status !== Status.INATIVO);
+            const activeFamilies = beneficiariosResponse.filter(
+                (beneficiario: Beneficiary) => beneficiario.status !== Status.INATIVO
+            );
             setFamilias(activeFamilies);
-            console.log(familias)
             setFilteredFamilies(activeFamilies);
         } catch (err) {
-            toast.error("Error during fetch: " + err);
-
+            toast.error("Erro ao buscar beneficiários: " + err);
         }
-        if (activeTab === 'visitas') {
-            try {
-                let visits = []
-                const response = await getVisitas();
+    };
 
-                for (const visit of response) {
-                    const beneficiary = await getBeneficiario(visit.beneficiaryId);
-                    visits.push({ visit, beneficiary });
-                }
-
-                if (!response) {
-                    toast.error('Erro ao buscar visitas');
-                    return;
-                }
-                setVisityData(visits);
-            } catch (err) {
-                toast.error("Error during fetch: " + err);
+    const fetchVisitas = async () => {
+        try {
+            const response = await getVisits();
+            if (!response) {
+                toast.error('Erro ao buscar visitas');
+                return;
             }
+            const visits = await Promise.all(
+                response.map(async (visit: Visit) => {
+                    const beneficiary = await getBeneficiaryById(visit.beneficiaryId);
+                    return { visit, beneficiary };
+                })
+            );
+            setVisitsData(visits);
+        } catch (err) {
+            toast.error("Erro ao buscar visitas: " + err);
         }
     };
 
     useEffect(() => {
-        fetchData();
+        if (activeTab === 'familias') {
+            fetchBeneficiarios();
+        } else {
+            fetchVisitas();
+        }
     }, [activeTab]);
 
     const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -106,42 +105,41 @@ export const BeneficiariosMain = () => {
             setFilteredFamilies(familias);
         } else {
             const filtered = familias.filter(item =>
-                (typeof item.name === 'string' && item.name.toLowerCase().includes(value.toLowerCase()))
+                item.name?.toLowerCase().includes(value.toLowerCase())
             );
-            console.log("Famílias filtradas:", filtered);
             setFilteredFamilies(filtered);
         }
     };
 
     return (
-      <div className="beneficiarios-page">
-          <div className="dashboard-header">
-              <div className="left-section">
-                  <h1 className="subtitle">Dashboard</h1>
-                  <p className="description">
-                      Visualize e gerencie as famílias cadastradas no programa de assistência habitacional.
-                  </p>
-              </div>
-  
-              <div className="search-section"> {/* Moved this inside the dashboard-header */}
-                  <SearchBar
-                      searchTerm={searchTerm}
-                      onSearchChange={handleSearchChange}
-                      onRegisterClick={() => navigate('/dashboard/registro')}
-                      onAddVisitClick={() => navigate('/dashboard/registroVisita')}
-                      onSendToAssemblyClick={() => alert('Enviar para Assembleia!')}
-                      isVisitasTab={activeTab === 'visitas'}
-                  />
-              </div>
-          </div>
-  
-          <TabNavigation activeTab={activeTab} onTabClick={handleTabClick} />
-  
-          {activeTab === 'familias' ? (
-              <FamiliasTable families={filteredFamilies} onDelete={handleDeleteBeneficiario} navigate={navigate} />
-          ) : (
-              <VisitasTable visitas={visitsData} onDelete={handleDeleteVisitas} navigate={navigate} searchTerm={searchTerm} />
-          )}
-      </div>
-  );
+        <div className="beneficiarios-page">
+            <div className="dashboard-header">
+                <div className="left-section">
+                    <h1 className="subtitle">Dashboard</h1>
+                    <p className="description">
+                        Visualize e gerencie as famílias cadastradas no programa de assistência habitacional.
+                    </p>
+                </div>
+
+                <div className="search-section">
+                    <SearchBar
+                        searchTerm={searchTerm}
+                        onSearchChange={handleSearchChange}
+                        onRegisterClick={() => navigate('/dashboard/registro')}
+                        onAddVisitClick={() => navigate('/dashboard/registroVisita')}
+                        onSendToAssemblyClick={() => alert('Enviar para Assembleia!')}
+                        isVisitasTab={activeTab === 'visitas'}
+                    />
+                </div>
+            </div>
+
+            <TabNavigation activeTab={activeTab} onTabClick={handleTabClick} />
+
+            {activeTab === 'familias' ? (
+                <FamiliasTable families={filteredFamilies} onDelete={handleDeleteBeneficiario} navigate={navigate} />
+            ) : (
+                <VisitasTable visitas={visitsData} onDelete={handleDeleteVisitas} navigate={navigate} searchTerm={searchTerm} />
+            )}
+        </div>
+    );
 };

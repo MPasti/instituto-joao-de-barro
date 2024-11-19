@@ -1,49 +1,55 @@
-import axios from "axios";
-import { BeneficiaryVisit } from "./beneficiaryTypes";
+import { api } from "../api";
 
-const api = axios.create({
-    baseURL: import.meta.env.VITE_API_URL,
-});
-
-export const getVisitas = async () => {
+export const registerVisit = async (visit: Visit) => {
     try {
-        const response = await api.get<BeneficiaryVisit[]>('/visitas');
+        const response = await api.post("/visita", visit);
         return response.data;
-    } catch (err) {
-        console.log('Erro ao buscar visitas: ' + err);
-        return []
+    } catch (error) {
+        throw error;
     }
 }
 
-export const getVisita = async (id: number) => {
+export const getVisitById = async (id: number): Promise<Visit> => {
     try {
-        const response = await api.get<BeneficiaryVisit>(`/visitas/${id}`);
+        const response = await api.get(`/visita/${id}`);
         return response.data;
-    } catch (err) {
-        console.log('Erro ao buscar visita: ' + err);
+    } catch (error) {
+        throw error;
     }
 }
 
-export const registerVisita = async (data: BeneficiaryVisit) => {
+export const getVisits = async (): Promise<Visit[]> => {
     try {
-        await api.post('/visitas', data);
-    } catch (err) {
-        console.log('Erro ao registrar visita: ' + err);
+        const response = await api.get("/visita");
+        return response.data;
+    } catch (error) {
+        throw error;
     }
 }
 
-export const updateVisita = async (id: number, data: Partial<BeneficiaryVisit>) => {
+export const getVisitsByBeneficiaryId = async (beneficiaryId: number): Promise<Visit[]> => {
     try {
-        await api.put(`/visitas/${id}`, data);
-    } catch (err) {
-        console.log('Erro ao atualizar visita: ' + err);
+        const response = await api.get(`/visita/visitas/${beneficiaryId}`);
+        return response.data;
+    } catch (error) {
+        throw error;
     }
 }
 
-export const deleteVisita = async (id: number) => {
+export const deleteVisit = async (id: number) => {
     try {
-        await api.delete(`/visitas/${id}`);
-    } catch (err) {
-        console.log('Erro ao excluir visita: ' + err);
+        const response = await api.delete(`/visita/${id}`);
+        return response.data;
+    } catch (error) {
+        throw error;
+    }
+}
+
+export const updateVisit = async (visit: Visit) => {
+    try {
+        const response = await api.put(`/visita`, visit);
+        return response.data;
+    } catch (error) {
+        throw error;
     }
 }
