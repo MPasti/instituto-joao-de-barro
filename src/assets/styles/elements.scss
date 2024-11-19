@@ -193,6 +193,10 @@
 .opacity-100 { opacity: 1; }
 // ============================
 
+.text-shadow{
+  text-shadow: 4px 3px 6px rgba(0,0,0,0.23);
+}
+
 .app-container {
   display: flex;
   flex-direction: column;
@@ -282,7 +286,7 @@
 
     .content, .image {
       opacity: 0;
-      transform: translateY(-100px);
+      transform: translateY(100px);
       transition: opacity 0.8s ease-out, transform 0.8s ease-out;
     }
 

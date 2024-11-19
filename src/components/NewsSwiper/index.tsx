@@ -7,8 +7,11 @@ import "swiper/css/scrollbar";
 import "swiper/css/autoplay";
 import NewsCard from "../NewsCard";
 import Button from "../Button";
+import { useNavigate } from "react-router-dom";
 
 export const NewsSwiper = ({ newsData }) => {
+  const navigation = useNavigate();
+
   const breakpoints = {
     0: {
       slidesPerView: 1,
@@ -51,7 +54,13 @@ export const NewsSwiper = ({ newsData }) => {
         </Swiper>
       </div>
       <div className="d-flex justify-content-center">
-        <Button outline={true} variant="secondary">
+        <Button
+          outline={true}
+          variant="secondary"
+          onClick={() => {
+            navigation("/noticias");
+          }}
+        >
           VER MAIS NOTÍCIAS
         </Button>
       </div>
