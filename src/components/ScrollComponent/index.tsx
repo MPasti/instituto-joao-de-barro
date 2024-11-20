@@ -18,7 +18,7 @@ const ScrollEffect = () => {
               contínua da qualidade de vida de nossa comunidade.
             </p>
           </div>
-          <div className="content-block block-2 p-3 content bg-color-second">
+          <div className="content-block block-2 p-3 content bg-color-second text-black">
             <h1>Porque nós ajudamos</h1>
             <p>
               Nós ajudamos porque acreditamos no poder da compaixão, da

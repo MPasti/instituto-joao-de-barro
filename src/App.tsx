@@ -42,6 +42,7 @@ import AtualizarInformacoes from "./Screens/PrivateScreens/AtualizarInformacoesB
 import Registro from "./Screens/PrivateScreens/RegistroBeneficiario";
 import AtualizarInformacoesVisitas from "./Screens/PrivateScreens/atualizarInformacoesVisitas";
 import RegistroVisita from "./Screens/PrivateScreens/RegistroVisita";
+import { BuildingHome } from "./Screens/PrivateScreens/Obras/BuildingHome";
 
 function App() {
   return (
@@ -78,6 +79,7 @@ function App() {
                 <Route path="registro" element={<Registro />} />
                 <Route path="visitas/:id" element={<AtualizarInformacoesVisitas />} /> 
                 <Route path="registroVisita" element={<RegistroVisita />} />
+                <Route path="obras" element={<BuildingHome />}/>
               </Route>
             </Route>
           </Routes>
@@ -88,3 +90,4 @@ function App() {
 }
 
 export default App;
+

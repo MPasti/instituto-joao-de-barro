@@ -1,9 +1,15 @@
 import { useState } from "react";
 import ImageDropzone from "../../../components/Dropzone";
 import Button from "../../../components/Button";
-import { createNews, updateNews } from "../../../services/newService.ts";
+import {
+  createNews,
+  getNews,
+  updateNews,
+} from "../../../services/newService.ts";
 import { toast } from "react-hot-toast";
 import NewsCard from "../../../components/NewsCard";
+import { Modal } from "../../../components/Modal/Modal.tsx";
+import { FaMagnifyingGlass } from "react-icons/fa6";
 
 const Noticias = () => {
   const [formData, setFormData] = useState<News>({
@@ -24,6 +30,9 @@ const Noticias = () => {
     link: false,
     etiqueta: false,
   });
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [noticias, setNoticias] = useState<News[]>([]);
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>,
@@ -65,8 +74,37 @@ const Noticias = () => {
     }
   };
 
+  const fetchNoticias = async () => {
+    try {
+      const response = await getNews();
+      if (response && response.data) {
+        setNoticias(response.data);
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error("Falha ao buscar notícias");
+    }
+  };
+
+  const handleModalOpen = async () => {
+    await fetchNoticias();
+    setIsModalOpen(true);
+  };
+
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+  };
+
   return (
-    <div className="container mt-4 mb-5">
+    <div className="container mt-4 mb-5 position-relative">
+      <Button
+        type="button"
+        variant="primary"
+        className="position-absolute top-0 end-0 me-3 mt-3"
+        onClick={handleModalOpen}
+      >
+        Ver Notícias <FaMagnifyingGlass />
+      </Button>
       <h2 className="text-secondary">Notícias</h2>
 
       <form onSubmit={handleSubmit} className="row w-100">
@@ -232,6 +270,43 @@ const Noticias = () => {
           </Button>
         </div>
       </form>
+      <Modal isOpen={isModalOpen} onClose={handleModalClose} className="w-75">
+        <section className="news-search-table p-4">
+          <h3>Lista de Notícias</h3>
+          <div className="table-responsive">
+            <table className="table table-striped">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Título</th>
+                  <th>Descrição</th>
+                  <th>Data</th>
+                  <th>Etiqueta</th>
+                </tr>
+              </thead>
+              <tbody>
+                {noticias.length > 0 ? (
+                  noticias.map((noticia) => (
+                    <tr key={noticia.id}>
+                      <td>{noticia.id}</td>
+                      <td>{noticia.titulo}</td>
+                      <td>{noticia.descricao}</td>
+                      <td>{noticia.data}</td>
+                      <td>{noticia.etiqueta}</td>
+                    </tr>
+                  ))
+                ) : (
+                  <tr>
+                    <td colSpan={5} className="text-center">
+                      Nenhuma notícia cadastrada.
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </Modal>
     </div>
   );
 };

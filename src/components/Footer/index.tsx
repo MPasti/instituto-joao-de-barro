@@ -33,7 +33,7 @@ export const Footer = () => {
                 </li>
                 <li className="mb-2">
                   <Link to="/beneficiarios" className="link">
-                    Voluntários
+                    Beneficiários
                   </Link>
                 </li>
                 <li className="mb-2">
@@ -59,7 +59,7 @@ export const Footer = () => {
               <ul className="list-unstyled d-flex">
                 <li>
                   <a
-                    className="link-emphasis text-light"
+                    className="link-emphasis text-white"
                     href="https://www.facebook.com/joao.de.barro.franca/"
                   >
                     <FaFacebook size={28} />
@@ -67,7 +67,7 @@ export const Footer = () => {
                 </li>
                 <li className="ms-3">
                   <a
-                    className="link-emphasis text-light"
+                    className="link-emphasis text-white"
                     href="https://www.instagram.com/instituto_joaodebarro_franca/"
                   >
                     <FaInstagram size={28} />
@@ -78,7 +78,9 @@ export const Footer = () => {
           </div>
 
           <div className="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top">
-            <p>© 2024 Instituto João de Barro. Todos os direitos reservados.</p>
+            <p>
+              © 2024 Instituto João de Barro. Todos os direitos reservados.
+            </p>
           </div>
         </footer>
       </div>

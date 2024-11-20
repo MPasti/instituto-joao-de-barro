@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Button from "../Button";
 
 interface loginProps {
   onLogin: (userName: string, password: string) => void;
@@ -44,9 +45,9 @@ const LoginForm = ({ onLogin }: loginProps) => {
       <div className="forgot-password mt-1 mb-2 text-primary">
         Esqueci minha senha
       </div>
-      <button type="submit" className="btn btn-primary w-100">
+      <Button type="submit" className="w-100">
         Login
-      </button>
+      </Button>
     </form>
   );
 };
