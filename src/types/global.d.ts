@@ -31,12 +31,13 @@ declare global {
     phone2: string;  
   }
   interface BenefUser {
+    id?: number;
     email: string;
     cpf: string;
     password: string;
     createdAt: Date;
-    updatedAt: Date;
-    deletedAt: Date;
+    updatedAt?: Date;
+    deletedAt?: Date;
     userInfo: UserInfo
   }
   interface Beneficiary {

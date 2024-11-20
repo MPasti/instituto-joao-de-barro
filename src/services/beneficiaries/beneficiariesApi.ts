@@ -17,6 +17,29 @@ export interface RegisterBeneficiaryUserRequest {
     familyMembers: FamilyMember[];
 }
 
+export const registerUserAsBeneficiary = async (benefUser: BenefUser) => {
+    try {
+        const response = await api.post("/user", benefUser);
+
+        const emptyBeneficiary: Beneficiary = {
+            name: benefUser.userInfo.name + benefUser.userInfo.lastName,
+            indicationDate: new Date(),
+            indicatorName: '',
+            houseStatus: '',
+            monthlyIncome: 0,
+            meetDescription: '',
+            userId: response.data.id,
+            status: BenefStatus.NECESSITA_ATENCAO,
+        }
+
+        await registerBeneficiary(emptyBeneficiary);
+
+        return response.data;
+    } catch (error) {
+        throw error;
+    }
+}
+
 export const registerBeneficiaryAndUser = async ({benefUser, beneficiary, familyMembers}: RegisterBeneficiaryUserRequest) => {
     try {
         const userResponse = await api.post("/user", benefUser);
@@ -45,6 +68,15 @@ export const registerBeneficiary = async (beneficiary: Beneficiary) => {
     }
 }
 
+export const getBeneficiaryByUserId = async (userId: number): Promise<Beneficiary> => {
+    try {
+        const response = await api.get(`/beneficiario/user/${userId}`);
+        return response.data;
+    } catch (error) {
+        throw error;
+    }
+}
+
 export const getBeneficiaryById = async (id: number): Promise<Beneficiary> => {
     try {
         const response = await api.get(`/beneficiario/${id}`);
@@ -60,7 +92,7 @@ export const getBeneficiaries = async (filters?: Filters): Promise<Beneficiary[]
 
         if(filters) {
 
-            return response.data.filter((beneficiary: any) => {
+            return response.data.filter((beneficiary: Beneficiary) => {
                 let isMatch = true;
                 
                 if (filters.name) {
