@@ -71,8 +71,6 @@ export function Beneficiarios() {
             cpf,
             password,
             createdAt: new Date(),
-            updatedAt: new Date(),
-            deletedAt: new Date(),
             userInfo,
         };
 

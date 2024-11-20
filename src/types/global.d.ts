@@ -36,8 +36,8 @@ declare global {
     cpf: string;
     password: string;
     createdAt: Date;
-    updatedAt: Date;
-    deletedAt: Date;
+    updatedAt?: Date;
+    deletedAt?: Date;
     userInfo: UserInfo
   }
   interface Beneficiary {
