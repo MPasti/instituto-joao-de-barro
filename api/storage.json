@@ -95,7 +95,40 @@
     "bankStatement": {
       "account": 3000,
       "cdb": 2000
-    }
+    },
+
+    "extractData" : {
+      "header": {
+        "saldoAtual": "R$ 1.500,00",
+        "saldoBloqueado": "R$ 200,00",
+        "saldoLimite": "R$ 3.000,00",
+        "saldoAnterior": "R$ 1.200,00",
+        "saldoBloqueioJudicial": "R$ 100,00",
+        "saldoBloqueioJudicialAnterior": "R$ 50,00"
+      },
+      "data": [
+        {
+          "tipo": "Crédito",
+          "valor": "R$ 500,00",
+          "data": "20/11/2024",
+          "dataLote": "19/11/2024",
+          "descricao": "Pagamento recebido",
+          "numeroDocumento": "123456",
+          "cpfCnpj": "123.456.789-00",
+          "descInfComplementar": "Nenhuma"
+        },
+        {
+          "tipo": "Débito",
+          "valor": "R$ 300,00",
+          "data": "18/11/2024",
+          "dataLote": "17/11/2024",
+          "descricao": "Pagamento realizado",
+          "numeroDocumento": "654321",
+          "cpfCnpj": "987.654.321-00",
+          "descInfComplementar": "Pagamento de conta"
+        }
+      ]
   },
+
   "products": []
-}
+}}
