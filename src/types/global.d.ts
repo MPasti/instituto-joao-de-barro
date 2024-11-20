@@ -31,6 +31,7 @@ declare global {
     phone2: string;  
   }
   interface BenefUser {
+    id?: number;
     email: string;
     cpf: string;
     password: string;

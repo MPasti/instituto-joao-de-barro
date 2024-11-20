@@ -17,6 +17,29 @@ export interface RegisterBeneficiaryUserRequest {
     familyMembers: FamilyMember[];
 }
 
+export const registerUserAsBeneficiary = async (benefUser: BenefUser) => {
+    try {
+        const response = await api.post("/user", benefUser);
+
+        const emptyBeneficiary: Beneficiary = {
+            name: benefUser.userInfo.name + benefUser.userInfo.lastName,
+            indicationDate: new Date(),
+            indicatorName: '',
+            houseStatus: '',
+            monthlyIncome: 0,
+            meetDescription: '',
+            userId: response.data.id,
+            status: BenefStatus.NECESSITA_ATENCAO,
+        }
+
+        await registerBeneficiary(emptyBeneficiary);
+
+        return response.data;
+    } catch (error) {
+        throw error;
+    }
+}
+
 export const registerBeneficiaryAndUser = async ({benefUser, beneficiary, familyMembers}: RegisterBeneficiaryUserRequest) => {
     try {
         const userResponse = await api.post("/user", benefUser);
@@ -39,6 +62,16 @@ export const registerBeneficiaryAndUser = async ({benefUser, beneficiary, family
 export const registerBeneficiary = async (beneficiary: Beneficiary) => {
     try {
         const response = await api.post("/beneficiario", beneficiary);
+        return response.data;
+    } catch (error) {
+        throw error;
+    }
+}
+
+export const getBeneficiaryByUserId = async (userId: number): Promise<Beneficiary> => {
+    try {
+        //TODO => Fix route URL, problably will be different on final API
+        const response = await api.get(`/beneficiario/user/${userId}`);
         return response.data;
     } catch (error) {
         throw error;
