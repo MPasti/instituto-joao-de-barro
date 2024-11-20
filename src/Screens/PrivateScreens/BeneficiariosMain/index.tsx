@@ -126,7 +126,7 @@ export const BeneficiariosMain = () => {
                         onSearchChange={handleSearchChange}
                         onRegisterClick={() => navigate('/dashboard/registro')}
                         onAddVisitClick={() => navigate('/dashboard/registroVisita')}
-                        onSendToAssemblyClick={() => alert('Enviar para Assembleia!')}
+                        onSendToAssemblyClick={() => toast.error('Enviar para Assembleia!')}
                         isVisitasTab={activeTab === 'visitas'}
                     />
                 </div>

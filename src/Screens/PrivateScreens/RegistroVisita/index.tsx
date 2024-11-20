@@ -45,7 +45,7 @@ const RegistroVisita = () => {
 
     const createVisita = async () => {
         if (!beneficiary || !relatorio || !nomeVoluntario || imagens.length === 0) {
-            alert('Por favor, preencha todos os campos e adicione as imagens.');
+            toast.error('Por favor, preencha todos os campos e adicione as imagens.');
             return;
         }
 
@@ -151,25 +151,30 @@ const RegistroVisita = () => {
                         onChange={(e) => setRelatorio(e.target.value)}
                     />
 
-                    <label>Imagens:</label>
-                    <input
-                        type="file"
-                        multiple
-                        accept="image/*"
-                        onChange={handleImageChange}
-                    />
-                    {imagens.length > 0 && (
-                        <div className="image-preview">
-                            <h4>Imagens Selecionadas:</h4>
-                            <ul>
-                                {imagens.map((image, index) => (
-                                    <li key={index}>
-                                        <span>{image.name}</span>
-                                    </li>
-                                ))}
-                            </ul>
+                    <div className='upload-group'>
+                        <label className='upload-label'>Imagens:</label>
+                        <div className='upload-area'>
+                            <input
+                                type="file"
+                                multiple
+                                accept="image/*"
+                                onChange={handleImageChange}
+                            />
                         </div>
-                    )}
+                        {imagens.length > 0 && (
+                            <div className="image-preview">
+                                <h4>Imagens Selecionadas:</h4>
+                                <ul>
+                                    {imagens.map((image, index) => (
+                                        <li key={index}>
+                                            <span>{image.name}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        )}
+                    </div>
+
                 </div>
 
                 <div className="button-group">

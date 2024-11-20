@@ -202,9 +202,9 @@ const Registro = () => {
                         <input type="text" placeholder="Problemas de Saúde" value={member.healthyProblems} onChange={(e) => updateFamilyMember(index, 'healthyProblems', e.target.value)} />
                     </div>
                 ))}
-                <button onClick={addFamilyMember}>+ Adicionar Membro</button>
+                <button className='addFamily-btn' onClick={addFamilyMember}>+ Adicionar Membro</button>
 
-                <button onClick={createFamilia}>Confirmar</button>
+                <button className='confirm-btn' onClick={createFamilia}>Confirmar</button>
             </div>
         </div>
     );

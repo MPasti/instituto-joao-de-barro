@@ -5,6 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { AxiosError } from 'axios';
 import { BenefStatus, getBeneficiaryById, getUserByBeneficiaryId, updateBeneficiary } from '../../../services/beneficiaries/beneficiariesApi';
 import { getFamilyMembersByBeneficiaryId } from '../../../services/beneficiaries/familyApi';
+import toast from "react-hot-toast";
 
 function isAxiosError(error: unknown): error is AxiosError {
     return (error as AxiosError).isAxiosError !== undefined;
@@ -95,7 +96,7 @@ const AtualizarInformacoes = () => {
 
             if (familiaId) {
                 await updateBeneficiary(updatedBeneficiary);
-                alert('Informações do beneficiário atualizadas com sucesso!');
+                toast.error('Informações do beneficiário atualizadas com sucesso!');
                 navigate(`/detalhes-familia/${familiaId}`);
             }
         } catch (error) {
