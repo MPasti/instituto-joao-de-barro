@@ -38,7 +38,7 @@ import { Perfil } from "./Screens/PrivateScreens/Perfil";
 import { Financeiro } from "./Screens/PrivateScreens/Financeiro";
 import { StorageHome } from "./Screens/PrivateScreens/Estoque/StorageHome";
 import { BeneficiariosMain } from "./Screens/PrivateScreens/BeneficiariosMain";
-import AtualizarInformacoes from "./Screens/PrivateScreens/AtualizarInformacoes";
+import AtualizarInformacoes from "./Screens/PrivateScreens/AtualizarInformacoesBeneficiario";
 import Registro from "./Screens/PrivateScreens/RegistroBeneficiario";
 import AtualizarInformacoesVisitas from "./Screens/PrivateScreens/atualizarInformacoesVisitas";
 import RegistroVisita from "./Screens/PrivateScreens/RegistroVisita";
