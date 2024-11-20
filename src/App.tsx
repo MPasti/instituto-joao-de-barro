@@ -43,6 +43,7 @@ import Registro from "./Screens/PrivateScreens/RegistroBeneficiario";
 import AtualizarInformacoesVisitas from "./Screens/PrivateScreens/atualizarInformacoesVisitas";
 import RegistroVisita from "./Screens/PrivateScreens/RegistroVisita";
 import { BuildingHome } from "./Screens/PrivateScreens/Obras/BuildingHome";
+import { BeneficiarioPerfil } from "./Screens/PrivateScreens/BeneficiarioPerfil";
 
 function App() {
   return (
@@ -75,6 +76,7 @@ function App() {
                 <Route path="financeiro" element={<Financeiro />} />
                 <Route path="estoque" element={<StorageHome />} />
                 <Route path="beneficiarios" element={<BeneficiariosMain />} />
+                <Route path="beneficiario/perfil" element={<BeneficiarioPerfil />} />
                 <Route path="atualizar/:familiaId" element={<AtualizarInformacoes />} />
                 <Route path="registro" element={<Registro />} />
                 <Route path="visitas/:id" element={<AtualizarInformacoesVisitas />} /> 
