@@ -8,7 +8,7 @@ export enum BenefStatus {
     EM_ANALISE = 'em_analise',
     APROVADO = 'aprovado',
     NECESSITA_ATENCAO = 'necessita_atencao',
-  }
+}
 
 
 export interface RegisterBeneficiaryUserRequest {

@@ -27,7 +27,9 @@ export const getVisits = async (): Promise<Visit[]> => {
     }
 }
 
+
 export const getVisitsByBeneficiaryId = async (beneficiaryId: number): Promise<Visit[]> => {
+
     try {
         const response = await api.get(`/visita/visitas/${beneficiaryId}`);
         return response.data;
@@ -44,6 +46,7 @@ export const deleteVisit = async (id: number) => {
         throw error;
     }
 }
+
 
 export const updateVisit = async (visit: Visit) => {
     try {

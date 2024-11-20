@@ -19,7 +19,6 @@ export const BeneficiariosMain = () => {
     const [activeTab, setActiveTab] = useState<'familias' | 'visitas'>('familias');
     const [searchTerm, setSearchTerm] = useState('');
     const navigate = useNavigate();
-
     const [familias, setFamilias] = useState<Beneficiary[]>([]);
     const [filteredFamilies, setFilteredFamilies] = useState<Beneficiary[]>([]);
     const [visitsData, setVisitsData] = useState<VisitsItemProps[]>([]);
@@ -105,7 +104,7 @@ export const BeneficiariosMain = () => {
             setFilteredFamilies(familias);
         } else {
             const filtered = familias.filter(item =>
-                item.name?.toLowerCase().includes(value.toLowerCase())
+                (typeof item.nomeFamilia === 'string' && item.nomeFamilia.toLowerCase().includes(value.toLowerCase()))
             );
             setFilteredFamilies(filtered);
         }
