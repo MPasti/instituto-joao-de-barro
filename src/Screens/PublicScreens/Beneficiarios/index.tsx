@@ -22,14 +22,14 @@ export function Beneficiarios() {
     const [phone1, setPhone1] = useState('');
     const [phone2, setPhone2] = useState('');
 
-    useEffect(() => {
-        const {user} = JSON.parse(localStorage.getItem('user') || '{}');
-        if(user.id) {
-            if(window.confirm('Você já está logado, deseja acessar seus dados?')) {
-                navigate('/dashboard/beneficiarios/data');
-            }
-        }
-    })
+    // useEffect(() => {
+    //     const {user} = JSON.parse(localStorage.getItem('user') || '{}');
+    //     if(user.id) {
+    //         if(window.confirm('Você já está logado, deseja acessar seus dados?')) {
+    //             navigate('/dashboard/beneficiarios/data');
+    //         }
+    //     }
+    // })
 
     const validateForm = () => {
         if (!email || !cpf || !password || !confirmPassword) {
@@ -93,7 +93,7 @@ export function Beneficiarios() {
             <p className="description">
                 Preencha os detalhes abaixo para registrar uma família no programa de assistência.
             </p>
-            <div className="form-control">
+            <div className="benefFormControl">
                 {/* Campos do usuário */}
                 <label>Email:</label>
                 <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
@@ -126,7 +126,7 @@ export function Beneficiarios() {
                 <label>Telefone 2:</label>
                 <input type="text" value={phone2} onChange={(e) => setPhone2(e.target.value)} />
 
-                <button onClick={registrarUser}>Confirmar</button>
+                <button className="benefconfirm-btn" onClick={registrarUser}>Confirmar</button>
             </div>
         </div>
     );

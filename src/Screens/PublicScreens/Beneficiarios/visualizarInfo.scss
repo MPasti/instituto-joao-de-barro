@@ -1,82 +1,59 @@
-.visualizar-informacoes {
+.registro {
+    display: flex;
+    flex-direction: column;
+    margin: 2rem;
 
     .subtitle {
         color: #df7046;
-        display: block;
         font-size: 2.5rem;
         font-weight: bolder;
-        border-bottom: 3px solid #df7046;
-        width: fit-content;
-        margin-bottom: 0.5rem;
-        margin-top: 2rem;
+        margin: 1rem 0;
     }
 
     .description {
+        margin: 1rem 0;
         color: #000;
-        margin: 0;
-        margin-top: 0.5rem;
-        margin-bottom: 2rem;
+        font-size: 1rem;
     }
 
-    .status-section {
-        margin-bottom: 20px;
-        label {
-            font-weight: bold;
-            margin-right: 10px;
-        }
-        .status-badge {
-            padding: 5px 10px;
-            border-radius: 5px;
-            font-size: 0.9rem;
-            color: white;
-        }
-    }
-    
-
-    .form-control {
-        background-color: #F1F1F1;
+    .benefFormControl { /* Unique class name here */
+        background-color: #f1f1f1;
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
         width: 100%;
         display: flex;
-        flex-direction: row;
-        margin-bottom: 3rem;
+        flex-direction: column;
+        gap: 1rem;
 
-
-        .input-group {
-            flex: 1;
-            margin-right: 2rem;
-
-            label {
-                display: block;
-                margin-bottom: 0.5rem;
-                margin-top: 0.5rem;
-                font-weight: bold;
-            }
-
-            input {
-                width: 100%;
-                padding: 0.5rem;
-                border: 1px solid #ccc;
-                border-radius: 4px;
-            }
+        label {
+            width: 100%;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
         }
 
-        .dropdown-group {
-            flex: 1;
+        input {
+            width: calc(80% - 1rem);
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+        }
 
-
-            label {
-                display: block;
-                margin-bottom: 0.5rem;
-                margin-top: 0.5rem;
-                font-weight: bold;
-            }
-
-            select {
-                width: 100%;
-                padding: 0.5rem;
-                border: 1px solid #ccc;
-                border-radius: 4px;
-                margin-bottom: 1rem;
+        button.benefconfirm-btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            background-color: #ffc72c;
+            color: #fff;
+            margin-top: 1rem;
+            max-width: 120px;
+        
+            &:hover {
+                background-color: #e6b722;
             }
         }
     }
