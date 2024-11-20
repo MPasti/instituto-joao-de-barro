@@ -6,13 +6,13 @@ import TabNavigation from "../../../components/TabNavigation/TabNavigation";
 import SearchBar from "../../../components/SearchBar/SearchBar";
 import FamiliasTable from "../../../components/FamiliasTable/FamiliasTable";
 import VisitasTable from "../../../components/VisitasTable/VisitasTable";
-import { deleteBeneficiary, getBeneficiaries, getBeneficiaryById } from "../../../services/beneficiaries/beneficiariesApi";
+import { BenefStatus, deleteBeneficiary, getBeneficiaries, getBeneficiaryById } from "../../../services/beneficiaries/beneficiariesApi";
 import toast from "react-hot-toast";
 import { deleteVisit, getVisits } from "../../../services/beneficiaries/visitApi";
 
 export interface VisitsItemProps {
     visit: Visit;
-    beneficiary: Beneficiary;
+    beneficiaryName: string;
 }
 
 export const BeneficiariosMain = () => {
@@ -60,7 +60,7 @@ export const BeneficiariosMain = () => {
                 return;
             }
             const activeFamilies = beneficiariosResponse.filter(
-                (beneficiario: Beneficiary) => beneficiario.status !== Status.INATIVO
+                (beneficiario: Beneficiary) => beneficiario.status !== BenefStatus.INATIVO
             );
             setFamilias(activeFamilies);
             setFilteredFamilies(activeFamilies);
@@ -79,7 +79,7 @@ export const BeneficiariosMain = () => {
             const visits = await Promise.all(
                 response.map(async (visit: Visit) => {
                     const beneficiary = await getBeneficiaryById(visit.beneficiaryId);
-                    return { visit, beneficiary };
+                    return { visit, beneficiaryName: beneficiary?.name || '' };
                 })
             );
             setVisitsData(visits);
@@ -104,7 +104,7 @@ export const BeneficiariosMain = () => {
             setFilteredFamilies(familias);
         } else {
             const filtered = familias.filter(item =>
-                (typeof item.nomeFamilia === 'string' && item.nomeFamilia.toLowerCase().includes(value.toLowerCase()))
+                (typeof item.name === 'string' && item.name.toLowerCase().includes(value.toLowerCase()))
             );
             setFilteredFamilies(filtered);
         }

@@ -3,8 +3,8 @@ import { RiErrorWarningLine } from "react-icons/ri";
 import { BenefStatus } from '../../services/beneficiaries/beneficiariesApi';
 
 interface FamiliasTableProps {
-    families: Beneficiario[];
-    onDelete: (id: string) => void;
+    families: Beneficiary[];
+    onDelete: (id: number) => void;
     navigate: (path: string) => void;
 }
 
@@ -14,9 +14,9 @@ const FamiliasTable: React.FC<FamiliasTableProps> = ({ families, onDelete, navig
             <tbody>
                 {families.map((item) => (
                     <tr key={item.id}>
-                        <td>{item.nomeFamilia}</td>
+                        <td>{item.name}</td>
                         <td>
-                            <span>Status: {item.statusFamilia}</span>
+                            <span>Status: {item.name}</span>
                         </td>
                         <td>
                             {item.status.toLowerCase() === BenefStatus.NECESSITA_ATENCAO && <RiErrorWarningLine style={{color: '#f17342', width: '4rem', height: '2rem'}}/>}

@@ -70,7 +70,6 @@ export const registerBeneficiary = async (beneficiary: Beneficiary) => {
 
 export const getBeneficiaryByUserId = async (userId: number): Promise<Beneficiary> => {
     try {
-        //TODO => Fix route URL, problably will be different on final API
         const response = await api.get(`/beneficiario/user/${userId}`);
         return response.data;
     } catch (error) {
@@ -93,7 +92,7 @@ export const getBeneficiaries = async (filters?: Filters): Promise<Beneficiary[]
 
         if(filters) {
 
-            return response.data.filter((beneficiary: any) => {
+            return response.data.filter((beneficiary: Beneficiary) => {
                 let isMatch = true;
                 
                 if (filters.name) {
