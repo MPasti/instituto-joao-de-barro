@@ -13,24 +13,26 @@ export const Modal = ({
   isOpen,
   onClose,
   children,
-  clickableBackdrop,
+  clickableBackdrop = true,
   className = "",
 }: IModal): JSX.Element => {
   function handleClose() {
     onClose?.();
   }
 
-  function handleBackdropClose() {
-    if (clickableBackdrop) {
+  function handleBackdropClose(
+    event: React.MouseEvent<HTMLDivElement, MouseEvent>,
+  ) {
+    if (clickableBackdrop && event.target === event.currentTarget) {
       handleClose();
     }
   }
 
   return (
-    <Dialog open={isOpen} onClose={handleBackdropClose} className="dialog">
-      <div className="container">
+    <Dialog open={isOpen} onClose={handleClose} className="dialog">
+      <div className="container backdrop" onClick={handleBackdropClose}>
         <DialogPanel className={`dialog-panel ${className}`}>
-          <FaX size={24} onClick={handleClose} className="close-icon me-1" />
+          <FaX size={24} onClick={handleClose} className="close-icon me-2" />
           {children}
         </DialogPanel>
       </div>

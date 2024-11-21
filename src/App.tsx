@@ -44,7 +44,7 @@ function App() {
     <div className="app-container">
       <Router>
         <Toaster position="top-right" toastOptions={ToastOptions} />
-        
+
         <div className="content">
           <Routes>
             {/* Rotas Públicas */}
@@ -56,7 +56,7 @@ function App() {
               <Route path="sobre" element={<About />} />
               <Route path="voluntarios" element={<Voluntarios />} />
               <Route path="beneficiarios" element={<Beneficiarios />} />
-              <Route path='doacoes' element={<Donation />}/>
+              <Route path="doacoes" element={<Donation />} />
             </Route>
 
             {/* Rota de Login */}
@@ -69,8 +69,8 @@ function App() {
                 <Route path="noticias" element={<Noticias />} />
                 <Route path="perfil" element={<Perfil />} />
                 <Route path="financeiro" element={<Financeiro />} />
-                <Route path="estoque" element={<StorageHome />}/>
-                <Route path="obras" element={<BuildingHome />}/>
+                <Route path="estoque" element={<StorageHome />} />
+                <Route path="obras" element={<BuildingHome />} />
               </Route>
             </Route>
           </Routes>
@@ -80,6 +80,4 @@ function App() {
   );
 }
 
-
 export default App;
-

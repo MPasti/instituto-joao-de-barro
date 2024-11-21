@@ -5,6 +5,7 @@ import logoUrl from "@images/logo-instituto.svg";
 import { BackButton } from "../../components/BackButton";
 import { isAuthenticated, login } from "../../services/authService.ts";
 import { toast } from "react-hot-toast";
+import Button from "../../components/Button";
 
 export const Login = () => {
   const navigate = useNavigate();
@@ -41,7 +42,14 @@ export const Login = () => {
             <div className="overlay">
               <img src={logoUrl} alt="Logo" className="logo" />
               <h2>Juntos, podemos fazer a diferença!</h2>
-              <button className="btn btn-secondary">Seja parte disso!</button>
+              <Button
+                className="btn btn-secondary"
+                onClick={() => {
+                  navigate("/voluntarios");
+                }}
+              >
+                Seja parte disso!
+              </Button>
             </div>
           </div>
           <div className="right-section card p-4">

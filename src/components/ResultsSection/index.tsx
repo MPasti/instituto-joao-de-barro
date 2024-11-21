@@ -2,8 +2,10 @@ import ResultImage from "@images/institute/segunda-casa.jpg";
 import AnotherImage from "@images/institute/casa-3.png";
 import Button from "../Button";
 import { useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 
 const ResultsSection = () => {
+  const navigate = useNavigate();
   const blockRef1 = useRef<HTMLDivElement>(null);
   const blockRef2 = useRef<HTMLDivElement>(null);
 
@@ -44,8 +46,14 @@ const ResultsSection = () => {
               possibilitamos — mudanças que ecoam em toda a sociedade e geram um
               futuro mais solidário.
             </p>
-            <Button outline variant="secondary">
-              VER PROJETOS
+            <Button
+              outline
+              variant="secondary"
+              onClick={() => {
+                navigate("/sobre");
+              }}
+            >
+              SAIBA MAIS
             </Button>
           </div>
           <img src={ResultImage} alt="Resultado-IJB" className="img-fluid" />

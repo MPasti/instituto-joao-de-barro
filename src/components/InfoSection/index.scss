@@ -4,11 +4,12 @@
   justify-content: center;
 
   .about-us{
+    margin-bottom: 2rem;
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
     text-align: center;
-    width: 50vw;
+    width: 900px;
+    max-width: 90%;
   }
 }

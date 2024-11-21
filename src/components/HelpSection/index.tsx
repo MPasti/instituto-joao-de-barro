@@ -1,9 +1,9 @@
 import { useRef, useEffect, useState } from "react";
 import Button from "../Button";
 
-import FirstImage from "@images/institute/joaodebarro.jpg";
-import SecondImage from "@images/institute/institute-3.png";
-import ThirdImage from "@images/institute/institute-4.png";
+import FirstImage from "../../assets/icons/feedback-girl.svg";
+import SecondImage from "../../assets/icons/team.svg";
+import ThirdImage from "../../assets/icons/partnership.svg";
 
 interface HelpBlock {
   title: string;
@@ -12,7 +12,7 @@ interface HelpBlock {
   description2?: string;
   buttonText: string;
   buttonVariant: "primary" | "secondary";
-  image: string;
+  image: object;
   imageAlt: string;
 }
 
