@@ -2,6 +2,7 @@ import Button from "../../../components/Button";
 import { FaFacebook, FaInstagram, FaWhatsapp } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
 import "./index.scss";
+
 export function Contact() {
   return (
     <div className="contact-section">

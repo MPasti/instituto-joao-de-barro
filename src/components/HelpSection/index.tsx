@@ -12,7 +12,7 @@ interface HelpBlock {
   description2?: string;
   buttonText: string;
   buttonVariant: "primary" | "secondary";
-  image: object;
+  image: object | string;
   imageAlt: string;
 }
 

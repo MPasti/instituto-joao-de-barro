@@ -41,11 +41,6 @@ export function Navbar() {
 
         <ul className={`nav-links ${isOpen ? "open" : ""}`}>
           <li className="nav-item">
-            <Link to="/projetos" className="link">
-              Projetos
-            </Link>
-          </li>
-          <li className="nav-item">
             <Link to="/noticias" className="link">
               Notícias
             </Link>

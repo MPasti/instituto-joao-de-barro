@@ -1,4 +1,3 @@
-import Button from "../../../components/Button";
 import { RiDoubleQuotesL } from "react-icons/ri";
 import {
   FaHandFist,
@@ -68,9 +67,9 @@ export function About() {
             financeiros, criando moradias, promovendo eventos para o bem estar
             social da cidade de Franca.
           </p>
-          <Button outline type="button" variant="secondary">
-            VER PROJETOS
-          </Button>
+          {/*<Button outline type="button" variant="secondary">*/}
+          {/*  VER PROJETOS*/}
+          {/*</Button>*/}
         </div>
       </div>
 

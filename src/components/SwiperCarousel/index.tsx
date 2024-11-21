@@ -72,7 +72,6 @@ export const SwiperCarousel = () => {
                 src={slide.image}
                 alt={`Image ${index + 1}`}
                 className="slide-image"
-                data-swiper-parallax="-100"
               />
               <div
                 className="slide-content"
