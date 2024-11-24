@@ -16,6 +16,18 @@ import logoFacef from "../../assets/images/partners/unifacef_logo.png";
 export const PartnersCarousel = () => {
   const logos = [logoFacef, logoFacef, logoFacef, logoFacef];
 
+  const breakpoints = {
+    0: {
+      slidesPerView: 1,
+    },
+    640: {
+      slidesPerView: 2,
+    },
+    1024: {
+      slidesPerView: 3,
+    },
+  };
+
   return (
     <div className="partners">
       <h2>Empresas apoiadoras</h2>
@@ -30,6 +42,7 @@ export const PartnersCarousel = () => {
           disableOnInteraction: false,
         }}
         speed={3000}
+        breakpoints={breakpoints}
       >
         {logos.map((logo, index) => (
           <SwiperSlide key={index}>

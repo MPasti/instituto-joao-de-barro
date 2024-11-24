@@ -36,7 +36,7 @@ const ResultsSection = () => {
       <div className="results">
         <h2>RESULTADOS DO IJB</h2>
         <div className="result-item">
-          <div className="info-item">
+          <div className="text-justify col-12 col-md-6">
             <p>
               Os resultados que alcançamos são refletidos nas histórias de
               superação e nas vidas que foram impactadas pelo nosso trabalho.
@@ -56,7 +56,11 @@ const ResultsSection = () => {
               SAIBA MAIS
             </Button>
           </div>
-          <img src={ResultImage} alt="Resultado-IJB" className="img-fluid" />
+          <img
+            className="col-12 col-md-6"
+            src={ResultImage}
+            alt="Resultado-IJB"
+          />
         </div>
 
         <div className="view">

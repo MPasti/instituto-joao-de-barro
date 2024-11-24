@@ -45,7 +45,7 @@ const ScrollEffect = () => {
 
   return (
     <div className="scroll-section">
-      <div className="row">
+      <div className="row w-100">
         <div className="left-image col-6 left-content">
           <img src={currentImage} alt="Imagem Fixa" className="img-fluid" />
         </div>

@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import PrivateRouter from "./components/PrivateRouter";
+import ScrollToTop from "./components/ScrollToTop";
 
 const ToastOptions = {
   style: {
@@ -26,6 +27,7 @@ import { Voluntarios } from "./Screens/PublicScreens/Voluntarios";
 import { Beneficiarios } from "./Screens/PublicScreens/Beneficiarios";
 import { Blog } from "./Screens/PublicScreens/Blog";
 import { Donation } from "./Screens/PublicScreens/Donation";
+import { NotFound } from "./Screens/NotFound";
 
 //Login
 import { Login } from "./Screens/Login";
@@ -43,6 +45,7 @@ function App() {
     <div className="app-container">
       <Router>
         <Toaster position="top-right" toastOptions={ToastOptions} />
+        <ScrollToTop />
 
         <div className="content">
           <Routes>
@@ -59,6 +62,7 @@ function App() {
 
             {/* Rota de Login */}
             <Route path="/login" element={<Login />} />
+            <Route path="*" element={<NotFound />} />
 
             {/* Rotas Privadas - Dashboard */}
             <Route element={<PrivateRouter />}>

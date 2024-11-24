@@ -4,19 +4,22 @@ import Button from "../Button";
 import FirstImage from "../../assets/icons/feedback-girl.svg";
 import SecondImage from "../../assets/icons/team.svg";
 import ThirdImage from "../../assets/icons/partnership.svg";
+import { useNavigate } from "react-router-dom";
 
 interface HelpBlock {
   title: string;
   textPrimary: string;
   description1: string;
   description2?: string;
-  buttonText: string;
-  buttonVariant: "primary" | "secondary";
+  buttonText?: string;
+  buttonVariant?: "primary" | "secondary";
   image: object | string;
   imageAlt: string;
+  buttonLink?: string;
 }
 
 const HelpSection = () => {
+  const navigate = useNavigate();
   const [visibleBlocks, setVisibleBlocks] = useState<number[]>([]);
   const blocksRef = useRef<(HTMLDivElement | null)[]>([]);
 
@@ -52,6 +55,7 @@ const HelpSection = () => {
       buttonVariant: "primary",
       image: FirstImage,
       imageAlt: "ijb-voluntarios",
+      buttonLink: "/doacoes",
     },
     {
       title: "SEJA UM",
@@ -64,6 +68,7 @@ const HelpSection = () => {
       buttonVariant: "secondary",
       image: SecondImage,
       imageAlt: "ijb-beneficiarios",
+      buttonLink: "/voluntarios",
     },
     {
       title: "SEJA UMA",
@@ -74,6 +79,7 @@ const HelpSection = () => {
       buttonVariant: "primary",
       image: ThirdImage,
       imageAlt: "ijb-empresas",
+      buttonLink: "/sobre",
     },
   ];
 
@@ -98,7 +104,13 @@ const HelpSection = () => {
             </h4>
             <p>{block.description1}</p>
             {block.description2 && <p>{block.description2}</p>}
-            <Button type="button" variant={block.buttonVariant}>
+            <Button
+              type="button"
+              variant={block.buttonVariant}
+              onClick={() => {
+                if (block?.buttonLink) navigate(block.buttonLink);
+              }}
+            >
               {block.buttonText}
             </Button>
           </div>

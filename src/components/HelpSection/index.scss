@@ -46,3 +46,23 @@
     }
   }
 }
+
+@media screen and (max-width: 768px) {
+  .help-section {
+    .help-block {
+      flex-direction: column !important;
+
+      .content {
+        text-align: center !important;
+        button{
+          width: 100%;
+        }
+      }
+
+      .image {
+        margin-top: 1rem !important;
+      }
+    }
+  }
+}
+

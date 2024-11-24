@@ -1,36 +1,73 @@
-.left-section {
-  flex: 1;
-  background-image: url('src/assets/images/hands-together.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+.login-container {
   display: flex;
   justify-content: center;
   align-items: center;
+  min-height: 100vh;
+  width: 100%;
+  background-color: #fce4db;
+  overflow: hidden;
 
-  .overlay {
-    background-color: rgba(0, 0, 0, 0.5);
-    padding: 3rem;
-    color: #fff;
-    text-align: center;
-    height: 100%;
-    width: 100%;
+  .login-content {
+    display: flex;
+    height: 540px;
+    width: 1200px;
+    max-width: 100%;
 
-    .logo {
-      max-width: 100px;
-      margin-bottom: 1rem;
+    .left-section {
+      flex: 1;
+      background-image: url('src/assets/images/hands-together.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .overlay {
+        background-color: rgba(0, 0, 0, 0.5);
+        padding: 3rem;
+        color: #fff;
+        text-align: center;
+        height: 100%;
+        width: 100%;
+
+        .logo {
+          max-width: 100px;
+          margin-bottom: 1rem;
+        }
+      }
+    }
+
+    .right-section {
+      flex: 1;
+      background-color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
   }
 }
 
-.right-section {
-  flex: 1;
-  background-color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+@media (max-width: 768px) {
+  .login-container{
+    width: 100%;
+    display: block;
+  }
+  .login-content {
+    flex-direction: column;
+    height: auto;
+  }
 }
 
-form{
+
+
+.forgot-password {
+  display: flex;
+  cursor: pointer;
+  justify-content: end;
+  font-size: 14px;
+}
+
+.login-form {
   width: 65%;
 }

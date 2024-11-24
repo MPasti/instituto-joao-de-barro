@@ -31,7 +31,7 @@ export const Login = () => {
   }, []);
 
   return (
-    <div className="login-container justify-content-center align-items-center vh-100">
+    <div className="login-container">
       <div className="position-relative">
         <div className="d-flex justify-content-start">
           <BackButton route="/" />
@@ -39,25 +39,21 @@ export const Login = () => {
 
         <div className="login-content">
           <div className="left-section">
-            <div className="overlay">
+            <div className="overlay d-flex flex-column justify-content-center align-items-center">
               <img src={logoUrl} alt="Logo" className="logo" />
               <h2>Juntos, podemos fazer a diferença!</h2>
               <Button
-                className="btn btn-secondary"
+                type="button"
+                variant="secondary"
                 onClick={() => {
                   navigate("/voluntarios");
                 }}
               >
-                Seja parte disso!
+                Se torne um voluntário
               </Button>
             </div>
           </div>
-          <div className="right-section card p-4">
-            <h2 className="login-title text-center mb-4">
-              Entrar na sua conta
-            </h2>
-            <LoginForm onLogin={handleLogin} />
-          </div>
+          <LoginForm onLogin={handleLogin} />
         </div>
       </div>
     </div>

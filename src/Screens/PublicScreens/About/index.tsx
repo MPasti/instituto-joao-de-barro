@@ -48,7 +48,7 @@ export function About() {
   ];
 
   return (
-    <div className="pages about-page">
+    <div className="pages about-page overflow-hidden">
       <div
         className="d-flex flex-column flex-md-row"
         style={{ minHeight: "420px" }}
@@ -67,9 +67,6 @@ export function About() {
             financeiros, criando moradias, promovendo eventos para o bem estar
             social da cidade de Franca.
           </p>
-          {/*<Button outline type="button" variant="secondary">*/}
-          {/*  VER PROJETOS*/}
-          {/*</Button>*/}
         </div>
       </div>
 
@@ -165,13 +162,13 @@ export function About() {
         </div>
       </div>
 
-      <div className='w-100'>
+      <div className="w-100 mt-5">
         <h2>
           CONHEÇA EM DETALHES A{" "}
           <span className="text-secondary">NOSSA HISTÓRIA</span>
         </h2>
         <div className="leaves-top"></div>
-        <img className='img-fluid' alt="folhas" src={folhas} />
+        <img className="img-fluid" alt="folhas" src={folhas} />
       </div>
 
       <Tree data={events} />
