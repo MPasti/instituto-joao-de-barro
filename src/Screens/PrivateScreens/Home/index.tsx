@@ -1,5 +1,5 @@
 import { BiArrowBack, BiSolidCalendarStar } from "react-icons/bi";
-import { FaHandsHelping, FaTools } from "react-icons/fa";
+import { FaHandsHelping, FaPaintBrush, FaTools } from "react-icons/fa";
 import { FaBoxOpen, FaHandHoldingHeart, FaPiggyBank } from "react-icons/fa6";
 import { IoNewspaper } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
@@ -67,14 +67,16 @@ const Home = () => {
             <div className="col-12 d-flex justify-content-center">
               <div className="row w-100 justify-content-center">
                 <DashboardIcon icon={<BiSolidCalendarStar />} label="EVENTOS" />
-                <DashboardIcon
-                 icon={<FaTools />} 
-                 label="OBRAS" 
-                 route="obras"/>
+                <DashboardIcon icon={<FaTools />} label="OBRAS" route="obras" />
                 <DashboardIcon
                   icon={<IoNewspaper />}
                   route="noticias"
                   label="NOTÍCIAS"
+                />
+                <DashboardIcon
+                  icon={<FaPaintBrush />}
+                  route="editor"
+                  label="PAINEL DO EDITOR"
                 />
               </div>
             </div>

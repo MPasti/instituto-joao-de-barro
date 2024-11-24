@@ -11,24 +11,16 @@ import house2 from "@images/institute/segunda-casa.jpg";
 import house3 from "@images/institute/casa-3.png";
 import house4 from "@images/institute/casa-4.png";
 import folhas from "@images/folhas.png";
+import TopTrunk from "../../../assets/icons/secondTronco.png";
 
 export function About() {
   const events = [
     {
-      year: 2016,
-      title: "Entrega da primeira casa",
+      year: 2022,
+      title: "Casa reformada e entregue à família em Santa Cruz",
       description:
-        "Essa foi a nossa primeira entrega de casa, realizada no dia 11 de Agosto de 2016.\n" +
-        "O contemplado era um pai viúvo com 4 crianças.",
-      image: house1,
-    },
-    {
-      year: 2018,
-      title: "Segunda Casa",
-      description:
-        "No dia 23 de junho de 2018 foi entregue a segunda casa do IJB à família da D. Raimunda que residirá junto com seus 7 filhos.\n" +
-        "O projeto foi elaborado por uma equipe de arquitetos e engenheiros voluntários exclusivamente para atender as necessidades dessa família.",
-      image: house2,
+        "No dia 10 de Maio de 2022 após 6 meses o IJB entregou a casa reformada a seus residentes, o engenheiro civil Carlos José Martins Tavares, fundador da entidade agradece as doações que foram feitas a obra.",
+      image: house4,
     },
     {
       year: 2020,
@@ -38,12 +30,22 @@ export function About() {
         "A missão do Instituto João de Barro é Proporcionar moradia digna a famílias em situação de extrema pobreza e vulnerabilidade social, devidamente selecionadas por processo de triagem, através de reforma e construção, com fornecimento de materiais, mão de obra e acompanhamento técnico com arquitetos e engenheiros voluntários.",
       image: house3,
     },
+
     {
-      year: 2022,
-      title: "Casa reformada e entregue à família em Santa Cruz",
+      year: 2018,
+      title: "Segunda Casa",
       description:
-        "No dia 10 de Maio de 2022 após 6 meses o IJB entregou a casa reformada a seus residentes, o engenheiro civil Carlos José Martins Tavares, fundador da entidade agradece as doações que foram feitas a obra.",
-      image: house4,
+        "No dia 23 de junho de 2018 foi entregue a segunda casa do IJB à família da D. Raimunda que residirá junto com seus 7 filhos.\n" +
+        "O projeto foi elaborado por uma equipe de arquitetos e engenheiros voluntários exclusivamente para atender as necessidades dessa família.",
+      image: house2,
+    },
+    {
+      year: 2016,
+      title: "Entrega da primeira casa",
+      description:
+        "Essa foi a nossa primeira entrega de casa, realizada no dia 11 de Agosto de 2016.\n" +
+        "O contemplado era um pai viúvo com 4 crianças.",
+      image: house1,
     },
   ];
 
@@ -162,13 +164,14 @@ export function About() {
         </div>
       </div>
 
-      <div className="w-100 mt-5">
+      <div className="w-100 mt-5 position-relative">
         <h2>
           CONHEÇA EM DETALHES A{" "}
           <span className="text-secondary">NOSSA HISTÓRIA</span>
         </h2>
         <div className="leaves-top"></div>
-        <img className="img-fluid" alt="folhas" src={folhas} />
+        <img className="leaves" alt="folhas" src={folhas} />
+        <img className="first-trunk" alt="tronco" src={TopTrunk as string} />
       </div>
 
       <Tree data={events} />

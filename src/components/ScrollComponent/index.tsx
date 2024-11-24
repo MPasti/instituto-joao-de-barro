@@ -55,38 +55,44 @@ const ScrollEffect = () => {
             className="content-block block-1 p-3 content bg-color-first"
             ref={(el: never) => (blockRefs.current[0] = el!)}
           >
-            <h1>Quem nós ajudamos</h1>
-            <p>
-              Nosso auxílio vai além de proporcionar uma moradia digna às
-              famílias carentes. Nós buscamos melhorar a qualidade de vida
-              dessas famílias, oferecendo moradia, apoio psicológico e melhorias
-              em suas condições. Promovendo a transformação social e a melhoria
-              contínua da qualidade de vida de nossa comunidade.
-            </p>
+            <div className="content-text">
+              <h1>Quem nós ajudamos</h1>
+              <p>
+                Nosso auxílio vai além de proporcionar uma moradia digna às
+                famílias carentes. Nós buscamos melhorar a qualidade de vida
+                dessas famílias, oferecendo moradia, apoio psicológico e
+                melhorias em suas condições. Promovendo a transformação social e
+                a melhoria contínua da qualidade de vida de nossa comunidade.
+              </p>
+            </div>
           </div>
           <div
             className="content-block block-2 p-3 content bg-color-second text-black"
             ref={(el: never) => (blockRefs.current[1] = el!)}
           >
-            <h1>Porque nós ajudamos</h1>
-            <p>
-              Nós ajudamos porque acreditamos no poder da compaixão, da
-              solidariedade e da ação coletiva para criar mudanças duradouras. E
-              acima de tudo, ajudamos porque sabemos que, juntos, podemos
-              construir um mundo mais justo, onde todos tenham a chance de viver
-              com dignidade e esperança.
-            </p>
+            <div className="content-text">
+              <h1>Porque nós ajudamos</h1>
+              <p>
+                Nós ajudamos porque acreditamos no poder da compaixão, da
+                solidariedade e da ação coletiva para criar mudanças duradouras.
+                E acima de tudo, ajudamos porque sabemos que, juntos, podemos
+                construir um mundo mais justo, onde todos tenham a chance de
+                viver com dignidade e esperança.
+              </p>
+            </div>
           </div>
           <div
             className="content-block block-3 p-3 content bg-color-third"
             ref={(el: never) => (blockRefs.current[2] = el!)}
           >
-            <h1>Como ajudamos</h1>
-            <p>
-              Apoiamos famílias em situação de vulnerabilidade, oferecendo
-              doações, moradias dignas e promovendo eventos para o bem-estar de
-              toda a comunidade na cidade de Franca.
-            </p>
+            <div className="content-text">
+              <h1>Como ajudamos</h1>
+              <p>
+                Apoiamos famílias em situação de vulnerabilidade, oferecendo
+                doações, moradias dignas e promovendo eventos para o bem-estar
+                de toda a comunidade na cidade de Franca.
+              </p>
+            </div>
           </div>
         </div>
       </div>

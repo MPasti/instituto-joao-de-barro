@@ -1,13 +1,16 @@
 import ResultImage from "@images/institute/segunda-casa.jpg";
-import AnotherImage from "@images/institute/casa-3.png";
+
+import antes from "@images/institute/antes.png";
+import depois from "@images/institute/depois.png";
+
 import Button from "../Button";
 import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
 const ResultsSection = () => {
   const navigate = useNavigate();
-  const blockRef1 = useRef<HTMLDivElement>(null);
-  const blockRef2 = useRef<HTMLDivElement>(null);
+  const blockRef1 = useRef<HTMLDivElement | unknown>(null);
+  const blockRef2 = useRef<HTMLDivElement | unknown>(null);
 
   useEffect(() => {
     const animateOnScroll = () => {
@@ -34,7 +37,7 @@ const ResultsSection = () => {
   return (
     <div className="results-container">
       <div className="results">
-        <h2>RESULTADOS DO IJB</h2>
+        <h2 className="mt-5 text-secondary">RESULTADOS DO IJB</h2>
         <div className="result-item">
           <div className="text-justify col-12 col-md-6">
             <p>
@@ -63,12 +66,17 @@ const ResultsSection = () => {
           />
         </div>
 
-        <div className="view">
-          <div className="block fadeOut" ref={blockRef1}>
-            <img src={ResultImage} alt="Imagem de Resultado 1" />
-          </div>
-          <div className="block fadeOut" ref={blockRef2}>
-            <img src={AnotherImage} alt="Imagem de Resultado 2" />
+        <div className="mt-5">
+          <h1 className="text-secondary mt-2">Projeto Atual</h1>
+          <div className="view">
+            <div className="block fadeOut" ref={blockRef1}>
+              <h2>Antes</h2>
+              <img src={antes} alt="Imagem de Resultado 1" />
+            </div>
+            <div className="block fadeOut" ref={blockRef2}>
+              <h2>Depois</h2>
+              <img src={depois} alt="Imagem de Resultado 2" />
+            </div>
           </div>
         </div>
       </div>

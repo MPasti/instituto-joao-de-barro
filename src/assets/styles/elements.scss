@@ -216,12 +216,14 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    max-width: 100%;
+    gap: 4rem;
   }
 
   .block {
-    height: 300px;
-    width: 500px;
-    margin: 20px;
+    flex-direction: column;
+    width: 600px;
+    max-width: 100%;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
     rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
     rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
@@ -257,7 +259,7 @@
 
     .block {
       width: 100%;
-      max-width: 300px;
+      max-width: 100%;
     }
   }
 }
@@ -387,6 +389,14 @@
       overflow-x: auto;
       display: block;
     }
+  }
+}
+
+.news-modal{
+  width: 80% !important;
+
+  @media (max-width: 768px) {
+    width: 100% !important;
   }
 }
 

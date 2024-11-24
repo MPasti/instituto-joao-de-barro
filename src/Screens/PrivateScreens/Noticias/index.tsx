@@ -282,7 +282,11 @@ const Noticias = () => {
           </Button>
         </div>
       </form>
-      <Modal isOpen={isModalOpen} onClose={handleModalClose} className="w-75">
+      <Modal
+        isOpen={isModalOpen}
+        onClose={handleModalClose}
+        className="news-modal"
+      >
         <section className="news-search-table p-4">
           <h3>Lista de Notícias</h3>
           <div className="table-responsive">

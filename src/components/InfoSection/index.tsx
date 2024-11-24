@@ -17,7 +17,7 @@ const InfoSection = () => {
       </div>
       <div className="d-flex justify-content-center">
         <img
-          src={peopleImg}
+          src={peopleImg as string}
           alt="people"
           style={{ height: "400px", maxWidth: "100%" }}
         />

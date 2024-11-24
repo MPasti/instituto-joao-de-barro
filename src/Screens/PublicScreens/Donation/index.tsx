@@ -33,7 +33,7 @@ export function Donation() {
           <div className="col-12 col-md-6 d-flex flex-column gap-2 ps-4">
             <h4 className="text-3xl mt-3 font-bold">DOE QUALQUER VALOR</h4>
             <div className="d-flex align-items-center">
-              <img alt="pix" src={pixIcon} />
+              <img alt="pix" src={pixIcon as string} />
               <h5 className="m-0 text-3xl">PIX: 26.345.732/0001-07 </h5>
             </div>
             <h5 className="text-2xl">
@@ -95,19 +95,19 @@ export function Donation() {
                   alt="chisel-icon"
                   className="position-static"
                   style={{ width: "80px" }}
-                  src={chiselIcon}
+                  src={chiselIcon as string}
                 />
                 <img
                   alt="crane-icon"
                   className="position-static"
                   style={{ width: "80px" }}
-                  src={crane}
+                  src={crane as string}
                 />
                 <img
                   alt="wheelbarrow-icon"
                   className="position-static"
                   style={{ width: "80px" }}
-                  src={wheelbarrow}
+                  src={wheelbarrow as string}
                 />
               </div>
             </div>
@@ -119,7 +119,7 @@ export function Donation() {
               <div className="d-flex justify-content-center">
                 <img
                   alt="telefone"
-                  src={telephoneIcon}
+                  src={telephoneIcon as string}
                   className="position-static"
                   style={{ width: "150px" }}
                 />

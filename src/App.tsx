@@ -39,6 +39,7 @@ import { Perfil } from "./Screens/PrivateScreens/Perfil";
 import { Financeiro } from "./Screens/PrivateScreens/Financeiro";
 import { StorageHome } from "./Screens/PrivateScreens/Estoque/StorageHome";
 import { BuildingHome } from "./Screens/PrivateScreens/Obras/BuildingHome";
+import { PainelDoEditor } from "./Screens/PrivateScreens/PainelDoEditor";
 
 function App() {
   return (
@@ -73,6 +74,7 @@ function App() {
                 <Route path="financeiro" element={<Financeiro />} />
                 <Route path="estoque" element={<StorageHome />} />
                 <Route path="obras" element={<BuildingHome />} />
+                <Route path="editor" element={<PainelDoEditor />} />
               </Route>
             </Route>
           </Routes>

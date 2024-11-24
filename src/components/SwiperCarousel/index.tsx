@@ -69,7 +69,7 @@ export const SwiperCarousel = () => {
           <SwiperSlide key={index}>
             <div className="slide-container">
               <img
-                src={slide.image}
+                src={slide.image as string}
                 alt={`Image ${index + 1}`}
                 className="slide-image"
               />

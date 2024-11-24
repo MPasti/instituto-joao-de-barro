@@ -47,7 +47,7 @@ export const PartnersCarousel = () => {
         {logos.map((logo, index) => (
           <SwiperSlide key={index}>
             <img
-              src={logo}
+              src={logo as string}
               alt={`Logo ${index + 1}`}
               style={{ width: "100%" }}
             />
