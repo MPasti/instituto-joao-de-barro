@@ -5,6 +5,12 @@
 	align-items: center;
 	flex-direction: column;
 	column-gap: 5rem;
+	padding: 20px;
+
+	@media (max-width: 768px) {
+		padding: 10px;
+		column-gap: 2rem;
+	}
 }
 
 .main-image-container {
@@ -12,20 +18,31 @@
 	justify-content: center;
 	align-items: center;
 	background-repeat: no-repeat;
-	background-size: cover; 
+	background-size: cover;
 	background-position: center;
-	width: 100%; 
+	width: 100%;
 	height: 400px;
+
+	@media (max-width: 768px) {
+		height: 250px; // Ajusta a altura para telas menores
+	}
 }
 
 .colaborador-yellow-box {
 	background-color: #ffc72c;
 	display: flex;
-	width: auto;
+	width: 100%;
+	max-width: 600px;
 	align-items: center;
 	flex-direction: column;
 	padding: 30px;
-    min-height: 700px;
+	min-height: 700px;
+	border-radius: 10px; // Bordas arredondadas
+
+	@media (max-width: 768px) {
+		padding: 20px;
+		min-height: auto; // Permite altura flexível
+	}
 }
 
 .colaborador-yellow-box > * {
@@ -35,14 +52,17 @@
 .title-c {
 	font-style: normal;
 	font-weight: 900;
-	font-size: 12xpx;
-	line-height: 49px;
-	display: flex;
-	align-items: center;
+	font-size: 18px;
+	line-height: 24px;
 	text-align: center;
 	text-transform: uppercase;
-
 	color: #231f20;
+	margin-bottom: 20px;
+
+	@media (max-width: 768px) {
+		font-size: 14px; // Fonte menor em telas pequenas
+		line-height: 20px;
+	}
 }
 
 .form-input-c {
@@ -53,75 +73,145 @@
 }
 
 input, textarea, select {
-    height: 40px;
-    background-color: #f6f6f6;
-    color: #A0A0A0;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 14px;
+	height: 40px;
+	background-color: #f6f6f6;
+	color: #a0a0a0;
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	font-size: 14px;
+
+	@media (max-width: 768px) {
+		font-size: 12px; // Ajusta o tamanho do texto
+		height: 36px; // Altura menor para inputs
+	}
 }
 
 textarea {
-    height: auto; 
-    resize: vertical; 
+	height: auto;
+	resize: vertical;
 }
 
 input:focus, textarea:focus, select:focus {
-    outline: none;
-    box-shadow: none;
+	outline: none;
+	box-shadow: none;
+}
+
+.error-message {
+	color: #ff4d4d;
+	font-size: 14px;
+	font-weight: bold;
+	margin-bottom: 16px;
+	text-align: center;
+
+	@media (max-width: 768px) {
+		font-size: 12px; // Mensagem menor para mobile
+	}
+}
+
+.input-error {
+	border: 2px solid red !important;
+	background-color: #ffe6e6;
+	color: #a10000;
+	transition: 0.3s ease-in-out;
+
+	&:focus {
+		outline: none;
+		border-color: darkred;
+		box-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
+	}
 }
 
 .double-input-container-c {
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
+	display: flex;
+	width: 100%;
+	justify-content: space-between;
 	gap: 1rem;
+
+	@media (max-width: 768px) {
+		flex-direction: column; // Campos empilhados em telas menores
+		gap: 0.5rem;
+	}
 }
 
 label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 8px;
-    font-size: 14px;
-    color: #333;
+	display: block;
+	font-weight: bold;
+	margin-bottom: 8px;
+	font-size: 14px;
+	color: #333;
 	margin-top: 20px;
+
+	@media (max-width: 768px) {
+		font-size: 12px; // Fonte menor para mobile
+		margin-top: 10px;
+	}
 }
 
 .checkbox-container {
-    margin-bottom: 20px; 
+	margin-bottom: 20px;
+
+	.input-error {
+		border: 2px solid red;
+		padding: 10px;
+		border-radius: 5px;
+		background-color: #ffe6e6;
+	}
 }
 
 .checkbox-container div {
-    display: flex; 
-    align-items: center; 
-    margin-bottom: 10px; 
-}
+	display: flex;
+	align-items: center;
+	margin-bottom: 10px;
 
-.checkbox-container input[type="checkbox"] {
-    margin-right: 10px; 
-}
-
-.checkbox-container label {
-    font-weight: bold;
-    margin-bottom: 10px; 
-    display: block; 
+	input[type="checkbox"] {
+		margin-right: 10px;
+	}
 }
 
 .btn-orange {
 	margin-top: 20px;
 	padding: 12px 24px;
-	background-color: #ffc72c; 
+	background-color: #ffc72c;
 	color: black;
 	font-weight: bold;
 	border: none;
 	border-radius: 8px;
 	text-align: center;
-	cursor: pointer; 
-	transition: background-color 0.3s ease; 
+	cursor: pointer;
+	transition: background-color 0.3s ease;
 	margin: 3rem 0;
+
+	&:hover {
+		background-color: #e2aa0e;
+	}
+
+	@media (max-width: 768px) {
+		padding: 10px 20px; // Botão menor em telas menores
+	}
 }
 
-.btn-orange:hover {
-	background-color: #e2aa0e; 
+// Responsividade adicional
+@media (max-width: 480px) {
+	.parent-container {
+		padding: 5px;
+	}
+
+	.title-c {
+		font-size: 12px;
+	}
+
+	.colaborador-yellow-box {
+		padding: 15px;
+	}
+
+	input, textarea, select {
+		font-size: 10px;
+		padding: 8px;
+	}
+
+	.btn-orange {
+		font-size: 12px;
+		padding: 8px 16px;
+	}
 }
