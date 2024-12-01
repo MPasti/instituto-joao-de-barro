@@ -8,6 +8,10 @@
           #FFBD64 44%,
           #FFD04F 100%);
 
+  @media (max-width: 375px) {
+    justify-content: center;
+  }
+
   .menu-button {
     display: none;
     background: none;

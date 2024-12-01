@@ -3,6 +3,7 @@ import ImageDropzone from "../../../components/Dropzone";
 import Button from "../../../components/Button";
 import {
   createNews,
+  deleteNews,
   getNews,
   updateNews,
 } from "../../../services/newService.ts";
@@ -82,6 +83,19 @@ const Noticias = () => {
       }
     } else {
       toast.error("Preencha todos os campos obrigatórios.");
+    }
+  };
+
+  const handleDelete = async (id: number) => {
+    try {
+      await deleteNews(id);
+      toast.success("Notícia excluída com sucesso!");
+      await fetchNoticias();
+    } catch (error) {
+      console.error("Erro ao excluir notícia:", error);
+      toast.error(
+        error.response?.data?.message || "Erro ao excluir a notícia.",
+      );
     }
   };
 
@@ -293,27 +307,46 @@ const Noticias = () => {
             <table className="table table-striped">
               <thead>
                 <tr>
-                  <th>ID</th>
                   <th>Título</th>
                   <th>Descrição</th>
                   <th>Data</th>
                   <th>Etiqueta</th>
+                  <th></th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
                 {noticias.length > 0 ? (
                   noticias.map((noticia) => (
-                    <tr
-                      key={noticia.id}
-                      onClick={() => {
-                        handleEdit(noticia);
-                      }}
-                    >
-                      <td>{noticia.id}</td>
+                    <tr key={noticia.id}>
                       <td>{noticia.titulo}</td>
                       <td>{noticia.descricao}</td>
                       <td>{Utils.formatDate(noticia.data)}</td>
                       <td>{noticia.etiqueta}</td>
+                      <td>
+                        <button
+                          className="btn btn-primary"
+                          type="button"
+                          onClick={() => {
+                            handleEdit(noticia);
+                          }}
+                        >
+                          Editar
+                        </button>
+                      </td>
+                      <td>
+                        <button
+                          className="btn btn-secondary"
+                          type="button"
+                          onClick={async () => {
+                            if (noticia?.id) {
+                              await handleDelete(noticia.id);
+                            }
+                          }}
+                        >
+                          Excluir
+                        </button>
+                      </td>
                     </tr>
                   ))
                 ) : (

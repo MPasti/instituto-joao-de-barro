@@ -411,6 +411,42 @@
   max-width: 90%;
 }
 
+.dropdown-item {
+  &:focus, &:active, &:focus:active {
+    box-shadow: none !important;
+    background-color: $secondary !important;
+    color: #fff !important;
+  }
+
+  transition: background-color 0.3s ease, color 0.3s ease;
+
+  &:hover {
+    background-color: lighten($secondary, 10%) !important;
+    color: #fff !important;
+  }
+}
+
+
+.dropdown-custom {
+  position: relative;
+  background-color: #fff;
+  border-radius: 0.25rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  z-index: 1050;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: -8px;
+    right: 20px;
+    border-width: 8px;
+    border-style: solid;
+    border-color: transparent transparent #fff transparent;
+    z-index: -1;
+  }
+}
+
+
 
 @import 'src/Screens/PublicScreens/About';
 

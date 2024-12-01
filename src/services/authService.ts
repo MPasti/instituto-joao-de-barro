@@ -32,8 +32,7 @@ export const login = async (username: string, password: string) => {
 };
 
 export const logout = () => {
-  localStorage.removeItem("token");
-  localStorage.removeItem("user");
+  localStorage.clear();
   window.location.href = "/login";
 };
 

@@ -6,3 +6,5 @@ export const updateNews = (noticias: News) =>
   axios.put(`${import.meta.env.VITE_API_URL}/noticias`, noticias);
 export const getNews = () =>
   axios.get<News[]>(`${import.meta.env.VITE_API_URL}/noticias`);
+export const deleteNews = (id: number) =>
+  axios.delete<News[]>(`${import.meta.env.VITE_API_URL}/noticias/${id}`);
