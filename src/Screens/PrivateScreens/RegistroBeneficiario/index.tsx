@@ -14,11 +14,11 @@ const Registro = () => {
     const [cpf, setCpf] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+    const [maskedCpf, setMaskedCpf] = useState('');
 
     // UserInfo states
     const [name, setName] = useState('');
     const [lastName, setLastName] = useState('');
-    const [rg, setRg] = useState('');
     const [birthdayDate, setBirthdayDate] = useState('');
     const [phone1, setPhone1] = useState('');
     const [phone2, setPhone2] = useState('');
@@ -34,12 +34,18 @@ const Registro = () => {
     // Family members
     const [familyMembers, setFamilyMembers] = useState<FamilyMember[]>([]);
 
+    const handleCpfChange = (e) => {
+        const rawValue = e.target.value;
+        setCpf(rawValue);
+        setMaskedCpf('*'.repeat(rawValue.length));
+    };
+
     const validateForm = () => {
         if (!email || !cpf || !password || !confirmPassword) {
             toast.error('Preencha todos os campos obrigatórios do usuário.');
             return false;
         }
-        if (!name || !lastName || !rg || !birthdayDate || !phone1) {
+        if (!name || !lastName || !birthdayDate || !phone1) {
             toast.error('Preencha todos os campos obrigatórios do UserInfo.');
             return false;
         }
@@ -58,13 +64,14 @@ const Registro = () => {
         return true;
     };
 
+    const [privacyChecked, setPrivacyChecked] = useState(false);
+
     const createFamilia = async () => {
         if (!validateForm()) return;
 
         const userInfo: UserInfo = {
             name,
             lastName,
-            rg,
             birthdayDate: new Date(birthdayDate),
             phone1,
             phone2,
@@ -137,7 +144,7 @@ const Registro = () => {
                 <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
 
                 <label>CPF:</label>
-                <input type="text" value={cpf} onChange={(e) => setCpf(e.target.value)} />
+                <input type="text" value={maskedCpf} onChange={(handleCpfChange)} />
 
                 <label>Senha:</label>
                 <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
@@ -151,9 +158,6 @@ const Registro = () => {
 
                 <label>Sobrenome:</label>
                 <input type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} />
-
-                <label>RG:</label>
-                <input type="text" value={rg} onChange={(e) => setRg(e.target.value)} />
 
                 <label>Data de Nascimento:</label>
                 <input type="date" value={birthdayDate} onChange={(e) => setBirthdayDate(e.target.value)} />
@@ -200,9 +204,21 @@ const Registro = () => {
                         <input type="text" placeholder="Problemas de Saúde" value={member.healthyProblems} onChange={(e) => updateFamilyMember(index, 'healthyProblems', e.target.value)} />
                     </div>
                 ))}
-                <button className='addFamily-btn' onClick={addFamilyMember}>+ Adicionar Membro</button>
 
-                <button className='confirm-btn' onClick={createFamilia}>Confirmar</button>
+                <div className='privacy-policy-container'>
+                <input
+                    type="checkbox"
+                    id="privacy-policy"
+                    className='privacy-policy'
+                    checked={privacyChecked}
+                    onChange={(e) => setPrivacyChecked(e.target.checked)}
+                />
+                <label htmlFor="privacy-policy">Eu concordo com as políticas de privacidade.</label>
+
+                </div>
+                <button className='btn-secondary' onClick={addFamilyMember}>+ Adicionar Membro</button>
+
+                <button className='btn-primary' onClick={createFamilia} disabled={!privacyChecked}>Confirmar</button>
             </div>
         </div>
     );

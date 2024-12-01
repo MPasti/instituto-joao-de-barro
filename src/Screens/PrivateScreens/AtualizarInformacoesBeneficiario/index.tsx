@@ -224,7 +224,7 @@ const AtualizarInformacoes = () => {
                     onChange={(e) => setNecessidadeFamilia(e.target.value)}
                 />
 
-                <button type="submit">Salvar alterações</button>
+                <button className='btn-primary' type="submit">Salvar alterações</button>
             </form>
 
             <h2>Membros da Família</h2>

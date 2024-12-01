@@ -135,8 +135,8 @@ const AtualizarInformacoesVisitas = () => {
                 </div>
 
                 <div className="button-group">
-                    <button onClick={handleUpdate} className="button confirm-btn">CONFIRMAR</button>
-                    <button onClick={handleDiscard} className="button discard-btn">DESCARTAR</button>
+                    <button onClick={handleUpdate} className="btn-primary">CONFIRMAR</button>
+                    <button onClick={handleDiscard} className="btn-secondary">DESCARTAR</button>
                 </div>
             </div>
         </div>

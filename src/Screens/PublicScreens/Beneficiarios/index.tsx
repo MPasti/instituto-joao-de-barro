@@ -17,26 +17,25 @@ export function Beneficiarios() {
     // UserInfo states
     const [name, setName] = useState('');
     const [lastName, setLastName] = useState('');
-    const [rg, setRg] = useState('');
     const [birthdayDate, setBirthdayDate] = useState('');
     const [phone1, setPhone1] = useState('');
     const [phone2, setPhone2] = useState('');
 
-    // useEffect(() => {
-    //     const {user} = JSON.parse(localStorage.getItem('user') || '{}');
-    //     if(user.id) {
-    //         if(window.confirm('Você já está logado, deseja acessar seus dados?')) {
-    //             navigate('/dashboard/beneficiarios/data');
-    //         }
-    //     }
-    // })
+    useEffect(() => {
+        const { user } = JSON.parse(localStorage.getItem('user') || '{}');
+        if (user.id) {
+            if (window.confirm('Você já está logado, deseja acessar seus dados?')) {
+                navigate('/dashboard/beneficiarios/data');
+            }
+        }
+    })
 
     const validateForm = () => {
         if (!email || !cpf || !password || !confirmPassword) {
             toast.error('Preencha todos os campos obrigatórios do usuário.');
             return false;
         }
-        if (!name || !lastName || !rg || !birthdayDate || !phone1) {
+        if (!name || !lastName || !birthdayDate || !phone1) {
             toast.error('Preencha todos os campos obrigatórios do UserInfo.');
             return false;
         }
@@ -57,7 +56,6 @@ export function Beneficiarios() {
         const userInfo: UserInfo = {
             name,
             lastName,
-            rg,
             birthdayDate: new Date(birthdayDate),
             phone1,
             phone2,
@@ -114,9 +112,6 @@ export function Beneficiarios() {
                 <label>Sobrenome:</label>
                 <input type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} />
 
-                <label>RG:</label>
-                <input type="text" value={rg} onChange={(e) => setRg(e.target.value)} />
-
                 <label>Data de Nascimento:</label>
                 <input type="date" value={birthdayDate} onChange={(e) => setBirthdayDate(e.target.value)} />
 
@@ -126,7 +121,7 @@ export function Beneficiarios() {
                 <label>Telefone 2:</label>
                 <input type="text" value={phone2} onChange={(e) => setPhone2(e.target.value)} />
 
-                <button className="benefconfirm-btn" onClick={registrarUser}>Confirmar</button>
+                <button className="btn-primary" onClick={registrarUser}>Confirmar</button>
             </div>
         </div>
     );

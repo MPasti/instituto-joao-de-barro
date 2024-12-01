@@ -178,8 +178,8 @@ const RegistroVisita = () => {
                 </div>
 
                 <div className="button-group">
-                    <button onClick={createVisita} className="button confirm-btn">CONFIRMAR</button>
-                    <button onClick={resetForm} className="button discard-btn">DESCARTAR</button>
+                    <button onClick={createVisita} className="btn-primary">CONFIRMAR</button>
+                    <button onClick={resetForm} className="btn-secondary">DESCARTAR</button>
                 </div>
             </div>
         </div>

@@ -21,8 +21,7 @@ declare global {
     userId?: number;           
     authorityId?: number;       
     createdAt: Date;   
-    active: boolean;            
-    rg: string;                
+    active: boolean;                            
     profilePic: Uint8Array;        
     name: string;               
     lastName: string;           
