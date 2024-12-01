@@ -17,7 +17,7 @@ export const Storage = () => {
 
     useEffect(() => {
         loadStorageMaterials();
-    }, [storageMaterials]);
+    }, []);
 
     const handleEditStorageMaterial = (material: StorageMaterial) => {
         setSelectedMaterial(material);

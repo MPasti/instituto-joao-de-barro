@@ -17,7 +17,7 @@ export const Outlet = () => {
 
     useEffect(() => {
         loadOutletProducts();
-    }, [outletProducts]);
+    }, []);
 
     const handleEditOutletProduct = (product: OutletProduct) => {
         setSelectedProduct(product);
