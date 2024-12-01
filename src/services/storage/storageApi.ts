@@ -12,14 +12,14 @@ const api = axios.create({
 });
 
 export const getMaterials = async (): Promise<StorageMaterial[]> => {
-  const response = await api.get<StorageMaterial[]>("/materials");
+  const response = await api.get<StorageMaterial[]>("/material");
   return response.data;
 };
 
 export const addMaterial = async (
   material: StorageMaterial
 ): Promise<StorageMaterial> => {
-  const response = await api.post<StorageMaterial>("/materials", material);
+  const response = await api.post<StorageMaterial>("/material/register", material);
   return response.data;
 };
 
@@ -27,10 +27,10 @@ export const updateMaterial = async (
   id: string,
   material: StorageMaterial
 ): Promise<StorageMaterial> => {
-  const response = await api.put<StorageMaterial>(`/materials/${id}`, material);
+  const response = await api.put<StorageMaterial>(`/material/update/${id}`, material);
   return response.data;
 };
 
 export const deleteMaterial = async (id: string): Promise<void> => {
-  await api.delete(`/materials/${id}`);
+  await api.delete(`/material/delete/${id}`);
 };
