@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import PrivateRouter from "./components/PrivateRouter";
+import ScrollToTop from "./components/ScrollToTop";
 
 const ToastOptions = {
   style: {
@@ -24,9 +25,9 @@ import { Contact } from "./Screens/PublicScreens/Contact";
 import { About } from "./Screens/PublicScreens/About";
 import { Voluntarios } from "./Screens/PublicScreens/Voluntarios";
 import { Beneficiarios } from "./Screens/PublicScreens/Beneficiarios";
-import { Projetos } from "./Screens/PublicScreens/Projetos";
 import { Blog } from "./Screens/PublicScreens/Blog";
 import { Donation } from "./Screens/PublicScreens/Donation";
+import { NotFound } from "./Screens/NotFound";
 
 // Login
 import { Login } from "./Screens/Login";
@@ -43,20 +44,28 @@ import Registro from "./Screens/PrivateScreens/RegistroBeneficiario";
 import AtualizarInformacoesVisitas from "./Screens/PrivateScreens/atualizarInformacoesVisitas";
 import RegistroVisita from "./Screens/PrivateScreens/RegistroVisita";
 import { BuildingHome } from "./Screens/PrivateScreens/Obras/BuildingHome";
+<<<<<<< HEAD
 import { BeneficiarioPerfil } from "./Screens/PrivateScreens/BeneficiarioPerfil";
+=======
+import { PainelDoEditor } from "./Screens/PrivateScreens/PainelDoEditor";
+>>>>>>> upstream/main
 
 function App() {
   return (
     <div className="app-container">
       <Router>
         <Toaster position="top-right" toastOptions={ToastOptions} />
+<<<<<<< HEAD
+=======
+        <ScrollToTop />
+
+>>>>>>> upstream/main
         <div className="content">
           <Routes>
             {/* Rotas Públicas */}
             <Route path="/" element={<LandingPage />}>
               <Route index element={<Main />} />
               <Route path="contatos" element={<Contact />} />
-              <Route path="projetos" element={<Projetos />} />
               <Route path="noticias" element={<Blog />} />
               <Route path="sobre" element={<About />} />
               <Route path="voluntarios" element={<Voluntarios />} />
@@ -66,6 +75,7 @@ function App() {
 
             {/* Rota de Login */}
             <Route path="/login" element={<Login />} />
+            <Route path="*" element={<NotFound />} />
 
             {/* Rotas Privadas - Dashboard */}
             <Route element={<PrivateRouter />}>
@@ -75,6 +85,7 @@ function App() {
                 <Route path="perfil" element={<Perfil />} />
                 <Route path="financeiro" element={<Financeiro />} />
                 <Route path="estoque" element={<StorageHome />} />
+<<<<<<< HEAD
                 <Route path="beneficiarios" element={<BeneficiariosMain />} />
                 <Route path="beneficiario/perfil" element={<BeneficiarioPerfil />} />
                 <Route path="atualizar/:familiaId" element={<AtualizarInformacoes />} />
@@ -82,6 +93,10 @@ function App() {
                 <Route path="visitas/:id" element={<AtualizarInformacoesVisitas />} /> 
                 <Route path="registroVisita" element={<RegistroVisita />} />
                 <Route path="obras" element={<BuildingHome />}/>
+=======
+                <Route path="obras" element={<BuildingHome />} />
+                <Route path="editor" element={<PainelDoEditor />} />
+>>>>>>> upstream/main
               </Route>
             </Route>
           </Routes>
@@ -92,4 +107,3 @@ function App() {
 }
 
 export default App;
-

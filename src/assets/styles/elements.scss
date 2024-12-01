@@ -30,6 +30,10 @@
 
   &:focus {
     outline: none;
+    color: $white;
+    background-color: $primary;
+    border-color: $primary;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2), 0 2px 6px rgba(0, 0, 0, 0.15);
   }
 }
 
@@ -212,12 +216,14 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    max-width: 100%;
+    gap: 4rem;
   }
 
   .block {
-    height: 300px;
-    width: 500px;
-    margin: 20px;
+    flex-direction: column;
+    width: 600px;
+    max-width: 100%;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
     rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
     rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
@@ -253,7 +259,7 @@
 
     .block {
       width: 100%;
-      max-width: 300px;
+      max-width: 100%;
     }
   }
 }
@@ -385,6 +391,61 @@
     }
   }
 }
+
+.news-modal{
+  width: 80% !important;
+
+  @media (max-width: 768px) {
+    width: 100% !important;
+  }
+}
+
+.help-other{
+  margin-top: 10rem;
+  min-height: 500px;
+  background-color: #ffe7d0;
+}
+
+.donation-block{
+  width: 600px;
+  max-width: 90%;
+}
+
+.dropdown-item {
+  &:focus, &:active, &:focus:active {
+    box-shadow: none !important;
+    background-color: $secondary !important;
+    color: #fff !important;
+  }
+
+  transition: background-color 0.3s ease, color 0.3s ease;
+
+  &:hover {
+    background-color: lighten($secondary, 10%) !important;
+    color: #fff !important;
+  }
+}
+
+
+.dropdown-custom {
+  position: relative;
+  background-color: #fff;
+  border-radius: 0.25rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  z-index: 1050;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: -8px;
+    right: 20px;
+    border-width: 8px;
+    border-style: solid;
+    border-color: transparent transparent #fff transparent;
+    z-index: -1;
+  }
+}
+
 
 
 @import 'src/Screens/PublicScreens/About';

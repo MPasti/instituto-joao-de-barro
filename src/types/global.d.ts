@@ -4,8 +4,10 @@ declare global {
     cpf: string;
     email: string;
     username: string;
-    password: string;
-    token: string;
+    password?: string;
+    token?: string;
+    profileImage: string;
+    roles: string[];
   }
   interface News {
     id: number | null;

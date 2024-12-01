@@ -1,4 +1,5 @@
 .scroll-section {
+  width: 100%;
   margin-bottom: 12rem;
   .left-image {
     position: sticky;
@@ -9,6 +10,7 @@
       margin-top: 30px;
       width: 100%;
       object-fit: cover;
+      transition: opacity 0.3s ease-in-out;
     }
 
     @media (max-width: 576px) {
@@ -41,15 +43,16 @@
     justify-content: center;
     display: flex;
     flex-direction: column;
-    text-align: justify;
 
-    h1{
-      font-size: 32px;
-      padding: 0 40px;
-    }
-    p{
-      padding: 0 40px;
-      font-size: 20px;
+    .content-text{
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      justify-items: center;
+
+      p{
+        font-size: 18px;
+      }
     }
 
     &.bg-color-first{

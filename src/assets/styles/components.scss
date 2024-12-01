@@ -110,7 +110,7 @@
 }
 
 .partners {
-  margin: 100px auto;
+  margin: 6rem auto;
   width: 50vw;
 
   @media (max-width: 1050px) {
@@ -139,12 +139,24 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
+
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.25);
+    z-index: 1;
+  }
 }
 
 .slide-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  position: relative;
+  z-index: 0;
 }
 
 .slide-content {
@@ -152,6 +164,7 @@
   left: 10vw;
   color: white;
   text-align: left;
+  z-index: 2;
 
   h2 {
     font-size: 2.4rem;
@@ -168,10 +181,10 @@
 
   .slide-button {
     padding: 8px 15px;
-    background-color: rgba(255, 255, 255, 0.7);
+    background-color: $secondary;
     border-radius: 12px;
     border: none;
-    color: $dark;
+    color: $white;
     cursor: pointer;
     font-size: 1rem;
 
@@ -211,6 +224,7 @@
 }
 
 .img-container::before {
+  overflow: hidden;
   content: "";
   position: absolute;
   top: 0;
@@ -228,28 +242,6 @@
   width: 100%;
 }
 
-.login-container {
-  display: flex;
-  background-color: #fce4db;
-}
-
-.login-content {
-  display: flex;
-  height: 400px;
-}
-
-.login-title {
-  color: $primary;
-  font-weight: 550;
-  text-decoration: underline;
-}
-
-.forgot-password {
-  display: flex;
-  cursor: pointer;
-  justify-content: end;
-  font-size: 14px;
-}
 
 .table {
   width: 100%;

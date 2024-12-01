@@ -3,6 +3,7 @@ import ImageDropzone from "../../../components/Dropzone";
 import Button from "../../../components/Button";
 import {
   createNews,
+  deleteNews,
   getNews,
   updateNews,
 } from "../../../services/newService.ts";
@@ -10,6 +11,7 @@ import { toast } from "react-hot-toast";
 import NewsCard from "../../../components/NewsCard";
 import { Modal } from "../../../components/Modal/Modal.tsx";
 import { FaMagnifyingGlass } from "react-icons/fa6";
+import Utils from "../../../utils";
 
 const Noticias = () => {
   const [formData, setFormData] = useState<News>({
@@ -64,13 +66,36 @@ const Noticias = () => {
     const hasErrors = Object.values(newErrors).some((error) => error);
 
     if (!hasErrors) {
-      if (formData.id) {
-        await updateNews(formData);
-        toast.success("Notícia Atualizada com sucesso!");
-      } else {
-        await createNews(formData);
-        toast.success("Notícia criada com sucesso!");
+      try {
+        if (formData.id) {
+          await updateNews(formData);
+          toast.success("Notícia atualizada com sucesso!");
+        } else {
+          await createNews(formData);
+          toast.success("Notícia criada com sucesso!");
+        }
+      } catch (error) {
+        console.error("Erro ao salvar notícia:", error);
+        toast.error(
+          error.response?.data?.message ||
+            "Ocorreu um erro ao salvar a notícia.",
+        );
       }
+    } else {
+      toast.error("Preencha todos os campos obrigatórios.");
+    }
+  };
+
+  const handleDelete = async (id: number) => {
+    try {
+      await deleteNews(id);
+      toast.success("Notícia excluída com sucesso!");
+      await fetchNoticias();
+    } catch (error) {
+      console.error("Erro ao excluir notícia:", error);
+      toast.error(
+        error.response?.data?.message || "Erro ao excluir a notícia.",
+      );
     }
   };
 
@@ -93,6 +118,20 @@ const Noticias = () => {
 
   const handleModalClose = () => {
     setIsModalOpen(false);
+  };
+
+  const handleEdit = (noticia: News) => {
+    setFormData({
+      id: noticia.id,
+      titulo: noticia.titulo,
+      descricao: noticia.descricao,
+      data: noticia.data,
+      ativa: noticia.ativa || false,
+      link: noticia.link,
+      etiqueta: noticia.etiqueta,
+      image: noticia.image || "",
+    });
+    handleModalClose();
   };
 
   return (
@@ -118,7 +157,7 @@ const Noticias = () => {
             <label htmlFor="titulo" className="col-sm-2 col-form-label">
               Título
             </label>
-            <div className="col-sm-10">
+            <div className="w-100">
               <input
                 id="titulo"
                 name="titulo"
@@ -127,9 +166,6 @@ const Noticias = () => {
                 className={`form-control ${errors.titulo ? "is-invalid" : ""}`}
                 placeholder="Título da notícia"
               />
-              {errors.titulo && (
-                <div className="invalid-feedback">Campo obrigatório.</div>
-              )}
             </div>
           </div>
 
@@ -137,28 +173,26 @@ const Noticias = () => {
             <label htmlFor="descricao" className="col-sm-2 col-form-label">
               Descrição
             </label>
-            <div className="col-sm-10">
+            <div className="w-100">
               <textarea
                 id="descricao"
                 name="descricao"
                 value={formData.descricao}
                 onChange={handleInputChange}
+                rows={4}
                 className={`form-control ${
                   errors.descricao ? "is-invalid" : ""
                 }`}
                 placeholder="Descrição da notícia"
               />
-              {errors.descricao && (
-                <div className="invalid-feedback">Campo obrigatório.</div>
-              )}
             </div>
           </div>
 
-          <div className="form-group row mb-3 flex-column">
-            <label htmlFor="data" className="col-sm-2 col-form-label">
-              Data
-            </label>
-            <div className="col-sm-4">
+          <div className="form-group row mb-3">
+            <div className="col-sm-6">
+              <label htmlFor="data" className="form-label">
+                Data
+              </label>
               <input
                 id="data"
                 type="date"
@@ -167,23 +201,21 @@ const Noticias = () => {
                 onChange={handleInputChange}
                 className={`form-control ${errors.data ? "is-invalid" : ""}`}
               />
-              {errors.data && (
-                <div className="invalid-feedback">Campo obrigatório.</div>
-              )}
             </div>
-            <div className="col-sm-4 mt-3">
-              <label htmlFor="ativa" className="col-sm-2 col-form-label me-2">
+            <div className="col-sm-6">
+              <label htmlFor="ativa" className="form-label">
                 Ativa
               </label>
-              <input
-                type="checkbox"
-                name="ativa"
-                id="ativa"
-                checked={formData.ativa}
-                onChange={handleInputChange}
-                className="form-check-input"
-                style={{ marginTop: "0.7rem" }}
-              />
+              <div className="d-flex align-items-center">
+                <input
+                  type="checkbox"
+                  name="ativa"
+                  id="ativa"
+                  checked={formData.ativa}
+                  onChange={handleInputChange}
+                  className="form-check-input me-2"
+                />
+              </div>
             </div>
           </div>
 
@@ -200,9 +232,6 @@ const Noticias = () => {
                 className={`form-control ${errors.link ? "is-invalid" : ""}`}
                 placeholder="Link para redirecionar"
               />
-              {errors.link && (
-                <div className="invalid-feedback">Campo obrigatório.</div>
-              )}
             </div>
           </div>
 
@@ -219,9 +248,6 @@ const Noticias = () => {
                 className={`form-control ${errors.etiqueta ? "is-invalid" : ""}`}
                 placeholder="Etiqueta da notícia"
               />
-              {errors.etiqueta && (
-                <div className="invalid-feedback">Campo obrigatório.</div>
-              )}
             </div>
           </div>
         </div>
@@ -263,36 +289,64 @@ const Noticias = () => {
             }}
             className="me-2"
           >
-            Limpar
+            {formData.id ? "Cancelar Edição" : "Limpar"}
           </Button>
           <Button type="submit" variant="primary">
-            Salvar
+            {formData.id ? "Editar" : "Salvar"}
           </Button>
         </div>
       </form>
-      <Modal isOpen={isModalOpen} onClose={handleModalClose} className="w-75">
+      <Modal
+        isOpen={isModalOpen}
+        onClose={handleModalClose}
+        className="news-modal"
+      >
         <section className="news-search-table p-4">
           <h3>Lista de Notícias</h3>
           <div className="table-responsive">
             <table className="table table-striped">
               <thead>
                 <tr>
-                  <th>ID</th>
                   <th>Título</th>
                   <th>Descrição</th>
                   <th>Data</th>
                   <th>Etiqueta</th>
+                  <th></th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
                 {noticias.length > 0 ? (
                   noticias.map((noticia) => (
                     <tr key={noticia.id}>
-                      <td>{noticia.id}</td>
                       <td>{noticia.titulo}</td>
                       <td>{noticia.descricao}</td>
-                      <td>{noticia.data}</td>
+                      <td>{Utils.formatDate(noticia.data)}</td>
                       <td>{noticia.etiqueta}</td>
+                      <td>
+                        <button
+                          className="btn btn-primary"
+                          type="button"
+                          onClick={() => {
+                            handleEdit(noticia);
+                          }}
+                        >
+                          Editar
+                        </button>
+                      </td>
+                      <td>
+                        <button
+                          className="btn btn-secondary"
+                          type="button"
+                          onClick={async () => {
+                            if (noticia?.id) {
+                              await handleDelete(noticia.id);
+                            }
+                          }}
+                        >
+                          Excluir
+                        </button>
+                      </td>
                     </tr>
                   ))
                 ) : (

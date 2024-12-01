@@ -24,28 +24,28 @@ export const SwiperCarousel = () => {
       title: "Construindo Sonhos, Transformando Vidas",
       description:
         "O Instituto João de Barro acredita no poder da união para proporcionar moradias dignas às famílias necessitadas. Junte-se a nós e seja parte dessa transformação.",
-      text: "Saiba mais",
+      text: "SAIBA MAIS",
     },
     {
       image: ijbComemoration,
       title: "Descubra o Instituto João de Barro",
       description:
         "Saiba mais sobre nossa missão, projetos e como você pode fazer parte dessa iniciativa. Juntos, podemos transformar vidas e comunidades.",
-      text: "Saiba mais",
+      text: "SAIBA MAIS",
     },
     {
       image: ijbImage,
       title: "Moradia Digna é um Direito de Todos",
       description:
         "O Instituto João de Barro trabalha para construir um futuro mais justo, proporcionando lares dignos às famílias que necessitam. Cada casa entregue é um passo em direção a uma sociedade mais solidária e humana.",
-      text: "Saiba mais",
+      text: "SAIBA MAIS",
     },
     {
       image: ijbComemoration,
       title: "Histórias que Inspiram",
       description:
         "O Instituto João de Barro transforma vidas em Franca-SP ao construir lares para famílias necessitadas. Descubra nossas iniciativas e junte-se à causa.",
-      text: "Saiba mais",
+      text: "SAIBA MAIS",
     },
   ];
 
@@ -69,11 +69,11 @@ export const SwiperCarousel = () => {
           <SwiperSlide key={index}>
             <div className="slide-container">
               <img
-                src={slide.image}
+                src={slide.image as string}
                 alt={`Image ${index + 1}`}
                 className="slide-image"
-                data-swiper-parallax="-100"
               />
+              <div className="overlay"></div>
               <div
                 className="slide-content"
                 data-swiper-parallax="-500"
