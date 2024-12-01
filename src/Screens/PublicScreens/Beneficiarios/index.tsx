@@ -11,6 +11,7 @@ export function Beneficiarios() {
     // User states
     const [email, setEmail] = useState('');
     const [cpf, setCpf] = useState('');
+    const [maskedCpf, setMaskedCpf] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
 
@@ -21,14 +22,16 @@ export function Beneficiarios() {
     const [phone1, setPhone1] = useState('');
     const [phone2, setPhone2] = useState('');
 
-    useEffect(() => {
-        const { user } = JSON.parse(localStorage.getItem('user') || '{}');
-        if (user.id) {
-            if (window.confirm('Você já está logado, deseja acessar seus dados?')) {
-                navigate('/dashboard/beneficiarios/data');
-            }
-        }
-    })
+    // useEffect(() => {
+    //     const { user } = JSON.parse(localStorage.getItem('user') || '{}');
+    //     if (user.id) {
+    //         if (window.confirm('Você já está logado, deseja acessar seus dados?')) {
+    //             navigate('/dashboard/beneficiarios/data');
+    //         }
+    //     }
+    // })
+
+    const [privacyChecked, setPrivacyChecked] = useState(false);
 
     const validateForm = () => {
         if (!email || !cpf || !password || !confirmPassword) {
@@ -85,11 +88,21 @@ export function Beneficiarios() {
         }
     };
 
+    const handleCpfChange = (e) => {
+        const rawValue = e.target.value;
+        setCpf(rawValue);
+        setMaskedCpf('*'.repeat(rawValue.length));
+    };
+
     return (
         <div className="registro">
             <h1 className="subtitle">Registro</h1>
             <p className="description">
-                Preencha os detalhes abaixo para registrar uma família no programa de assistência.
+                Este formulário é destinado exclusivamente a pessoas que realmente necessitam de assistência em relação à sua moradia. Pedimos que preencha as informações com atenção e honestidade, pois serão utilizadas para avaliar sua situação.
+            </p>
+            <p>
+            Importante:
+            O preenchimento deste formulário não garante a obtenção de uma vaga. Todas as solicitações serão submetidas a um processo de avaliação criterioso.
             </p>
             <div className="benefFormControl">
                 {/* Campos do usuário */}
@@ -97,7 +110,7 @@ export function Beneficiarios() {
                 <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
 
                 <label>CPF:</label>
-                <input type="text" value={cpf} onChange={(e) => setCpf(e.target.value)} />
+                <input type="text" value={maskedCpf} onChange={(handleCpfChange)} />
 
                 <label>Senha:</label>
                 <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
@@ -121,6 +134,17 @@ export function Beneficiarios() {
                 <label>Telefone 2:</label>
                 <input type="text" value={phone2} onChange={(e) => setPhone2(e.target.value)} />
 
+                <div className='privacy-policy-container'>
+                    <input
+                        type="checkbox"
+                        id="privacy-policy"
+                        className='privacy-policy'
+                        checked={privacyChecked}
+                        onChange={(e) => setPrivacyChecked(e.target.checked)}
+                    />
+                    <label htmlFor="privacy-policy">Eu concordo com as políticas de privacidade.</label>
+
+                </div>
                 <button className="btn-primary" onClick={registrarUser}>Confirmar</button>
             </div>
         </div>
