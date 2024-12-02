@@ -56,12 +56,12 @@ export function Navbar() {
             </div>
             <ul className="dropdown-menu">
               <li className="dropdown-item">
-                <Link to="/colaboradores" className="link">
+                <Link to="/colaborador" className="link">
                   Colaborador
                 </Link>
               </li>
               <li className="dropdown-item">
-                <Link to="/apoiadores" className="link">
+                <Link to="/apoiador" className="link">
                   Apoiador
                 </Link>
               </li>
