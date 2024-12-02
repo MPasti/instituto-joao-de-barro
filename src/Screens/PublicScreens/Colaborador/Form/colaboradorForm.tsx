@@ -1,9 +1,14 @@
 import { useEffect, useState } from "react";
-import main_imagem from "../../../../assets/images/voluntariado/people_stack.png";
+import main_imagem from "../../../../assets/images/colaborador/main_imagem.png";
 import "@styles/voluntariosForm.scss";
 import "@styles/global.scss";
+import toast from "react-hot-toast";
+import InputMask from "react-input-mask";
+import { Modal } from "../../../../components/Modal/Modal";
+import { Button } from "@headlessui/react";
 
-export function VoluntariosForm() {
+
+export function ColaboradorForm() {
 	const [nome, setNome] = useState("");
 	const [sobrenome, setSobrenome] = useState("");
 	const [telefone, setTelefone] = useState("");
@@ -20,6 +25,10 @@ export function VoluntariosForm() {
     });
 	const [error, setError] = useState("");
 	const [invalidFields, setInvalidFields] = useState<string[]>([]);
+	const [isModalOpen, setIsModalOpen] = useState(false);
+
+	const openModal = () => setIsModalOpen(true);
+	const closeModal = () => setIsModalOpen(false);
 
     const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, checked } = event.target;
@@ -35,6 +44,24 @@ export function VoluntariosForm() {
 		}
 	}, [error]);
 
+	const isValidCPF = (cpf: string) => {
+		cpf = cpf.replace(/[^\d]+/g, ""); // Remove caracteres não numéricos.
+		if (cpf.length !== 11 || /^(\d)\1+$/.test(cpf)) return false;
+	
+		let sum = 0;
+		for (let i = 0; i < 9; i++) sum += parseInt(cpf.charAt(i)) * (10 - i);
+		let mod = (sum * 10) % 11;
+		if (mod === 10 || mod === 11) mod = 0;
+		if (mod !== parseInt(cpf.charAt(9))) return false;
+	
+		sum = 0;
+		for (let i = 0; i < 10; i++) sum += parseInt(cpf.charAt(i)) * (11 - i);
+		mod = (sum * 10) % 11;
+		if (mod === 10 || mod === 11) mod = 0;
+	
+		return mod === parseInt(cpf.charAt(10));
+	};
+	
 	const validateForm = () => {
 		const errors: string[] = [];
 	
@@ -48,21 +75,37 @@ export function VoluntariosForm() {
 		if (!cargoDesejado) errors.push("cargoDesejado");
 		if (!sobreVoce) errors.push("sobreVoce");
 	
-		const senhaRegex = /^(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.*[a-zA-Z0-9]).{8,}$/;
+		const senhaRegex = /^(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.*[a-zA-Z0-9]).{8,30}$/;
 		if (!senhaRegex.test(senha)) {
 			errors.push("senha");
 			errors.push("confsenha");
+			toast.error("A senha deve ter entre 8-30 caracteres, incluir letras maiúsculas e caracteres especiais.");
 		}
-	
+
+		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+		if (!emailRegex.test(email)) {
+			errors.push("email");
+			toast.error("E-mail inválido!");
+		}
+		
 		if (!checkboxes.politicas_privacidade) {
 			setError("Você deve aceitar as Políticas de Privacidade.");
 		} else {
-			setError(""); // Limpa a mensagem geral de erro
+			setError("");
 		}
+
+		if (!isValidCPF(cpf)) {
+			errors.push("cpf");
+			toast.error("CPF inválido!");
+		}
+		
+		if (!checkboxes.politicas_privacidade) {
+			errors.push("politicas_privacidade");
+			toast.error("Você deve aceitar as Políticas de Privacidade.");
+		}
+		
+		setInvalidFields(errors);
 	
-		setInvalidFields(errors); // Atualiza os campos inválidos
-	
-		// Retorna falso se houver erros
 		return errors.length === 0;
 	};
 	
@@ -75,22 +118,20 @@ export function VoluntariosForm() {
 		}
 		
 		try {
-			// Simulando uma chamada à API
 			const response = await new Promise((resolve) => {
 				setTimeout(() => {
 					resolve({ success: true });
-				}, 2000); // Simulando um atraso de 2 segundos
+				}, 2000);
 			});
 			
 			//@ts-ignore
 			if (response.success) {
 				alert("Formulário enviado com sucesso!");
-				// Atualizar o estado ou realizar outras ações necessárias
 			} else {
-				console.error("Erro ao enviar o formulário.");
+				toast.error("Erro ao enviar o formulário.");
 			}
 		} catch (error) {
-			console.error("Erro na conexão com a API:", error);
+			toast.error("Erro na conexão com a API: " + error);
 		}
 	};
 
@@ -111,6 +152,7 @@ export function VoluntariosForm() {
 						<div className="form-input-c">
 							<label htmlFor="nome">Nome*</label>
 							<input
+								maxLength={100}
 								type="text"
 								id="nome"
 								name="nome"
@@ -123,6 +165,7 @@ export function VoluntariosForm() {
 						<div className="form-input-c">
 							<label htmlFor="sobrenome">Sobrenome*</label>
 							<input
+								maxLength={100}
 								type="text"
 								id="sobrenome"
 								name="sobrenome"
@@ -136,7 +179,8 @@ export function VoluntariosForm() {
 					<div className="form-group double-input-container-c">
 						<div className="form-input-c">
 							<label htmlFor="telefone">Telefone*</label>
-							<input
+							<InputMask
+								mask="(99) 99999-9999"
 								type="tel"
 								id="telefone"
 								name="telefone"
@@ -149,6 +193,7 @@ export function VoluntariosForm() {
 						<div className="form-input-c">
 							<label htmlFor="email">Email*</label>
 							<input
+								maxLength={100}
 								type="email"
 								id="email"
 								name="email"
@@ -188,7 +233,9 @@ export function VoluntariosForm() {
 					<div className="form-group double-input-container-c">
 						<div className="form-input-c">
 							<label htmlFor="cpf">CPF*</label>
-							<input
+							<InputMask
+								mask="999.999.999-99"
+								maxLength={11}
 								type="text"
 								id="cpf"
 								name="cpf"
@@ -201,6 +248,7 @@ export function VoluntariosForm() {
 						<div className="form-input-c">
 							<label htmlFor="hobby">Hobby</label>
 							<input
+								maxLength={150}
 								type="text"
 								id="hobby"
 								name="hobby"
@@ -214,6 +262,7 @@ export function VoluntariosForm() {
 					<div className="form-group form-input-c">
 						<label htmlFor="intencao">Intenção</label>
 						<input
+							maxLength={200}
 							type="text"
 							id="intencao"
 							name="intencao"
@@ -242,6 +291,7 @@ export function VoluntariosForm() {
 					<div className="form-group form-input-c">
 						<label htmlFor="sobreVoce">Sobre Você*</label>
 						<textarea
+							maxLength={240}
 							id="sobreVoce"
 							name="sobreVoce"
 							value={sobreVoce}
@@ -258,14 +308,36 @@ export function VoluntariosForm() {
 								checked={checkboxes.politicas_privacidade}
 								onChange={handleCheckboxChange}
 							/>
-							<span>Li e aceito as Políticas de Privacidade.</span>
+							<span>
+								Li e aceito as{" "}
+								<a
+									href="#"
+									className="link"
+									onClick={(e) => {
+										e.preventDefault();
+										openModal();
+									}}
+								>
+									Políticas de Privacidade
+								</a>
+								.
+							</span>
 						</div>
 					</div>
+
+					<Modal isOpen={isModalOpen} onClose={closeModal} clickableBackdrop={true}>
+						<h2>Políticas de Privacidade</h2>
+						<p>
+							Aqui você pode incluir as Políticas de Privacidade que o usuário deve
+							ler e aceitar. Você também pode carregar este conteúdo de uma API ou
+							arquivo.
+						</p>
+					</Modal>
 				</form>
 			</div>
-			<button className="btn-orange" type="button" onClick={handleSubmit}>
+			<Button className="btn-orange" type="button" onClick={handleSubmit}>
 				Enviar
-			</button>
+			</Button>
 		</div>
 	);
 	

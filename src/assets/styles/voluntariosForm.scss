@@ -169,6 +169,16 @@ label {
 	}
 }
 
+.link {
+    color: #000; // Cor preta
+    text-decoration: underline; // Sublinhado, opcional
+    cursor: pointer;
+}
+
+.link:hover {
+    text-decoration: none; // Remove sublinhado ao passar o mouse, se preferir
+}
+
 .btn-orange {
 	margin-top: 20px;
 	padding: 12px 24px;

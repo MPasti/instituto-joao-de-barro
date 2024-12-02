@@ -19,6 +19,17 @@
 	height: 400px;
 }
 
+.double-input-container-c {
+	display: flex;
+	gap: 16px;
+  }
+  
+  @media (max-width: 768px) {
+	.double-input-container-c {
+	  flex-direction: column;
+	}
+  }
+  
 .content-container {
 	display: flex;
 	flex-direction: column;
