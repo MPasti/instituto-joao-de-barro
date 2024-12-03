@@ -1,4 +1,14 @@
 {
+  "login": [
+    {
+      "id": "1",
+      "cpf": "12345678910",
+      "email": "teste@testes.com",
+      "username": "admin",
+      "password": "123456",
+      "token": "1234567890abcdef"
+    }
+  ],
   "users": [
     {
       "id": "1",
@@ -176,7 +186,6 @@
         "outgoing": "R$240"
       }
     ],
-
     "tableDataRevenue": [
       {
         "name": "Doação",
@@ -227,12 +236,10 @@
         "outgoing": "R$240"
       }
     ],
-
     "bankStatement": {
       "account": 3000,
       "cdb": 2000
     },
-
     "extractData": {
       "header": {
         "saldoAtual": "R$ 1.500,00",

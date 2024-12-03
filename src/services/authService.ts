@@ -1,17 +1,15 @@
-import axios from "axios";
+import { api } from "../../api/fetchWrapper.ts";
 
 export const login = async (username: string, password: string) => {
   try {
-    const response = await axios.get(`${import.meta.env.VITE_API_URL}/users`);
-    const users = response.data;
+    const response = await api.post(`${import.meta.env.VITE_API_URL}/login`, {
+      username,
+      password,
+    });
 
-    const user = users.find(
-      (user: User) => user.username === username && user.password === password,
-    );
-
-    if (user) {
-      localStorage.setItem("token", user.token);
-      localStorage.setItem("user", JSON.stringify(user));
+    if (response.data) {
+      localStorage.setItem("token", response.data.token);
+      localStorage.setItem("user", JSON.stringify(response.data.user));
       return {
         message: "Login realizado com sucesso!",
         success: true,
