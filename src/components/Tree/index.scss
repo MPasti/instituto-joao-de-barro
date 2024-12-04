@@ -5,23 +5,17 @@
 
 .leaves{
   position: absolute;
-  top: 405px;
+  top: 400px;
   left: 0;
   width: 100%;
   height: auto;
   z-index: 2;
 
-  @media (max-width: 768px) {
+  @media (max-width: 750px) {
     width: 700px;
   }
 }
 
-.first-trunk {
-  position: relative;
-  width: 700px;
-  height: 500px;
-  z-index: 1;
-}
 
 .timeline-tree {
   width: 100%;
@@ -97,6 +91,19 @@
 
     &.right {
       left: calc(50% + 150px);
+    }
+
+    @media (max-width: 768px) {
+      position: absolute;
+      top: auto;
+      transform: none;
+      width: 90%;
+      margin: 20px auto;
+
+      &.left,
+      &.right {
+        left: auto;
+      }
     }
 
     .content {
