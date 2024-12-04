@@ -8,7 +8,7 @@
 
 // ============================
 // BUTTON TYPES
-.btn-primary {
+html .btn-primary {
   background-color: $primary;
   border: 1px solid $primary;
   color: $white;
@@ -37,19 +37,19 @@
   }
 }
 
-.bg-primary{
+html .bg-primary{
   background-color: $primary;
 }
 
-.bg-secondary{
+html .bg-secondary{
   background-color: $secondary;
 }
 
-.bg-secondary-light{
+html .bg-secondary-light{
   background-color: $light-orange;
 }
 
-.btn-secondary {
+html .btn-secondary {
   background-color: $secondary;
   border: 1px solid $secondary;
   color: $white;
@@ -74,7 +74,7 @@
   }
 }
 
-.btn-outline-secondary{
+html .btn-outline-secondary{
   background-color: #FFFFFF;
   border-color: $secondary;
   color: $secondary;
@@ -100,15 +100,15 @@
 
 // ============================
 // TEXT COLORS
-.text-primary{
+html .text-primary{
   color: $primary !important;
 }
 
-.text-secondary{
+html .text-secondary{
   color: $secondary !important;
 }
 
-.text-light{
+html .text-light{
   color: $primary-light !important;
 }
 // ============================
@@ -197,7 +197,7 @@
 .opacity-100 { opacity: 1; }
 // ============================
 
-.text-shadow{
+html .text-shadow{
   text-shadow: 4px 3px 6px rgba(0,0,0,0.23);
 }
 
@@ -308,12 +308,12 @@
   }
 }
 
-.ripple-container {
+html .ripple-container {
   position: relative;
   overflow: hidden;
 }
 
-.ripple {
+html .ripple {
   position: absolute;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.6);
@@ -411,7 +411,7 @@
   max-width: 90%;
 }
 
-.dropdown-item {
+html .dropdown-item {
   &:focus, &:active, &:focus:active {
     box-shadow: none !important;
     background-color: $secondary !important;
