@@ -231,13 +231,6 @@
     "bankStatement": {
       "account": 3000,
       "cdb": 2000
-<<<<<<< HEAD
-    }
-  },
-  "beneficiario": [],
-  "visitas": []
-}
-=======
     },
 
     "extractData": {
@@ -272,7 +265,8 @@
         }
       ]
     },
-    "products": []
+    "products": [],
+    "beneficiario": [],
+    "visitas": []
   }
 }
->>>>>>> upstream/main
