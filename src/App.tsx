@@ -8,18 +8,18 @@ const ToastOptions = {
     fontSize: "16px",
   },
   success: {
-    duration: 3000, // Duram 3 segundos
+    duration: 3000,
   },
   error: {
     duration: 3000,
   },
 };
 
-//Principais rotas
+// Principais rotas
 import LandingPage from "./Screens/PublicScreens/LandingPage";
 import DashboardPage from "./Screens/PrivateScreens/Dashboard";
 
-//Telas publicas
+// Telas publicas
 import { Main } from "./components/Main";
 import { Contact } from "./Screens/PublicScreens/Contact";
 import { About } from "./Screens/PublicScreens/About";
@@ -29,16 +29,22 @@ import { Blog } from "./Screens/PublicScreens/Blog";
 import { Donation } from "./Screens/PublicScreens/Donation";
 import { NotFound } from "./Screens/NotFound";
 
-//Login
+// Login
 import { Login } from "./Screens/Login";
 
-//Telas privadas
+// Telas privadas
 import { Home } from "./Screens/PrivateScreens/Home";
 import { Noticias } from "./Screens/PrivateScreens/Noticias";
 import { Perfil } from "./Screens/PrivateScreens/Perfil";
 import { Financeiro } from "./Screens/PrivateScreens/Financeiro";
 import { StorageHome } from "./Screens/PrivateScreens/Estoque/StorageHome";
+import { BeneficiariosMain } from "./Screens/PrivateScreens/BeneficiariosMain";
+import AtualizarInformacoes from "./Screens/PrivateScreens/AtualizarInformacoesBeneficiario";
+import Registro from "./Screens/PrivateScreens/RegistroBeneficiario";
+import AtualizarInformacoesVisitas from "./Screens/PrivateScreens/atualizarInformacoesVisitas";
+import RegistroVisita from "./Screens/PrivateScreens/RegistroVisita";
 import { BuildingHome } from "./Screens/PrivateScreens/Obras/BuildingHome";
+import { BeneficiarioPerfil } from "./Screens/PrivateScreens/BeneficiarioPerfil";
 import { PainelDoEditor } from "./Screens/PrivateScreens/PainelDoEditor";
 
 function App() {
@@ -73,7 +79,13 @@ function App() {
                 <Route path="perfil" element={<Perfil />} />
                 <Route path="financeiro" element={<Financeiro />} />
                 <Route path="estoque" element={<StorageHome />} />
-                <Route path="obras" element={<BuildingHome />} />
+                <Route path="beneficiarios" element={<BeneficiariosMain />} />
+                <Route path="beneficiario/perfil" element={<BeneficiarioPerfil />} />
+                <Route path="atualizar/:familiaId" element={<AtualizarInformacoes />} />
+                <Route path="registro" element={<Registro />} />
+                <Route path="visitas/:id" element={<AtualizarInformacoesVisitas />} /> 
+                <Route path="registroVisita" element={<RegistroVisita />} />
+                <Route path="obras" element={<BuildingHome />}/>
                 <Route path="editor" element={<PainelDoEditor />} />
               </Route>
             </Route>

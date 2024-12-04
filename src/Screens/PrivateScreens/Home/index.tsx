@@ -47,6 +47,7 @@ const Home = () => {
             <DashboardIcon icon={<FaHandsHelping />} label="VOLUNTÁRIOS" />
             <DashboardIcon
               icon={<FaHandHoldingHeart />}
+              route="beneficiarios"
               label="BENEFICIÁRIOS"
             />
             <DashboardIcon

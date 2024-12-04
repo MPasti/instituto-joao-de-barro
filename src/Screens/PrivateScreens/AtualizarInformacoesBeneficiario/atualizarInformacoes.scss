@@ -1,0 +1,104 @@
+.atualizar-informacoes {
+
+    .subtitle {
+        color: #df7046;
+        display: block;
+        font-size: 2.5rem;
+        font-weight: bolder;
+        border-bottom: 3px solid #df7046;
+        width: fit-content;
+        margin-bottom: 0.5rem;
+        margin-top: 2rem;
+    }
+
+    .description {
+        color: #000;
+        margin: 0;
+        margin-top: 0.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .form-control {
+        background-color: #F1F1F1;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 3rem;
+
+
+        .input-group {
+            flex: 1;
+            margin-right: 2rem;
+
+            label {
+                display: block;
+                margin-bottom: 0.5rem;
+                margin-top: 0.5rem;
+                font-weight: bold;
+            }
+
+            input {
+                width: 100%;
+                padding: 0.5rem;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+            }
+        }
+
+        .dropdown-group {
+            flex: 1;
+
+            
+            label {
+                display: block;
+                margin-bottom: 0.5rem;
+                margin-top: 0.5rem;
+                font-weight: bold;
+            }
+
+            select {
+                width: 100%;
+                padding: 0.5rem;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                margin-bottom: 1rem;
+            }
+        }
+
+        .button-group {
+            display: flex;
+            margin-top: 1rem;
+
+            button {
+                padding: 0.3rem 0.7rem;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                margin-bottom: 1rem;
+                margin: 10px;
+
+                &.confirm-btn {
+                    align-items: center;
+                    background-color: #ffc72c;
+                    color: #fff;
+                    border-radius: 10px;
+                    justify-content: center;
+                    padding: 8px;
+                    position: relative;
+                    width: 155px;
+                }
+
+                &.discard-btn {
+                    align-items: center;
+                    background-color: #DF7046;
+                    color: #fff;
+                    border-radius: 10px;
+                    justify-content: center;
+                    padding: 8px;
+                    position: relative;
+                    width: 155px;
+                }
+            }
+        }
+    }
+}
