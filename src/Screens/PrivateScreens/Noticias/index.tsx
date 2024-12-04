@@ -102,8 +102,8 @@ const Noticias = () => {
   const fetchNoticias = async () => {
     try {
       const response = await getNews();
-      if (response && response.data) {
-        setNoticias(response.data);
+      if (response) {
+        setNoticias(response);
       }
     } catch (error) {
       console.error(error);

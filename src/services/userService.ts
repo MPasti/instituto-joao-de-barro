@@ -5,9 +5,7 @@ export class UserService {
 
   async getDadosUsuario(): Promise<User | null> {
     try {
-      const response = await axios.get(
-        `${import.meta.env.VITE_API_URL}/api/user`,
-      );
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/users`);
       this.user = response.data;
 
       if (this.user) {
