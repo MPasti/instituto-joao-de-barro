@@ -329,6 +329,20 @@ html .ripple {
   }
 }
 
+html .accordion-button{
+  background-color: $light-orange !important;
+  color: $white !important;
+}
+
+.accordion-button:not(.collapsed){
+  background-color: $light-orange !important;
+  color: $white !important;
+}
+
+.accordion-button::after{
+  color: $white !important;
+}
+
 .news-search-table {
   max-height: 70vh;
   overflow-y: auto;

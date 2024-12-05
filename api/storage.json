@@ -6,7 +6,8 @@
       "email": "teste@testes.com",
       "username": "admin",
       "password": "123456",
-      "token": "1234567890abcdef"
+      "token": "1234567890abcdef",
+      "roles": ["Administração"]
     }
   ],
   "users": [

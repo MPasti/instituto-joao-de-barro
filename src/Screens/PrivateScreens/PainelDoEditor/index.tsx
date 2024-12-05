@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Button from "../../../components/Button";
 
 const initialData = {
   landingPage: {
@@ -14,6 +15,7 @@ const initialData = {
       { title: "", text: "", image: "" },
       { title: "", text: "", image: "" },
     ],
+    partnerCompanies: [{ name: "", image: "" }],
   },
   aboutUs: {
     content: "",
@@ -62,234 +64,309 @@ export const PainelDoEditor: React.FC = () => {
     });
   };
 
+  const handleDeletePartnerCompany = (index: number) => {
+    setData((prev) => {
+      const updatedCompanies = prev.landingPage.partnerCompanies.filter(
+        (_, i) => i !== index,
+      );
+      return {
+        ...prev,
+        landingPage: {
+          ...prev.landingPage,
+          partnerCompanies: updatedCompanies,
+        },
+      };
+    });
+  };
+
   return (
-    <div className="editor-panel">
-      <h1>Painel do Editor</h1>
+    <div className="container mt-4">
+      <h1 className="text-center mb-4">Painel do Editor</h1>
 
-      <section>
-        <h2>Landing Page</h2>
-        {data.landingPage.carousel.map((item, index) => (
-          <div key={index}>
-            <h3>Carrossel {index + 1}</h3>
-            <label>
-              Imagem:
-              <input
-                type="text"
-                value={item.image}
-                onChange={(e) =>
-                  handleInputChange(
-                    "landingPage",
-                    "carousel",
-                    { image: e.target.value },
-                    index,
-                  )
-                }
-              />
-            </label>
-            <label>
-              Título:
-              <input
-                type="text"
-                value={item.title}
-                onChange={(e) =>
-                  handleInputChange(
-                    "landingPage",
-                    "carousel",
-                    { title: e.target.value },
-                    index,
-                  )
-                }
-              />
-            </label>
-            <label>
-              Label do Botão:
-              <input
-                type="text"
-                value={item.buttonLabel}
-                onChange={(e) =>
-                  handleInputChange(
-                    "landingPage",
-                    "carousel",
-                    { buttonLabel: e.target.value },
-                    index,
-                  )
-                }
-              />
-            </label>
-            <button onClick={() => handleDeleteCarouselItem(index)}>
-              Remover Item
+      <div className="accordion" id="editorAccordion">
+        <div className="accordion-item">
+          <h2 className="accordion-header" id="headingLandingPage">
+            <button
+              className="accordion-button"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseLandingPage"
+              aria-expanded="true"
+              aria-controls="collapseLandingPage"
+            >
+              Landing Page
             </button>
-          </div>
-        ))}
-        <button
-          onClick={() =>
-            setData((prev) => ({
-              ...prev,
-              landingPage: {
-                ...prev.landingPage,
-                carousel: [
-                  ...prev.landingPage.carousel,
-                  { image: "", title: "", buttonLabel: "" },
-                ],
-              },
-            }))
-          }
-        >
-          Adicionar Item ao Carrossel
-        </button>
-
-        <h3>Quem Somos Nós</h3>
-        <label>
-          Conteúdo:
-          <textarea
-            value={data.landingPage.aboutUs}
-            onChange={(e) =>
-              handleInputChange("landingPage", "aboutUs", e.target.value)
-            }
-          />
-        </label>
-
-        <h3>Resultados</h3>
-        <label>
-          Texto:
-          <textarea
-            value={data.landingPage.results.content}
-            onChange={(e) =>
-              handleInputChange("landingPage", "results", {
-                content: e.target.value,
-              })
-            }
-          />
-        </label>
-        <label>
-          Imagem Antes:
-          <input
-            type="text"
-            value={data.landingPage.results.beforeImage}
-            onChange={(e) =>
-              handleInputChange("landingPage", "results", {
-                beforeImage: e.target.value,
-              })
-            }
-          />
-        </label>
-        <label>
-          Imagem Depois:
-          <input
-            type="text"
-            value={data.landingPage.results.afterImage}
-            onChange={(e) =>
-              handleInputChange("landingPage", "results", {
-                afterImage: e.target.value,
-              })
-            }
-          />
-        </label>
-
-        <h3>Informações Adicionais</h3>
-        {data.landingPage.additionalInfo.map((block, index) => (
-          <div key={index}>
-            <h4>Bloco {index + 1}</h4>
-            <label>
-              Título:
-              <input
-                type="text"
-                value={block.title}
-                onChange={(e) =>
-                  handleInputChange(
-                    "landingPage",
-                    "additionalInfo",
-                    { title: e.target.value },
-                    index,
-                  )
+          </h2>
+          <div
+            id="collapseLandingPage"
+            className="accordion-collapse collapse show"
+            aria-labelledby="headingLandingPage"
+            data-bs-parent="#editorAccordion"
+          >
+            <div className="accordion-body">
+              <h3>Carrossel</h3>
+              {data.landingPage.carousel.map((item, index) => (
+                <div key={index} className="mb-3">
+                  <h4>Item {index + 1}</h4>
+                  <label className="form-label">Imagem:</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    value={item.image}
+                    onChange={(e) =>
+                      handleInputChange(
+                        "landingPage",
+                        "carousel",
+                        { image: e.target.value },
+                        index,
+                      )
+                    }
+                  />
+                  <label className="form-label">Título:</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    value={item.title}
+                    onChange={(e) =>
+                      handleInputChange(
+                        "landingPage",
+                        "carousel",
+                        { title: e.target.value },
+                        index,
+                      )
+                    }
+                  />
+                  <label className="form-label">Label do Botão:</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    value={item.buttonLabel}
+                    onChange={(e) =>
+                      handleInputChange(
+                        "landingPage",
+                        "carousel",
+                        { buttonLabel: e.target.value },
+                        index,
+                      )
+                    }
+                  />
+                  <Button
+                    outline
+                    variant="secondary"
+                    className="mt-2"
+                    onClick={() => handleDeleteCarouselItem(index)}
+                  >
+                    Remover Item
+                  </Button>
+                </div>
+              ))}
+              <button
+                className="btn btn-primary mt-2"
+                onClick={() =>
+                  setData((prev) => ({
+                    ...prev,
+                    landingPage: {
+                      ...prev.landingPage,
+                      carousel: [
+                        ...prev.landingPage.carousel,
+                        { image: "", title: "", buttonLabel: "" },
+                      ],
+                    },
+                  }))
                 }
-              />
-            </label>
-            <label>
-              Texto:
+              >
+                Adicionar Item ao Carrossel
+              </button>
+
+              <h3 className="mt-4">Quem Somos Nós</h3>
+              <label className="form-label">Conteúdo:</label>
               <textarea
-                value={block.text}
+                className="form-control"
+                value={data.landingPage.aboutUs}
                 onChange={(e) =>
-                  handleInputChange(
-                    "landingPage",
-                    "additionalInfo",
-                    { text: e.target.value },
-                    index,
-                  )
+                  handleInputChange("landingPage", "aboutUs", e.target.value)
                 }
               />
-            </label>
-            <label>
-              Imagem:
+
+              <h3 className="mt-4">Resultados</h3>
+              <label className="form-label">Texto:</label>
+              <textarea
+                className="form-control"
+                value={data.landingPage.results.content}
+                onChange={(e) =>
+                  handleInputChange("landingPage", "results", {
+                    content: e.target.value,
+                  })
+                }
+              />
+              <label className="form-label">Imagem Antes:</label>
               <input
                 type="text"
-                value={block.image}
+                className="form-control"
+                value={data.landingPage.results.beforeImage}
                 onChange={(e) =>
-                  handleInputChange(
-                    "landingPage",
-                    "additionalInfo",
-                    { image: e.target.value },
-                    index,
-                  )
+                  handleInputChange("landingPage", "results", {
+                    beforeImage: e.target.value,
+                  })
                 }
               />
-            </label>
+              <label className="form-label">Imagem Depois:</label>
+              <input
+                type="text"
+                className="form-control"
+                value={data.landingPage.results.afterImage}
+                onChange={(e) =>
+                  handleInputChange("landingPage", "results", {
+                    afterImage: e.target.value,
+                  })
+                }
+              />
+
+              <h3 className="mt-4">Empresas Parceiras</h3>
+              {data.landingPage.partnerCompanies.map((company, index) => (
+                <div key={index} className="mb-3">
+                  <h4>Empresa {index + 1}</h4>
+                  <label className="form-label">Nome:</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    value={company.name}
+                    onChange={(e) =>
+                      handleInputChange(
+                        "landingPage",
+                        "partnerCompanies",
+                        { name: e.target.value },
+                        index,
+                      )
+                    }
+                  />
+                  <label className="form-label">Imagem:</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    value={company.image}
+                    onChange={(e) =>
+                      handleInputChange(
+                        "landingPage",
+                        "partnerCompanies",
+                        { image: e.target.value },
+                        index,
+                      )
+                    }
+                  />
+                  <Button
+                    outline
+                    variant="secondary"
+                    className="mt-2"
+                    onClick={() => handleDeletePartnerCompany(index)}
+                  >
+                    Remover Empresa
+                  </Button>
+                </div>
+              ))}
+              <button
+                className="btn btn-primary mt-2"
+                onClick={() =>
+                  setData((prev) => ({
+                    ...prev,
+                    landingPage: {
+                      ...prev.landingPage,
+                      partnerCompanies: [
+                        ...prev.landingPage.partnerCompanies,
+                        { name: "", image: "" },
+                      ],
+                    },
+                  }))
+                }
+              >
+                Adicionar Empresa
+              </button>
+            </div>
           </div>
-        ))}
-        <button
-          onClick={() =>
-            setData((prev) => ({
-              ...prev,
-              landingPage: {
-                ...prev.landingPage,
-                additionalInfo: [
-                  ...prev.landingPage.additionalInfo,
-                  { title: "", text: "", image: "" },
-                ],
-              },
-            }))
-          }
-        >
-          Adicionar Bloco
-        </button>
-      </section>
+        </div>
 
-      <section>
-        <h2>Sobre Nós</h2>
-        <label>
-          Conteúdo:
-          <textarea
-            value={data.aboutUs.content}
-            onChange={(e) =>
-              handleInputChange("aboutUs", "content", e.target.value)
-            }
-          />
-        </label>
-      </section>
+        <div className="accordion-item">
+          <h2 className="accordion-header" id="headingAboutUs">
+            <button
+              className="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseAboutUs"
+              aria-expanded="false"
+              aria-controls="collapseAboutUs"
+            >
+              Sobre Nós
+            </button>
+          </h2>
+          <div
+            id="collapseAboutUs"
+            className="accordion-collapse collapse"
+            aria-labelledby="headingAboutUs"
+            data-bs-parent="#editorAccordion"
+          >
+            <div className="accordion-body">
+              <label className="form-label">Conteúdo:</label>
+              <textarea
+                className="form-control"
+                value={data.aboutUs.content}
+                onChange={(e) =>
+                  handleInputChange("aboutUs", "content", e.target.value)
+                }
+              />
+            </div>
+          </div>
+        </div>
 
-      <section>
-        <h2>Contato</h2>
-        <label>
-          E-mail:
-          <input
-            type="text"
-            value={data.contact.email}
-            onChange={(e) =>
-              handleInputChange("contact", "email", e.target.value)
-            }
-          />
-        </label>
-        <label>
-          Telefone:
-          <input
-            type="text"
-            value={data.contact.phone}
-            onChange={(e) =>
-              handleInputChange("contact", "phone", e.target.value)
-            }
-          />
-        </label>
-      </section>
+        <div className="accordion-item">
+          <h2 className="accordion-header" id="headingContact">
+            <button
+              className="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseContact"
+              aria-expanded="false"
+              aria-controls="collapseContact"
+            >
+              Contato
+            </button>
+          </h2>
+          <div
+            id="collapseContact"
+            className="accordion-collapse collapse"
+            aria-labelledby="headingContact"
+            data-bs-parent="#editorAccordion"
+          >
+            <div className="accordion-body">
+              <label className="form-label">E-mail:</label>
+              <input
+                type="email"
+                className="form-control"
+                value={data.contact.email}
+                onChange={(e) =>
+                  handleInputChange("contact", "email", e.target.value)
+                }
+              />
+              <label className="form-label">Telefone:</label>
+              <input
+                type="tel"
+                className="form-control"
+                value={data.contact.phone}
+                onChange={(e) =>
+                  handleInputChange("contact", "phone", e.target.value)
+                }
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <Button
+        className="mt-3"
+        onClick={() => console.log("Dados salvos:", data)}
+        type="submit"
+      >
+        Salvar Alterações
+      </Button>
     </div>
   );
 };
