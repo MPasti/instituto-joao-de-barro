@@ -7,7 +7,9 @@
       "username": "admin",
       "password": "123456",
       "token": "1234567890abcdef",
-      "roles": ["Administração"]
+      "roles": [
+        "Administração"
+      ]
     }
   ],
   "users": [
@@ -134,6 +136,50 @@
       "situacao_construcao": "Em andamento",
       "custo_estimado": 1500,
       "custo_total": 200
+    }
+  ],
+  "events": [
+    {
+      "id": "UMc_vF",
+      "name": "Rifa",
+      "date": 1731110400000,
+      "status": "Concluído",
+      "description": "Rifa para arrecadação"
+    },
+    {
+      "id": "pwu4ej",
+      "name": "Chopp",
+      "date": 1730419200000,
+      "status": "Concluído",
+      "description": "Pizza"
+    },
+    {
+      "id": "kb9ATK",
+      "name": "Sorteio",
+      "date": 1732665600000,
+      "status": "Pendente",
+      "description": "Sorteio de uma cesta"
+    },
+    {
+      "id": "TTvvSr",
+      "name": "Confraternização",
+      "date": 1731542400000,
+      "status": "Pendente",
+      "description": "Confraternização entre membros do instituto"
+    },
+    {
+      "id": "s4p7A2",
+      "name": "Bazar",
+      "date": 1730505600000,
+      "status": "Pendente",
+      "description": "Bazar solidário"
+    },
+    {
+      "id": "fD_LbO",
+      "name": "Evento Teste",
+      "date": 1732752000000,
+      "status": "Pendente",
+      "description": "teste"
     }
   ],
   "financeiro": {
