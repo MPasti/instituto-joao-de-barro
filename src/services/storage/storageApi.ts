@@ -5,6 +5,7 @@ export interface StorageMaterial {
   name: string;
   quantity: number;
   description?: string;
+  origin: string;
 }
 
 const api = axios.create({

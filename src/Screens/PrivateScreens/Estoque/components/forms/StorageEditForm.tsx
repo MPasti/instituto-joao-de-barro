@@ -11,7 +11,8 @@ interface IEditFormProps {
 const validationSchema = object({
     name: string().required("Nome do material é obrigatório"),
     quantity: number().required("Quantidade é obrigatória").positive("Informe uam quantidade válida").typeError("Quantidade deve ser um número"),
-    description: string().optional()
+    description: string().optional(),
+    origin: string().required("Origem é obrigatório")
 });
 
 type EditFormData = InferType<typeof validationSchema>;
@@ -23,6 +24,7 @@ export const StorageEditForm = ({ selectedMaterial }: IEditFormProps) => {
             name: selectedMaterial.name,
             quantity: selectedMaterial.quantity,
             description: selectedMaterial.description || "",
+            origin: selectedMaterial.origin
         },
         mode: "onSubmit"
     });
@@ -34,6 +36,7 @@ export const StorageEditForm = ({ selectedMaterial }: IEditFormProps) => {
                 name: data.name,
                 quantity: data.quantity,
                 description: data.description,
+                origin: data.origin
             };
             await updateMaterial(selectedMaterial.id, updatedMaterial);
             publish("storage:close-edit-modal");
@@ -79,6 +82,18 @@ export const StorageEditForm = ({ selectedMaterial }: IEditFormProps) => {
                         className="form-control"
                         {...register("description")}
                     />
+                </div>
+                <div className="input-container">
+                    <label htmlFor="origin">Origem</label>
+                    <select 
+                        id="origin"
+                        {...register("origin")}
+                        className="form-control"
+                    >
+                        <option value="" disabled>Selecione</option>
+                        <option value="DONATED">Doação</option>
+                        <option value="BOUGHT">Compra</option>
+                    </select>
                 </div>
             </div>
 

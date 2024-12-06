@@ -49,6 +49,7 @@ export const Storage = () => {
                             <th>Código</th>
                             <th>Quantidade</th>
                             <th>Descrição</th>
+                            <th>Origem</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -58,6 +59,7 @@ export const Storage = () => {
                                 <td>{material.id}</td>
                                 <td>{material.quantity}</td>
                                 <td>{material.description}</td>
+                                <td>{material.origin}</td>
                             </tr>
                         ))}
                     </tbody>

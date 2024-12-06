@@ -12,7 +12,8 @@ interface IRegisterFormProps {
 const validationSchema = object({
     name: string().required("Nome do material é obrigatório"),
     quantity: number().required("Quantidade é obrigatória").positive("Informe uam quantidade válida").typeError("Quantidade deve ser um número"),
-    description: string()
+    description: string(),
+    origin: string().required("Origem é obrigatório")
 })
 
 type RegisterFormData = InferType<typeof validationSchema>
@@ -23,7 +24,8 @@ export const StorageRegisterForm = ({handleCancel}: IRegisterFormProps) => {
         defaultValues: {
             name: "",
             quantity: 0,
-            description: ""
+            description: "",
+            origin: ""
         },
         mode: "onSubmit"
     })
@@ -35,6 +37,7 @@ export const StorageRegisterForm = ({handleCancel}: IRegisterFormProps) => {
                 name: data.name,
                 quantity: Number(data.quantity),
                 description: data.description,
+                origin: data.origin
             }
             await addMaterial(newMaterial);
             publish("storage:close-register-modal")
@@ -71,6 +74,18 @@ export const StorageRegisterForm = ({handleCancel}: IRegisterFormProps) => {
                         className="form-control"
                         {...register("description")}
                     />
+                </div>
+                <div className="input-container">
+                    <label htmlFor="origin">Origem</label>
+                    <select 
+                        id="origin"
+                        {...register("origin")}
+                        className="form-control"
+                    >
+                        <option value="" disabled>Selecione</option>
+                        <option value="DONATED">Doação</option>
+                        <option value="BOUGHT">Compra</option>
+                    </select>
                 </div>
            </div>
 
