@@ -49,13 +49,15 @@ export const Outlet = () => {
                             <th>Código</th>
                             <th>Preço</th>
                             <th>Descrição</th>
+                            <th>Status</th>
                         </tr>
                         {filteredMaterials.map((product) => (
                                 <tr key={product.id} onClick={() => handleEditOutletProduct(product)}>
                                     <td>{product.name}</td>
                                     <td>{product.id}</td>
-                                    <td>{product.price}</td>
+                                    <td>R${product.price}</td>
                                     <td>{product.description}</td>
+                                    <td>{product.status}</td>
                                 </tr>
                             ))}
                     </thead>

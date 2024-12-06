@@ -5,6 +5,7 @@ export interface OutletProduct {
   name: string;
   price?: string;
   description?: string;
+  status: string
 }
 
 const api = axios.create({

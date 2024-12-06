@@ -11,8 +11,9 @@ interface IRegisterFormProps {
 
 const validationSchema = object({
     name: string().required("Nome do produto é obrigatório"),
-    price: string(),
-    description: string()
+    price: string().required("Preço do produto é obrigatório"),
+    description: string(),
+    status: string().required("Status do produto é obrigatório")
 })
 
 type RegisterFormData = InferType<typeof validationSchema>
@@ -23,7 +24,8 @@ export const OutletRegisterForm = ({handleCancel}: IRegisterFormProps) => {
         defaultValues: {
             name: "",
             price: "",
-            description: ""
+            description: "",
+            status: ""
         },
         mode: "onSubmit"
     })
@@ -35,6 +37,7 @@ export const OutletRegisterForm = ({handleCancel}: IRegisterFormProps) => {
                 name: data.name,
                 price: data.price,
                 description: data.description,
+                status: data.status,
             }
             await addProduct(newProduct);
             publish("outlet:close-register-modal")
@@ -56,7 +59,7 @@ export const OutletRegisterForm = ({handleCancel}: IRegisterFormProps) => {
                     {errors.name && <p className="input-error">{errors.name.message}</p>}
                 </div>
                 <div className="input-container">
-                    <label htmlFor="quantity">Preço <span className="optional">(opcional)</span></label>
+                    <label htmlFor="quantity">Preço</label>
                     <input 
                         type="text" 
                         className="form-control"
@@ -71,6 +74,20 @@ export const OutletRegisterForm = ({handleCancel}: IRegisterFormProps) => {
                         className="form-control"
                         {...register("description")}
                     />
+                </div>
+                <div className="input-container">
+                    <label htmlFor="origin">Origem</label>
+                    <select 
+                        id="origin"
+                        {...register("status")}
+                        className="form-control"
+                    >
+                        <option value="" disabled>Selecione</option>
+                        <option value="FOR_SALE">À venda</option>
+                        <option value="EXCHANGED">Trocado</option>
+                        <option value="REBATED">Abatido</option>
+                        <option value="SOLD">Vendido</option>
+                    </select>
                 </div>
             </div>
 

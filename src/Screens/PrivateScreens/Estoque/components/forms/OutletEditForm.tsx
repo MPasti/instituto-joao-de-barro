@@ -10,8 +10,9 @@ interface IEditFormProps {
 
 const validationSchema = object({
     name: string().required("Nome do produto é obrigatório"),
-    price: string(),
-    description: string()
+    price: string().required("Preço do produto é obrigatório"),
+    description: string(),
+    status: string().required("Status do produto é obrigatório")
 })
 
 type EditFormData = InferType<typeof validationSchema>
@@ -23,6 +24,7 @@ export const OutletEditForm = ({ selectedProduct }: IEditFormProps) => {
             name: selectedProduct.name,
             price: selectedProduct.price?.toString() || "",
             description: selectedProduct.description || "",
+            status: selectedProduct.status
         },
         mode: "onSubmit"
     });
@@ -34,6 +36,7 @@ export const OutletEditForm = ({ selectedProduct }: IEditFormProps) => {
                 name: data.name,
                 price: data.price,
                 description: data.description,
+                status: data.status
             };
             await updateProduct(selectedProduct.id, updatedProduct);
             publish("outlet:close-edit-modal");
@@ -64,7 +67,7 @@ export const OutletEditForm = ({ selectedProduct }: IEditFormProps) => {
                     {errors.name && <p className="input-error">{errors.name.message}</p>}
                 </div>
                 <div className="input-container">
-                    <label htmlFor="quantity">Preço <span className="optional">(opcional)</span></label>
+                    <label htmlFor="quantity">Preço</label>
                     <input 
                         type="text" 
                         className="form-control"
@@ -79,6 +82,20 @@ export const OutletEditForm = ({ selectedProduct }: IEditFormProps) => {
                         className="form-control"
                         {...register("description")}
                     />
+                </div>
+                <div className="input-container">
+                    <label htmlFor="origin">Origem</label>
+                    <select 
+                        id="origin"
+                        {...register("status")}
+                        className="form-control"
+                    >
+                        <option value="" disabled>Selecione</option>
+                        <option value="FOR_SALE">À venda</option>
+                        <option value="EXCHANGED">Trocado</option>
+                        <option value="REBATED">Abatido</option>
+                        <option value="SOLD">Vendido</option>
+                    </select>
                 </div>
             </div>
 
