@@ -88,6 +88,7 @@ export const OutletRegisterForm = ({handleCancel}: IRegisterFormProps) => {
                         <option value="REBATED">Abatido</option>
                         <option value="SOLD">Vendido</option>
                     </select>
+                    {errors.status && <p className="input-error">{errors.status.message}</p>}
                 </div>
             </div>
 

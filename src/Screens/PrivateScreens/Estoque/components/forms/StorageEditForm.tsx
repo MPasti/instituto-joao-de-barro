@@ -94,6 +94,7 @@ export const StorageEditForm = ({ selectedMaterial }: IEditFormProps) => {
                         <option value="DONATED">Doação</option>
                         <option value="BOUGHT">Compra</option>
                     </select>
+                    {errors.origin && <p className="input-error">{errors.origin.message}</p>}
                 </div>
             </div>
 

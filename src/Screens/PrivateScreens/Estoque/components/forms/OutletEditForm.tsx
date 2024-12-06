@@ -96,6 +96,7 @@ export const OutletEditForm = ({ selectedProduct }: IEditFormProps) => {
                         <option value="REBATED">Abatido</option>
                         <option value="SOLD">Vendido</option>
                     </select>
+                    {errors.status && <p className="input-error">{errors.status.message}</p>}
                 </div>
             </div>
 

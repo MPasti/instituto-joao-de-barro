@@ -86,6 +86,7 @@ export const StorageRegisterForm = ({handleCancel}: IRegisterFormProps) => {
                         <option value="DONATED">Doação</option>
                         <option value="BOUGHT">Compra</option>
                     </select>
+                    {errors.origin && <p className="input-error">{errors.origin.message}</p>}
                 </div>
            </div>
 
