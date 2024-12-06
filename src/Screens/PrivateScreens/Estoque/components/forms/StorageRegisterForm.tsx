@@ -11,7 +11,7 @@ interface IRegisterFormProps {
 
 const validationSchema = object({
     name: string().required("Nome do material é obrigatório"),
-    quantity: number().required("Quantidade é obrigatória").positive("Informe uam quantidade válida").typeError("Quantidade deve ser um número"),
+    quantity: number().required("Quantidade é obrigatória").positive("Informe uma quantidade válida").typeError("Quantidade deve ser um número"),
     description: string(),
     origin: string().required("Origem é obrigatório")
 })
