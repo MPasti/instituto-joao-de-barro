@@ -19,6 +19,8 @@ const initialData = {
   },
   aboutUs: {
     content: "",
+    video: "",
+    ijbTree: [{ title: "", description: "", image: "", year: "" }],
   },
   contact: {
     email: "",
@@ -74,6 +76,19 @@ export const PainelDoEditor: React.FC = () => {
         landingPage: {
           ...prev.landingPage,
           partnerCompanies: updatedCompanies,
+        },
+      };
+    });
+  };
+
+  const handleDeleteIjbTreeItem = (index: number) => {
+    setData((prev) => {
+      const updatedIjbTree = prev.aboutUs.ijbTree.filter((_, i) => i !== index);
+      return {
+        ...prev,
+        aboutUs: {
+          ...prev.aboutUs,
+          ijbTree: updatedIjbTree,
         },
       };
     });
@@ -313,6 +328,104 @@ export const PainelDoEditor: React.FC = () => {
                   handleInputChange("aboutUs", "content", e.target.value)
                 }
               />
+
+              <h3 className="mt-4">Vídeo Base</h3>
+              <label className="form-label">URL do Vídeo:</label>
+              <input
+                type="text"
+                className="form-control"
+                value={data.aboutUs.video}
+                onChange={(e) =>
+                  handleInputChange("aboutUs", "video", e.target.value)
+                }
+              />
+
+              <h3 className="mt-4">Árvore do IJB</h3>
+              {data.aboutUs.ijbTree.map((item, index) => (
+                <div key={index} className="mb-3">
+                  <h4>Elemento {index + 1}</h4>
+                  <label className="form-label">Título:</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    value={item.title}
+                    onChange={(e) =>
+                      handleInputChange(
+                        "aboutUs",
+                        "ijbTree",
+                        { title: e.target.value },
+                        index,
+                      )
+                    }
+                  />
+                  <label className="form-label">Descrição:</label>
+                  <textarea
+                    className="form-control"
+                    value={item.description}
+                    onChange={(e) =>
+                      handleInputChange(
+                        "aboutUs",
+                        "ijbTree",
+                        { description: e.target.value },
+                        index,
+                      )
+                    }
+                  />
+                  <label className="form-label">Imagem:</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    value={item.image}
+                    onChange={(e) =>
+                      handleInputChange(
+                        "aboutUs",
+                        "ijbTree",
+                        { image: e.target.value },
+                        index,
+                      )
+                    }
+                  />
+                  <label className="form-label">Ano:</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    value={item.year}
+                    onChange={(e) =>
+                      handleInputChange(
+                        "aboutUs",
+                        "ijbTree",
+                        { year: e.target.value },
+                        index,
+                      )
+                    }
+                  />
+                  <Button
+                    outline
+                    variant="secondary"
+                    className="mt-2"
+                    onClick={() => handleDeleteIjbTreeItem(index)}
+                  >
+                    Remover Elemento
+                  </Button>
+                </div>
+              ))}
+              <button
+                className="btn btn-primary mt-2"
+                onClick={() =>
+                  setData((prev) => ({
+                    ...prev,
+                    aboutUs: {
+                      ...prev.aboutUs,
+                      ijbTree: [
+                        ...prev.aboutUs.ijbTree,
+                        { title: "", description: "", image: "", year: "" },
+                      ],
+                    },
+                  }))
+                }
+              >
+                Adicionar Elemento
+              </button>
             </div>
           </div>
         </div>

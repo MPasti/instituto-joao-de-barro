@@ -12,28 +12,6 @@ const ResultsSection = () => {
   const blockRef1 = useRef<HTMLDivElement | unknown>(null);
   const blockRef2 = useRef<HTMLDivElement | unknown>(null);
 
-  useEffect(() => {
-    const animateOnScroll = () => {
-      [blockRef1, blockRef2].forEach((ref) => {
-        if (ref.current) {
-          const rect = ref.current.getBoundingClientRect();
-          const inView = rect.top < window.innerHeight && rect.bottom > 0;
-
-          if (inView) {
-            ref.current.classList.add("fadeIn");
-            ref.current.classList.remove("fadeOut");
-          } else {
-            ref.current.classList.add("fadeOut");
-            ref.current.classList.remove("fadeIn");
-          }
-        }
-      });
-    };
-
-    window.addEventListener("scroll", animateOnScroll);
-    return () => window.removeEventListener("scroll", animateOnScroll);
-  }, []);
-
   return (
     <div className="results-container">
       <div className="results">
@@ -67,15 +45,15 @@ const ResultsSection = () => {
         </div>
 
         <div className="mt-5">
-          <h1 className="text-secondary mt-2">Projeto Atual</h1>
+          <h1 className="text-secondary mt-3 mb-5">Projeto Atual</h1>
           <div className="view">
-            <div className="block fadeOut" ref={blockRef1}>
+            <div className="block" ref={blockRef1}>
               <h2>Antes</h2>
-              <img src={antes} alt="Imagem de Resultado 1" />
+              <img src={antes} alt="Antes" />
             </div>
-            <div className="block fadeOut" ref={blockRef2}>
+            <div className="block" ref={blockRef2}>
               <h2>Depois</h2>
-              <img src={depois} alt="Imagem de Resultado 2" />
+              <img src={depois} alt="Depois" />
             </div>
           </div>
         </div>
