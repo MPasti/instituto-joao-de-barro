@@ -7,9 +7,7 @@
       "username": "admin",
       "password": "123456",
       "token": "1234567890abcdef",
-      "roles": [
-        "Administração"
-      ]
+      "roles": ["Administração"]
     }
   ],
   "users": [
@@ -295,37 +293,118 @@
     "beneficiario": [],
     "visitas": []
   },
-    "landing-page": {
-      "carousel": [{ "id": 1,"image": "", "title": "", "buttonLabel": "" }],
-      "aboutUs": "",
-      "results": {
-        "content": "",
-        "beforeImage": "",
-        "afterImage": ""
+  "landing-page": {
+    "carousel": [
+      {
+        "id": 1,
+        "image": "https://jornaldafranca.com.br/storage/app/media/Blog%20Milena%20Peixoto/joaodebarro.jpg",
+        "title": "Construindo Sonhos, Transformando Vidas",
+        "description": "O Instituto João de Barro acredita no poder da união para proporcionar moradias dignas às famílias necessitadas. Junte-se a nós e seja parte dessa transformação.",
+        "buttonLabel": "SAIBA MAIS"
       },
-      "additionalInfo": [
-        { "title": "", "text": "", "image": "" },
-        { "title": "", "text": "", "image": "" },
-        { "title": "", "text": "", "image": "" }
-      ],
-      "partnerCompanies": [{ "name": "", "image": "" }]
+      {
+        "id": 2,
+        "image": "https://jornaldafranca.com.br/storage/app/media/Blog%20Milena%20Peixoto/joaodebarro.jpg",
+        "title": "Descubra o Instituto João de Barro",
+        "description": "Saiba mais sobre nossa missão, projetos e como você pode fazer parte dessa iniciativa. Juntos, podemos transformar vidas e comunidades.",
+        "buttonLabel": "SAIBA MAIS"
+      },
+      {
+        "id": 3,
+        "image": "https://jornaldafranca.com.br/storage/app/media/Blog%20Milena%20Peixoto/joaodebarro.jpg",
+        "title": "Moradia Digna é um Direito de Todos",
+        "description": "O Instituto João de Barro trabalha para construir um futuro mais justo, proporcionando lares dignos às famílias que necessitam. Cada casa entregue é um passo em direção a uma sociedade mais solidária e humana.",
+        "buttonLabel": "SAIBA MAIS"
+      },
+      {
+        "id": 4,
+        "image": "https://jornaldafranca.com.br/storage/app/media/Blog%20Milena%20Peixoto/joaodebarro.jpg",
+        "title": "Histórias que Inspiram",
+        "description": "O Instituto João de Barro transforma vidas em Franca-SP ao construir lares para famílias necessitadas. Descubra nossas iniciativas e junte-se à causa.",
+        "buttonLabel": "SAIBA MAIS"
+      }
+    ],
+    "aboutUs": "O Instituto João de Barro (IJB) é um instituto que atua na cidade de Franca, SP o objetivo de ajudar famílias em situação de vulnerabilidade, necessidade, entre outros; oferecendo doações de recursos financeiros, criando moradias, promovendo eventos para o bem estar social da cidade de Franca.",
+    "results": {
+      "content": "Os resultados que alcançamos são refletidos nas histórias de superação e nas vidas que foram impactadas pelo nosso trabalho. Através de nossos esforços, conseguimos promover inclusão, oferecer apoio e criar oportunidades para quem mais precisa. Não é apenas sobre o que fazemos, mas sobre as mudanças que possibilitamos — mudanças que ecoam em toda a sociedade e geram um futuro mais solidário.",
+      "beforeImage": "http://localhost:5173/src/assets/images/institute/antes.png",
+      "afterImage": "http://localhost:5173/src/assets/images/institute/depois.png"
     },
-    "sobre-nos": {
-      "content": "O Instituto João de Barro atua na cidade de Franca - SP, com o objetivo de ajudar famílias em situação de vulnerabilidade, necessidade, entre outros; oferecendo doações de recursos financeiros, criando moradias, promovendo eventos para o bem estar social da cidade de Franca.",
-      "video": "https://youtu.be/Sh6ekQzXmfI?si=fPyNJCA4136UuRtF",
-      "ijbTree": [{ "id":1, "title": "Casa reformada e entregue à família em Santa Cruz", "description": "No dia 10 de Maio de 2022 após 6 meses o IJB entregou a casa reformada a seus residentes, o engenheiro civil Carlos José Martins Tavares, fundador da entidade agradece as doações que foram feitas a obra.", "image": "", "year": "2022" }]
-    },
-    "contato": {
-      "email": "",
-      "phone": ""
-    },
+    "additionalInfo": [
+      {
+        "title": "Quem nós ajudamos",
+        "text": "Nosso auxílio vai além de proporcionar uma moradia digna às famílias carentes. Nós buscamos melhorar a qualidade de vida dessas famílias, oferecendo moradia, apoio psicológico e melhorias em suas condições. Promovendo a transformação social e a melhoria contínua da qualidade de vida de nossa comunidade.",
+        "image": "http://localhost:5173/src/assets/images/institute/joaodebarro.jpg"
+      },
+      {
+        "title": "Porque nós ajudamos",
+        "text": "Nós ajudamos porque acreditamos no poder da compaixão, da solidariedade e da ação coletiva para criar mudanças duradouras. E acima de tudo, ajudamos porque sabemos que, juntos, podemos construir um mundo mais justo, onde todos tenham a chance de viver com dignidade e esperança.",
+        "image": "http://localhost:5173/src/assets/images/institute/institute-3.png"
+      },
+      {
+        "title": "Como ajudamos",
+        "text": "Apoiamos famílias em situação de vulnerabilidade, oferecendo doações, moradias dignas e promovendo eventos para o bem-estar de toda a comunidade na cidade de Franca.",
+        "image": "http://localhost:5173/src/assets/images/institute/institute-4.png"
+      }
+    ],
+    "partnerCompanies": [
+      {
+        "name": "Uni-FACEF",
+        "image": "https://foprop.org.br/wp-content/uploads/jet-engine-forms/guest/2023/02/unifacef.png"
+      },
+      {
+        "name": "Uni-FACEF",
+        "image": "https://foprop.org.br/wp-content/uploads/jet-engine-forms/guest/2023/02/unifacef.png"
+      },
+      {
+        "name": "Uni-FACEF",
+        "image": "https://foprop.org.br/wp-content/uploads/jet-engine-forms/guest/2023/02/unifacef.png"
+      }
+    ]
+  },
+  "sobre-nos": {
+    "content": "O Instituto João de Barro atua na cidade de Franca - SP, com o objetivo de ajudar famílias em situação de vulnerabilidade, necessidade, entre outros; oferecendo doações de recursos financeiros, criando moradias, promovendo eventos para o bem estar social da cidade de Franca.",
+    "video": "https://youtu.be/Sh6ekQzXmfI?si=fPyNJCA4136UuRtF",
+    "ijbTree": [
+      {
+        "id": 1,
+        "title": "Casa reformada e entregue à família em Santa Cruz",
+        "description": "No dia 10 de Maio de 2022 após 6 meses o IJB entregou a casa reformada a seus residentes, o engenheiro civil Carlos José Martins Tavares, fundador da entidade agradece as doações que foram feitas a obra.",
+        "image": "https://sampi.net.br/dir-arquivo-imagem/2022/05/1073c705e23f988663c1cdf18376314c.jpg",
+        "year": 2022
+      },
+      {
+        "year": 2020,
+        "title": "Casa entregue à família que habitava em um barraco de lona",
+        "description": "No dia 16 de Agosto  de 2020, foi entregue pelo IJB uma casa para uma familia que até então habitava em um barraco de lona, o IJB.\nA missão do Instituto João de Barro é Proporcionar moradia digna a famílias em situação de extrema pobreza e vulnerabilidade social, devidamente selecionadas por processo de triagem, através de reforma e construção, com fornecimento de materiais, mão de obra e acompanhamento técnico com arquitetos e engenheiros voluntários.",
+        "image": "https://scontent.ffrc6-1.fna.fbcdn.net/v/t1.6435-9/117535572_1226558671014465_6304487004514615188_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=3a1ebe&_nc_eui2=AeGM5HvlhqueP3LziJ46iZIixHI094Coch3EcjT3gKhyHUMGiwTZKA27EV6Rc71dcB5I6bWTqOwNlln7mn65Ulfs&_nc_ohc=x6tIMCBBA0kQ7kNvgGhQ0y_&_nc_zt=23&_nc_ht=scontent.ffrc6-1.fna&_nc_gid=AMIJf-B_bLi43yXms8cnFfN&oh=00_AYDaHnD8cdQm7xUOqj1wsqT-hSWDMpvE5p5PzsXM4EuQuw&oe=677C4C5D"
+      },
+      {
+        "year": 2018,
+        "title": "Segunda Casa",
+        "description": "No dia 23 de junho de 2018 foi entregue a segunda casa do IJB à família da D. Raimunda que residirá junto com seus 7 filhos.\nO projeto foi elaborado por uma equipe de arquitetos e engenheiros voluntários exclusivamente para atender as necessidades dessa família.",
+        "image": "https://scontent.ffrc6-1.fna.fbcdn.net/v/t1.6435-9/36086949_649427455394259_5820971164838658048_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=cf85f3&_nc_eui2=AeEOer_Vf2praNWRjNa9rx0PwUnIn7vfe_HBScifu9978cIsITuMkMuJ0uhGd-5sPtXrC1-Dnq9f1YvpPpYDMP_J&_nc_ohc=ESudvsXHaaUQ7kNvgHZj3ge&_nc_zt=23&_nc_ht=scontent.ffrc6-1.fna&_nc_gid=AItxk_gZdLN3D7WJrn5ta6n&oh=00_AYBGU1qUf4A7LQi_zVwtOtsOrXLVeJv3DpQ2B1WVO9h0ZA&oe=677C169F"
+      },
+      {
+        "year": 2016,
+        "title": "Entrega da primeira casa",
+        "description": "Essa foi a nossa primeira entrega de casa, realizada no dia 11 de Agosto de 2016.\nO contemplado era um pai viúvo com 4 crianças.",
+        "image": "https://jornaldafranca.com.br/storage/app/media/Blog%20Milena%20Peixoto/joaodebarro.jpg"
+      }
+    ]
+  },
+  "contato": {
+    "email": "ijbfranca@gmail.com",
+    "phone": "+55 (16) 99181-1811"
+  },
   "donation": {
-    "pix": "",
-    "cnpj": "",
-    "banco": "",
-    "agencia": "",
-    "contaCorrente": "",
-    "buttonLabel": "",
-    "image": ""
+    "pix": "26.345.732/0001-07",
+    "cnpj": "26.345.732/0001-07",
+    "banco": "756 - SICOOB",
+    "agencia": "4321 CRED-ACIF",
+    "contaCorrente": "2005.247-2",
+    "buttonLabel": "FAÇA SUA DOAÇÃO",
+    "buttonLink": "",
+    "image": "http://localhost:5173/src/assets/images/institute/ijb-comemoracao.png"
   }
 }

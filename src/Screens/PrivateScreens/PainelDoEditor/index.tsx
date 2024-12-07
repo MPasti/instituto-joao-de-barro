@@ -561,7 +561,7 @@ export const PainelDoEditor = () => {
 
       <Button
         className="mt-3"
-        onClick={() => console.log("Dados salvos:", data)}
+        onClick={() => toast.success("Informações atualizadas com sucesso!")}
         type="submit"
       >
         Salvar Alterações

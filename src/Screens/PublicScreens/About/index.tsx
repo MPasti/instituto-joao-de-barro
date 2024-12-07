@@ -6,51 +6,88 @@ import {
   FaUsers,
 } from "react-icons/fa6";
 import { Tree } from "../../../components/Tree";
+import { useEffect, useState } from "react";
 import house1 from "@images/institute/joaodebarro.jpg";
 import house2 from "@images/institute/segunda-casa.jpg";
 import house3 from "@images/institute/casa-3.png";
 import house4 from "@images/institute/casa-4.png";
 import folhas from "@images/folhas.png";
-import TopTrunk from "../../../assets/icons/secondTronco.png";
+import { getAboutUsData } from "../../../services/editorPanelService.ts";
+import Loading from "../../../components/Loading";
 
 export function About() {
-  const events = [
+  const initialDate = [
     {
-      year: 2022,
+      id: 1,
       title: "Casa reformada e entregue à família em Santa Cruz",
       description:
         "No dia 10 de Maio de 2022 após 6 meses o IJB entregou a casa reformada a seus residentes, o engenheiro civil Carlos José Martins Tavares, fundador da entidade agradece as doações que foram feitas a obra.",
       image: house4,
+      year: 2022,
     },
     {
       year: 2020,
       title: "Casa entregue à família que habitava em um barraco de lona",
       description:
-        "No dia 16 de Agosto  de 2020, foi entregue pelo IJB uma casa para uma familia que até então habitava em um barraco de lona, o IJB.\n" +
-        "A missão do Instituto João de Barro é Proporcionar moradia digna a famílias em situação de extrema pobreza e vulnerabilidade social, devidamente selecionadas por processo de triagem, através de reforma e construção, com fornecimento de materiais, mão de obra e acompanhamento técnico com arquitetos e engenheiros voluntários.",
+        "No dia 16 de Agosto  de 2020, foi entregue pelo IJB uma casa para uma familia que até então habitava em um barraco de lona, o IJB.\nA missão do Instituto João de Barro é Proporcionar moradia digna a famílias em situação de extrema pobreza e vulnerabilidade social, devidamente selecionadas por processo de triagem, através de reforma e construção, com fornecimento de materiais, mão de obra e acompanhamento técnico com arquitetos e engenheiros voluntários.",
       image: house3,
     },
-
     {
       year: 2018,
       title: "Segunda Casa",
       description:
-        "No dia 23 de junho de 2018 foi entregue a segunda casa do IJB à família da D. Raimunda que residirá junto com seus 7 filhos.\n" +
-        "O projeto foi elaborado por uma equipe de arquitetos e engenheiros voluntários exclusivamente para atender as necessidades dessa família.",
+        "No dia 23 de junho de 2018 foi entregue a segunda casa do IJB à família da D. Raimunda que residirá junto com seus 7 filhos.\nO projeto foi elaborado por uma equipe de arquitetos e engenheiros voluntários exclusivamente para atender as necessidades dessa família.",
       image: house2,
     },
     {
       year: 2016,
       title: "Entrega da primeira casa",
       description:
-        "Essa foi a nossa primeira entrega de casa, realizada no dia 11 de Agosto de 2016.\n" +
-        "O contemplado era um pai viúvo com 4 crianças.",
+        "Essa foi a nossa primeira entrega de casa, realizada no dia 11 de Agosto de 2016.\nO contemplado era um pai viúvo com 4 crianças.",
       image: house1,
     },
   ];
 
+  const fetchData = async () => {
+    try {
+      const response = await getAboutUsData();
+
+      if (response.data.ijbTree) {
+        setEvents(response.data.ijbTree);
+      }
+
+      if (response.data.content) {
+        setEvents(response.data.ijbTree);
+      }
+
+      if (response.data.video) {
+        const videoIdMatch = response.data.video.match(
+          /(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|.*?&v=))([^#&?]*).*/,
+        );
+        const videoId = videoIdMatch ? videoIdMatch[1] : "";
+        setVideoUrl(`https://www.youtube-nocookie.com/embed/${videoId}`);
+      }
+    } catch (e) {
+      setEvents(initialDate);
+      console.error(e);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const [events, setEvents] = useState<typeof initialDate>(initialDate);
+  const [loading, setLoading] = useState(true);
+  const [videoUrl, setVideoUrl] = useState(
+    "https://www.youtube-nocookie.com/embed/Sh6ekQzXmfI?si=zegdyOdfGJ9rjKMu",
+  );
+
   return (
     <div className="pages about-page overflow-hidden">
+      <Loading isLoading={loading} />
       <div
         className="d-flex flex-column flex-md-row"
         style={{ minHeight: "420px" }}
@@ -90,7 +127,7 @@ export function About() {
       <div className="video-container text-center">
         <h3 className="fw-bold">Saiba mais sobre nossa missão!</h3>
         <iframe
-          src="https://www.youtube-nocookie.com/embed/Sh6ekQzXmfI?si=zegdyOdfGJ9rjKMu"
+          src={videoUrl}
           title="YouTube video player"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
