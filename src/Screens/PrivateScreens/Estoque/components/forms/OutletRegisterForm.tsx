@@ -1,7 +1,6 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import {object, string, InferType } from "yup"
-import { nanoid } from 'nanoid';
 import { publish } from "../../../../../utils/events";
 import { addProduct } from "../../../../../services/storage/outletApi";
 
@@ -33,7 +32,6 @@ export const OutletRegisterForm = ({handleCancel}: IRegisterFormProps) => {
     async function handleCreateNewProduct(data: RegisterFormData) {
         try {
             const newProduct = {
-                id: nanoid(6),
                 name: data.name,
                 price: data.price,
                 description: data.description,
@@ -69,16 +67,15 @@ export const OutletRegisterForm = ({handleCancel}: IRegisterFormProps) => {
                 </div>
                 <div className="input-container">
                     <label htmlFor="description">Descrição <span className="optional">(opcional)</span></label>
-                    <input 
-                        type="text" 
+                    <textarea 
                         className="form-control"
                         {...register("description")}
                     />
                 </div>
                 <div className="input-container">
-                    <label htmlFor="origin">Origem</label>
+                    <label htmlFor="origin">Status</label>
                     <select 
-                        id="origin"
+                        id="status"
                         {...register("status")}
                         className="form-control"
                     >

@@ -2,10 +2,17 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { object, string, InferType } from "yup";
 import { publish } from "../../../../../utils/events";
-import { deleteProduct, OutletProduct, updateProduct } from "../../../../../services/storage/outletApi";
+import { deleteProduct, OutletProductResponse, updateProduct } from "../../../../../services/storage/outletApi";
 
 interface IEditFormProps {
-    selectedProduct: OutletProduct;
+    selectedProduct: OutletProductResponse;
+}
+
+enum STATUS_VALUE {
+    "À venda" = "FOR_SALE",
+    "Trocado" = "EXCHANGED",
+    "Abatido" = "REBATED",
+    "Vendido" = "SOLD"
 }
 
 const validationSchema = object({
@@ -18,13 +25,17 @@ const validationSchema = object({
 type EditFormData = InferType<typeof validationSchema>
 
 export const OutletEditForm = ({ selectedProduct }: IEditFormProps) => {
+    const mapStatusToEnum = (status: string) => {
+        return (STATUS_VALUE as Record<string, string>)[status];
+    };
+
     const { register, handleSubmit, formState: { errors } } = useForm<EditFormData>({
         resolver: yupResolver(validationSchema),
         defaultValues: {
             name: selectedProduct.name,
-            price: selectedProduct.price?.toString() || "",
-            description: selectedProduct.description || "",
-            status: selectedProduct.status
+            price: selectedProduct.price?.toString(),
+            description: selectedProduct.description,
+            status: mapStatusToEnum( selectedProduct.status)
         },
         mode: "onSubmit"
     });
@@ -77,16 +88,15 @@ export const OutletEditForm = ({ selectedProduct }: IEditFormProps) => {
                 </div>
                 <div className="input-container">
                     <label htmlFor="description">Descrição <span className="optional">(opcional)</span></label>
-                    <input 
-                        type="text" 
+                    <textarea 
                         className="form-control"
                         {...register("description")}
                     />
                 </div>
                 <div className="input-container">
-                    <label htmlFor="origin">Origem</label>
+                    <label htmlFor="status">Status</label>
                     <select 
-                        id="origin"
+                        id="status"
                         {...register("status")}
                         className="form-control"
                     >

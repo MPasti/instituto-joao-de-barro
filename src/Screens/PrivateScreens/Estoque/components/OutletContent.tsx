@@ -1,13 +1,13 @@
 import { PlusCircle } from "phosphor-react"
 import { publish } from "../../../../utils/events"
 import { OutletRegisterModal } from "./modals/OutletRegisterModal"
-import { getProducts, OutletProduct } from "../../../../services/storage/outletApi"
+import { getProducts, OutletProductResponse } from "../../../../services/storage/outletApi"
 import { useEffect, useState } from "react"
 import { OutletEditModal } from "./modals/OutletEditModal"
 
 export const Outlet = () => {
-    const [outletProducts, setOutletProducts] = useState<OutletProduct[]>([]);
-    const [selectedProduct, setSelectedProduct] = useState<OutletProduct | null>(null);
+    const [outletProducts, setOutletProducts] = useState<OutletProductResponse[]>([]);
+    const [selectedProduct, setSelectedProduct] = useState<OutletProductResponse | null>(null);
     const [searchTerm, setSearchTerm] = useState<string>("");
 
     async function loadOutletProducts() {
@@ -19,7 +19,7 @@ export const Outlet = () => {
         loadOutletProducts();
     }, []);
 
-    const handleEditOutletProduct = (product: OutletProduct) => {
+    const handleEditOutletProduct = (product: OutletProductResponse) => {
         setSelectedProduct(product);
         publish("outlet:open-edit-modal");
     };
