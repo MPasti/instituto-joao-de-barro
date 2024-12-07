@@ -126,7 +126,7 @@ export function VoluntariosForm() {
 			
 			//@ts-ignore
 			if (response.success) {
-				alert("Formulário enviado com sucesso!");
+				toast.success("Formulário enviado com sucesso!");
 			} else {
 				toast.error("Erro ao enviar o formulário.");
 			}
