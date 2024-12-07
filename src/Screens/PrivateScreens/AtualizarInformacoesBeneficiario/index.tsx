@@ -115,129 +115,158 @@ const AtualizarInformacoes = () => {
 
     return (
         <div className="atualizar-informacoes">
-            <h1>Atualizar Informações do Beneficiário</h1>
-            <form onSubmit={handleUpdateBeneficiary}>
-                {/* Campos para os dados do beneficiário */}
-                <label htmlFor="nomeFamilia">Nome da Família:</label>
-                <input
-                    type="text"
-                    id="nomeFamilia"
-                    value={nomeFamilia}
-                    onChange={(e) => setNomeFamilia(e.target.value)}
-                />
+            <h1 className="subtitle">Atualizar Informações do Beneficiário</h1>
+            <form onSubmit={handleUpdateBeneficiary} className="form-control">
                 
-                <label htmlFor="statusFamilia">Status da Família:</label>
-                <select
-                    id="statusFamilia"
-                    value={statusFamilia}
-                    onChange={(e) => setStatusFamilia(e.target.value as BenefStatus)}
-                >
-                    <option value={BenefStatus.ATIVO}>Ativo</option>
-                    <option value={BenefStatus.INATIVO}>Inativo</option>
-                </select>
-
-                <label htmlFor="nomePrincipal">Nome do Responsável:</label>
-                <input
-                    type="text"
-                    id="nomePrincipal"
-                    value={nomePrincipal}
-                    onChange={(e) => setNomePrincipal(e.target.value)}
-                />
-
-                <label htmlFor="cpf">CPF do Responsável:</label>
-                <input
-                    type="text"
-                    id="cpf"
-                    value={cpf}
-                    onChange={(e) => setCpf(e.target.value)}
-                />
-
-                <label htmlFor="endereco">Endereço:</label>
-                <input
-                    type="text"
-                    id="endereco"
-                    value={endereco}
-                    onChange={(e) => setEndereco(e.target.value)}
-                />
-
-                <label htmlFor="cep">CEP:</label>
-                <input
-                    type="text"
-                    id="cep"
-                    value={cep}
-                    onChange={(e) => setCep(e.target.value)}
-                />
-
-                <label htmlFor="rendaMensal">Renda Mensal:</label>
-                <input
-                    type="number"
-                    id="rendaMensal"
-                    value={rendaMensal}
-                    onChange={(e) => setRendaMensal(Number(e.target.value))}
-                />
-
-                <label htmlFor="telefone1">Telefone 1:</label>
-                <input
-                    type="text"
-                    id="telefone1"
-                    value={telefone1}
-                    onChange={(e) => setTelefone1(e.target.value)}
-                />
-
-                <label htmlFor="telefone2">Telefone 2:</label>
-                <input
-                    type="text"
-                    id="telefone2"
-                    value={telefone2}
-                    onChange={(e) => setTelefone2(e.target.value)}
-                />
-
-                <label htmlFor="comoChegou">Como chegou ao programa:</label>
-                <input
-                    type="text"
-                    id="comoChegou"
-                    value={comoChegou}
-                    onChange={(e) => setComoChegou(e.target.value)}
-                />
-
-                <label htmlFor="familiarExtras">Informações extras da família:</label>
-                <input
-                    type="text"
-                    id="familiarExtras"
-                    value={familiarExtras}
-                    onChange={(e) => setFamiliarExtras(e.target.value)}
-                />
-
-                <label htmlFor="dadosImovel">Informações do imóvel:</label>
-                <input
-                    type="text"
-                    id="dadosImovel"
-                    value={dadosImovel}
-                    onChange={(e) => setDadosImovel(e.target.value)}
-                />
-
-                <label htmlFor="necessidadeFamilia">Necessidades da família:</label>
-                <input
-                    type="text"
-                    id="necessidadeFamilia"
-                    value={necessidadeFamilia}
-                    onChange={(e) => setNecessidadeFamilia(e.target.value)}
-                />
-
-                <button className='btn-primary' type="submit">Salvar alterações</button>
+                <div className="input-group">
+                    <label htmlFor="nomeFamilia">Nome da Família:</label>
+                    <input
+                        type="text"
+                        id="nomeFamilia"
+                        value={nomeFamilia}
+                        onChange={(e) => setNomeFamilia(e.target.value)}
+                    />
+                </div>
+    
+                <div className="dropdown-group">
+                    <label htmlFor="statusFamilia">Status da Família:</label>
+                    <select
+                        id="statusFamilia"
+                        value={statusFamilia}
+                        onChange={(e) => setStatusFamilia(e.target.value as BenefStatus)}
+                    >
+                        <option value={BenefStatus.ATIVO}>Ativo</option>
+                        <option value={BenefStatus.INATIVO}>Inativo</option>
+                    </select>
+                </div>
+    
+                <div className="input-group">
+                    <label htmlFor="nomePrincipal">Nome do Responsável:</label>
+                    <input
+                        type="text"
+                        id="nomePrincipal"
+                        value={nomePrincipal}
+                        onChange={(e) => setNomePrincipal(e.target.value)}
+                    />
+                </div>
+    
+                <div className="input-group">
+                    <label htmlFor="cpf">CPF do Responsável:</label>
+                    <input
+                        type="text"
+                        id="cpf"
+                        value={cpf}
+                        onChange={(e) => setCpf(e.target.value)}
+                    />
+                </div>
+    
+                <div className="input-group">
+                    <label htmlFor="endereco">Endereço:</label>
+                    <input
+                        type="text"
+                        id="endereco"
+                        value={endereco}
+                        onChange={(e) => setEndereco(e.target.value)}
+                    />
+                </div>
+    
+                <div className="input-group">
+                    <label htmlFor="cep">CEP:</label>
+                    <input
+                        type="text"
+                        id="cep"
+                        value={cep}
+                        onChange={(e) => setCep(e.target.value)}
+                    />
+                </div>
+    
+                <div className="input-group">
+                    <label htmlFor="rendaMensal">Renda Mensal:</label>
+                    <input
+                        type="number"
+                        id="rendaMensal"
+                        value={rendaMensal}
+                        onChange={(e) => setRendaMensal(Number(e.target.value))}
+                    />
+                </div>
+    
+                <div className="input-group">
+                    <label htmlFor="telefone1">Telefone 1:</label>
+                    <input
+                        type="text"
+                        id="telefone1"
+                        value={telefone1}
+                        onChange={(e) => setTelefone1(e.target.value)}
+                    />
+                </div>
+    
+                <div className="input-group">
+                    <label htmlFor="telefone2">Telefone 2:</label>
+                    <input
+                        type="text"
+                        id="telefone2"
+                        value={telefone2}
+                        onChange={(e) => setTelefone2(e.target.value)}
+                    />
+                </div>
+    
+                <div className="input-group">
+                    <label htmlFor="comoChegou">Como chegou ao programa:</label>
+                    <input
+                        type="text"
+                        id="comoChegou"
+                        value={comoChegou}
+                        onChange={(e) => setComoChegou(e.target.value)}
+                    />
+                </div>
+    
+                <div className="input-group">
+                    <label htmlFor="familiarExtras">Informações extras da família:</label>
+                    <input
+                        type="text"
+                        id="familiarExtras"
+                        value={familiarExtras}
+                        onChange={(e) => setFamiliarExtras(e.target.value)}
+                    />
+                </div>
+    
+                <div className="input-group">
+                    <label htmlFor="dadosImovel">Informações do imóvel:</label>
+                    <input
+                        type="text"
+                        id="dadosImovel"
+                        value={dadosImovel}
+                        onChange={(e) => setDadosImovel(e.target.value)}
+                    />
+                </div>
+    
+                <div className="input-group">
+                    <label htmlFor="necessidadeFamilia">Necessidades da família:</label>
+                    <input
+                        type="text"
+                        id="necessidadeFamilia"
+                        value={necessidadeFamilia}
+                        onChange={(e) => setNecessidadeFamilia(e.target.value)}
+                    />
+                </div>
+    
+                <div className="button-group">
+                    <button className="btn-primary" type="submit">Salvar alterações</button>
+                </div>
             </form>
-
+    
             <h2>Membros da Família</h2>
             <ul>
                 {members.map((member) => (
                     <li key={member.id}>
                         <span>{member.familyName}</span>
-                        <button onClick={() => handleEditFamilyMember(member.id!)}>Editar</button>
+                        <button className="btn-secondary" onClick={() => handleEditFamilyMember(member.id!)}>Editar</button>
                     </li>
                 ))}
             </ul>
         </div>
     );
+    
 };
 
 export default AtualizarInformacoes;
