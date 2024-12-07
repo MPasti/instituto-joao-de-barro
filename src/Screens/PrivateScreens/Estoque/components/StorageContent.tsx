@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 import { PlusCircle } from "phosphor-react";
 import { publish } from "../../../../utils/events";
 import { StorageRegisterModal } from "./modals/StorageRegisterModal";
-import { getMaterials, StorageMaterial } from "../../../../services/storage/storageApi";
+import { getMaterials, StorageMaterialResponse } from "../../../../services/storage/storageApi";
 import { StorageEditModal } from "./modals/StorageEditModal";
 
 export const Storage = () => {
-    const [storageMaterials, setStorageMaterials] = useState<StorageMaterial[]>([]);
-    const [selectedMaterial, setSelectedMaterial] = useState<StorageMaterial | null>(null);
+    const [storageMaterials, setStorageMaterials] = useState<StorageMaterialResponse[]>([]);
+    const [selectedMaterial, setSelectedMaterial] = useState<StorageMaterialResponse | null>(null);
     const [searchTerm, setSearchTerm] = useState<string>("");
 
     async function loadStorageMaterials() {
@@ -19,7 +19,7 @@ export const Storage = () => {
         loadStorageMaterials();
     }, []);
 
-    const handleEditStorageMaterial = (material: StorageMaterial) => {
+    const handleEditStorageMaterial = (material: StorageMaterialResponse) => {
         setSelectedMaterial(material);
         publish("storage:open-edit-modal");
     };

@@ -1,11 +1,16 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { object, string, number, InferType } from "yup";
-import { updateMaterial, deleteMaterial, StorageMaterial } from "../../../../../services/storage/storageApi";
+import { updateMaterial, deleteMaterial, StorageMaterialResponse } from "../../../../../services/storage/storageApi";
 import { publish } from "../../../../../utils/events";
 
 interface IEditFormProps {
-    selectedMaterial: StorageMaterial;
+    selectedMaterial: StorageMaterialResponse;
+}
+
+enum ORIGIN_VALUE {
+    "Doação" = "DONATED",
+    "Compra" = "BOUGHT"
 }
 
 const validationSchema = object({
@@ -18,13 +23,17 @@ const validationSchema = object({
 type EditFormData = InferType<typeof validationSchema>;
 
 export const StorageEditForm = ({ selectedMaterial }: IEditFormProps) => {
+    const mapOriginToEnum = (origin: string) => {
+        return (ORIGIN_VALUE as Record<string, string>)[origin];
+    };
+
     const { register, handleSubmit, formState: { errors } } = useForm<EditFormData>({
         resolver: yupResolver(validationSchema),
         defaultValues: {
             name: selectedMaterial.name,
             quantity: selectedMaterial.quantity,
-            description: selectedMaterial.description || "",
-            origin: selectedMaterial.origin
+            description: selectedMaterial.description,
+            origin: mapOriginToEnum(selectedMaterial.origin)
         },
         mode: "onSubmit"
     });
@@ -77,8 +86,7 @@ export const StorageEditForm = ({ selectedMaterial }: IEditFormProps) => {
                 </div>
                 <div className="input-container">
                     <label htmlFor="description">Descrição <span className="optional">(opcional)</span></label>
-                    <input 
-                        type="text" 
+                    <textarea 
                         className="form-control"
                         {...register("description")}
                     />

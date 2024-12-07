@@ -2,7 +2,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import {object, string, number, InferType } from "yup"
 import { addMaterial } from "../../../../../services/storage/storageApi";
-import { nanoid } from 'nanoid';
 import { publish } from "../../../../../utils/events";
 
 interface IRegisterFormProps {
@@ -33,7 +32,6 @@ export const StorageRegisterForm = ({handleCancel}: IRegisterFormProps) => {
    async function handleCreateNewMaterial(data: RegisterFormData) {
         try {
             const newMaterial = {
-                id: nanoid(6),
                 name: data.name,
                 quantity: Number(data.quantity),
                 description: data.description,
@@ -69,8 +67,7 @@ export const StorageRegisterForm = ({handleCancel}: IRegisterFormProps) => {
                 </div>
                 <div className="input-container">
                     <label htmlFor="description">Descrição <span className="optional">(opcional)</span></label>
-                    <input 
-                        type="text" 
+                    <textarea 
                         className="form-control"
                         {...register("description")}
                     />

@@ -1,6 +1,13 @@
 import axios from "axios";
 
-export interface StorageMaterial {
+export interface StorageMaterialRequest {
+  name: string;
+  quantity: number;
+  description?: string;
+  origin: string;
+}
+
+export interface StorageMaterialResponse {
   id: string;
   name: string;
   quantity: number;
@@ -12,23 +19,23 @@ const api = axios.create({
   baseURL: import.meta.env.VITE_API_URL,
 });
 
-export const getMaterials = async (): Promise<StorageMaterial[]> => {
-  const response = await api.get<StorageMaterial[]>("/material");
+export const getMaterials = async (): Promise<StorageMaterialResponse[]> => {
+  const response = await api.get<StorageMaterialResponse[]>("/material");
   return response.data;
 };
 
 export const addMaterial = async (
-  material: StorageMaterial
-): Promise<StorageMaterial> => {
-  const response = await api.post<StorageMaterial>("/material/register", material);
+  material: StorageMaterialRequest
+): Promise<StorageMaterialResponse> => {
+  const response = await api.post<StorageMaterialResponse>("/material/register", material);
   return response.data;
 };
 
 export const updateMaterial = async (
   id: string,
-  material: StorageMaterial
-): Promise<StorageMaterial> => {
-  const response = await api.put<StorageMaterial>(`/material/update/${id}`, material);
+  material: StorageMaterialRequest
+): Promise<StorageMaterialResponse> => {
+  const response = await api.put<StorageMaterialResponse>(`/material/update/${id}`, material);
   return response.data;
 };
 
