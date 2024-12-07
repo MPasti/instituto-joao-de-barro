@@ -54,7 +54,7 @@ export function Navbar() {
             <ul className="dropdown-menu">
               <li className="dropdown-item">
                 <Link to="/colaborador" className="link">
-                  Colaborador
+                  Voluntários-Apoiador
                 </Link>
               </li>
               <li className="dropdown-item">
