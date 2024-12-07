@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { object, string, InferType } from "yup";
 import { publish } from "../../../../../utils/events";
 import { deleteProduct, OutletProductResponse, updateProduct } from "../../../../../services/storage/outletApi";
+import toast from "react-hot-toast";
 
 interface IEditFormProps {
     selectedProduct: OutletProductResponse;
@@ -51,7 +52,9 @@ export const OutletEditForm = ({ selectedProduct }: IEditFormProps) => {
             };
             await updateProduct(selectedProduct.id, updatedProduct);
             publish("outlet:close-edit-modal");
+            toast.success( "Produto alterado com sucesso");
         } catch (error) {
+            toast.error( "Falha ao alterar produto");
             return error;
         }
     }
@@ -60,7 +63,9 @@ export const OutletEditForm = ({ selectedProduct }: IEditFormProps) => {
         try {
             await deleteProduct(selectedProduct.id);
             publish("outlet:close-edit-modal");
+            toast.success( "Produto excluído com sucesso");
         } catch (error) {
+            toast.error("Falha ao excluir produto");
             return error;
         }
     }

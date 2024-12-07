@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import {object, string, number, InferType } from "yup"
 import { addMaterial } from "../../../../../services/storage/storageApi";
 import { publish } from "../../../../../utils/events";
+import toast from "react-hot-toast";
 
 interface IRegisterFormProps {
     handleCancel?: () => void
@@ -39,7 +40,9 @@ export const StorageRegisterForm = ({handleCancel}: IRegisterFormProps) => {
             }
             await addMaterial(newMaterial);
             publish("storage:close-register-modal")
+            toast.success( "Material criado com sucesso");
         } catch (error) {
+            toast.error( "Falha ao criar material");
             return error;
         }
    }

@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { object, string, number, InferType } from "yup";
 import { updateMaterial, deleteMaterial, StorageMaterialResponse } from "../../../../../services/storage/storageApi";
 import { publish } from "../../../../../utils/events";
+import toast from "react-hot-toast";
 
 interface IEditFormProps {
     selectedMaterial: StorageMaterialResponse;
@@ -49,7 +50,9 @@ export const StorageEditForm = ({ selectedMaterial }: IEditFormProps) => {
             };
             await updateMaterial(selectedMaterial.id, updatedMaterial);
             publish("storage:close-edit-modal");
+            toast.success( "Material alterado com sucesso");
         } catch (error) {
+            toast.error( "Falha ao alterar material");
             return error;
         }
     }
@@ -58,7 +61,9 @@ export const StorageEditForm = ({ selectedMaterial }: IEditFormProps) => {
         try {
             await deleteMaterial(selectedMaterial.id);
             publish("storage:close-edit-modal");
+            toast.success( "Material excluído com sucesso");
         } catch (error) {
+            toast.error( "Falha ao excluir material");
             return error;
         }
     }

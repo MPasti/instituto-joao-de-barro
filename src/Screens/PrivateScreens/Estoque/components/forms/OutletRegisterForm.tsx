@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import {object, string, InferType } from "yup"
 import { publish } from "../../../../../utils/events";
 import { addProduct } from "../../../../../services/storage/outletApi";
+import toast from "react-hot-toast";
 
 interface IRegisterFormProps {
     handleCancel?: () => void
@@ -39,7 +40,9 @@ export const OutletRegisterForm = ({handleCancel}: IRegisterFormProps) => {
             }
             await addProduct(newProduct);
             publish("outlet:close-register-modal")
+            toast.success( "Produto criado com sucesso");
         } catch (error) {
+            toast.error("Falha ao criar produto");
             return error;
         }
    }
