@@ -171,7 +171,6 @@ export function About() {
         </h2>
         <div className="leaves-top"></div>
         <img className="leaves" alt="folhas" src={folhas} />
-        <img className="first-trunk" alt="tronco" src={TopTrunk as string} />
       </div>
 
       <Tree data={events} />

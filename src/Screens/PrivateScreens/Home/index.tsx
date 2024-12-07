@@ -19,11 +19,11 @@ const Home = () => {
         className="col-12 col-sm-6 col-md-6 col-lg-3 mb-3 cursor-pointer d-flex justify-content-center"
         onClick={() => route && navigate(route)}
       >
-        <div className="card dashboard-icon p-4 d-flex align-items-center justify-content-center bg-dark">
-          <div className="icon mb-2" style={{ fontSize: "30px" }}>
+        <div className="card dashboard-icon p-4 d-flex align-items-center justify-content-center bg-dark text-white">
+          <div className="icon mb-2 color-white" style={{ fontSize: "30px" }}>
             {icon}
           </div>
-          <span className="font-weight-bold">{label}</span>
+          <span className="font-weight-bold text-white">{label}</span>
         </div>
       </div>
     );
@@ -67,7 +67,7 @@ const Home = () => {
           <div className="row w-100">
             <div className="col-12 d-flex justify-content-center">
               <div className="row w-100 justify-content-center">
-                <DashboardIcon icon={<BiSolidCalendarStar />} label="EVENTOS" />
+              <DashboardIcon icon={<BiSolidCalendarStar />} label="EVENTOS" route="events"/>
                 <DashboardIcon icon={<FaTools />} label="OBRAS" route="obras" />
                 <DashboardIcon
                   icon={<IoNewspaper />}

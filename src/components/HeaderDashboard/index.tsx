@@ -9,6 +9,7 @@ import { TbLogout } from "react-icons/tb";
 export function HeaderDashboard() {
   const [userProfile, setUserProfile] = useState<string>(null);
   const [userName, setUserName] = useState<string>(null);
+  const [role, setRole] = useState<string>(null);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement | unknown>(null);
 
@@ -17,6 +18,7 @@ export function HeaderDashboard() {
     if (user) {
       setUserProfile(user.profileImage || profileAvatar);
       setUserName(user.username || "Usuário");
+      setRole((user.roles && user.roles[0]) || "");
     }
   }, []);
 
@@ -61,14 +63,24 @@ export function HeaderDashboard() {
       </div>
 
       <div className="d-flex position-relative me-5" ref={dropdownRef}>
-        {userName && (
-          <span
-            className="me-3 text-white text-justify fw-bold"
-            style={{ fontSize: "1rem" }}
-          >
-            {userName || "Não definido"}
-          </span>
-        )}
+        <div className="d-flex flex-column">
+          {userName && (
+            <span
+              className="me-3 text-white text-end fw-bold"
+              style={{ fontSize: "1rem" }}
+            >
+              {userName || "Não definido"}
+            </span>
+          )}
+          {role && (
+            <span
+              className="me-3 text-white text-end fw-bold"
+              style={{ fontSize: "1rem" }}
+            >
+              {role || "Não definido"}
+            </span>
+          )}
+        </div>
         <img
           src={userProfile}
           alt="User Profile"

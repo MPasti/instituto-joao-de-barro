@@ -46,6 +46,8 @@ import RegistroVisita from "./Screens/PrivateScreens/RegistroVisita";
 import { BuildingHome } from "./Screens/PrivateScreens/Obras/BuildingHome";
 import { BeneficiarioPerfil } from "./Screens/PrivateScreens/BeneficiarioPerfil";
 import { PainelDoEditor } from "./Screens/PrivateScreens/PainelDoEditor";
+import { EventsHome } from "./Screens/PrivateScreens/Eventos/EventsHome";
+
 
 function App() {
   return (
@@ -87,6 +89,7 @@ function App() {
                 <Route path="registroVisita" element={<RegistroVisita />} />
                 <Route path="obras" element={<BuildingHome />}/>
                 <Route path="editor" element={<PainelDoEditor />} />
+                <Route path="events" element={<EventsHome />}/>
               </Route>
             </Route>
           </Routes>
