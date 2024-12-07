@@ -1,33 +1,69 @@
+.leaves-top{
+  height: 360px;
+  background: linear-gradient(to bottom, #FFF 0%, #FFC72C 100%);
+}
+
+.leaves{
+  position: absolute;
+  top: 400px;
+  left: 0;
+  width: 100%;
+  height: auto;
+  z-index: 2;
+
+  @media (max-width: 750px) {
+    width: 700px;
+  }
+}
+
+
 .timeline-tree {
-  width: 40%;
+  width: 100%;
   position: relative;
-  padding: 40px;
+  padding: 0 40px 40px 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
 
-  &::before {
-    content: '';
+  .tree-base {
     position: absolute;
-    left: 50%;
-    top: 0;
     bottom: 0;
-    width: 4px;
-    background-color: #ffd86c;
-    transform: translateX(-50%);
+    z-index: 0;
+
+    svg,
+    img {
+      width: 500px;
+      height: auto;
+    }
+  }
+
+  .tree-trunk {
+    position: relative;
+    z-index: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    svg,
+    img {
+      width: 700px;
+      height: auto;
+    }
   }
 
   .year-group {
     position: relative;
     width: 100%;
-    margin: 40px 0;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
     .year {
       position: absolute;
+      top: 50%;
       left: 50%;
-      transform: translateX(-50%);
-      font-size: 1.2em;
+      transform: translate(-50%, -50%);
+      font-size: 1.6em;
       font-weight: bold;
       color: #fff;
       background-color: $secondary;
@@ -39,22 +75,35 @@
   }
 
   .timeline-item {
-    position: relative;
-    width: 100%;
-    margin: 40px 0;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 600px;
     padding: 20px;
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 500;
 
     &.left {
-      align-self: flex-start;
-      transform: translateX(-60%);
+      left: calc(50% - 750px);
     }
 
     &.right {
-      align-self: flex-end;
-      transform: translateX(60%);
+      left: calc(50% + 150px);
+    }
+
+    @media (max-width: 768px) {
+      position: absolute;
+      top: auto;
+      transform: none;
+      width: 90%;
+      margin: 20px auto;
+
+      &.left,
+      &.right {
+        left: auto;
+      }
     }
 
     .content {
@@ -62,15 +111,18 @@
       flex-direction: column;
       align-items: center;
       gap: 15px;
+
       .event-image {
         border-radius: 12px;
         overflow: hidden;
+
         img {
           width: 100%;
           height: 100%;
           object-fit: cover;
         }
       }
+
       .text {
         text-align: justify;
         white-space: pre-line;
@@ -78,9 +130,3 @@
     }
   }
 }
-
-.leaves-top{
-  height: 360px;
-  background: linear-gradient(to bottom, #FFF 0%, #FFC72C 100%);
-}
-

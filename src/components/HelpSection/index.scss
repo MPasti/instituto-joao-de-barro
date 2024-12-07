@@ -23,6 +23,8 @@
     .image {
       flex: 1;
       padding: 1rem;
+      display: flex;
+      justify-content: center;
       img {
         max-width: 100%;
         height: auto;
@@ -39,8 +41,28 @@
     }
 
     &.block-3 {
-      background-color: #ff9963;
+      background-color: #ffead5;
       flex-direction: row;
     }
   }
 }
+
+@media screen and (max-width: 768px) {
+  .help-section {
+    .help-block {
+      flex-direction: column !important;
+
+      .content {
+        text-align: center !important;
+        button{
+          width: 100%;
+        }
+      }
+
+      .image {
+        margin-top: 1rem !important;
+      }
+    }
+  }
+}
+
