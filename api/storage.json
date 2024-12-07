@@ -294,5 +294,38 @@
     "products": [],
     "beneficiario": [],
     "visitas": []
+  },
+    "landing-page": {
+      "carousel": [{ "id": 1,"image": "", "title": "", "buttonLabel": "" }],
+      "aboutUs": "",
+      "results": {
+        "content": "",
+        "beforeImage": "",
+        "afterImage": ""
+      },
+      "additionalInfo": [
+        { "title": "", "text": "", "image": "" },
+        { "title": "", "text": "", "image": "" },
+        { "title": "", "text": "", "image": "" }
+      ],
+      "partnerCompanies": [{ "name": "", "image": "" }]
+    },
+    "sobre-nos": {
+      "content": "O Instituto João de Barro atua na cidade de Franca - SP, com o objetivo de ajudar famílias em situação de vulnerabilidade, necessidade, entre outros; oferecendo doações de recursos financeiros, criando moradias, promovendo eventos para o bem estar social da cidade de Franca.",
+      "video": "https://youtu.be/Sh6ekQzXmfI?si=fPyNJCA4136UuRtF",
+      "ijbTree": [{ "id":1, "title": "Casa reformada e entregue à família em Santa Cruz", "description": "No dia 10 de Maio de 2022 após 6 meses o IJB entregou a casa reformada a seus residentes, o engenheiro civil Carlos José Martins Tavares, fundador da entidade agradece as doações que foram feitas a obra.", "image": "", "year": "2022" }]
+    },
+    "contato": {
+      "email": "",
+      "phone": ""
+    },
+  "donation": {
+    "pix": "",
+    "cnpj": "",
+    "banco": "",
+    "agencia": "",
+    "contaCorrente": "",
+    "buttonLabel": "",
+    "image": ""
   }
 }

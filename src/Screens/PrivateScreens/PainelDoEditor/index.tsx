@@ -1,35 +1,121 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "../../../components/Button";
+import {
+  getAboutUsData,
+  getContactData,
+  getDonationData,
+  getLandingPageData,
+} from "../../../services/editorPanelService.ts";
+import { toast } from "react-hot-toast";
 
-const initialData = {
-  landingPage: {
-    carousel: [{ image: "", title: "", buttonLabel: "" }],
-    aboutUs: "",
-    results: {
-      content: "",
-      beforeImage: "",
-      afterImage: "",
-    },
-    additionalInfo: [
-      { title: "", text: "", image: "" },
-      { title: "", text: "", image: "" },
-      { title: "", text: "", image: "" },
-    ],
-    partnerCompanies: [{ name: "", image: "" }],
-  },
-  aboutUs: {
-    content: "",
-    video: "",
-    ijbTree: [{ title: "", description: "", image: "", year: "" }],
-  },
-  contact: {
-    email: "",
-    phone: "",
-  },
+const donation = {
+  pix: "",
+  cnpj: "",
+  banco: "",
+  agencia: "",
+  contaCorrente: "",
+  buttonLabel: "",
+  image: "",
 };
 
-export const PainelDoEditor: React.FC = () => {
+const contact = {
+  email: "",
+  phone: "",
+};
+
+const aboutUs = {
+  content: "",
+  video: "",
+  ijbTree: [{ title: "", description: "", image: "", year: "" }],
+};
+
+const landingPage = {
+  carousel: [{ image: "", title: "", buttonLabel: "" }],
+  aboutUs: "",
+  results: {
+    content: "",
+    beforeImage: "",
+    afterImage: "",
+  },
+  additionalInfo: [{ title: "", text: "", image: "" }],
+  partnerCompanies: [{ name: "", image: "" }],
+};
+
+const initialData = {
+  landingPage: landingPage,
+  aboutUs: aboutUs,
+  contact: contact,
+  donation: donation,
+};
+
+export const PainelDoEditor = () => {
   const [data, setData] = useState(initialData);
+
+  const fetchLandingPage = async () => {
+    try {
+      const landingPage = await getLandingPageData();
+
+      return landingPage.data;
+    } catch (e) {
+      toast.error("Erro ao buscar informações da landing page ", e);
+      return landingPage;
+    }
+  };
+
+  const fetchAboutUs = async () => {
+    try {
+      const aboutUs = await getAboutUsData();
+
+      return aboutUs.data;
+    } catch (e) {
+      toast.error("Erro ao buscar informações da página de sobre nós ", e);
+      return aboutUs;
+    }
+  };
+
+  const fetchContact = async () => {
+    try {
+      const contact = await getContactData();
+      return contact.data;
+    } catch (e) {
+      toast.error("Erro ao buscar informações da página de contatos ", e);
+      return contact;
+    }
+  };
+
+  const fetchDonation = async () => {
+    try {
+      const donation = await getDonationData();
+
+      return donation.data;
+    } catch (e) {
+      toast.error("Erro ao buscar informações da página de doações ", e);
+      return donation;
+    }
+  };
+
+  const fetchData = async () => {
+    try {
+      const landingPage = await fetchLandingPage();
+      const aboutUs = await fetchAboutUs();
+      const contact = await fetchContact();
+      const donation = await fetchDonation();
+
+      setData({
+        landingPage,
+        aboutUs,
+        contact,
+        donation,
+      });
+    } catch (error) {
+      setData(initialData);
+      toast.error("Erro ao carregar os dados:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   const handleInputChange = (
     page: string,
@@ -343,7 +429,7 @@ export const PainelDoEditor: React.FC = () => {
               <h3 className="mt-4">Árvore do IJB</h3>
               {data.aboutUs.ijbTree.map((item, index) => (
                 <div key={index} className="mb-3">
-                  <h4>Elemento {index + 1}</h4>
+                  <h4>Galho {index + 1}</h4>
                   <label className="form-label">Título:</label>
                   <input
                     type="text"
