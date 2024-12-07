@@ -185,8 +185,8 @@ export function ApoiadorForm() {
 								id="telefone"
 								name="telefone"
 								value={telefone}
-								onChange={(e) => setTelefone(e.target.value)}
-								placeholder="Digite seu telefone"
+								onChange={(e: React.ChangeEvent<HTMLInputElement>) => setTelefone(e.target.value)}
+        						placeholder="Digite seu telefone"
 								className={invalidFields.includes("telefone") ? "input-error" : ""}
 							/>
 						</div>
@@ -235,15 +235,15 @@ export function ApoiadorForm() {
 							<label htmlFor="cpf">CPF*</label>
 							<InputMask
 								mask="999.999.999-99"
-								maxLength={11}
-								type="text"
-								id="cpf"
-								name="cpf"
 								value={cpf}
-								onChange={(e) => setCpf(e.target.value)}
-								placeholder="Digite seu CPF"
+								onChange={(e: React.ChangeEvent<HTMLInputElement>) => setCpf(e.target.value)}
+    							placeholder="Digite seu CPF"
 								className={invalidFields.includes("cpf") ? "input-error" : ""}
-							/>
+							>
+								{(inputProps: React.InputHTMLAttributes<HTMLInputElement>) => (
+									<input {...inputProps} />
+								)}
+							</InputMask>
 						</div>
 						<div className="form-input-c">
 							<label htmlFor="hobby">Hobby</label>

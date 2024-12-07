@@ -4,9 +4,30 @@ import "@styles/global.scss";
 import "@styles/Perfil.scss";
 import { useEffect, useState } from "react";
 import InputMask from "react-input-mask";
+import toast from "react-hot-toast";
+
+// Definindo tipos para o usuário
+interface User {
+  nome: string;
+  sobrenome: string;
+  cargo: string;
+  email: string;
+  telefone: string;
+  cpf: string;
+  sobre_voce: string;
+  hobby: string;
+  intencao: string;
+  senha: string;
+  profilePicture: string;
+}
+
+interface Passwords {
+  newPassword: string;
+  confirmPassword: string;
+}
 
 // Função para validar CPF
-const isValidCPF = (cpf) => {
+const isValidCPF = (cpf: string): boolean => {
   cpf = cpf.replace(/[^\d]+/g, ""); // Remove caracteres não numéricos
   if (cpf.length !== 11 || /^(\d)\1+$/.test(cpf)) return false;
 
@@ -25,18 +46,15 @@ const isValidCPF = (cpf) => {
 };
 
 export function Perfil() {
-  const [user, setUser] = useState(null); // Dados do usuário
-  const [isEditing, setIsEditing] = useState(false); // Estado de edição
-  const [editedUser, setEditedUser] = useState({}); // Dados editados
-  const [passwords, setPasswords] = useState({
-    newPassword: "",
-    confirmPassword: "",
-  }); // Campos de senha
+  const [user, setUser] = useState<User | null>(null); // Dados do usuário
+  const [isEditing, setIsEditing] = useState<boolean>(false); // Estado de edição
+  const [editedUser, setEditedUser] = useState<User>({} as User); // Dados editados
+  const [passwords, setPasswords] = useState<Passwords>({ newPassword: "", confirmPassword: "" }); // Campos de senha
 
   useEffect(() => {
     // Simula uma API call para carregar os dados do usuário
     setTimeout(() => {
-      const userData = {
+      const userData: User = {
         nome: "Teste",
         sobrenome: "Silva",
         cargo: "Voluntário",
@@ -64,20 +82,20 @@ export function Perfil() {
   };
 
   // Função para atualizar os valores dos campos de edição
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setEditedUser({ ...editedUser, [name]: value });
   };
 
   // Função para atualizar os valores dos campos de senha
-  const handlePasswordChange = (e) => {
+  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setPasswords({ ...passwords, [name]: value });
   };
 
   // Função para salvar as alterações
   const saveChanges = () => {
-    const errors = [];
+    const errors: string[] = [];
     const senhaRegex = /^(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.*[a-zA-Z0-9]).{8,30}$/;
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -85,26 +103,26 @@ export function Perfil() {
     if (passwords.newPassword && !senhaRegex.test(passwords.newPassword)) {
       errors.push("newPassword");
       errors.push("confirmPassword");
-      alert(
+      toast.error(
         "A nova senha deve ter entre 8-30 caracteres, incluir letras maiúsculas e caracteres especiais."
       );
     }
 
     if (passwords.newPassword && passwords.newPassword !== passwords.confirmPassword) {
       errors.push("confirmPassword");
-      alert("As senhas não coincidem!");
+      toast.error("As senhas não coincidem!");
     }
 
     // Valida o CPF
     if (!isValidCPF(editedUser.cpf)) {
       errors.push("cpf");
-      alert("CPF inválido!");
+      toast.error("CPF inválido!");
     }
 
     // Valida o e-mail
     if (!emailRegex.test(editedUser.email)) {
       errors.push("email");
-      alert("E-mail inválido!");
+      toast.error("E-mail inválido!");
     }
 
     // Se houver erros, não salva as alterações
@@ -118,15 +136,26 @@ export function Perfil() {
       updatedUser.senha = "********"; // Atualiza a senha mascarada
     }
 
+    if (passwords.newPassword && passwords.newPassword.trim() === "") {
+      errors.push("newPassword");
+      toast.error("Nova senha não pode ser vazia!");
+    }
+
+    const telefoneRegex = /\(\d{2}\) \d{5}-\d{4}/;
+    if (!telefoneRegex.test(editedUser.telefone)) {
+      errors.push("telefone");
+      toast.error("Telefone inválido!");
+    }
+
     setUser(updatedUser); // Salva os dados atualizados
     setIsEditing(false); // Sai do modo de edição
-    alert("Perfil atualizado com sucesso!");
+    toast.success("Perfil atualizado com sucesso!");
   };
 
   if (!user) {
     return <div>Carregando...</div>;
   }
-
+  
   return (
     <>
       <div className="perfil-container">
