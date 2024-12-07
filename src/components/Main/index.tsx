@@ -15,8 +15,8 @@ export function Main() {
   const startComponent = async () => {
     try {
       const response = await getNews();
-      if (response && response.data) {
-        setNewsData(response.data);
+      if (response) {
+        setNewsData(response);
       }
     } catch (error) {
       console.error(error);

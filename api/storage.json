@@ -1,4 +1,17 @@
 {
+  "login": [
+    {
+      "id": "1",
+      "cpf": "12345678910",
+      "email": "teste@testes.com",
+      "username": "admin",
+      "password": "123456",
+      "token": "1234567890abcdef",
+      "roles": [
+        "Administração"
+      ]
+    }
+  ],
   "users": [
     {
       "id": "1",
@@ -67,9 +80,108 @@
       "name": "Teste",
       "quantity": 123,
       "description": "teste"
+    },
+    {
+      "id": "tCwFjS",
+      "name": "2",
+      "quantity": 1,
+      "description": "1"
+    },
+    {
+      "id": "o9_ls3",
+      "name": "testes",
+      "quantity": 1,
+      "description": "1"
     }
   ],
-  "products": [],
+  "buildings": [
+    {
+      "id": "fq7vW1",
+      "descricao": "teste ",
+      "logradouro": "tests",
+      "numero": 2,
+      "bairro": "teste",
+      "cidade": "teste",
+      "uf": "sp",
+      "dt_inicio": "2024-11-07T03:00:00.000Z",
+      "dt_termino": "2024-11-13T03:00:00.000Z",
+      "situacao_construcao": "Em andamento",
+      "custo_estimado": 1,
+      "custo_total": 12
+    },
+    {
+      "id": "6DElQX",
+      "descricao": "teste 23",
+      "logradouro": "rua rua rua",
+      "numero": 0,
+      "bairro": "bairro bairro bairro",
+      "cidade": "cidade ",
+      "uf": "am",
+      "dt_inicio": "2024-11-26T03:00:00.000Z",
+      "dt_termino": "2024-11-28T03:00:00.000Z",
+      "situacao_construcao": "Concluída",
+      "custo_estimado": 1,
+      "custo_total": 1
+    },
+    {
+      "id": "FLrGsg",
+      "descricao": "obra ",
+      "logradouro": "obra ",
+      "numero": 0,
+      "bairro": "obra ",
+      "cidade": "obra ",
+      "uf": "sp",
+      "dt_inicio": "2024-11-03T03:00:00.000Z",
+      "dt_termino": "2024-11-20T03:00:00.000Z",
+      "situacao_construcao": "Em andamento",
+      "custo_estimado": 1500,
+      "custo_total": 200
+    }
+  ],
+  "events": [
+    {
+      "id": "UMc_vF",
+      "name": "Rifa",
+      "date": 1731110400000,
+      "status": "Concluído",
+      "description": "Rifa para arrecadação"
+    },
+    {
+      "id": "pwu4ej",
+      "name": "Chopp",
+      "date": 1730419200000,
+      "status": "Concluído",
+      "description": "Pizza"
+    },
+    {
+      "id": "kb9ATK",
+      "name": "Sorteio",
+      "date": 1732665600000,
+      "status": "Pendente",
+      "description": "Sorteio de uma cesta"
+    },
+    {
+      "id": "TTvvSr",
+      "name": "Confraternização",
+      "date": 1731542400000,
+      "status": "Pendente",
+      "description": "Confraternização entre membros do instituto"
+    },
+    {
+      "id": "s4p7A2",
+      "name": "Bazar",
+      "date": 1730505600000,
+      "status": "Pendente",
+      "description": "Bazar solidário"
+    },
+    {
+      "id": "fD_LbO",
+      "name": "Evento Teste",
+      "date": 1732752000000,
+      "status": "Pendente",
+      "description": "teste"
+    }
+  ],
   "financeiro": {
     "tableDataExpenses": [
       {
@@ -121,7 +233,6 @@
         "outgoing": "R$240"
       }
     ],
-
     "tableDataRevenue": [
       {
         "name": "Doação",
@@ -172,12 +283,44 @@
         "outgoing": "R$240"
       }
     ],
-
     "bankStatement": {
       "account": 3000,
       "cdb": 2000
-    }
-  },
-  "beneficiario": [],
-  "visitas": []
+    },
+    "extractData": {
+      "header": {
+        "saldoAtual": "R$ 1.500,00",
+        "saldoBloqueado": "R$ 200,00",
+        "saldoLimite": "R$ 3.000,00",
+        "saldoAnterior": "R$ 1.200,00",
+        "saldoBloqueioJudicial": "R$ 100,00",
+        "saldoBloqueioJudicialAnterior": "R$ 50,00"
+      },
+      "data": [
+        {
+          "tipo": "Crédito",
+          "valor": "R$ 500,00",
+          "data": "20/11/2024",
+          "dataLote": "19/11/2024",
+          "descricao": "Pagamento recebido",
+          "numeroDocumento": "123456",
+          "cpfCnpj": "123.456.789-00",
+          "descInfComplementar": "Nenhuma"
+        },
+        {
+          "tipo": "Débito",
+          "valor": "R$ 300,00",
+          "data": "18/11/2024",
+          "dataLote": "17/11/2024",
+          "descricao": "Pagamento realizado",
+          "numeroDocumento": "654321",
+          "cpfCnpj": "987.654.321-00",
+          "descInfComplementar": "Pagamento de conta"
+        }
+      ]
+    },
+    "products": [],
+    "beneficiario": [],
+    "visitas": []
+  }
 }

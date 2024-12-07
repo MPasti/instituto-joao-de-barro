@@ -1,100 +1,36 @@
 .contact-section {
-  display: flex;
-  justify-content: space-between;
-  padding: 50px;
   background-color: #fff;
 }
 
-.contact-info {
-  width: 30%;
-  padding: 20px;
+.contact-info img {
+  max-width: 100px;
 }
 
 .contact-info h3 {
-  font-size: 1.2em;
-  margin-bottom: 20px;
-  font-weight: bold;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
 }
 
-.contact-info li {
-  margin-bottom: 15px;
+.contact-info ul li {
   display: flex;
-  flex-direction: column;
-  justify-content: start;
-  align-items: start;
-}
-
-.contact-info  li img {
-  width: 24px;
-  margin-right: 10px;
-}
-.info-p{
-  font-weight: bold;
-}
-.li-style{
-  display: flex;
-  flex-direction: row;
-  gap: 75px;
   align-items: center;
+  gap: 1rem;
 }
 
-.message-form label {
-  display: block;
-  font-size: 1em;
-  margin-bottom: 5px;
-}
-
-.message-form input,
-.message-form textarea {
-  width: 100%;
-  padding: 10px;
-  font-size: 1em;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  padding-bottom:200px ;
-  margin-bottom: 15px;
+.contact-info p {
+  margin: 0.25rem 0;
 }
 
 .contact-form {
   background-color: #ffe7d0;
-  padding: 20px;
+  padding: 1.5rem;
   border-radius: 8px;
-  width: 60%;
 }
 
 .contact-form h2 {
-  text-align: center;
-  margin-bottom: 20px;
+  font-size: 1.75rem;
 }
 
-.form-group {
-  margin-bottom: 15px;
-}
-
-.form-group label {
-  display: block;
-  font-size: 1em;
-  margin-bottom: 5px;
-}
-
-.form-group input,
-.form-group textarea {
-  width: 100%;
-  padding: 10px;
-  font-size: 1em;
+.contact-form .form-control {
   border-radius: 5px;
-  border: 1px solid #ccc;
-}
-
-.form-group textarea {
-
-}
-.contact-info  li {
-  display: flex;
-  margin-bottom: 15px;
-}
-
-.contact-info  li span,
-.contact-info  li div p {
-  margin-left: 10px;
 }

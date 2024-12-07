@@ -31,7 +31,8 @@
   background-color: #F58346;
   display: flex;
   flex-wrap: wrap;
-  padding: 2rem;
+  align-items: center;
+  min-height: 500px;
 }
 
 .values-section {
@@ -55,9 +56,8 @@
 }
 
 .mission-value{
-  padding: 2rem;
-  width: 80%;
   margin: auto;
+  max-width: 85%;
   h1{
     font-size: 44px;
     font-weight: bold;

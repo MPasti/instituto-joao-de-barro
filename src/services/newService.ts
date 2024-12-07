@@ -1,8 +1,10 @@
-import axios from "axios";
+import { api } from "../../api/fetchWrapper.ts";
 
 export const createNews = (noticias: News) =>
-  axios.post(`${import.meta.env.VITE_API_URL}/noticias`, noticias);
+  api.post(`${import.meta.env.VITE_API_URL}/noticias`, noticias);
 export const updateNews = (noticias: News) =>
-  axios.put(`${import.meta.env.VITE_API_URL}/noticias`, noticias);
+  api.put(`${import.meta.env.VITE_API_URL}/noticias`, noticias);
 export const getNews = () =>
-  axios.get<News[]>(`${import.meta.env.VITE_API_URL}/noticias`);
+  api.get<News[]>(`${import.meta.env.VITE_API_URL}/noticias`);
+export const deleteNews = (id: number) =>
+  api.delete<News[]>(`${import.meta.env.VITE_API_URL}/noticias/${id}`);

@@ -1,3 +1,7 @@
+import BaseTrunk from "../../assets/icons/baseArvore.png";
+import TopTrunk from "../../assets/icons/firstTronco.png";
+import MiddleTrunk from "../../assets/icons/secondTronco.png";
+
 export const Tree = ({ data }) => {
   const eventsByYear = data.reduce((acc, event) => {
     if (!acc[event.year]) {
@@ -7,13 +11,27 @@ export const Tree = ({ data }) => {
     return acc;
   }, {});
 
+  const sortedYears = Object.keys(eventsByYear).sort((a, b) => b - a);
+
   let isLeft = true;
 
   return (
     <div className="timeline-tree">
-      {Object.keys(eventsByYear).map((year, index) => (
+      <div className="tree-base">
+        <img src={BaseTrunk as string} alt="base" />
+      </div>
+
+      {sortedYears.map((year, index, arr) => (
         <div key={index} className="year-group">
-          <div className="year">{year}</div>
+          <div className="tree-trunk">
+            {index === arr.length - 1 ? (
+              <img src={TopTrunk as string} alt="topo do tronco" />
+            ) : (
+              <img src={MiddleTrunk as string} alt="tronco do meio" />
+            )}
+            <div className="year">{year}</div>
+          </div>
+
           {eventsByYear[year].map((event, idx) => {
             const positionClass = isLeft ? "left" : "right";
             isLeft = !isLeft;

@@ -1,0 +1,159 @@
+.registro {
+    display: flex;
+    flex-direction: column;
+    margin: 2rem;
+
+    .subtitle {
+        color: #df7046;
+        font-size: 2.5rem;
+        font-weight: bolder;
+        margin: 1rem 0;
+    }
+
+    .description {
+        margin: 1rem 0;
+        color: #000;
+        font-size: 1rem;
+    }
+
+    .form-control {
+        background-color: #f1f1f1;
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+
+        label {
+            width: 100%;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        input,
+        select {
+            width: calc(50% - 1rem);
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+        }
+
+        .family-member {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+
+            input {
+                width: calc(33.33% - 1rem);
+            }
+        }
+
+        button {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+
+            &.confirm-btn {
+                background-color: #ffc72c;
+                color: #fff;
+
+                &:hover {
+                    background-color: #e6b722;
+                }
+            }
+        }
+    }
+
+    .addFamily-btn {
+        background-color: #df7046;
+        color: #fff;
+        font-weight: bold;
+        padding: 0.5rem 1rem;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        align-self: flex-start;
+
+        &:hover {
+            background-color: #ce653f;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .registro .form-control {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .registro label {
+        margin-bottom: 8px;
+        font-size: 0.9rem;
+    }
+
+    .registro input,
+    .registro select {
+        width: 100%;
+        margin-bottom: 16px;
+    }
+}
+
+.privacy-policy-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 1rem; 
+}
+
+.privacy-policy {
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    max-width: 16px;
+    max-height: 16px;
+    border: 2px solid #6c757d;
+    border-radius: 4px;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    margin-right: 8px;
+    position: relative;
+
+    &:checked {
+        background-color: #ffc72c;
+        border-color: #ffc72c;
+    }
+
+    &:checked::after {
+        content: '✓';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        font-size: 12px;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &:hover {
+        border-color: #eeb929;
+    }
+}
+
+label[for="privacy-policy"] {
+    font-size: 14px;
+    color: #495057;
+    cursor: pointer;
+    vertical-align: middle;
+    user-select: none;
+}

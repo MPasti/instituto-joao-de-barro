@@ -1,30 +1,37 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import '@styles/global.scss';
-import '../../../assets/styles/atualizarInformacoesVisitas.scss';
-import { getVisita, updateVisita } from '../../../services/beneficiaries/visitApi';
+import './atualizarInformacoesVisitas.scss';
+import { getVisitById, updateVisit } from '../../../services/beneficiaries/visitApi';
+import { getBeneficiaryById } from '../../../services/beneficiaries/beneficiariesApi';
+import toast from 'react-hot-toast';
 
 const AtualizarInformacoesVisitas = () => {
     const { id } = useParams();
     const navigate = useNavigate();
-    const [nomeFamilia, setNomeFamilia] = useState('');
-    const [nomeVoluntario, setNomeVoluntario] = useState('');
-    const [relatorio, setRelatorio] = useState('');
-    const [dropdown1, setDropdown1] = useState('');
+    
+    const [visit, setVisit] = useState<Visit | undefined>(undefined);
+    const [nomeFamilia, setNomeFamilia] = useState<string>('');
+    const [relatorio, setRelatorio] = useState<string>('');
+    const [imagens, setImagens] = useState<File[]>([]);
+    const [familiaId, setFamiliaId] = useState<number | undefined>(undefined);
 
     useEffect(() => {
         const fetchVisita = async () => {
             try {
-                const visita = await getVisita(String(id));
+                const visita = await getVisitById(Number(id));
 
                 if (!visita) {
                     throw new Error('Visita não encontrada');
                 }
 
-                setNomeFamilia(visita.nomeFamilia);
-                setNomeVoluntario(visita.nomeVoluntario);
-                setRelatorio(visita.relatorio);
-                // setDropdown1(visita.dropdown1);
+                setFamiliaId(visita.beneficiaryId);
+                setRelatorio(visita.report);
+                setVisit(visita);
+                // Buscar os nomes dos voluntário e família por ID
+                const familia = await getBeneficiaryById(visita.beneficiaryId);
+
+                if (familia) setNomeFamilia(familia.name);
             } catch (err) {
                 console.log('Erro ao buscar visita: ' + err);
             }
@@ -33,26 +40,49 @@ const AtualizarInformacoesVisitas = () => {
         fetchVisita();
     }, [id]);
 
+    const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files) {
+            setImagens(Array.from(e.target.files));
+        }
+    };
+
     const handleUpdate = async () => {
-        const data = {
-            nomeFamilia,
-            nomeVoluntario,
-            relatorio,
-            dropdown1,
-            name: '',  // Adjust as needed
-            data: '',  // Adjust as needed
-        };
-    
-        console.log('Atualizando visita com os dados:', data);  // Log the data being sent
-    
+        if (!familiaId || !relatorio || imagens.length === 0) {
+            toast.error('Por favor, preencha todos os campos e adicione as imagens.');
+            return;
+        }
+
         try {
-            await updateVisita(String(id), data);
+            // Aqui, enviar as imagens para o servidor e obter os links para elas
+            const formData = new FormData();
+            imagens.forEach(image => {
+                formData.append("files", image);
+            });
+
+            const response = await fetch('http://localhost:8080/upload', {
+                method: 'POST',
+                body: formData,
+            });
+            const imagensEnviadas = await response.json();
+
+            const data: Visit = {
+                id: Number(id),
+                visitDate: visit?.visitDate ??  new Date(), // or use the actual visit date if available
+                beneficiaryId: familiaId,
+                report: relatorio,
+                firstImage: imagensEnviadas[0] ?? undefined,
+                secondImage: imagensEnviadas[1] ?? undefined,
+                thirdImage: imagensEnviadas[2] ?? undefined,
+                fourthImage: imagensEnviadas[3] ?? undefined,
+                fifthImage: imagensEnviadas[4] ?? undefined,
+            };
+
+            await updateVisit(data);
             navigate('/dashboard/beneficiarios'); 
         } catch (err) {
             console.log('Erro ao atualizar visita: ' + err);
         }
     };
-    
 
     const handleDiscard = () => {
         navigate('/dashboard/beneficiarios');
@@ -71,15 +101,7 @@ const AtualizarInformacoesVisitas = () => {
                         type="text"
                         placeholder="Nome da Família"
                         value={nomeFamilia}
-                        onChange={(e) => setNomeFamilia(e.target.value)}
-                    />
-
-                    <label>Nome do Voluntário:</label>
-                    <input
-                        type="text"
-                        placeholder="Nome do Voluntário"
-                        value={nomeVoluntario}
-                        onChange={(e) => setNomeVoluntario(e.target.value)}
+                        disabled
                     />
 
                     <label>Relatório:</label>
@@ -90,23 +112,31 @@ const AtualizarInformacoesVisitas = () => {
                         value={relatorio}
                         onChange={(e) => setRelatorio(e.target.value)}
                     />
+
+                    <label>Imagens:</label>
+                    <input
+                        type="file"
+                        multiple
+                        accept="image/*"
+                        onChange={handleImageChange}
+                    />
+                    {imagens.length > 0 && (
+                        <div className="image-preview">
+                            <h4>Imagens Selecionadas:</h4>
+                            <ul>
+                                {imagens.map((image, index) => (
+                                    <li key={index}>
+                                        <span>{image.name}</span>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    )}
                 </div>
 
-                <div className='dropdown-button-group'>
-                    <div className="dropdown-group">
-                        <label>Dropdown 1</label>
-                        <select value={dropdown1} onChange={(e) => setDropdown1(e.target.value)}>
-                            <option value="">Selecione uma opção</option>
-                            <option value="Option 1">Option 1</option>
-                            <option value="Option 2">Option 2</option>
-                            <option value="Option 3">Option 3</option>
-                        </select>
-                    </div>
-
-                    <div className="button-group">
-                        <button onClick={handleUpdate} className="button confirm-btn">CONFIRMAR</button>
-                        <button onClick={handleDiscard} className="button discard-btn">DESCARTAR</button>
-                    </div>
+                <div className="button-group">
+                    <button onClick={handleUpdate} className="btn-primary">CONFIRMAR</button>
+                    <button onClick={handleDiscard} className="btn-secondary">DESCARTAR</button>
                 </div>
             </div>
         </div>
