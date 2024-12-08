@@ -7,7 +7,9 @@
       "username": "admin",
       "password": "123456",
       "token": "1234567890abcdef",
-      "roles": ["Administração"]
+      "roles": [
+        "Administração"
+      ]
     }
   ],
   "users": [
@@ -17,7 +19,10 @@
       "email": "teste@testes.com",
       "username": "admin",
       "password": "123456",
-      "token": "1234567890abcdef"
+      "token": "1234567890abcdef",
+      "roles": [
+        "Administrador"
+      ]
     }
   ],
   "noticias": [
@@ -39,7 +44,7 @@
       "ativa": true,
       "link": "https://www.jornaldafranca.com.br/instituto-joao-de-barro-entrega-a-primeira-casa-para-familia-de-franca/",
       "etiqueta": "PROJETO",
-      "image": "https://scontent.ffrc6-1.fna.fbcdn.net/v/t1.6435-9/36176094_649428132060858_4626970411169480704_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=f798df&_nc_eui2=AeFjrs_apwmCqWQ13fGCQrKdhw9vl9HHNkmHD2-X0cc2SQx483O_reNJtIWV1Ubw0BUpEcWQWnu_2GvTiCKQiEH3&_nc_ohc=i0R7rHtXxx4Q7kNvgHE6BP5&_nc_ht=scontent.ffrc6-1.fna&_nc_gid=Ap35Sieo4eTBmcNVMpLnW1l&oh=00_AYB4tceh8NiEdWuKmH918Tj4lhPlWM_mqvOKttyT2dIRPA&oe=672A2DAB"
+      "image": "https://scontent.ffrc6-1.fna.fbcdn.net/v/t1.6435-9/36086949_649427455394259_5820971164838658048_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=cf85f3&_nc_eui2=AeEOer_Vf2praNWRjNa9rx0PwUnIn7vfe_HBScifu9978cIsITuMkMuJ0uhGd-5sPtXrC1-Dnq9f1YvpPpYDMP_J&_nc_ohc=ESudvsXHaaUQ7kNvgHZj3ge&_nc_zt=23&_nc_ht=scontent.ffrc6-1.fna&_nc_gid=AItxk_gZdLN3D7WJrn5ta6n&oh=00_AYBGU1qUf4A7LQi_zVwtOtsOrXLVeJv3DpQ2B1WVO9h0ZA&oe=677C169F"
     },
     {
       "id": "3",
@@ -59,7 +64,7 @@
       "ativa": true,
       "link": "https://www.jornaldafranca.com.br/instituto-joao-de-barro-entrega-a-primeira-casa-para-familia-de-franca/",
       "etiqueta": "PROJETO",
-      "image": "https://scontent.ffrc6-1.fna.fbcdn.net/v/t1.6435-9/117724429_1226558951014437_7607005431847879478_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=06a7ca&_nc_eui2=AeGUPFqjIkO6gGN4J-0lsl-Yklnjs48GcTGSWeOzjwZxMcjw9kAfdpvzauOHhKjdu2dC7DJNjeWxH5dbRAnpiy13&_nc_ohc=KC42Ay2J-psQ7kNvgGKtBC-&_nc_ht=scontent.ffrc6-1.fna&_nc_gid=AmbTsh_k70gXJ-_GYxWmqbJ&oh=00_AYDQr5T5_5HmC72cF7y8sI9fAsJnm9trUxEbKa95JXz1_Q&oe=672A4AA6"
+      "image": "https://scontent.ffrc6-1.fna.fbcdn.net/v/t1.6435-9/117535572_1226558671014465_6304487004514615188_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=3a1ebe&_nc_eui2=AeGM5HvlhqueP3LziJ46iZIixHI094Coch3EcjT3gKhyHUMGiwTZKA27EV6Rc71dcB5I6bWTqOwNlln7mn65Ulfs&_nc_ohc=x6tIMCBBA0kQ7kNvgGhQ0y_&_nc_zt=23&_nc_ht=scontent.ffrc6-1.fna&_nc_gid=AMIJf-B_bLi43yXms8cnFfN&oh=00_AYDaHnD8cdQm7xUOqj1wsqT-hSWDMpvE5p5PzsXM4EuQuw&oe=677C4C5D"
     },
     {
       "id": "5",
@@ -69,8 +74,8 @@
       "ativa": true,
       "link": "",
       "etiqueta": "PROJETO",
-      "image": "https://scontent.ffrc6-1.fna.fbcdn.net/v/t31.18172-8/30051728_612611265742545_6625424197276656814_o.jpg?_nc_cat=108&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeFPoSvuW6ac43pVz4tWhsW24RI_40ie7DPhEj_jSJ7sM3_UYcy2N5PLObydYD5ddKeOXaAGC9U7fFBci36gwyKY&_nc_ohc=D6Co3Z3ZrtIQ7kNvgHsL81O&_nc_ht=scontent.ffrc6-1.fna&_nc_gid=AlDzXk_IXjwEV-8Q_UWpjbO&oh=00_AYB383MR0p3KfQH2rAvuhefjsJhV1Wng4CjzOka9v2yn_g&oe=672A54CD"
-    }
+      "image": "https://scontent.ffrc6-1.fna.fbcdn.net/v/t39.30808-6/460217568_2270801406590181_5019248344592082775_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeFo7ZgG43HWNCxxoxI_Z7Fzvqk5xzqtZhu-qTnHOq1mG6zYMVESlVPuWMcnT5FtebCNRanj1oGcdQreIitl2eNO&_nc_ohc=zRM3mkrH0C0Q7kNvgFUkwgH&_nc_zt=23&_nc_ht=scontent.ffrc6-1.fna&_nc_gid=A43zCRq7HCbZdVfbmL_EnWR&oh=00_AYAroQJm4eu7LJYr7kyPXCv4vSEYGUReX9F-WGXIPYydOg&oe=675ABCEA"
+    },
   ],
   "materials": [
     {

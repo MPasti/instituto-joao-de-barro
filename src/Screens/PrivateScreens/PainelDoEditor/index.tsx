@@ -30,7 +30,7 @@ const aboutUs = {
 };
 
 const landingPage = {
-  carousel: [{ image: "", title: "", buttonLabel: "" }],
+  carousel: [{ image: "", title: "", description: "", buttonLabel: "" }],
   aboutUs: "",
   results: {
     content: "",
@@ -251,6 +251,20 @@ export const PainelDoEditor = () => {
                       )
                     }
                   />
+                  <label className="form-label">Descrição:</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    value={item.description}
+                    onChange={(e) =>
+                      handleInputChange(
+                        "landingPage",
+                        "carousel",
+                        { description: e.target.value },
+                        index,
+                      )
+                    }
+                  />
                   <Button
                     outline
                     variant="secondary"
@@ -270,7 +284,12 @@ export const PainelDoEditor = () => {
                       ...prev.landingPage,
                       carousel: [
                         ...prev.landingPage.carousel,
-                        { image: "", title: "", buttonLabel: "" },
+                        {
+                          image: "",
+                          title: "",
+                          description: "",
+                          buttonLabel: "",
+                        },
                       ],
                     },
                   }))
