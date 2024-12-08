@@ -1,35 +1,16 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import { object, string, number, InferType } from "yup";
 import { updateMaterial, deleteMaterial } from "../../../../../services/storage/storageApi";
 import { publish } from "../../../../../utils/events";
 import toast from "react-hot-toast";
 import { useContext } from "react";
-import { StorageContext } from "../../../../../contexts/storage/StorageContext";
-
-enum ORIGIN_VALUE {
-    "Doação" = "DONATED",
-    "Compra" = "BOUGHT"
-}
-
-const validationSchema = object({
-    name: string().required("Nome do material é obrigatório"),
-    quantity: number().required("Quantidade é obrigatória").positive("Informe uma quantidade válida").typeError("Quantidade deve ser um número"),
-    description: string().optional(),
-    origin: string().required("Origem é obrigatório")
-});
-
-type EditFormData = InferType<typeof validationSchema>;
+import { StorageContext, StorageMaterialFormData } from "../../../../../contexts/storage/StorageContext";
 
 export const StorageEditForm = () => {
-    const {selectedMaterial, loadStorageMaterials} = useContext(StorageContext)
+    const {selectedMaterial, loadStorageMaterials, storageMaterialValidationSchema, mapOriginToEnum} = useContext(StorageContext)
 
-    const mapOriginToEnum = (origin: string) => {
-        return (ORIGIN_VALUE as Record<string, string>)[origin];
-    };
-
-    const { register, handleSubmit, formState: { errors } } = useForm<EditFormData>({
-        resolver: yupResolver(validationSchema),
+    const { register, handleSubmit, formState: { errors } } = useForm<StorageMaterialFormData>({
+        resolver: yupResolver(storageMaterialValidationSchema),
         defaultValues: {
             name: selectedMaterial?.name,
             quantity: selectedMaterial?.quantity,
@@ -39,7 +20,7 @@ export const StorageEditForm = () => {
         mode: "onSubmit"
     });
 
-    async function handleEditMaterial(data: EditFormData) {
+    async function handleEditMaterial(data: StorageMaterialFormData) {
         try {
             if(!selectedMaterial) return;
 

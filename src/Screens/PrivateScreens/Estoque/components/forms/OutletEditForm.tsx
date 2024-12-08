@@ -1,36 +1,16 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import { object, string, InferType } from "yup";
 import { publish } from "../../../../../utils/events";
 import { deleteProduct, updateProduct } from "../../../../../services/storage/outletApi";
 import toast from "react-hot-toast";
 import { useContext } from "react";
-import { OutletContext } from "../../../../../contexts/storage/OutletContext";
-
-enum STATUS_VALUE {
-    "À venda" = "FOR_SALE",
-    "Trocado" = "EXCHANGED",
-    "Abatido" = "REBATED",
-    "Vendido" = "SOLD"
-}
-
-const validationSchema = object({
-    name: string().required("Nome do produto é obrigatório"),
-    price: string().required("Preço do produto é obrigatório").matches(/^\d+([,.]\d+)?$/, "O preço deve conter apenas números"),
-    description: string(),
-    status: string().required("Status do produto é obrigatório")
-})
-
-type EditFormData = InferType<typeof validationSchema>
+import { OutletContext, OutletProductFormData } from "../../../../../contexts/storage/OutletContext";
 
 export const OutletEditForm = () => {
-    const {selectedProduct, loadOutletProducts} = useContext(OutletContext)
-    const mapStatusToEnum = (status: string) => {
-        return (STATUS_VALUE as Record<string, string>)[status];
-    };
+    const {selectedProduct, loadOutletProducts, outletProductValidationSchema, mapStatusToEnum} = useContext(OutletContext)
 
-    const { register, handleSubmit, formState: { errors } } = useForm<EditFormData>({
-        resolver: yupResolver(validationSchema),
+    const { register, handleSubmit, formState: { errors } } = useForm<OutletProductFormData>({
+        resolver: yupResolver(outletProductValidationSchema),
         defaultValues: {
             name: selectedProduct?.name,
             price: selectedProduct?.price,
@@ -40,7 +20,7 @@ export const OutletEditForm = () => {
         mode: "onSubmit"
     });
 
-    async function handleEditMaterial(data: EditFormData) {
+    async function handleEditMaterial(data: OutletProductFormData) {
         try {
             if(!selectedProduct) return;
 

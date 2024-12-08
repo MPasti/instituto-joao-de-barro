@@ -1,30 +1,20 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import {object, string, InferType } from "yup"
 import { publish } from "../../../../../utils/events";
 import { addProduct } from "../../../../../services/storage/outletApi";
 import toast from "react-hot-toast";
 import { useContext } from "react";
-import { OutletContext } from "../../../../../contexts/storage/OutletContext";
+import { OutletContext, OutletProductFormData } from "../../../../../contexts/storage/OutletContext";
 
 interface IRegisterFormProps {
     handleCancel?: () => void
 }
 
-const validationSchema = object({
-    name: string().required("Nome do produto é obrigatório"),
-    price: string().required("Preço do produto é obrigatório").matches(/^\d+([,.]\d+)?$/, "O preço deve conter apenas números"),
-    description: string(),
-    status: string().required("Status do produto é obrigatório")
-})
-
-type RegisterFormData = InferType<typeof validationSchema>
-
 export const OutletRegisterForm = ({handleCancel}: IRegisterFormProps) => {
-    const {loadOutletProducts} = useContext(OutletContext)
+    const {loadOutletProducts, outletProductValidationSchema} = useContext(OutletContext)
 
-    const { register, handleSubmit, formState: { errors } } = useForm<RegisterFormData>({
-        resolver: yupResolver(validationSchema),
+    const { register, handleSubmit, formState: { errors } } = useForm<OutletProductFormData>({
+        resolver: yupResolver(outletProductValidationSchema),
         defaultValues: {
             name: "",
             price: "",
@@ -34,7 +24,7 @@ export const OutletRegisterForm = ({handleCancel}: IRegisterFormProps) => {
         mode: "onSubmit"
     })
 
-    async function handleCreateNewProduct(data: RegisterFormData) {
+    async function handleCreateNewProduct(data: OutletProductFormData) {
         try {
             const newProduct = {
                 name: data.name,
