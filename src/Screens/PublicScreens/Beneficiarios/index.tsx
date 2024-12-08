@@ -3,6 +3,7 @@ import './visualizarInfo.scss';
 import { useEffect, useState } from 'react';
 import { registerUserAsBeneficiary } from '../../../services/beneficiaries/beneficiariesApi';
 import toast from 'react-hot-toast';
+import { isAuthenticated } from '../../../services/authService';
 
 export function Beneficiarios() {
     const navigate = useNavigate();
@@ -11,7 +12,6 @@ export function Beneficiarios() {
     // User states
     const [email, setEmail] = useState('');
     const [cpf, setCpf] = useState('');
-    const [maskedCpf, setMaskedCpf] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
 
@@ -22,14 +22,15 @@ export function Beneficiarios() {
     const [phone1, setPhone1] = useState('');
     const [phone2, setPhone2] = useState('');
 
-    // useEffect(() => {
-    //     const { user } = JSON.parse(localStorage.getItem('user') || '{}');
-    //     if (user.id) {
-    //         if (window.confirm('Você já está logado, deseja acessar seus dados?')) {
-    //             navigate('/dashboard/beneficiarios/data');
-    //         }
-    //     }
-    // })
+    useEffect(() => {
+        const isAuth = isAuthenticated()
+
+        if (isAuth) {
+            if (window.confirm('Você já está logado, deseja acessar seus dados?')) {
+                navigate('/dashboard/beneficiarios/data');
+            }
+        }
+    })
 
     const [privacyChecked, setPrivacyChecked] = useState(false);
 
@@ -88,12 +89,6 @@ export function Beneficiarios() {
         }
     };
 
-    const handleCpfChange = (e) => {
-        const rawValue = e.target.value;
-        setCpf(rawValue);
-        setMaskedCpf('*'.repeat(rawValue.length));
-    };
-
     return (
         <div className="registro">
             <h1 className="subtitle">Registro</h1>
@@ -110,7 +105,7 @@ export function Beneficiarios() {
                 <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
 
                 <label>CPF:</label>
-                <input type="text" value={maskedCpf} onChange={(handleCpfChange)} />
+                <input type="text" value={cpf} onChange={(e) => setCpf(e.target.value)} />
 
                 <label>Senha:</label>
                 <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />

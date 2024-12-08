@@ -45,7 +45,7 @@ declare global {
     id?: number;
     userId?: number;
     name: string;
-    status: Status;
+    status: BenefStatus;
     meetDescription: string;
     indicatorName: string;
     monthlyIncome: number;
@@ -82,7 +82,14 @@ declare global {
     indicationDate?: Date;
     houseStatus?: string;
   }
-
+  enum BenefStatus {
+    ATIVO = 'ativo',
+    INATIVO = 'inativo',
+    PENDENTE = 'pendente',
+    EM_ANALISE = 'em_analise',
+    APROVADO = 'aprovado',
+    NECESSITA_ATENCAO = 'necessita_atencao',
+  }
 }
 
 export {};
