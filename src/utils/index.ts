@@ -3,7 +3,7 @@ export default class Utils {
   //Exemplo: data = 123456789 e mask = ### ### ###
   // result -> 123 456 789
   static maskForm(data: string, mask: string): string {
-    const cleanedData = data.replace(/[.\-\/]/g, "");
+    const cleanedData = data.replace(/[.\-/]/g, "");
     let maskedData = mask;
     for (const char of cleanedData) {
       maskedData = maskedData.replace("#", char);
