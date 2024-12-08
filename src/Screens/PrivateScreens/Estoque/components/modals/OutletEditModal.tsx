@@ -1,14 +1,9 @@
 import { useState } from "react";
 import { Modal } from "../../../../../components/Modal/Modal";
 import { useCustomEvent } from "../../../../../utils/useCustomEvent";
-import { OutletProductResponse } from "../../../../../services/storage/outletApi";
 import { OutletEditForm } from "../forms/OutletEditForm";
 
-interface OutletEditModalProps {
-  selectedProduct: OutletProductResponse | null;
-}
-
-export const OutletEditModal = ({ selectedProduct }: OutletEditModalProps) => {
+export const OutletEditModal = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   function handleModalOpen() {
@@ -28,9 +23,7 @@ export const OutletEditModal = ({ selectedProduct }: OutletEditModalProps) => {
         <h1>
           Especificações <span>Produto</span>
         </h1>
-        {selectedProduct && (
-          <OutletEditForm selectedProduct={selectedProduct} />
-        )}
+        <OutletEditForm />
       </div>
     </Modal>
   );

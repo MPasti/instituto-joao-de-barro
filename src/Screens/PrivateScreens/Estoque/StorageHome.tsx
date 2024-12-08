@@ -3,6 +3,7 @@ import { Storage } from "./components/StorageContent"
 import { Outlet } from "./components/OutletContent"
 import { Scroll, Storefront } from "phosphor-react"
 import { StorageProvider } from "../../../contexts/storage/StorageContext"
+import { OutletProvider } from "../../../contexts/storage/OutletContext"
 
 export const StorageHome = () => {
     return (
@@ -16,7 +17,9 @@ export const StorageHome = () => {
                     <StorageProvider>
                         <TabPanel><Storage /></TabPanel>
                     </StorageProvider>
-                    <TabPanel><Outlet /></TabPanel>
+                    <OutletProvider>
+                        <TabPanel><Outlet /></TabPanel>
+                    </OutletProvider>
                 </TabPanels>
             </TabGroup>
         </main>

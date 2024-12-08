@@ -1,28 +1,17 @@
 import { PlusCircle } from "phosphor-react"
 import { publish } from "../../../../utils/events"
 import { OutletRegisterModal } from "./modals/OutletRegisterModal"
-import { getProducts, OutletProductResponse } from "../../../../services/storage/outletApi"
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { OutletEditModal } from "./modals/OutletEditModal"
+import { OutletContext } from "../../../../contexts/storage/OutletContext"
 
 export const Outlet = () => {
-    const [outletProducts, setOutletProducts] = useState<OutletProductResponse[]>([]);
-    const [selectedProduct, setSelectedProduct] = useState<OutletProductResponse | null>(null);
+   const {outletProducts, loadOutletProducts, handleEditOutletProduct} = useContext(OutletContext)
     const [searchTerm, setSearchTerm] = useState<string>("");
-
-    async function loadOutletProducts() {
-        const response = await getProducts();
-        setOutletProducts(response);
-    }
 
     useEffect(() => {
         loadOutletProducts();
     }, []);
-
-    const handleEditOutletProduct = (product: OutletProductResponse) => {
-        setSelectedProduct(product);
-        publish("outlet:open-edit-modal");
-    };
 
     const filteredMaterials = outletProducts.filter(product =>
         product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -64,7 +53,7 @@ export const Outlet = () => {
                 </table>
             </section>
             <OutletRegisterModal />
-            <OutletEditModal selectedProduct={selectedProduct} />
+            <OutletEditModal />
         </>
     )
 }
