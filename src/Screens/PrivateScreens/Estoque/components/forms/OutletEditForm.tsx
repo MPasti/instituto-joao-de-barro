@@ -34,7 +34,7 @@ export const OutletEditForm = ({ selectedProduct }: IEditFormProps) => {
         resolver: yupResolver(validationSchema),
         defaultValues: {
             name: selectedProduct.name,
-            price: selectedProduct.price?.toString(),
+            price: selectedProduct.price,
             description: selectedProduct.description,
             status: mapStatusToEnum( selectedProduct.status)
         },
@@ -46,7 +46,7 @@ export const OutletEditForm = ({ selectedProduct }: IEditFormProps) => {
             const updatedProduct = {
                 ...selectedProduct,
                 name: data.name,
-                price: data.price,
+                price: data.price.replace(",", "."),
                 description: data.description,
                 status: data.status
             };

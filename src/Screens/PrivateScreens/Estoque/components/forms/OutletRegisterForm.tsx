@@ -34,7 +34,7 @@ export const OutletRegisterForm = ({handleCancel}: IRegisterFormProps) => {
         try {
             const newProduct = {
                 name: data.name,
-                price: data.price,
+                price: data.price.replace(",", "."),
                 description: data.description,
                 status: data.status,
             }
@@ -60,7 +60,7 @@ export const OutletRegisterForm = ({handleCancel}: IRegisterFormProps) => {
                     {errors.name && <p className="input-error">{errors.name.message}</p>}
                 </div>
                 <div className="input-container">
-                    <label htmlFor="quantity">Preço</label>
+                    <label htmlFor="price">Preço</label>
                     <input 
                         type="text" 
                         className="form-control"
