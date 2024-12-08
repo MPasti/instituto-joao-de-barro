@@ -83,6 +83,17 @@ declare global {
     houseStatus?: string;
   }
 
+  interface Person {
+    id: number;
+    nomeCompleto: string;
+    cpf: string;
+    estoque: string;
+    financeiro: string;
+    eventos?: string;
+    obras?: string;
+    noticias?: string;
+}
+
 }
 
 export {};

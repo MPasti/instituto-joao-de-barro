@@ -45,10 +45,24 @@ export function Navbar() {
               Notícias
             </Link>
           </li>
-          <li className="nav-item">
-            <Link to="/voluntarios" className="link">
-              Voluntários
-            </Link>
+          <li className="nav-item dropdown">
+            <div className="dropdown-toggle">
+              <Link to="/voluntarios" className="link">
+                Voluntários
+              </Link>
+            </div>
+            <ul className="dropdown-menu">
+              <li className="dropdown-item">
+                <Link to="/colaborador" className="link">
+                  Voluntários-Apoiador
+                </Link>
+              </li>
+              <li className="dropdown-item">
+                <Link to="/apoiador" className="link">
+                  Apoiador
+                </Link>
+              </li>
+            </ul>
           </li>
           <li className="nav-item">
             <Link to="/beneficiarios" className="link">

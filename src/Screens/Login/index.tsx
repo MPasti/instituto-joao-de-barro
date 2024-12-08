@@ -16,7 +16,7 @@ export const Login = () => {
 
     const response = await login(userName, password);
     if (response?.success) {
-      navigate("/dashboard");
+      navigate("/dashboarxd");
     } else {
       toast.error(response?.message || "Falha ao realizar Login");
     }
