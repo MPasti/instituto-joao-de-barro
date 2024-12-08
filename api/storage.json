@@ -71,25 +71,25 @@
   ],
   "financeiro": {
     "tableDataExpenses": [
-      { "name": "Cimento", "status": "Pago", "dueDate": "30/09/2024", "outgoing": "R$50,27" },
-      { "name": "Madeira", "status": "Pago", "dueDate": "30/09/2024", "outgoing": "R$150" },
-      { "name": "Tijolo", "status": "Pago", "dueDate": "02/10/2024", "outgoing": "R$45,89" },
-      { "name": "Areia", "status": "Pago", "dueDate": "10/10/2024", "outgoing": "R$67,10" },
-      { "name": "Areia", "status": "Pago", "dueDate": "15/10/2024", "outgoing": "R$81" },
-      { "name": "Telha", "status": "Pago", "dueDate": "27/10/2024", "outgoing": "R$130" },
-      { "name": "Cal", "status": "Atrasado", "dueDate": "28/10/2024", "outgoing": "R$90" },
-      { "name": "Tinta", "status": "Em Aberto", "dueDate": "13/10/2024", "outgoing": "R$240" }
+      { "name": "Cimento", "status": "Pago", "dueDate": "30/09/2024", "outgoing": "R$50,27", "invoiceLink": "api\\NOTA_FISCAL.pdf" },
+      { "name": "Madeira", "status": "Pago", "dueDate": "30/09/2024", "outgoing": "R$150", "invoiceLink": "api\\NOTA_FISCAL.pdf" },
+      { "name": "Tijolo", "status": "Pago", "dueDate": "02/10/2024", "outgoing": "R$45,89", "invoiceLink": "api\\NOTA_FISCAL.pdf" },
+      { "name": "Areia", "status": "Pago", "dueDate": "10/10/2024", "outgoing": "R$67,10", "invoiceLink": "api\\NOTA_FISCAL.pdf" },
+      { "name": "Areia", "status": "Pago", "dueDate": "15/10/2024", "outgoing": "R$81", "invoiceLink": "api\\NOTA_FISCAL.pdf" },
+      { "name": "Telha", "status": "Pago", "dueDate": "27/10/2024", "outgoing": "R$130", "invoiceLink": "api\\NOTA_FISCAL.pdf" },
+      { "name": "Cal", "status": "Atrasado", "dueDate": "28/10/2024", "outgoing": "R$90", "invoiceLink": "api\\NOTA_FISCAL.pdf" },
+      { "name": "Tinta", "status": "Em Aberto", "dueDate": "13/10/2024", "outgoing": "R$240", "invoiceLink": "api\\NOTA_FISCAL.pdf" }
     ],
   
     "tableDataRevenue": [
-      { "name": "Doação", "status": "Pago", "dueDate": "30/09/2024", "outgoing": "R$50,27" },
-      { "name": "Doação", "status": "Em Andamento", "dueDate": "30/09/2024", "outgoing": "R$150" },
-      { "name": "Doação", "status": "Em Andamento", "dueDate": "02/10/2024", "outgoing": "R$45,89" },
-      { "name": "Doação", "status": "Em Andamento", "dueDate": "10/10/2024", "outgoing": "R$67,10" },
-      { "name": "Doação", "status": "Pago", "dueDate": "15/10/2024", "outgoing": "R$81" },
-      { "name": "Doação", "status": "Pago", "dueDate": "27/10/2024", "outgoing": "R$130" },
-      { "name": "Doação", "status": "Em Andamento", "dueDate": "28/10/2024", "outgoing": "R$90" },
-      { "name": "Doação", "status": "Em Andamento", "dueDate": "13/10/2024", "outgoing": "R$240" }
+      { "name": "Doação", "status": "Pago", "dueDate": "30/09/2024", "outgoing": "R$50,27", "invoiceLink": "api\\NOTA_FISCAL.pdf" },
+      { "name": "Doação", "status": "Em Andamento", "dueDate": "30/09/2024", "outgoing": "R$150", "invoiceLink": "api\\NOTA_FISCAL.pdf" },
+      { "name": "Doação", "status": "Em Andamento", "dueDate": "02/10/2024", "outgoing": "R$45,89", "invoiceLink": "api\\NOTA_FISCAL.pdf" },
+      { "name": "Doação", "status": "Em Andamento", "dueDate": "10/10/2024", "outgoing": "R$67,10", "invoiceLink": "api\\NOTA_FISCAL.pdf" },
+      { "name": "Doação", "status": "Pago", "dueDate": "15/10/2024", "outgoing": "R$81", "invoiceLink": "api\\NOTA_FISCAL.pdf" },
+      { "name": "Doação", "status": "Pago", "dueDate": "27/10/2024", "outgoing": "R$130", "invoiceLink": "api\\NOTA_FISCAL.pdf" },
+      { "name": "Doação", "status": "Em Andamento", "dueDate": "28/10/2024", "outgoing": "R$90", "invoiceLink": "api\\NOTA_FISCAL.pdf" },
+      { "name": "Doação", "status": "Em Andamento", "dueDate": "13/10/2024", "outgoing": "R$240", "invoiceLink": "api\\NOTA_FISCAL.pdf" }
     ],
   
     "bankStatement": {
