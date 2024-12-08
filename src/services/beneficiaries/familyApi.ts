@@ -1,4 +1,4 @@
-import { api } from "../api";
+import { api } from "../../../api/fetchWrapper";
 
 export const registerFamilyMember = async (familyMember: FamilyMember) => {
     try {

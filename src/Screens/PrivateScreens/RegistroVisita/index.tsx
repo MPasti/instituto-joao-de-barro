@@ -97,7 +97,7 @@ const RegistroVisita = () => {
                 return;
             }
             const activeFamilies = beneficiariosResponse.filter(
-                (beneficiario: Beneficiary) => beneficiario.status !== Status.INATIVO && beneficiario.name.includes(beneficiarioName)
+                (beneficiario: Beneficiary) => beneficiario.status !== BenefStatus.INATIVO && beneficiario.name.includes(beneficiarioName)
             );
             setBeneficiarios(activeFamilies);
         } catch (err) {

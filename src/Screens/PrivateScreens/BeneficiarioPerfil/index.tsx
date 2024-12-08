@@ -3,7 +3,6 @@ import "./beneficiarioPerfil.scss"; // Caso queira personalizar o estilo
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import {
-	BenefStatus,
 	getBeneficiaryByUserId,
 	updateBeneficiary,
 } from "../../../services/beneficiaries/beneficiariesApi";
