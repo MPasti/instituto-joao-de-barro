@@ -18,7 +18,7 @@ export function VoluntariosForm() {
 	const [confsenha, setConfsenha] = useState("");
 	const [hobby, setHobby] = useState("");
 	const [intencao, setIntencao] = useState("");
-	const [cargoDesejado, setCargoDesejado] = useState("");
+	const [cargoDesejado, setCargoDesejado] = useState("Voluntários");
 	const [sobreVoce, setSobreVoce] = useState("");
 	const [checkboxes, setCheckboxes] = useState({
         "politicas_privacidade": false,
@@ -40,7 +40,7 @@ export function VoluntariosForm() {
 
 	useEffect(() => {
 		if (error) {
-			console.log("Mensagem de erro atualizada:", error);
+			toast.error("Mensagem de erro atualizada: " + error);
 		}
 	}, [error]);
 
@@ -113,7 +113,7 @@ export function VoluntariosForm() {
 		const formIsValid = validateForm();
 
 		if(!formIsValid) {
-			console.log("Erro:", error);
+			toast.error("Erro: " + error);
 			return;
 		}
 		
@@ -278,7 +278,10 @@ export function VoluntariosForm() {
 							id="cargo-desejado"
 							name="cargo-desejado"
 							value={cargoDesejado}
-							onChange={(e) => setCargoDesejado(e.target.value)}
+							onChange={(e) => {
+								console.log("Cargo selecionado:", e.target.value);
+								setCargoDesejado(e.target.value);
+							}}
 						>
 							<option value="Voluntários">Voluntários</option>
 							<option value="Estoque">Estoque</option>
