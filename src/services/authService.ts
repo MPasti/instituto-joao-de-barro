@@ -1,9 +1,6 @@
 import { api } from "../../api/fetchWrapper.ts";
 import axios from "axios";
 
-import { api } from "../../api/fetchWrapper.ts";
-import axios from "axios";
-
 export const login = async (username: string, password: string) => {
   try {
     const apiUrl = import.meta.env.VITE_API_URL;
@@ -35,8 +32,8 @@ export const login = async (username: string, password: string) => {
       }
     } else {
       const response = await api.post(`${apiUrl}/login`, {
-        username,
-        password,
+        emailOrCpf: username,
+        password: password,
       });
 
       if (response.data) {
