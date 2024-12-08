@@ -9,7 +9,7 @@ import NewsCard from "../NewsCard";
 import Button from "../Button";
 import { useNavigate } from "react-router-dom";
 
-export const NewsSwiper = ({ newsData }) => {
+export const NewsSwiper = ({ newsData }: any) => {
   const navigation = useNavigate();
 
   const breakpoints = {
@@ -38,7 +38,7 @@ export const NewsSwiper = ({ newsData }) => {
           className="news-swiper"
           breakpoints={breakpoints}
         >
-          {newsData.map((news, index) => (
+          {newsData.map((news: any, index: number) => (
             <SwiperSlide key={index}>
               <NewsCard
                 key={index}

@@ -14,17 +14,20 @@
   ],
   "users": [
     {
-      "id": "1",
+      "id": 1,
       "cpf": "12345678910",
       "email": "teste@testes.com",
       "username": "admin",
       "password": "123456",
-      "token": "1234567890abcdef"
+      "token": "1234567890abcdef",
+      "roles": [
+        "Administrador"
+      ]
     }
   ],
   "noticias": [
     {
-      "id": "1",
+      "id": 1,
       "titulo": "Instituto João de Barro entrega a primeira casa para família de Franca",
       "descricao": "Localizada no Jardim Santa Bárbara, residência da própria família foi reformada e ampliada pelo grupo\n\n",
       "data": "2016-08-12",
@@ -34,17 +37,17 @@
       "image": "https://jornaldafranca.com.br/storage/app/media/Blog%20Milena%20Peixoto/joaodebarro.jpg"
     },
     {
-      "id": "2",
+      "id": 2,
       "titulo": "Segunda casa entregue pelo Instituto João de Barro",
       "descricao": "No dia 23 de junho de 2018 foi entregue a segunda casa do IJB à família da D. Raimunda que residirá junto com seus 7 filhos.",
       "data": "2018-06-23",
       "ativa": true,
       "link": "https://www.jornaldafranca.com.br/instituto-joao-de-barro-entrega-a-primeira-casa-para-familia-de-franca/",
       "etiqueta": "PROJETO",
-      "image": "https://scontent.ffrc6-1.fna.fbcdn.net/v/t1.6435-9/36176094_649428132060858_4626970411169480704_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=f798df&_nc_eui2=AeFjrs_apwmCqWQ13fGCQrKdhw9vl9HHNkmHD2-X0cc2SQx483O_reNJtIWV1Ubw0BUpEcWQWnu_2GvTiCKQiEH3&_nc_ohc=i0R7rHtXxx4Q7kNvgHE6BP5&_nc_ht=scontent.ffrc6-1.fna&_nc_gid=Ap35Sieo4eTBmcNVMpLnW1l&oh=00_AYB4tceh8NiEdWuKmH918Tj4lhPlWM_mqvOKttyT2dIRPA&oe=672A2DAB"
+      "image": "https://scontent.ffrc6-1.fna.fbcdn.net/v/t1.6435-9/36086949_649427455394259_5820971164838658048_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=cf85f3&_nc_eui2=AeEOer_Vf2praNWRjNa9rx0PwUnIn7vfe_HBScifu9978cIsITuMkMuJ0uhGd-5sPtXrC1-Dnq9f1YvpPpYDMP_J&_nc_ohc=ESudvsXHaaUQ7kNvgHZj3ge&_nc_zt=23&_nc_ht=scontent.ffrc6-1.fna&_nc_gid=AItxk_gZdLN3D7WJrn5ta6n&oh=00_AYBGU1qUf4A7LQi_zVwtOtsOrXLVeJv3DpQ2B1WVO9h0ZA&oe=677C169F"
     },
     {
-      "id": "3",
+      "id": 3,
       "titulo": "Casa é reformada e entregue à família que vivia em condições desumanas no Santa Cruz",
       "descricao": "Depois de anos vivendo em total insalubridade, uma família que mora no bairro Santa Cruz voltou a ter dignidade.",
       "data": "2022-05-12",
@@ -54,61 +57,36 @@
       "image": "https://sampi.net.br/dir-arquivo-imagem/2022/05/1073c705e23f988663c1cdf18376314c.jpg"
     },
     {
-      "id": "4",
+      "id": 4,
       "titulo": "Nova casa entregue pelo IJB",
       "descricao": "Essa obra foi iniciada com o apoio de várias pessoas que se sensibilizaram com a situação dessa família que estava morando em barraco de lona.",
       "data": "2020-08-15",
       "ativa": true,
       "link": "https://www.jornaldafranca.com.br/instituto-joao-de-barro-entrega-a-primeira-casa-para-familia-de-franca/",
       "etiqueta": "PROJETO",
-      "image": "https://scontent.ffrc6-1.fna.fbcdn.net/v/t1.6435-9/117724429_1226558951014437_7607005431847879478_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=06a7ca&_nc_eui2=AeGUPFqjIkO6gGN4J-0lsl-Yklnjs48GcTGSWeOzjwZxMcjw9kAfdpvzauOHhKjdu2dC7DJNjeWxH5dbRAnpiy13&_nc_ohc=KC42Ay2J-psQ7kNvgGKtBC-&_nc_ht=scontent.ffrc6-1.fna&_nc_gid=AmbTsh_k70gXJ-_GYxWmqbJ&oh=00_AYDQr5T5_5HmC72cF7y8sI9fAsJnm9trUxEbKa95JXz1_Q&oe=672A4AA6"
+      "image": "https://scontent.ffrc6-1.fna.fbcdn.net/v/t1.6435-9/117535572_1226558671014465_6304487004514615188_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=3a1ebe&_nc_eui2=AeGM5HvlhqueP3LziJ46iZIixHI094Coch3EcjT3gKhyHUMGiwTZKA27EV6Rc71dcB5I6bWTqOwNlln7mn65Ulfs&_nc_ohc=x6tIMCBBA0kQ7kNvgGhQ0y_&_nc_zt=23&_nc_ht=scontent.ffrc6-1.fna&_nc_gid=AMIJf-B_bLi43yXms8cnFfN&oh=00_AYDaHnD8cdQm7xUOqj1wsqT-hSWDMpvE5p5PzsXM4EuQuw&oe=677C4C5D"
     },
     {
-      "id": "5",
+      "id": 5,
       "titulo": "Casa reformada no Jardim Aeroporto IV",
       "descricao": "A obra foi iniciada por duas senhoras que voluntariamente quiseram melhorar as condições da casa onde reside um senhor e seu filho. Elas providenciaram a colocação do piso cerâmico, a instalação de uma janela e a pintura.",
       "data": "2018-04-15",
       "ativa": true,
       "link": "",
       "etiqueta": "PROJETO",
-      "image": "https://scontent.ffrc6-1.fna.fbcdn.net/v/t31.18172-8/30051728_612611265742545_6625424197276656814_o.jpg?_nc_cat=108&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeFPoSvuW6ac43pVz4tWhsW24RI_40ie7DPhEj_jSJ7sM3_UYcy2N5PLObydYD5ddKeOXaAGC9U7fFBci36gwyKY&_nc_ohc=D6Co3Z3ZrtIQ7kNvgHsL81O&_nc_ht=scontent.ffrc6-1.fna&_nc_gid=AlDzXk_IXjwEV-8Q_UWpjbO&oh=00_AYB383MR0p3KfQH2rAvuhefjsJhV1Wng4CjzOka9v2yn_g&oe=672A54CD"
+      "image": "https://scontent.ffrc6-1.fna.fbcdn.net/v/t39.30808-6/460217568_2270801406590181_5019248344592082775_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeFo7ZgG43HWNCxxoxI_Z7Fzvqk5xzqtZhu-qTnHOq1mG6zYMVESlVPuWMcnT5FtebCNRanj1oGcdQreIitl2eNO&_nc_ohc=zRM3mkrH0C0Q7kNvgFUkwgH&_nc_zt=23&_nc_ht=scontent.ffrc6-1.fna&_nc_gid=A43zCRq7HCbZdVfbmL_EnWR&oh=00_AYAroQJm4eu7LJYr7kyPXCv4vSEYGUReX9F-WGXIPYydOg&oe=675ABCEA"
     }
   ],
-  "materials": [
+  "materials": [],
+  "products": [
     {
-      "id": "OY5h6D",
-      "name": "Teste",
-      "quantity": 123,
-      "description": "teste"
-    },
-    {
-      "id": "tCwFjS",
-      "name": "2",
-      "quantity": 1,
-      "description": "1"
-    },
-    {
-      "id": "o9_ls3",
-      "name": "testes",
-      "quantity": 1,
-      "description": "1"
+      "id": "1-UqGe",
+      "name": "asda",
+      "price": "1",
+      "description": "23"
     }
   ],
   "buildings": [
-    {
-      "id": "fq7vW1",
-      "descricao": "teste ",
-      "logradouro": "tests",
-      "numero": 2,
-      "bairro": "teste",
-      "cidade": "teste",
-      "uf": "sp",
-      "dt_inicio": "2024-11-07T03:00:00.000Z",
-      "dt_termino": "2024-11-13T03:00:00.000Z",
-      "situacao_construcao": "Em andamento",
-      "custo_estimado": 1,
-      "custo_total": 12
-    },
     {
       "id": "6DElQX",
       "descricao": "teste 23",
@@ -122,20 +100,6 @@
       "situacao_construcao": "Concluída",
       "custo_estimado": 1,
       "custo_total": 1
-    },
-    {
-      "id": "FLrGsg",
-      "descricao": "obra ",
-      "logradouro": "obra ",
-      "numero": 0,
-      "bairro": "obra ",
-      "cidade": "obra ",
-      "uf": "sp",
-      "dt_inicio": "2024-11-03T03:00:00.000Z",
-      "dt_termino": "2024-11-20T03:00:00.000Z",
-      "situacao_construcao": "Em andamento",
-      "custo_estimado": 1500,
-      "custo_total": 200
     }
   ],
   "events": [
@@ -322,5 +286,119 @@
     "products": [],
     "beneficiario": [],
     "visitas": []
+  },
+  "landing-page": {
+    "carousel": [
+      {
+        "id": 1,
+        "image": "https://jornaldafranca.com.br/storage/app/media/Blog%20Milena%20Peixoto/joaodebarro.jpg",
+        "title": "Construindo Sonhos, Transformando Vidas",
+        "description": "O Instituto João de Barro acredita no poder da união para proporcionar moradias dignas às famílias necessitadas. Junte-se a nós e seja parte dessa transformação.",
+        "buttonLabel": "SAIBA MAIS"
+      },
+      {
+        "id": 2,
+        "image": "https://jornaldafranca.com.br/storage/app/media/Blog%20Milena%20Peixoto/joaodebarro.jpg",
+        "title": "Descubra o Instituto João de Barro",
+        "description": "Saiba mais sobre nossa missão, projetos e como você pode fazer parte dessa iniciativa. Juntos, podemos transformar vidas e comunidades.",
+        "buttonLabel": "SAIBA MAIS"
+      },
+      {
+        "id": 3,
+        "image": "https://jornaldafranca.com.br/storage/app/media/Blog%20Milena%20Peixoto/joaodebarro.jpg",
+        "title": "Moradia Digna é um Direito de Todos",
+        "description": "O Instituto João de Barro trabalha para construir um futuro mais justo, proporcionando lares dignos às famílias que necessitam. Cada casa entregue é um passo em direção a uma sociedade mais solidária e humana.",
+        "buttonLabel": "SAIBA MAIS"
+      },
+      {
+        "id": 4,
+        "image": "https://jornaldafranca.com.br/storage/app/media/Blog%20Milena%20Peixoto/joaodebarro.jpg",
+        "title": "Histórias que Inspiram",
+        "description": "O Instituto João de Barro transforma vidas em Franca-SP ao construir lares para famílias necessitadas. Descubra nossas iniciativas e junte-se à causa.",
+        "buttonLabel": "SAIBA MAIS"
+      }
+    ],
+    "aboutUs": "O Instituto João de Barro (IJB) é um instituto que atua na cidade de Franca, SP o objetivo de ajudar famílias em situação de vulnerabilidade, necessidade, entre outros; oferecendo doações de recursos financeiros, criando moradias, promovendo eventos para o bem estar social da cidade de Franca.",
+    "results": {
+      "content": "Os resultados que alcançamos são refletidos nas histórias de superação e nas vidas que foram impactadas pelo nosso trabalho. Através de nossos esforços, conseguimos promover inclusão, oferecer apoio e criar oportunidades para quem mais precisa. Não é apenas sobre o que fazemos, mas sobre as mudanças que possibilitamos — mudanças que ecoam em toda a sociedade e geram um futuro mais solidário.",
+      "beforeImage": "http://localhost:5173/src/assets/images/institute/antes.png",
+      "afterImage": "http://localhost:5173/src/assets/images/institute/depois.png"
+    },
+    "additionalInfo": [
+      {
+        "title": "Quem nós ajudamos",
+        "text": "Nosso auxílio vai além de proporcionar uma moradia digna às famílias carentes. Nós buscamos melhorar a qualidade de vida dessas famílias, oferecendo moradia, apoio psicológico e melhorias em suas condições. Promovendo a transformação social e a melhoria contínua da qualidade de vida de nossa comunidade.",
+        "image": "http://localhost:5173/src/assets/images/institute/joaodebarro.jpg"
+      },
+      {
+        "title": "Porque nós ajudamos",
+        "text": "Nós ajudamos porque acreditamos no poder da compaixão, da solidariedade e da ação coletiva para criar mudanças duradouras. E acima de tudo, ajudamos porque sabemos que, juntos, podemos construir um mundo mais justo, onde todos tenham a chance de viver com dignidade e esperança.",
+        "image": "http://localhost:5173/src/assets/images/institute/institute-3.png"
+      },
+      {
+        "title": "Como ajudamos",
+        "text": "Apoiamos famílias em situação de vulnerabilidade, oferecendo doações, moradias dignas e promovendo eventos para o bem-estar de toda a comunidade na cidade de Franca.",
+        "image": "http://localhost:5173/src/assets/images/institute/institute-4.png"
+      }
+    ],
+    "partnerCompanies": [
+      {
+        "name": "Uni-FACEF",
+        "image": "https://foprop.org.br/wp-content/uploads/jet-engine-forms/guest/2023/02/unifacef.png"
+      },
+      {
+        "name": "Uni-FACEF",
+        "image": "https://foprop.org.br/wp-content/uploads/jet-engine-forms/guest/2023/02/unifacef.png"
+      },
+      {
+        "name": "Uni-FACEF",
+        "image": "https://foprop.org.br/wp-content/uploads/jet-engine-forms/guest/2023/02/unifacef.png"
+      }
+    ]
+  },
+  "sobre-nos": {
+    "content": "O Instituto João de Barro atua na cidade de Franca - SP, com o objetivo de ajudar famílias em situação de vulnerabilidade, necessidade, entre outros; oferecendo doações de recursos financeiros, criando moradias, promovendo eventos para o bem estar social da cidade de Franca.",
+    "video": "https://youtu.be/Sh6ekQzXmfI?si=fPyNJCA4136UuRtF",
+    "ijbTree": [
+      {
+        "id": 1,
+        "title": "Casa reformada e entregue à família em Santa Cruz",
+        "description": "No dia 10 de Maio de 2022 após 6 meses o IJB entregou a casa reformada a seus residentes, o engenheiro civil Carlos José Martins Tavares, fundador da entidade agradece as doações que foram feitas a obra.",
+        "image": "https://sampi.net.br/dir-arquivo-imagem/2022/05/1073c705e23f988663c1cdf18376314c.jpg",
+        "year": 2022
+      },
+      {
+        "year": 2020,
+        "title": "Casa entregue à família que habitava em um barraco de lona",
+        "description": "No dia 16 de Agosto  de 2020, foi entregue pelo IJB uma casa para uma familia que até então habitava em um barraco de lona, o IJB.\nA missão do Instituto João de Barro é Proporcionar moradia digna a famílias em situação de extrema pobreza e vulnerabilidade social, devidamente selecionadas por processo de triagem, através de reforma e construção, com fornecimento de materiais, mão de obra e acompanhamento técnico com arquitetos e engenheiros voluntários.",
+        "image": "https://scontent.ffrc6-1.fna.fbcdn.net/v/t1.6435-9/117535572_1226558671014465_6304487004514615188_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=3a1ebe&_nc_eui2=AeGM5HvlhqueP3LziJ46iZIixHI094Coch3EcjT3gKhyHUMGiwTZKA27EV6Rc71dcB5I6bWTqOwNlln7mn65Ulfs&_nc_ohc=x6tIMCBBA0kQ7kNvgGhQ0y_&_nc_zt=23&_nc_ht=scontent.ffrc6-1.fna&_nc_gid=AMIJf-B_bLi43yXms8cnFfN&oh=00_AYDaHnD8cdQm7xUOqj1wsqT-hSWDMpvE5p5PzsXM4EuQuw&oe=677C4C5D"
+      },
+      {
+        "year": 2018,
+        "title": "Segunda Casa",
+        "description": "No dia 23 de junho de 2018 foi entregue a segunda casa do IJB à família da D. Raimunda que residirá junto com seus 7 filhos.\nO projeto foi elaborado por uma equipe de arquitetos e engenheiros voluntários exclusivamente para atender as necessidades dessa família.",
+        "image": "https://scontent.ffrc6-1.fna.fbcdn.net/v/t1.6435-9/36086949_649427455394259_5820971164838658048_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=cf85f3&_nc_eui2=AeEOer_Vf2praNWRjNa9rx0PwUnIn7vfe_HBScifu9978cIsITuMkMuJ0uhGd-5sPtXrC1-Dnq9f1YvpPpYDMP_J&_nc_ohc=ESudvsXHaaUQ7kNvgHZj3ge&_nc_zt=23&_nc_ht=scontent.ffrc6-1.fna&_nc_gid=AItxk_gZdLN3D7WJrn5ta6n&oh=00_AYBGU1qUf4A7LQi_zVwtOtsOrXLVeJv3DpQ2B1WVO9h0ZA&oe=677C169F"
+      },
+      {
+        "year": 2016,
+        "title": "Entrega da primeira casa",
+        "description": "Essa foi a nossa primeira entrega de casa, realizada no dia 11 de Agosto de 2016.\nO contemplado era um pai viúvo com 4 crianças.",
+        "image": "https://jornaldafranca.com.br/storage/app/media/Blog%20Milena%20Peixoto/joaodebarro.jpg"
+      }
+    ]
+  },
+  "contato": {
+    "email": "ijbfranca@gmail.com",
+    "phone": "+55 (16) 99181-1811"
+  },
+  "donation": {
+    "pix": "26.345.732/0001-07",
+    "cnpj": "26.345.732/0001-07",
+    "banco": "756 - SICOOB",
+    "agencia": "4321 CRED-ACIF",
+    "contaCorrente": "2005.247-2",
+    "buttonLabel": "FAÇA SUA DOAÇÃO",
+    "buttonLink": "",
+    "image": "http://localhost:5173/src/assets/images/institute/ijb-comemoracao.png"
   }
 }

@@ -1,17 +1,46 @@
 // Contact.tsx
-import React from "react";
+import React, { useState } from "react";
 import Button from "../../../components/Button";
 import { FaFacebook, FaInstagram, FaWhatsapp } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
+import { toast } from "react-hot-toast";
 import sendEmailIcon from "../../../assets/icons/send-email.svg";
 import "./index.scss";
 
 export function Contact() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    toast.success("Mensagem enviada com sucesso!");
+    setFormData({
+      name: "",
+      email: "",
+      subject: "",
+      message: "",
+    });
+  };
+
   return (
     <div className="container py-5 contact-section">
       <div className="row">
         <div className="col-12 col-lg-4 contact-info mb-4 mb-lg-0">
-          <img src={sendEmailIcon} alt="email" className="mb-3" />
+          <img src={sendEmailIcon as string} alt="email" className="mb-3" />
           <h3>Siga-nos nas redes sociais</h3>
           <div className="d-flex gap-5 align-items-start mb-4">
             <div>
@@ -43,12 +72,17 @@ export function Contact() {
 
         <div className="col-12 col-lg-8 contact-form">
           <h2 className="text-center mb-4">Entre em contato conosco</h2>
-          <form className="form-control bg-transparent border-0">
+          <form
+            className="form-control bg-transparent border-0"
+            onSubmit={handleSubmit}
+          >
             <div className="mb-3">
               <label className="form-label">Nome</label>
               <input
                 type="text"
                 name="name"
+                value={formData.name}
+                onChange={handleInputChange}
                 className="form-control w-100"
                 placeholder="Entre seu nome"
               />
@@ -58,6 +92,8 @@ export function Contact() {
               <input
                 type="email"
                 name="email"
+                value={formData.email}
+                onChange={handleInputChange}
                 className="form-control"
                 placeholder="Entre com o seu email"
               />
@@ -67,6 +103,8 @@ export function Contact() {
               <input
                 type="text"
                 name="subject"
+                value={formData.subject}
+                onChange={handleInputChange}
                 className="form-control"
                 placeholder="Assunto"
               />
@@ -75,6 +113,8 @@ export function Contact() {
               <label className="form-label">Como podemos te ajudar?</label>
               <textarea
                 name="message"
+                value={formData.message}
+                onChange={handleInputChange}
                 className="form-control"
                 rows={5}
                 placeholder="Escreva sua mensagem"

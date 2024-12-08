@@ -1,24 +1,54 @@
 import { api } from "../../api/fetchWrapper.ts";
+import axios from "axios";
 
 export const login = async (username: string, password: string) => {
   try {
-    const response = await api.post(`${import.meta.env.VITE_API_URL}/login`, {
-      username,
-      password,
-    });
+    const apiUrl = import.meta.env.VITE_API_URL;
 
-    if (response.data) {
-      localStorage.setItem("token", response.data.token);
-      localStorage.setItem("user", JSON.stringify(response.data.user));
-      return {
-        message: "Login realizado com sucesso!",
-        success: true,
-      };
+    if (
+      apiUrl.startsWith("http://localhost") ||
+      apiUrl.startsWith("https://localhost")
+    ) {
+      const response = await axios.get(`${apiUrl}/users`);
+      const users = response.data;
+
+      const user = users.find(
+        (user: User) =>
+          user.username === username && user.password === password,
+      );
+
+      if (user) {
+        localStorage.setItem("token", user.token);
+        localStorage.setItem("user", JSON.stringify(user));
+        return {
+          message: "Login realizado com sucesso!",
+          success: true,
+        };
+      } else {
+        return {
+          message: "Email ou Senha incorretos.",
+          success: false,
+        };
+      }
     } else {
-      return {
-        message: "Email ou Senha incorretos.",
-        success: false,
-      };
+      const response = await api.post(`${apiUrl}/login`, {
+        emailOrCpf: username,
+        password: password,
+      });
+
+      if (response.data) {
+        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("user", JSON.stringify(response.data.user));
+        return {
+          message: "Login realizado com sucesso!",
+          success: true,
+        };
+      } else {
+        return {
+          message: "Email ou Senha incorretos.",
+          success: false,
+        };
+      }
     }
   } catch (error) {
     console.error("Erro ao fazer login:", error);

@@ -2,8 +2,8 @@ import BaseTrunk from "../../assets/icons/baseArvore.png";
 import TopTrunk from "../../assets/icons/firstTronco.png";
 import MiddleTrunk from "../../assets/icons/secondTronco.png";
 
-export const Tree = ({ data }) => {
-  const eventsByYear = data.reduce((acc, event) => {
+export const Tree = ({ data }: any) => {
+  const eventsByYear = data.reduce((acc: any, event: any) => {
     if (!acc[event.year]) {
       acc[event.year] = [];
     }
@@ -11,7 +11,7 @@ export const Tree = ({ data }) => {
     return acc;
   }, {});
 
-  const sortedYears = Object.keys(eventsByYear).sort((a, b) => b - a);
+  const sortedYears = Object.keys(eventsByYear).sort((a: any, b: any) => b - a);
 
   let isLeft = true;
 
@@ -32,7 +32,7 @@ export const Tree = ({ data }) => {
             <div className="year">{year}</div>
           </div>
 
-          {eventsByYear[year].map((event, idx) => {
+          {eventsByYear[year].map((event: any, idx: any) => {
             const positionClass = isLeft ? "left" : "right";
             isLeft = !isLeft;
 

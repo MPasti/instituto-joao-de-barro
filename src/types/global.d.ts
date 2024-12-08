@@ -90,6 +90,18 @@ declare global {
     APROVADO = 'aprovado',
     NECESSITA_ATENCAO = 'necessita_atencao',
   }
+
+  interface Person {
+    id: number;
+    nomeCompleto: string;
+    cpf: string;
+    estoque: string;
+    financeiro: string;
+    eventos?: string;
+    obras?: string;
+    noticias?: string;
+}
+
 }
 
 export {};

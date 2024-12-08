@@ -1,43 +1,130 @@
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "../../../components/Button";
+import {
+  getAboutUsData,
+  getContactData,
+  getDonationData,
+  getLandingPageData,
+} from "../../../services/editorPanelService.ts";
+import { toast } from "react-hot-toast";
 
-const initialData = {
-  landingPage: {
-    carousel: [{ image: "", title: "", buttonLabel: "" }],
-    aboutUs: "",
-    results: {
-      content: "",
-      beforeImage: "",
-      afterImage: "",
-    },
-    additionalInfo: [
-      { title: "", text: "", image: "" },
-      { title: "", text: "", image: "" },
-      { title: "", text: "", image: "" },
-    ],
-    partnerCompanies: [{ name: "", image: "" }],
-  },
-  aboutUs: {
-    content: "",
-    video: "",
-    ijbTree: [{ title: "", description: "", image: "", year: "" }],
-  },
-  contact: {
-    email: "",
-    phone: "",
-  },
+const donation = {
+  pix: "",
+  cnpj: "",
+  banco: "",
+  agencia: "",
+  contaCorrente: "",
+  buttonLabel: "",
+  image: "",
 };
 
-export const PainelDoEditor: React.FC = () => {
+const contact = {
+  email: "",
+  phone: "",
+};
+
+const aboutUs = {
+  content: "",
+  video: "",
+  ijbTree: [{ title: "", description: "", image: "", year: "" }],
+};
+
+const landingPage = {
+  carousel: [{ image: "", title: "", description: "", buttonLabel: "" }],
+  aboutUs: "",
+  results: {
+    content: "",
+    beforeImage: "",
+    afterImage: "",
+  },
+  additionalInfo: [{ title: "", text: "", image: "" }],
+  partnerCompanies: [{ name: "", image: "" }],
+};
+
+const initialData = {
+  landingPage: landingPage,
+  aboutUs: aboutUs,
+  contact: contact,
+  donation: donation,
+};
+
+export const PainelDoEditor = () => {
   const [data, setData] = useState(initialData);
+
+  const fetchLandingPage = async () => {
+    try {
+      const landingPage = await getLandingPageData();
+
+      return landingPage.data;
+    } catch (e) {
+      toast.error(`Erro ao buscar informações da landing page`);
+      console.error(e);
+      return landingPage;
+    }
+  };
+
+  const fetchAboutUs = async () => {
+    try {
+      const aboutUs = await getAboutUsData();
+
+      return aboutUs.data;
+    } catch (e) {
+      console.error(e);
+      return aboutUs;
+    }
+  };
+
+  const fetchContact = async () => {
+    try {
+      const contact = await getContactData();
+      return contact.data;
+    } catch (e) {
+      console.error(e);
+      return contact;
+    }
+  };
+
+  const fetchDonation = async () => {
+    try {
+      const donation = await getDonationData();
+
+      return donation.data;
+    } catch (e) {
+      console.error(e);
+      return donation;
+    }
+  };
+
+  const fetchData = async () => {
+    try {
+      const landingPage = await fetchLandingPage();
+      const aboutUs = await fetchAboutUs();
+      const contact = await fetchContact();
+      const donation = await fetchDonation();
+
+      setData({
+        landingPage,
+        aboutUs,
+        contact,
+        donation,
+      });
+    } catch (error) {
+      setData(initialData);
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   const handleInputChange = (
     page: string,
     key: string,
-    value: unknown,
+    value: any,
     index?: number,
   ) => {
-    setData((prevData) => {
+    setData((prevData: any) => {
       const updatedData = { ...prevData };
       if (index !== undefined && Array.isArray(updatedData[page][key])) {
         updatedData[page][key][index] = {
@@ -165,6 +252,20 @@ export const PainelDoEditor: React.FC = () => {
                       )
                     }
                   />
+                  <label className="form-label">Descrição:</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    value={item.description}
+                    onChange={(e) =>
+                      handleInputChange(
+                        "landingPage",
+                        "carousel",
+                        { description: e.target.value },
+                        index,
+                      )
+                    }
+                  />
                   <Button
                     outline
                     variant="secondary"
@@ -184,7 +285,12 @@ export const PainelDoEditor: React.FC = () => {
                       ...prev.landingPage,
                       carousel: [
                         ...prev.landingPage.carousel,
-                        { image: "", title: "", buttonLabel: "" },
+                        {
+                          image: "",
+                          title: "",
+                          description: "",
+                          buttonLabel: "",
+                        },
                       ],
                     },
                   }))
@@ -343,7 +449,7 @@ export const PainelDoEditor: React.FC = () => {
               <h3 className="mt-4">Árvore do IJB</h3>
               {data.aboutUs.ijbTree.map((item, index) => (
                 <div key={index} className="mb-3">
-                  <h4>Elemento {index + 1}</h4>
+                  <h4>Galho {index + 1}</h4>
                   <label className="form-label">Título:</label>
                   <input
                     type="text"
@@ -475,7 +581,7 @@ export const PainelDoEditor: React.FC = () => {
 
       <Button
         className="mt-3"
-        onClick={() => console.log("Dados salvos:", data)}
+        onClick={() => toast.success("Informações atualizadas com sucesso!")}
         type="submit"
       >
         Salvar Alterações

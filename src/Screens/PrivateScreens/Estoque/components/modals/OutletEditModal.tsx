@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { Modal } from "../../../../../components/Modal/Modal";
 import { useCustomEvent } from "../../../../../utils/useCustomEvent";
-import { OutletProduct } from "../../../../../services/storage/outletApi";
+import { OutletProductResponse } from "../../../../../services/storage/outletApi";
 import { OutletEditForm } from "../forms/OutletEditForm";
 
 interface OutletEditModalProps {
-  selectedProduct: OutletProduct | null;
+  selectedProduct: OutletProductResponse | null;
 }
 
 export const OutletEditModal = ({ selectedProduct }: OutletEditModalProps) => {

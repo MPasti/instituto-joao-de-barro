@@ -44,7 +44,11 @@ const Home = () => {
 
         <div className="col-12 d-flex justify-content-center">
           <div className="row w-100">
-            <DashboardIcon icon={<FaHandsHelping />} label="VOLUNTÁRIOS" />
+            <DashboardIcon 
+            icon={<FaHandsHelping />} 
+            route="perfil"
+            label="VOLUNTÁRIOS" 
+            />
             <DashboardIcon
               icon={<FaHandHoldingHeart />}
               route="beneficiarios"

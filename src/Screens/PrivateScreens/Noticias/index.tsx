@@ -39,7 +39,10 @@ const Noticias = () => {
   const handleInputChange = (
     e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>,
   ) => {
-    const { name, value, type, checked } = e.target;
+    const { name, value, type } = e.target;
+    const checked =
+      type === "checkbox" && (e.target as HTMLInputElement).checked;
+
     setFormData({
       ...formData,
       [name]: type === "checkbox" ? checked : value,
@@ -74,7 +77,7 @@ const Noticias = () => {
           await createNews(formData);
           toast.success("Notícia criada com sucesso!");
         }
-      } catch (error) {
+      } catch (error: any) {
         console.error("Erro ao salvar notícia:", error);
         toast.error(
           error.response?.data?.message ||
@@ -93,9 +96,7 @@ const Noticias = () => {
       await fetchNoticias();
     } catch (error) {
       console.error("Erro ao excluir notícia:", error);
-      toast.error(
-        error.response?.data?.message || "Erro ao excluir a notícia.",
-      );
+      toast.error("Erro ao excluir a notícia.");
     }
   };
 

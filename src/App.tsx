@@ -24,6 +24,11 @@ import { Main } from "./components/Main";
 import { Contact } from "./Screens/PublicScreens/Contact";
 import { About } from "./Screens/PublicScreens/About";
 import { Voluntarios } from "./Screens/PublicScreens/Voluntarios";
+import { VoluntariosForm } from "./Screens/PublicScreens/Voluntarios/Form/voluntariosForm";
+import { Colaborador } from "./Screens/PublicScreens/Colaborador";
+import { ColaboradorForm } from "./Screens/PublicScreens/Colaborador/Form/colaboradorForm";
+import { Apoiador } from "./Screens/PublicScreens/Apoiador";
+import { ApoiadorForm } from "./Screens/PublicScreens/Apoiador/Form/apoiadorForm";
 import { Beneficiarios } from "./Screens/PublicScreens/Beneficiarios";
 import { Blog } from "./Screens/PublicScreens/Blog";
 import { Donation } from "./Screens/PublicScreens/Donation";
@@ -47,7 +52,7 @@ import { BuildingHome } from "./Screens/PrivateScreens/Obras/BuildingHome";
 import { BeneficiarioPerfil } from "./Screens/PrivateScreens/BeneficiarioPerfil";
 import { PainelDoEditor } from "./Screens/PrivateScreens/PainelDoEditor";
 import { EventsHome } from "./Screens/PrivateScreens/Eventos/EventsHome";
-
+import { VoluntariosTable } from "./Screens/PrivateScreens/VoluntariosTable";
 
 function App() {
   return (
@@ -66,7 +71,13 @@ function App() {
               <Route path="sobre" element={<About />} />
               <Route path="voluntarios" element={<Voluntarios />} />
               <Route path="beneficiarios" element={<Beneficiarios />} />
-              <Route path="doacoes" element={<Donation />} />
+              <Route path="voluntarios" element={<Voluntarios /> }/>
+              <Route path="voluntarios/form" element={<VoluntariosForm />}/>
+              <Route path="colaborador" element={<Colaborador />}/>
+              <Route path="colaborador/form" element={<ColaboradorForm />}/>
+              <Route path="apoiador" element={<Apoiador />}/>
+              <Route path="apoiador/form" element={<ApoiadorForm />}/>
+              <Route path='doacoes' element={<Donation />}/>
             </Route>
 
             {/* Rota de Login */}
@@ -90,7 +101,8 @@ function App() {
                 <Route path="obras" element={<BuildingHome />}/>
                 <Route path="editor" element={<PainelDoEditor />} />
                 <Route path="events" element={<EventsHome />}/>
-              </Route>
+                <Route path="voluntariostable" element={<VoluntariosTable />} />
+          </Route>
             </Route>
           </Routes>
         </div>

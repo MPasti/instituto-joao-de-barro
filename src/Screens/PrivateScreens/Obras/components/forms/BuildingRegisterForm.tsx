@@ -47,7 +47,7 @@ export const BuildingRegisterForm = ({ handleCancel }: IRegisterFormProps) => {
   async function handleCreateNewBuilding(data: RegisterFormData) {
     try {
       const newBuilding = {
-        id: nanoid(6),  // Gerando o ID único para a construção
+        id: nanoid(6),  
         descricao: data.descricao,
         logradouro: data.logradouro,
         numero: data.numero,
@@ -61,7 +61,7 @@ export const BuildingRegisterForm = ({ handleCancel }: IRegisterFormProps) => {
         custo_total: data.custo_total,
       };
 
-      await addBuilding(newBuilding);  // Envia os dados para a API
+      await addBuilding(newBuilding);  
       publish("building:close-register-modal")
     } catch (error) {
       return error;
@@ -73,12 +73,11 @@ export const BuildingRegisterForm = ({ handleCancel }: IRegisterFormProps) => {
       <div className="fields-container" style={{
         maxHeight: "400px", 
         overflowY: "auto", 
-        paddingRight: "20px",  // Mover a barra de rolagem para a direita
-        paddingLeft: "20px",   // Espaço à esquerda
-        marginRight: "10px",   // Margem para não colidir com a borda
-        flexGrow: 1,  // Permite que o campo de entrada ocupe o restante do espaço
+        paddingRight: "20px",  
+        paddingLeft: "20px",   
+        marginRight: "10px",   
+        flexGrow: 1,  
       }}>
-        {/* Descrição da obra */}
         <div className="input-container">
           <label htmlFor="descricao">Descrição da Obra</label>
           <textarea
@@ -89,7 +88,6 @@ export const BuildingRegisterForm = ({ handleCancel }: IRegisterFormProps) => {
           {errors.descricao && <p className="input-error">{errors.descricao.message}</p>}
         </div>
 
-        {/* Logradouro e Número */}
         <div style={{ display: "flex", gap: "10px" }}>
           <div className="input-container" style={{ flex: 3 }}>
             <label htmlFor="logradouro">Logradouro</label>
@@ -111,7 +109,6 @@ export const BuildingRegisterForm = ({ handleCancel }: IRegisterFormProps) => {
           </div>
         </div>
 
-        {/* Bairro */}
         <div className="input-container">
           <label htmlFor="bairro">Bairro</label>
           <input
@@ -122,7 +119,6 @@ export const BuildingRegisterForm = ({ handleCancel }: IRegisterFormProps) => {
           {errors.bairro && <p className="input-error">{errors.bairro.message}</p>}
         </div>
 
-        {/* Cidade e UF */}
         <div style={{ display: "flex", gap: "10px" }}>
           <div className="input-container" style={{ flex: 3 }}>
             <label htmlFor="cidade">Cidade</label>
@@ -144,7 +140,6 @@ export const BuildingRegisterForm = ({ handleCancel }: IRegisterFormProps) => {
           </div>
         </div>
 
-        {/* Data de Início e Término */}
         <div style={{ display: "flex", gap: "10px" }}>
           <div className="input-container" style={{ flex: 1 }}>
             <label htmlFor="dt_inicio">Data de Início</label>
@@ -165,7 +160,6 @@ export const BuildingRegisterForm = ({ handleCancel }: IRegisterFormProps) => {
           </div>
         </div>
 
-        {/* Custo Estimado e Custo Total */}
         <div style={{ display: "flex", gap: "10px" }}>
           <div className="input-container" style={{ flex: 1 }}>
             <label htmlFor="custo_estimado">Custo Estimado</label>
@@ -186,7 +180,6 @@ export const BuildingRegisterForm = ({ handleCancel }: IRegisterFormProps) => {
           </div>
         </div>
 
-        {/* Situação da Construção */}
         <div className="input-container">
           <label htmlFor="situacao_construcao">Situação da Construção</label>
           <select

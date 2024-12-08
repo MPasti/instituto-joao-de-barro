@@ -115,7 +115,7 @@ const HelpSection = () => {
             </Button>
           </div>
           <div className="image">
-            <img src={block.image} alt={block.imageAlt} />
+            <img src={block.image as string} alt={block.imageAlt} />
           </div>
         </div>
       ))}
