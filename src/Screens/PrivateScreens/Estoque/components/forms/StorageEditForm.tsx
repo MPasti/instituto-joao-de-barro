@@ -1,46 +1,29 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import { object, string, number, InferType } from "yup";
-import { updateMaterial, deleteMaterial, StorageMaterialResponse } from "../../../../../services/storage/storageApi";
+import { updateMaterial, deleteMaterial } from "../../../../../services/storage/storageApi";
 import { publish } from "../../../../../utils/events";
 import toast from "react-hot-toast";
+import { useContext } from "react";
+import { StorageContext, StorageMaterialFormData } from "../../../../../contexts/storage/StorageContext";
 
-interface IEditFormProps {
-    selectedMaterial: StorageMaterialResponse;
-}
+export const StorageEditForm = () => {
+    const {selectedMaterial, loadStorageMaterials, storageMaterialValidationSchema, mapOriginToEnum} = useContext(StorageContext)
 
-enum ORIGIN_VALUE {
-    "Doação" = "DONATED",
-    "Compra" = "BOUGHT"
-}
-
-const validationSchema = object({
-    name: string().required("Nome do material é obrigatório"),
-    quantity: number().required("Quantidade é obrigatória").positive("Informe uma quantidade válida").typeError("Quantidade deve ser um número"),
-    description: string().optional(),
-    origin: string().required("Origem é obrigatório")
-});
-
-type EditFormData = InferType<typeof validationSchema>;
-
-export const StorageEditForm = ({ selectedMaterial }: IEditFormProps) => {
-    const mapOriginToEnum = (origin: string) => {
-        return (ORIGIN_VALUE as Record<string, string>)[origin];
-    };
-
-    const { register, handleSubmit, formState: { errors } } = useForm<EditFormData>({
-        resolver: yupResolver(validationSchema),
+    const { register, handleSubmit, formState: { errors } } = useForm<StorageMaterialFormData>({
+        resolver: yupResolver(storageMaterialValidationSchema),
         defaultValues: {
-            name: selectedMaterial.name,
-            quantity: selectedMaterial.quantity,
-            description: selectedMaterial.description,
-            origin: mapOriginToEnum(selectedMaterial.origin)
+            name: selectedMaterial?.name,
+            quantity: selectedMaterial?.quantity,
+            description: selectedMaterial?.description,
+            origin: selectedMaterial?.origin && mapOriginToEnum(selectedMaterial.origin)
         },
         mode: "onSubmit"
     });
 
-    async function handleEditMaterial(data: EditFormData) {
+    async function handleEditMaterial(data: StorageMaterialFormData) {
         try {
+            if(!selectedMaterial) return;
+
             const updatedMaterial = {
                 ...selectedMaterial,
                 name: data.name,
@@ -49,6 +32,7 @@ export const StorageEditForm = ({ selectedMaterial }: IEditFormProps) => {
                 origin: data.origin
             };
             await updateMaterial(selectedMaterial.id, updatedMaterial);
+            loadStorageMaterials()
             publish("storage:close-edit-modal");
             toast.success( "Material alterado com sucesso");
         } catch (error) {
@@ -58,8 +42,11 @@ export const StorageEditForm = ({ selectedMaterial }: IEditFormProps) => {
     }
   
     async function handleDeleteMaterial() {
+        if(!selectedMaterial) return;
+
         try {
             await deleteMaterial(selectedMaterial.id);
+            loadStorageMaterials()
             publish("storage:close-edit-modal");
             toast.success( "Material excluído com sucesso");
         } catch (error) {

@@ -1,56 +1,38 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import { object, string, InferType } from "yup";
 import { publish } from "../../../../../utils/events";
-import { deleteProduct, OutletProductResponse, updateProduct } from "../../../../../services/storage/outletApi";
+import { deleteProduct, updateProduct } from "../../../../../services/storage/outletApi";
 import toast from "react-hot-toast";
+import { useContext } from "react";
+import { OutletContext, OutletProductFormData } from "../../../../../contexts/storage/OutletContext";
 
-interface IEditFormProps {
-    selectedProduct: OutletProductResponse;
-}
+export const OutletEditForm = () => {
+    const {selectedProduct, loadOutletProducts, outletProductValidationSchema, mapStatusToEnum} = useContext(OutletContext)
 
-enum STATUS_VALUE {
-    "À venda" = "FOR_SALE",
-    "Trocado" = "EXCHANGED",
-    "Abatido" = "REBATED",
-    "Vendido" = "SOLD"
-}
-
-const validationSchema = object({
-    name: string().required("Nome do produto é obrigatório"),
-    price: string().required("Preço do produto é obrigatório"),
-    description: string(),
-    status: string().required("Status do produto é obrigatório")
-})
-
-type EditFormData = InferType<typeof validationSchema>
-
-export const OutletEditForm = ({ selectedProduct }: IEditFormProps) => {
-    const mapStatusToEnum = (status: string) => {
-        return (STATUS_VALUE as Record<string, string>)[status];
-    };
-
-    const { register, handleSubmit, formState: { errors } } = useForm<EditFormData>({
-        resolver: yupResolver(validationSchema),
+    const { register, handleSubmit, formState: { errors } } = useForm<OutletProductFormData>({
+        resolver: yupResolver(outletProductValidationSchema),
         defaultValues: {
-            name: selectedProduct.name,
-            price: selectedProduct.price?.toString(),
-            description: selectedProduct.description,
-            status: mapStatusToEnum( selectedProduct.status)
+            name: selectedProduct?.name,
+            price: selectedProduct?.price,
+            description: selectedProduct?.description,
+            status: selectedProduct?.status && mapStatusToEnum(selectedProduct.status)
         },
         mode: "onSubmit"
     });
 
-    async function handleEditMaterial(data: EditFormData) {
+    async function handleEditMaterial(data: OutletProductFormData) {
         try {
+            if(!selectedProduct) return;
+
             const updatedProduct = {
                 ...selectedProduct,
                 name: data.name,
-                price: data.price,
+                price: data.price.replace(",", "."),
                 description: data.description,
                 status: data.status
             };
             await updateProduct(selectedProduct.id, updatedProduct);
+            loadOutletProducts()
             publish("outlet:close-edit-modal");
             toast.success( "Produto alterado com sucesso");
         } catch (error) {
@@ -60,8 +42,11 @@ export const OutletEditForm = ({ selectedProduct }: IEditFormProps) => {
     }
   
     async function handleDeleteProduct() {
+        if(!selectedProduct) return;
+
         try {
             await deleteProduct(selectedProduct.id);
+            loadOutletProducts()
             publish("outlet:close-edit-modal");
             toast.success( "Produto excluído com sucesso");
         } catch (error) {

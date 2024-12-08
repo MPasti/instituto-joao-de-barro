@@ -1,26 +1,20 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import {object, string, InferType } from "yup"
 import { publish } from "../../../../../utils/events";
 import { addProduct } from "../../../../../services/storage/outletApi";
 import toast from "react-hot-toast";
+import { useContext } from "react";
+import { OutletContext, OutletProductFormData } from "../../../../../contexts/storage/OutletContext";
 
 interface IRegisterFormProps {
     handleCancel?: () => void
 }
 
-const validationSchema = object({
-    name: string().required("Nome do produto é obrigatório"),
-    price: string().required("Preço do produto é obrigatório"),
-    description: string(),
-    status: string().required("Status do produto é obrigatório")
-})
-
-type RegisterFormData = InferType<typeof validationSchema>
-
 export const OutletRegisterForm = ({handleCancel}: IRegisterFormProps) => {
-    const { register, handleSubmit, formState: { errors } } = useForm<RegisterFormData>({
-        resolver: yupResolver(validationSchema),
+    const {loadOutletProducts, outletProductValidationSchema} = useContext(OutletContext)
+
+    const { register, handleSubmit, formState: { errors } } = useForm<OutletProductFormData>({
+        resolver: yupResolver(outletProductValidationSchema),
         defaultValues: {
             name: "",
             price: "",
@@ -30,15 +24,16 @@ export const OutletRegisterForm = ({handleCancel}: IRegisterFormProps) => {
         mode: "onSubmit"
     })
 
-    async function handleCreateNewProduct(data: RegisterFormData) {
+    async function handleCreateNewProduct(data: OutletProductFormData) {
         try {
             const newProduct = {
                 name: data.name,
-                price: data.price,
+                price: data.price.replace(",", "."),
                 description: data.description,
                 status: data.status,
             }
             await addProduct(newProduct);
+            loadOutletProducts()
             publish("outlet:close-register-modal")
             toast.success( "Produto criado com sucesso");
         } catch (error) {
@@ -60,7 +55,7 @@ export const OutletRegisterForm = ({handleCancel}: IRegisterFormProps) => {
                     {errors.name && <p className="input-error">{errors.name.message}</p>}
                 </div>
                 <div className="input-container">
-                    <label htmlFor="quantity">Preço</label>
+                    <label htmlFor="price">Preço</label>
                     <input 
                         type="text" 
                         className="form-control"

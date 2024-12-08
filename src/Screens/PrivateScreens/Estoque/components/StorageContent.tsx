@@ -1,28 +1,17 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { PlusCircle } from "phosphor-react";
 import { publish } from "../../../../utils/events";
 import { StorageRegisterModal } from "./modals/StorageRegisterModal";
-import { getMaterials, StorageMaterialResponse } from "../../../../services/storage/storageApi";
 import { StorageEditModal } from "./modals/StorageEditModal";
+import { StorageContext } from "../../../../contexts/storage/StorageContext";
 
 export const Storage = () => {
-    const [storageMaterials, setStorageMaterials] = useState<StorageMaterialResponse[]>([]);
-    const [selectedMaterial, setSelectedMaterial] = useState<StorageMaterialResponse | null>(null);
+    const {storageMaterials, loadStorageMaterials,handleEditStorageMaterial } = useContext(StorageContext)
     const [searchTerm, setSearchTerm] = useState<string>("");
-
-    async function loadStorageMaterials() {
-        const response = await getMaterials();
-        setStorageMaterials(response);
-    }
 
     useEffect(() => {
         loadStorageMaterials();
     }, []);
-
-    const handleEditStorageMaterial = (material: StorageMaterialResponse) => {
-        setSelectedMaterial(material);
-        publish("storage:open-edit-modal");
-    };
 
     const filteredMaterials = storageMaterials.filter(material =>
         material.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -66,7 +55,7 @@ export const Storage = () => {
                 </table>
             </section>
             <StorageRegisterModal />
-            <StorageEditModal selectedMaterial={selectedMaterial} />
+            <StorageEditModal />
         </>
     );
 };
