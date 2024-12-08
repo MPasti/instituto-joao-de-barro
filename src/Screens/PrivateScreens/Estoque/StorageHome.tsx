@@ -2,6 +2,7 @@ import { Tab, TabGroup, TabList, TabPanel, TabPanels } from "@headlessui/react"
 import { Storage } from "./components/StorageContent"
 import { Outlet } from "./components/OutletContent"
 import { Scroll, Storefront } from "phosphor-react"
+import { StorageProvider } from "../../../contexts/storage/StorageContext"
 
 export const StorageHome = () => {
     return (
@@ -12,11 +13,12 @@ export const StorageHome = () => {
                     <Tab className="storage-header-link"><Storefront size={24} /></Tab>
                 </TabList>
                 <TabPanels>
-                    <TabPanel><Storage /></TabPanel>
+                    <StorageProvider>
+                        <TabPanel><Storage /></TabPanel>
+                    </StorageProvider>
                     <TabPanel><Outlet /></TabPanel>
                 </TabPanels>
             </TabGroup>
-
         </main>
     )
 }

@@ -2,15 +2,8 @@ import { useState } from "react";
 import { Modal } from "../../../../../components/Modal/Modal";
 import { StorageEditForm } from "../forms/StorageEditForm";
 import { useCustomEvent } from "../../../../../utils/useCustomEvent";
-import { StorageMaterialResponse } from "../../../../../services/storage/storageApi";
 
-interface StorageEditModalProps {
-  selectedMaterial: StorageMaterialResponse | null;
-}
-
-export const StorageEditModal = ({
-  selectedMaterial,
-}: StorageEditModalProps) => {
+export const StorageEditModal = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   function handleModalOpen() {
@@ -30,9 +23,7 @@ export const StorageEditModal = ({
         <h1>
           Especificações <span>Material</span>
         </h1>
-        {selectedMaterial && (
-          <StorageEditForm selectedMaterial={selectedMaterial} />
-        )}
+        <StorageEditForm />
       </div>
     </Modal>
   );

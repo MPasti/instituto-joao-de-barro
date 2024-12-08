@@ -4,6 +4,8 @@ import {object, string, number, InferType } from "yup"
 import { addMaterial } from "../../../../../services/storage/storageApi";
 import { publish } from "../../../../../utils/events";
 import toast from "react-hot-toast";
+import { useContext } from "react";
+import { StorageContext } from "../../../../../contexts/storage/StorageContext";
 
 interface IRegisterFormProps {
     handleCancel?: () => void
@@ -19,6 +21,8 @@ const validationSchema = object({
 type RegisterFormData = InferType<typeof validationSchema>
 
 export const StorageRegisterForm = ({handleCancel}: IRegisterFormProps) => {
+    const {loadStorageMaterials} = useContext(StorageContext)
+
     const { register, handleSubmit, formState: { errors } } = useForm<RegisterFormData>({
         resolver: yupResolver(validationSchema),
         defaultValues: {
@@ -39,6 +43,7 @@ export const StorageRegisterForm = ({handleCancel}: IRegisterFormProps) => {
                 origin: data.origin
             }
             await addMaterial(newMaterial);
+            loadStorageMaterials()
             publish("storage:close-register-modal")
             toast.success( "Material criado com sucesso");
         } catch (error) {
