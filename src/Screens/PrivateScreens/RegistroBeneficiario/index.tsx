@@ -2,7 +2,7 @@ import { useState } from 'react';
 import '@styles/global.scss';
 import './registro.scss';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { BenefStatus, registerBeneficiaryAndUser } from '../../../services/beneficiaries/beneficiariesApi';
+import { registerBeneficiaryAndUser } from '../../../services/beneficiaries/beneficiariesApi';
 import toast from 'react-hot-toast';
 
 const Registro = () => {
@@ -14,7 +14,6 @@ const Registro = () => {
     const [cpf, setCpf] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
-    const [maskedCpf, setMaskedCpf] = useState('');
 
     // UserInfo states
     const [name, setName] = useState('');
@@ -33,12 +32,6 @@ const Registro = () => {
 
     // Family members
     const [familyMembers, setFamilyMembers] = useState<FamilyMember[]>([]);
-
-    const handleCpfChange = (e) => {
-        const rawValue = e.target.value;
-        setCpf(rawValue);
-        setMaskedCpf('*'.repeat(rawValue.length));
-    };
 
     const validateForm = () => {
         if (!email || !cpf || !password || !confirmPassword) {
@@ -144,7 +137,7 @@ const Registro = () => {
                 <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
 
                 <label>CPF:</label>
-                <input type="text" value={maskedCpf} onChange={(handleCpfChange)} />
+                <input type="text" value={cpf} onChange={(e) => setCpf(e.target.value)} />
 
                 <label>Senha:</label>
                 <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />

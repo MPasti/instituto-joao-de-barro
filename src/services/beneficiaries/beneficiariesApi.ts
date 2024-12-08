@@ -1,15 +1,5 @@
-import { api } from "../api.ts";
+import { api } from "../../../api/fetchWrapper.ts";
 import { registerFamilyMember } from "./familyApi.ts";
-
-export enum BenefStatus {
-    ATIVO = 'ativo',
-    INATIVO = 'inativo',
-    PENDENTE = 'pendente',
-    EM_ANALISE = 'em_analise',
-    APROVADO = 'aprovado',
-    NECESSITA_ATENCAO = 'necessita_atencao',
-}
-
 
 export interface RegisterBeneficiaryUserRequest {
     benefUser: BenefUser;

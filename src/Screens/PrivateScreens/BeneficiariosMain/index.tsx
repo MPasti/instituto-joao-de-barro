@@ -6,7 +6,7 @@ import TabNavigation from "../../../components/TabNavigation/TabNavigation";
 import SearchBar from "../../../components/SearchBar/SearchBar";
 import FamiliasTable from "../../../components/FamiliasTable/FamiliasTable";
 import VisitasTable from "../../../components/VisitasTable/VisitasTable";
-import { BenefStatus, deleteBeneficiary, getBeneficiaries, getBeneficiaryById } from "../../../services/beneficiaries/beneficiariesApi";
+import { deleteBeneficiary, getBeneficiaries, getBeneficiaryById } from "../../../services/beneficiaries/beneficiariesApi";
 import toast from "react-hot-toast";
 import { deleteVisit, getVisits } from "../../../services/beneficiaries/visitApi";
 

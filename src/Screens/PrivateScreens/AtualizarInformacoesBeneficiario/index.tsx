@@ -3,7 +3,7 @@ import './atualizarInformacoes.scss';
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { AxiosError } from 'axios';
-import { BenefStatus, getBeneficiaryById, getUserByBeneficiaryId, updateBeneficiary } from '../../../services/beneficiaries/beneficiariesApi';
+import { getBeneficiaryById, getUserByBeneficiaryId, updateBeneficiary } from '../../../services/beneficiaries/beneficiariesApi';
 import { getFamilyMembersByBeneficiaryId } from '../../../services/beneficiaries/familyApi';
 import toast from "react-hot-toast";
 
