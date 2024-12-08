@@ -4,13 +4,13 @@ import antes from "@images/institute/antes.png";
 import depois from "@images/institute/depois.png";
 
 import Button from "../Button";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
 const ResultsSection = () => {
   const navigate = useNavigate();
-  const blockRef1 = useRef<HTMLDivElement | unknown>(null);
-  const blockRef2 = useRef<HTMLDivElement | unknown>(null);
+  const blockRef1 = useRef<HTMLDivElement | any>(null);
+  const blockRef2 = useRef<HTMLDivElement | any>(null);
 
   return (
     <div className="results-container">

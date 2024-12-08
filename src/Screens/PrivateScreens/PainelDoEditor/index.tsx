@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "../../../components/Button";
 import {
   getAboutUsData,
@@ -57,7 +57,8 @@ export const PainelDoEditor = () => {
 
       return landingPage.data;
     } catch (e) {
-      toast.error("Erro ao buscar informações da landing page ", e);
+      toast.error(`Erro ao buscar informações da landing page`);
+      console.error(e);
       return landingPage;
     }
   };
@@ -68,7 +69,7 @@ export const PainelDoEditor = () => {
 
       return aboutUs.data;
     } catch (e) {
-      toast.error("Erro ao buscar informações da página de sobre nós ", e);
+      console.error(e);
       return aboutUs;
     }
   };
@@ -78,7 +79,7 @@ export const PainelDoEditor = () => {
       const contact = await getContactData();
       return contact.data;
     } catch (e) {
-      toast.error("Erro ao buscar informações da página de contatos ", e);
+      console.error(e);
       return contact;
     }
   };
@@ -89,7 +90,7 @@ export const PainelDoEditor = () => {
 
       return donation.data;
     } catch (e) {
-      toast.error("Erro ao buscar informações da página de doações ", e);
+      console.error(e);
       return donation;
     }
   };
@@ -109,7 +110,7 @@ export const PainelDoEditor = () => {
       });
     } catch (error) {
       setData(initialData);
-      toast.error("Erro ao carregar os dados:", error);
+      console.error(error);
     }
   };
 
@@ -120,10 +121,10 @@ export const PainelDoEditor = () => {
   const handleInputChange = (
     page: string,
     key: string,
-    value: unknown,
+    value: any,
     index?: number,
   ) => {
-    setData((prevData) => {
+    setData((prevData: any) => {
       const updatedData = { ...prevData };
       if (index !== undefined && Array.isArray(updatedData[page][key])) {
         updatedData[page][key][index] = {

@@ -1,4 +1,8 @@
-const Loading = ({ isLoading }) => {
+interface LoadingProps {
+  isLoading: boolean;
+}
+
+const Loading = ({ isLoading }: LoadingProps) => {
   return (
     isLoading && (
       <div className="loading-overlay">

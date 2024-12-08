@@ -7,11 +7,11 @@ import profileAvatar from "@images/placeholder-avatar.png";
 import { TbLogout } from "react-icons/tb";
 
 export function HeaderDashboard() {
-  const [userProfile, setUserProfile] = useState<string>(null);
-  const [userName, setUserName] = useState<string>(null);
-  const [role, setRole] = useState<string>(null);
+  const [userProfile, setUserProfile] = useState<string>(profileAvatar);
+  const [userName, setUserName] = useState<string>("Usuário");
+  const [role, setRole] = useState<string>("");
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement | unknown>(null);
+  const dropdownRef = useRef<HTMLDivElement | any>(null);
 
   useEffect(() => {
     const user = userService.getUser();

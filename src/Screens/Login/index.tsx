@@ -53,7 +53,7 @@ export const Login = () => {
               </Button>
             </div>
           </div>
-          <LoginForm onLogin={handleLogin} />
+          <LoginForm onLogin={handleLogin} onResetPassword={() => {}} />
         </div>
       </div>
     </div>
