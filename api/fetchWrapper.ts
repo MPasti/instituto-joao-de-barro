@@ -47,18 +47,21 @@ apiInstance.interceptors.response.use(
 );
 
 export const api = {
-  get: <T = any>(url: string, config?: AxiosRequestConfig) =>
+  get: <T = any>(url: string, config?: AxiosRequestConfig | any) =>
     apiInstance.get<T>(url, config).then((res) => res.data),
 
-  post: <T = any>(url: string, data?: any, config?: AxiosRequestConfig) =>
+  post: <T = any>(url: string, data?: any, config?: AxiosRequestConfig | any) =>
     apiInstance.post<T>(url, data, config).then((res) => res.data),
 
-  put: <T = any>(url: string, data?: any, config?: AxiosRequestConfig) =>
+  put: <T = any>(url: string, data?: any, config?: AxiosRequestConfig | any) =>
     apiInstance.put<T>(url, data, config).then((res) => res.data),
 
-  patch: <T = any>(url: string, data?: any, config?: AxiosRequestConfig) =>
-    apiInstance.patch<T>(url, data, config).then((res) => res.data),
+  patch: <T = any>(
+    url: string,
+    data?: any,
+    config?: AxiosRequestConfig | any,
+  ) => apiInstance.patch<T>(url, data, config).then((res) => res.data),
 
-  delete: <T = any>(url: string, config?: AxiosRequestConfig) =>
+  delete: <T = any>(url: string, config?: AxiosRequestConfig | any) =>
     apiInstance.delete<T>(url, config).then((res) => res.data),
 };
