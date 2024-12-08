@@ -1,13 +1,13 @@
 import { PlusCircle } from "phosphor-react"
 import { publish } from "../../../../utils/events"
 import { OutletRegisterModal } from "./modals/OutletRegisterModal"
-import { getProducts, OutletProduct } from "../../../../services/storage/outletApi"
+import { getProducts, OutletProductResponse } from "../../../../services/storage/outletApi"
 import { useEffect, useState } from "react"
 import { OutletEditModal } from "./modals/OutletEditModal"
 
 export const Outlet = () => {
-    const [outletProducts, setOutletProducts] = useState<OutletProduct[]>([]);
-    const [selectedProduct, setSelectedProduct] = useState<OutletProduct | null>(null);
+    const [outletProducts, setOutletProducts] = useState<OutletProductResponse[]>([]);
+    const [selectedProduct, setSelectedProduct] = useState<OutletProductResponse | null>(null);
     const [searchTerm, setSearchTerm] = useState<string>("");
 
     async function loadOutletProducts() {
@@ -17,9 +17,9 @@ export const Outlet = () => {
 
     useEffect(() => {
         loadOutletProducts();
-    }, [outletProducts]);
+    }, []);
 
-    const handleEditOutletProduct = (product: OutletProduct) => {
+    const handleEditOutletProduct = (product: OutletProductResponse) => {
         setSelectedProduct(product);
         publish("outlet:open-edit-modal");
     };
@@ -49,13 +49,15 @@ export const Outlet = () => {
                             <th>Código</th>
                             <th>Preço</th>
                             <th>Descrição</th>
+                            <th>Status</th>
                         </tr>
                         {filteredMaterials.map((product) => (
                                 <tr key={product.id} onClick={() => handleEditOutletProduct(product)}>
                                     <td>{product.name}</td>
                                     <td>{product.id}</td>
-                                    <td>{product.price}</td>
+                                    <td>R${product.price}</td>
                                     <td>{product.description}</td>
+                                    <td>{product.status}</td>
                                 </tr>
                             ))}
                     </thead>

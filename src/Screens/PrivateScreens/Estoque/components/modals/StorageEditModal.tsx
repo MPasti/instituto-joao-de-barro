@@ -2,10 +2,10 @@ import { useState } from "react";
 import { Modal } from "../../../../../components/Modal/Modal";
 import { StorageEditForm } from "../forms/StorageEditForm";
 import { useCustomEvent } from "../../../../../utils/useCustomEvent";
-import { StorageMaterial } from "../../../../../services/storage/storageApi";
+import { StorageMaterialResponse } from "../../../../../services/storage/storageApi";
 
 interface StorageEditModalProps {
-  selectedMaterial: StorageMaterial | null;
+  selectedMaterial: StorageMaterialResponse | null;
 }
 
 export const StorageEditModal = ({

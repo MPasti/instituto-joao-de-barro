@@ -2,8 +2,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import {object, string, number, InferType } from "yup"
 import { addMaterial } from "../../../../../services/storage/storageApi";
-import { nanoid } from 'nanoid';
 import { publish } from "../../../../../utils/events";
+import toast from "react-hot-toast";
 
 interface IRegisterFormProps {
     handleCancel?: () => void
@@ -11,8 +11,9 @@ interface IRegisterFormProps {
 
 const validationSchema = object({
     name: string().required("Nome do material é obrigatório"),
-    quantity: number().required("Quantidade é obrigatória").positive("Informe uam quantidade válida").typeError("Quantidade deve ser um número"),
-    description: string()
+    quantity: number().required("Quantidade é obrigatória").positive("Informe uma quantidade válida").typeError("Quantidade deve ser um número"),
+    description: string(),
+    origin: string().required("Origem é obrigatório")
 })
 
 type RegisterFormData = InferType<typeof validationSchema>
@@ -23,7 +24,8 @@ export const StorageRegisterForm = ({handleCancel}: IRegisterFormProps) => {
         defaultValues: {
             name: "",
             quantity: 0,
-            description: ""
+            description: "",
+            origin: ""
         },
         mode: "onSubmit"
     })
@@ -31,14 +33,16 @@ export const StorageRegisterForm = ({handleCancel}: IRegisterFormProps) => {
    async function handleCreateNewMaterial(data: RegisterFormData) {
         try {
             const newMaterial = {
-                id: nanoid(6),
                 name: data.name,
                 quantity: Number(data.quantity),
                 description: data.description,
+                origin: data.origin
             }
             await addMaterial(newMaterial);
             publish("storage:close-register-modal")
+            toast.success( "Material criado com sucesso");
         } catch (error) {
+            toast.error( "Falha ao criar material");
             return error;
         }
    }
@@ -66,11 +70,23 @@ export const StorageRegisterForm = ({handleCancel}: IRegisterFormProps) => {
                 </div>
                 <div className="input-container">
                     <label htmlFor="description">Descrição <span className="optional">(opcional)</span></label>
-                    <input 
-                        type="text" 
+                    <textarea 
                         className="form-control"
                         {...register("description")}
                     />
+                </div>
+                <div className="input-container">
+                    <label htmlFor="origin">Origem</label>
+                    <select 
+                        id="origin"
+                        {...register("origin")}
+                        className="form-control"
+                    >
+                        <option value="" disabled>Selecione</option>
+                        <option value="DONATED">Doação</option>
+                        <option value="BOUGHT">Compra</option>
+                    </select>
+                    {errors.origin && <p className="input-error">{errors.origin.message}</p>}
                 </div>
            </div>
 
