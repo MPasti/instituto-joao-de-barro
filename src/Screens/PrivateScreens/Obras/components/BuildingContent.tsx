@@ -18,7 +18,7 @@ export const BuildingContent = () => {
 
     useEffect(() => {
         loadBuildings();  
-    }, [buildings]);  
+    }, []);  
 
     
     const handleEditBuilding = (building: Building) => {

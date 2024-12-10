@@ -25,7 +25,9 @@ export const BuildingEditModal = ({ selectedBuilding }: BuildingEditModalProps) 
   return (
     <Modal isOpen={isModalOpen} onClose={handleModalClose}>
       <div className="modal-container">
-        <h1>Especificações <span>Construção</span></h1>
+        <h1>
+          Especificações <span>Construção</span>
+        </h1>
         {selectedBuilding && (
           <BuildingEditForm selectedBuilding={selectedBuilding} />
         )}
