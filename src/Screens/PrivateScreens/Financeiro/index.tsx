@@ -44,14 +44,16 @@ const tableExpenses = {
   name: 'Nome',
   status: 'Situação do Pagamento',
   dueDate: 'Data de Vencimento',
-  bankStatement: 'Saída'
+  bankStatement: 'Saída',
+  invoice: "Nota Fiscal"
 }
 
 const tableRevenue = {
   name: 'Nome',
   status: 'Situação do Pagamento',
   dueDate: 'Data de Vencimento',
-  bankStatement: 'Entrada'
+  bankStatement: 'Entrada',
+  invoice: "Nota Fiscal"
 }
 
 const Financeiro: React.FC = () => {
