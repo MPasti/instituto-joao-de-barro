@@ -4,30 +4,32 @@ import { object, string, date, number, InferType } from "yup";
 import { nanoid } from "nanoid";
 import { publish } from "../../../../../utils/events";
 import { addBuilding } from "../../../../../services/buildings/buildingApi";
+import { toast } from "react-hot-toast";
+
+// Definindo o schema de validação com Yup
+const buildingValidationSchema = object({
+  descricao: string().required("Descrição da obra é obrigatória"),
+  logradouro: string().required("Logradouro é obrigatório"),
+  numero: number().required("Número é obrigatório"),
+  bairro: string().required("Bairro é obrigatório"),
+  cidade: string().required("Cidade é obrigatória"),
+  uf: string().required("UF é obrigatória"),
+  dt_inicio: date().required("Data de início é obrigatória"),
+  dt_termino: date().optional(),
+  situacao_construcao: string().required("Situação da construção é obrigatória"),
+  custo_estimado: string().required("Custo estimado é obrigatório"),
+  custo_total: string().optional(),
+});
+
+type BuildingRegisterFormData = InferType<typeof buildingValidationSchema>;
 
 interface IRegisterFormProps {
   handleCancel?: () => void;
 }
 
-const validationSchema = object({
-  descricao: string().required("Descrição é obrigatória"),
-  logradouro: string().required("Logradouro é obrigatório"),
-  numero: number().required("Número é obrigatório").typeError("Número deve ser um valor numérico"),
-  bairro: string().required("Bairro é obrigatório"),
-  cidade: string().required("Cidade é obrigatória"),
-  uf: string().required("UF é obrigatória").length(2, "UF deve ter exatamente 2 caracteres"),
-  dt_inicio: date().required("Data de início é obrigatória"),
-  dt_termino: date().optional(),
-  situacao_construcao: string().required("Situação da construção é obrigatória"),
-  custo_estimado: number().required("Custo estimado é obrigatório"),
-  custo_total: number().optional(),
-});
-
-type RegisterFormData = InferType<typeof validationSchema>;
-
 export const BuildingRegisterForm = ({ handleCancel }: IRegisterFormProps) => {
-  const { register, handleSubmit, formState: { errors } } = useForm<RegisterFormData>({
-    resolver: yupResolver(validationSchema),
+  const { register, handleSubmit, formState: { errors } } = useForm<BuildingRegisterFormData>({
+    resolver: yupResolver(buildingValidationSchema),
     defaultValues: {
       descricao: "",
       logradouro: "",
@@ -35,180 +37,253 @@ export const BuildingRegisterForm = ({ handleCancel }: IRegisterFormProps) => {
       bairro: "",
       cidade: "",
       uf: "",
-      dt_inicio: new Date(),
+      dt_inicio: undefined,
       dt_termino: undefined,
       situacao_construcao: "",
-      custo_estimado: 0,
-      custo_total: undefined,
+      custo_estimado: "",
+      custo_total: "",
     },
     mode: "onSubmit",
   });
 
-  async function handleCreateNewBuilding(data: RegisterFormData) {
+  async function handleCreateNewBuilding(data: BuildingRegisterFormData) {
     try {
       const newBuilding = {
-        id: nanoid(6),  
-        descricao: data.descricao,
-        logradouro: data.logradouro,
-        numero: data.numero,
-        bairro: data.bairro,
-        cidade: data.cidade,
-        uf: data.uf,
-        dt_inicio: data.dt_inicio,
-        dt_termino: data.dt_termino,
-        situacao_construcao: data.situacao_construcao,
-        custo_estimado: data.custo_estimado,
-        custo_total: data.custo_total,
+        id: nanoid(6),
+        ...data,
+        custo_estimado: parseFloat(data.custo_estimado.replace(",", ".")),
+        custo_total: data.custo_total ? parseFloat(data.custo_total.replace(",", ".")) : undefined,
       };
 
-      await addBuilding(newBuilding);  
-      publish("building:close-register-modal")
+      await addBuilding(newBuilding);
+      publish("building:close-register-modal");
+      toast.success("Construção registrada com sucesso!");
     } catch (error) {
+      toast.error("Erro ao registrar construção.");
       return error;
     }
   }
-
   return (
-    <form className="form" onSubmit={handleSubmit(handleCreateNewBuilding)} style={{ display: "flex", flexDirection: "column" }}>
-      <div className="fields-container" style={{
-        maxHeight: "400px", 
-        overflowY: "auto", 
-        paddingRight: "20px",  
-        paddingLeft: "20px",   
-        marginRight: "10px",   
-        flexGrow: 1,  
-      }}>
-        <div className="input-container">
+    <form
+      className="form"
+      onSubmit={handleSubmit(handleCreateNewBuilding)}
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "20px",
+        padding: "20px",
+        maxHeight: "80vh",
+        overflowY: "auto",
+      }}
+    >
+      <div className="fields-container" style={{ display: "flex", flexDirection: "column", gap: "15px" }}>
+        <div className="input-container" style={{ flex: 1 }}>
           <label htmlFor="descricao">Descrição da Obra</label>
           <textarea
             className="form-control"
             {...register("descricao")}
-            rows={4}
+            style={{
+              padding: "10px",
+              borderRadius: "5px",
+              width: "100%",
+              minHeight: "100px",
+              borderColor: errors.descricao ? "red" : "black",
+            }}
           />
-          {errors.descricao && <p className="input-error">{errors.descricao.message}</p>}
+          {errors.descricao && <p style={{ color: "red" }}>{errors.descricao.message}</p>}
         </div>
-
-        <div style={{ display: "flex", gap: "10px" }}>
-          <div className="input-container" style={{ flex: 3 }}>
+  
+        {/* Logradouro e Número */}
+        <div className="row-container" style={{ display: "flex", gap: "15px" }}>
+          <div className="input-container" style={{ flex: 2 }}>
             <label htmlFor="logradouro">Logradouro</label>
             <input
               type="text"
               className="form-control"
               {...register("logradouro")}
+              style={{
+                padding: "10px",
+                borderRadius: "5px",
+                width: "100%",
+                borderColor: errors.logradouro ? "red" : "black",
+              }}
             />
-            {errors.logradouro && <p className="input-error">{errors.logradouro.message}</p>}
+            {errors.logradouro && <p style={{ color: "red" }}>{errors.logradouro.message}</p>}
           </div>
+  
           <div className="input-container" style={{ flex: 1 }}>
             <label htmlFor="numero">Número</label>
             <input
-              type="number"
+              type="text"
               className="form-control"
               {...register("numero")}
+              style={{
+                padding: "10px",
+                borderRadius: "5px",
+                width: "100%",
+                borderColor: errors.numero ? "red" : "black",
+              }}
             />
-            {errors.numero && <p className="input-error">{errors.numero.message}</p>}
+            {errors.numero && <p style={{ color: "red" }}>{errors.numero.message}</p>}
           </div>
         </div>
-
-        <div className="input-container">
+  
+        {/* Bairro */}
+        <div className="input-container" style={{ flex: 1 }}>
           <label htmlFor="bairro">Bairro</label>
           <input
             type="text"
             className="form-control"
             {...register("bairro")}
+            style={{
+              padding: "10px",
+              borderRadius: "5px",
+              width: "100%",
+              borderColor: errors.bairro ? "red" : "black",
+            }}
           />
-          {errors.bairro && <p className="input-error">{errors.bairro.message}</p>}
+          {errors.bairro && <p style={{ color: "red" }}>{errors.bairro.message}</p>}
         </div>
-
-        <div style={{ display: "flex", gap: "10px" }}>
-          <div className="input-container" style={{ flex: 3 }}>
+  
+        {/* Cidade e UF */}
+        <div className="row-container" style={{ display: "flex", gap: "15px" }}>
+          <div className="input-container" style={{ flex: 2 }}>
             <label htmlFor="cidade">Cidade</label>
             <input
               type="text"
               className="form-control"
               {...register("cidade")}
+              style={{
+                padding: "10px",
+                borderRadius: "5px",
+                width: "100%",
+                borderColor: errors.cidade ? "red" : "black",
+              }}
             />
-            {errors.cidade && <p className="input-error">{errors.cidade.message}</p>}
+            {errors.cidade && <p style={{ color: "red" }}>{errors.cidade.message}</p>}
           </div>
+  
           <div className="input-container" style={{ flex: 1 }}>
             <label htmlFor="uf">UF</label>
             <input
               type="text"
               className="form-control"
               {...register("uf")}
+              style={{
+                padding: "10px",
+                borderRadius: "5px",
+                width: "100%",
+                borderColor: errors.uf ? "red" : "black",
+              }}
             />
-            {errors.uf && <p className="input-error">{errors.uf.message}</p>}
+            {errors.uf && <p style={{ color: "red" }}>{errors.uf.message}</p>}
           </div>
         </div>
-
-        <div style={{ display: "flex", gap: "10px" }}>
+  
+        {/* Datas */}
+        <div className="row-container" style={{ display: "flex", gap: "15px" }}>
           <div className="input-container" style={{ flex: 1 }}>
             <label htmlFor="dt_inicio">Data de Início</label>
             <input
               type="date"
               className="form-control"
               {...register("dt_inicio")}
+              style={{
+                padding: "10px",
+                borderRadius: "5px",
+                width: "100%",
+                borderColor: errors.dt_inicio ? "red" : "black",
+              }}
             />
-            {errors.dt_inicio && <p className="input-error">{errors.dt_inicio.message}</p>}
+            {errors.dt_inicio && <p style={{ color: "red" }}>{errors.dt_inicio.message}</p>}
           </div>
+  
           <div className="input-container" style={{ flex: 1 }}>
-            <label htmlFor="dt_termino">Data Final <span className="optional">(opcional)</span></label>
+            <label htmlFor="dt_termino">Data de Término</label>
             <input
               type="date"
               className="form-control"
               {...register("dt_termino")}
+              style={{
+                padding: "10px",
+                borderRadius: "5px",
+                width: "100%",
+              }}
             />
           </div>
         </div>
-
-        <div style={{ display: "flex", gap: "10px" }}>
-          <div className="input-container" style={{ flex: 1 }}>
-            <label htmlFor="custo_estimado">Custo Estimado</label>
-            <input
-              type="number"
-              className="form-control"
-              {...register("custo_estimado")}
-            />
-            {errors.custo_estimado && <p className="input-error">{errors.custo_estimado.message}</p>}
-          </div>
-          <div className="input-container" style={{ flex: 1 }}>
-            <label htmlFor="custo_total">Custo Total <span className="optional">(opcional)</span></label>
-            <input
-              type="number"
-              className="form-control"
-              {...register("custo_total")}
-            />
-          </div>
-        </div>
-
-        <div className="input-container">
+  
+        {/* Situação da Construção */}
+        <div className="input-container" style={{ flex: 1 }}>
           <label htmlFor="situacao_construcao">Situação da Construção</label>
           <select
             className="form-control"
             {...register("situacao_construcao")}
+            style={{
+              padding: "10px",
+              borderRadius: "5px",
+              width: "100%",
+              borderColor: errors.situacao_construcao ? "red" : "black",
+            }}
           >
+            <option value="" disabled>Selecione</option>
             <option value="Em andamento">Em andamento</option>
             <option value="Concluída">Concluída</option>
             <option value="Pausada">Pausada</option>
             <option value="Cancelada">Cancelada</option>
           </select>
-          {errors.situacao_construcao && <p className="input-error">{errors.situacao_construcao.message}</p>}
+          {errors.situacao_construcao && <p style={{ color: "red" }}>{errors.situacao_construcao.message}</p>}
+        </div>
+  
+        {/* Custos */}
+        <div className="input-container" style={{ flex: 1 }}>
+          <label htmlFor="custo_estimado">Custo Estimado</label>
+          <input
+            type="text"
+            className="form-control"
+            {...register("custo_estimado")}
+            style={{
+              padding: "10px",
+              borderRadius: "5px",
+              width: "100%",
+              borderColor: errors.custo_estimado ? "red" : "black",
+            }}
+          />
+          {errors.custo_estimado && <p style={{ color: "red" }}>{errors.custo_estimado.message}</p>}
+        </div>
+  
+        <div className="input-container" style={{ flex: 1 }}>
+          <label htmlFor="custo_total">Custo Total</label>
+          <input
+            type="text"
+            className="form-control"
+            {...register("custo_total")}
+            style={{
+              padding: "10px",
+              borderRadius: "5px",
+              width: "100%",
+            }}
+          />
         </div>
       </div>
-
+  
+      {/* Botões */}
       <div className="buttons-container">
-        <button
-          className="btn-secondary"
-          onClick={handleCancel}
-        >
-          Cancelar
-        </button>
-        <button
-          className="btn-primary"
-          type="submit"
-        >
-          Criar Registro
-        </button>
-      </div>
+  <button
+    type="button"
+    onClick={handleCancel}
+    className="btn-secondary"
+  >
+    Cancelar
+  </button>
+  <button
+    type="submit"
+    className="btn-primary"
+  >
+    Criar Registro
+  </button>
+</div>
     </form>
   );
-};
+  
+}

@@ -10,7 +10,6 @@ export const BuildingRegisterModal = () => {
     setIsModalOpen(true);
   }
 
- 
   function handleModalClose() {
     setIsModalOpen(false);
   }
@@ -21,7 +20,9 @@ export const BuildingRegisterModal = () => {
   return (
     <Modal isOpen={isModalOpen} onClose={handleModalClose}>
       <div className="modal-container">
-        <h1>Novo Registro <span>Construção</span></h1>
+        <h1>
+          Novo Registro <span>Construção</span>
+        </h1>
         <BuildingRegisterForm handleCancel={handleModalClose} />
       </div>
     </Modal>
